@@ -42,7 +42,7 @@ public class UserController {
 		}
 		else if(findUser.getPw().equals(user.getPw())) {
 			session.setAttribute("id", findUser.getId());
-			session.setAttribute("user_id", findUser.getUser_id());
+			session.setAttribute("name", findUser.getName());
 			session.setAttribute("type", findUser.getType());
 			model.addAttribute("board", "");
 			return "main";
@@ -61,8 +61,9 @@ public class UserController {
 	}
 
 	@RequestMapping(value="meminfo", method=RequestMethod.GET)
-	public String meminfo(Model model) {
-		User user = new User();
+	public String meminfo(Model model, HttpSession session) {
+		User user = userMapper.findOneById((int)session.getAttribute("id"));
+		user.setPw("");
 		model.addAttribute("user",user);
 		model.addAttribute("board", "회원정보 수정");
 		return "meminfo";
@@ -72,6 +73,22 @@ public class UserController {
 	public String meminfo(Model model, User user, HttpSession session) {
 		model.addAttribute("board", "회원정보 수정");
 		User findUser = userMapper.findOneById((int)session.getAttribute("id"));
+		if(user.getPw().equals(findUser.getPw())) {
+			if(user.getNewPw()!=null) {
+				if(!user.getNewPw().equals(user.getNewPw2())) {
+					model.addAttribute("error","새 비밀번호가 일치하지 않습니다.");
+				}
+				else {
+					user.setPw(user.getNewPw());
+				}
+			}
+			user.setId(findUser.getId());
+			userMapper.update(user);
+		}
+		else {
+			model.addAttribute("error","비밀번호를 다시 입력해주세요.");
+		}
+		return "meminfo";
 	}
 
 }

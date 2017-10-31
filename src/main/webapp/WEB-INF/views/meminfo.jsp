@@ -15,8 +15,8 @@
 							<li>회원정보수정</li>
 							<li>회원탈퇴</li>
 						</ul>
+						<form:form method="post" modelAttribute="user">
 						<div class="resp-tabs-container hor_1">
-							<form:form method="post" modelAttribute="user">
 								<!--정보수정-->
 								<div class="row">
 									<div class="col-md-12">
@@ -29,6 +29,12 @@
 										<div class="form-group">
 											<label for="email">이메일</label>
 											<form:input path="email" placeholder="이메일" id="email" type="text" class="form-control input-lg" />
+										</div>	
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<label for="phonenum">전화번호</label>
+											<form:input path="phone" placeholder="전화번호" id="phonenum" type="text" class="form-control input-lg" />
 										</div>	
 									</div>
 									<div class="col-md-12">
@@ -58,12 +64,6 @@
 										</div>	
 									</div>
 									-->
-									<div class="col-md-12">
-										<div class="form-group">
-											<label for="phonenum">전화번호</label>
-											<form:input path="phone" placeholder="전화번호" id="phonenum" type="text" class="form-control input-lg" />
-										</div>	
-									</div>
 									<!-- 
 									<div class="col-md-12">
 										<div class="form-group">
@@ -81,7 +81,6 @@
 										</div>	
 									</div>
 								</div>
-							</form:form>
 							<!--회원탈퇴-->
 							<div class="row">
 								<div class="panel panel-default ">
@@ -97,6 +96,7 @@
 							</div>
 							<div class="fh5co-spacer fh5co-spacer-md"></div>
 						</div>
+						</form:form>
 					</div>
 				</div>
 			</div>
@@ -128,3 +128,6 @@
   </div>
 </div>
 <!-- 팝업창끝 -->
+<script>
+	if(${error!=null}){alert("${error}");};
+</script>
