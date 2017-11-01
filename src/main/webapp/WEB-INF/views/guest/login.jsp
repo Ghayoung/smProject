@@ -9,23 +9,23 @@
 				<div class="fh5co-spacer fh5co-spacer-sm"></div>
 			</div>	
 			<div class="col-md-8 col-md-offset-2 animate-box">
-				<form:form method="post" modelAttribute="user">
+				<form method="post" action="login_processing">
 					<div class="col-md-12">
 						<div class="form-group">
 							<label for="id">ID</label>
-							<form:input path="user_id" placeholder="id" id="id" type="text" class="form-control input-lg" />
+							<input name="user_id" placeholder="id" id="id" type="text" class="form-control input-lg" >
 						</div>	
 					</div>
 					<div class="col-md-12">
 						<div class="form-group">
 							<label for="password">Password</label>
-							<form:input path="pw" placeholder="Password" id="password" type="password" class="form-control input-lg" />
+							<input name="pw" placeholder="Password" id="password" type="password" class="form-control input-lg" >
 						</div>	
 					</div>
 					<div class="col-md-12 col-r">
 						<input type="submit" class="btn btn-primary btn-lg " value="Login">
 					</div>
-				</form:form>	
+				</form>	
 			</div>
 		</div>
 	<!-- END row -->
@@ -33,6 +33,6 @@
 </div>
 
 <script>
-	if(${error!=null}){alert("${error}");};
+	if(${param.error!=null}){alert("로그인 실패");};
 </script>
         

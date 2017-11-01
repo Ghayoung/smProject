@@ -8,7 +8,7 @@ import net.skhu.dto.User;
 
 @Mapper
 public interface UserMapper {
-	User findOne(String user_id);
+	User findOneByUser_id(String user_id);
 	User findOneById(int id);
 	List<User> findAll();
 	void update(User user);

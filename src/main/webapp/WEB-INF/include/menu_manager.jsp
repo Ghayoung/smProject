@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <header id="fh5co-header-section" role="header" class="" >
 	<div class="container">
 		<!-- <div id="fh5co-menu-logo"> -->
@@ -45,11 +46,12 @@
 					 	<li><a href="meminfo">회원정보수정</a></li>
 					</ul>
 				</li>
-				<% if(session.getAttribute("id")==null){ %>
-				<li class="fh5co-special"><a href="login">LOGIN</a></li>
-				<% }else { %>
-				<li class="fh5co-special"><a href="logout">LOGOUT</a></li>
-				<% } %>
+				<sec:authorize access="not authenticated">  
+				<li class="fh5co-special"><a href="/guest/login">LOGIN</a></li>
+				</sec:authorize>
+				<sec:authorize access="authenticated">
+				<li class="fh5co-special"><a href="/user/logout_processing">LOGOUT</a></li>
+				</sec:authorize>
 			</ul>
 		</nav>
 	<!-- </div> -->

@@ -4,7 +4,7 @@
 
 <mapper namespace="net.skhu.mapper.UserMapper">
 
-	<select id="findOne" resultType="User">
+	<select id="findOneByUser_id" resultType="User">
 		SELECT * FROM user WHERE user_id = #{user_id}
 	</select>
 	
