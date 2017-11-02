@@ -143,8 +143,8 @@ public class HomeController {
         return "guest/m_reportManage";
     }
 
-//    @RequestMapping("m_setting")
-//    public String m_setting() {
-//        return "guest/m_setting";
-//    }
+    @RequestMapping("m_setting")
+    public String m_setting() {
+        return "guest/m_setting";
+    }
 }
