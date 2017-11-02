@@ -20,6 +20,11 @@
 		UPDATE user SET pw = #{pw}, email = #{email}, phone = #{phone} WHERE id = #{id}
 	</update>
 	
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+	    INSERT user (user_id, pw, name, type, major_id)
+	    VALUES (#{user_id}, #{pw}, #{name}, #{type}, #{major_id})
+	</insert>
+	
 	<delete id="delete">
 	    DELETE FROM user WHERE id = #{id}
 	</delete>
