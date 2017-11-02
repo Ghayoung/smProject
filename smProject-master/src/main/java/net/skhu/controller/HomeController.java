@@ -3,6 +3,7 @@ package net.skhu.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+//fsdfsd
 //컨트롤러 만들었으면 중복된것 지우기
 @Controller
 public class HomeController {
