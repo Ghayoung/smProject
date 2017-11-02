@@ -55,10 +55,10 @@
 								</ul>
 							</li>
 							<sec:authorize access="not authenticated">  
-							<li class="fh5co-special"><a href="/guest/login">LOGIN</a></li>
+							<li class="fh5co-special"><a href="guest/login">LOGIN</a></li>
 							</sec:authorize>
 							<sec:authorize access="authenticated">
-							<li class="fh5co-special"><a href="/user/logout_processing">LOGOUT</a></li>
+							<li class="fh5co-special"><a href="user/logout_processing">LOGOUT</a></li>
 							</sec:authorize>
 						</ul>
 					</nav>
