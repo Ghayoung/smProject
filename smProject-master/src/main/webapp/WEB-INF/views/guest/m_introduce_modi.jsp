@@ -30,19 +30,47 @@
 								<div>
 									<div class="row">
 										<div class="col-md-12">
-						
+										
+										
+										<form:form method="post" modelAttribute="introduce">
 										<div class="form-group">
 											<label for="tab">항목</label>
-											<input placeholder="항목" id="tab" type="text" class="form-control input-lg">
-										</div>	
-									
+											<form:input placeholder="항목" id="tab" type="text" class="form-control input-lg" path="title" />
+										</div>
 										<div class="form-group">
 											<label for="introduce_content">내용</label>
-											<textarea placeholder="내용" id="introduce_content" class="form-control input-lg" rows="10"></textarea>
-										</div>	
-									</div>
-									</div>
-								</div>
+											<form:textarea placeholder="내용" id="introduce_content" class="form-control input-lg" rows="10" path="content"/>	
+										</div>
+										<div class="form-group">
+											<label>학과</label>
+											<form:select path="departmentId" class="form-control w200"
+												itemValue="id" itemLabel="departmentName" items="${ departments }" />
+										</div>
+										<div class="form-group">
+											<label>학년:</label>
+											<form:input path="year" class="form-control w200" />
+										</div>
+										<hr />
+										<div>
+											<button type="submit" class="btn btn-primary">
+												<span class="glyphicon glyphicon-ok"></span> 저장
+											</button>
+											<c:if test="${ student.id > 0 }">
+												<a href="delete.do?id=${ student.id }" class="btn btn-danger"
+													data-confirm-delete> <i class="glyphicon glyphicon-remove"></i>
+													삭제
+												</a>
+											</c:if>
+											<a href="list.do" class="btn btn-info">목록으로</a>
+										</div>
+									</form:form>
+										
+
+
+
+
+
+
 								<div>
 									<div class="row">
 										<div class="col-md-12">

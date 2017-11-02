@@ -24,4 +24,6 @@ public class ManagerController {
 		userMapper.insertSet(setting);
 		return "m_setting";
 	}
+	
+	
 }
