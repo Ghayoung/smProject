@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/images/**");
         web.ignoring().antMatchers("/js/**");
         web.ignoring().antMatchers("/sass/**");
-        web.ignoring().antMatchers("/include/**");
+        web.ignoring().antMatchers("/WEB-INF/include/**");
     }
 
     @Override
@@ -32,7 +32,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/manager/**").access("ROLE_MANAGER")
             .antMatchers("/mentor/**").access("ROLE_MENTOR")
             .antMatchers("/mentee/**").access("ROLE_MENTEE")
-            .antMatchers("/include/**").permitAll()
             .antMatchers("/guest/**").permitAll()
             .antMatchers("/").permitAll()
             .antMatchers("/**").authenticated();
