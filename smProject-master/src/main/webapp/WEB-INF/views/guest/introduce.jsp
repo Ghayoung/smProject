@@ -18,7 +18,7 @@
 					</div>
 				
 				    <div class="col-md-12 animate-box">
-				    	<a href="m_introduce_modi.html" class="btn btn-primary btn-md col-md-offset-11">수정하기</a>
+				    	<a href="/mybatisEx/manager/m_introduce_modi.jsp" class="btn btn-primary btn-md col-md-offset-11">수정하기</a>
 						<div id="fh5co-tab-feature-center" class="fh5co-tab text-center">
 							<ul class="resp-tabs-list hor_1">
 								<li>사업소개</li>

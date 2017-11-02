@@ -46,9 +46,20 @@
 <body>
 
 	<!--메뉴-->
+	<sec:authorize access="not authenticated">  
+		<tiles:insertAttribute name="user_menu" />
+	</sec:authorize>
+	<sec:authorize access="authenticated">
+    	<sec:authorize access="hasRole('ROLE_MANAGER')">
+	   		<tiles:insertAttribute name="manager_menu" />
+		</sec:authorize>
+		<sec:authentication property="user.type" var="type"/>
+		<sec:authorize access="${type!=2}">
+			<tiles:insertAttribute name="user_menu" />
+		</sec:authorize>  
+  	</sec:authorize>    
+
 	
-	<tiles:insertAttribute name="user_menu" />
-  	
   	<!--게시판 이름-->
   	
 	<div id="fh5co-hero">
@@ -81,7 +92,6 @@
 						<p>성공회대학교 소프트웨어공학과 데이터베이스 캡스톤디자인</p>
 						<p> 남하영, 마재희, 이혜민, 최윤경</p>
 					</div>
-					
 					<div class="col-md-3 col-sm-6 footer-box">
 						<h3 class="fh5co-footer-heading">Links</h3>
 						<ul class="fh5co-footer-links">
@@ -133,10 +143,7 @@
 		<script src="../js/main.js"></script>
 		<!-- 자바스크립트 파일 -->
 		<script src="../js/javascript.js"></script> 
-		
-		<script>
-			if(${logout!=null}){alert("${logout}");};
-		</script>
+
 </body>
 </html>
 
