@@ -31,7 +31,7 @@
 									      <td>데이터타입 및 변수선언</td>
 									      <td>6202</td>
 									      <td>2017-09-17</td>
-									      <td><a href="#"><img src="images\file.png" border="0"></a></td>
+									      <td><a href="#"><img src="../images\file.png" border="0"></a></td>
 									    </tr>
 									    <tr data-url="report_detail">
 									      <td><input type="checkbox" name="checkbox"></td>
@@ -39,7 +39,7 @@
 									      <td>배열</td>
 									      <td>6202</td>
 									      <td>2017-09-17</td>
-									      <td><a href="#"><img src="images\file.png" border="0"></a></td>
+									      <td><a href="#"><img src="../images\file.png" border="0"></a></td>
 									    </tr>
 									    <tr data-url="report_detail">
 									   	  <td><input type="checkbox" name="checkbox"></td>
@@ -47,7 +47,7 @@
 									      <td>클래스및 패키지</td>
 									      <td>6202</td>
 									      <td>2017-09-17</td>
-									      <td><a href="#"><img src="images\file.png" border="0"></a></td>
+									      <td><a href="#"><img src="../images\file.png" border="0"></a></td>
 									    </tr>
 									</tbody>
 								</table>

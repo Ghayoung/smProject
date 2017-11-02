@@ -7,7 +7,7 @@
 
 				<!-- <div id="fh5co-menu-logo"> -->
 					<!-- START #fh5co-logo -->
-					<h1 id="fh5co-logo" class="pull-left"><a href="main"><img src="images/logo.png" alt="SM사업 멘토링"></a></h1>
+					<h1 id="fh5co-logo" class="pull-left"><a href="main"><img src="../images/logo.png" alt="SM사업 멘토링"></a></h1>
 					
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation" >
@@ -20,7 +20,7 @@
                      <li>
                          <a href="#" class="fh5co-sub-ddown">sm사업</a>
                         <ul class="fh5co-sub-menu">
-                           <li><a href="../manager/introduce">사업소개</a></li>
+                           <li><a href="introduce">사업소개</a></li>
                         </ul>
                      </li>
                      <li>

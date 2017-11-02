@@ -17,39 +17,39 @@
           <div class="item active">
             <div class="row">
               <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="images/img_large_1.jpg"></a>
+                <a class="thumbnail" href="#"><img alt="" src="../images/img_large_1.jpg"></a>
               </div>          
               <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="images/img_large_2.jpg"></a>
+                <a class="thumbnail" href="#"><img alt="" src="../images/img_large_2.jpg"></a>
               </div>
               <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="images/img_large_3.jpg"></a>
+                <a class="thumbnail" href="#"><img alt="" src="../images/img_large_3.jpg"></a>
               </div>        
             </div>
           </div>
           <div class="item">
             <div class="row">
               <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="images/img_large_4.jpg"></a>
+                <a class="thumbnail" href="#"><img alt="" src="../images/img_large_4.jpg"></a>
               </div>          
               <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="images/img_large_5.jpg"></a>
+                <a class="thumbnail" href="#"><img alt="" src="../images/img_large_5.jpg"></a>
               </div>
               <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="images/img_large_6.jpg"></a>
+                <a class="thumbnail" href="#"><img alt="" src="../images/img_large_6.jpg"></a>
               </div>        
             </div>
           </div>
           <div class="item">
             <div class="row">
               <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="images/img_large_5.jpg"></a>
+                <a class="thumbnail" href="#"><img alt="" src="../images/img_large_5.jpg"></a>
               </div>          
               <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="images/img_large_3.jpg"></a>
+                <a class="thumbnail" href="#"><img alt="" src="../images/img_large_3.jpg"></a>
               </div>
               <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="images/img_large_1.jpg"></a>
+                <a class="thumbnail" href="#"><img alt="" src="../images/img_large_1.jpg"></a>
               </div>      
             </div>
           </div>
@@ -75,23 +75,23 @@
 		<div class="my_step">
 						<ul>
 							<li>
-								<img src="images/icon_my_step01.png" alt="준비" title="준비">
+								<img src="../images/icon_my_step01.png" alt="준비" title="준비">
 								<p id="stepA" class="on">준비</p>
 							</li>
 							<li>
-								<img src="images/icon_my_step02.png" alt="멘토신청" title="멘토신청">
+								<img src="../images/icon_my_step02.png" alt="멘토신청" title="멘토신청">
 								<p id="stepB">멘토신청</p>
 							</li>
 							<li>
-								<img src="images/icon_my_step03.png" alt="활동중" title="활동중">
+								<img src="../images/icon_my_step03.png" alt="활동중" title="활동중">
 								<p id="stepC">활동중</p>
 							</li>
 							<li>
-								<img src="images/icon_my_step04.png" alt="설문" title="설문">
+								<img src="../images/icon_my_step04.png" alt="설문" title="설문">
 								<p id="stepD">설문</p>
 							</li>
 							<li>
-								<img src="images/icon_my_step05.png" alt="정리" title="정리">
+								<img src="../images/icon_my_step05.png" alt="정리" title="정리">
 								<p id="stepE">정리</p>
 							</li>
 						</ul>

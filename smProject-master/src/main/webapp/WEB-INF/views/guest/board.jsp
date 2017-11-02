@@ -36,21 +36,21 @@
 										<td>글 제목입니다.</td>
 										<td>작성자a</td>
 										<td>2017-09-17</td>
-										<td><a href="#"><img src="images\file.png" border="0"></a></td>
+										<td><a href="#"><img src="../images\file.png" border="0"></a></td>
 									</tr>
 									<tr data-url="board_detail">
 										<td>2</td>
 										<td>글 제목입니다.</td>
 										<td>작성자a</td>
 										<td>2017-09-17</td>
-										<td><a href="#"><img src="images\file.png" border="0"></a></td>
+										<td><a href="#"><img src="../images\file.png" border="0"></a></td>
 									</tr>
 									<tr data-url="board_detail">
 										<td>3</td>
 										<td>글 제목입니다.</td>
 										<td>작성자a</td>
 										<td>2017-09-17</td>
-										<td><a href="#"><img src="images\file.png" border="0"></a></td>
+										<td><a href="#"><img src="../images\file.png" border="0"></a></td>
 									</tr>
 								</tbody>
 							</table>

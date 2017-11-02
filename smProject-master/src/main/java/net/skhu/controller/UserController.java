@@ -12,6 +12,7 @@ import net.skhu.dto.User;
 import net.skhu.mapper.UserMapper;
 
 @Controller
+@RequestMapping("/guest")
 public class UserController {
 
 	@Autowired UserMapper userMapper;

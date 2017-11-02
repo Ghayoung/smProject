@@ -18,7 +18,7 @@
 					<div class="col-md-12 animate-box">
 						<form action="#" method="post">
 							<div class="col-md-12">
-								<img src="images/work_1.jpg" alt="Images" class="fh5co-align-center img-responsive">
+								<img src="../images/work_1.jpg" alt="Images" class="fh5co-align-center img-responsive">
 								<div class="fh5co-spacer fh5co-spacer-sm"></div>
 								<div class="fh5co-spacer fh5co-spacer-sm"></div>
 							</div>

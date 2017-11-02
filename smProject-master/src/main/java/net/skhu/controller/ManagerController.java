@@ -14,11 +14,6 @@ import net.skhu.mapper.UserMapper;
 public class ManagerController {
 	@Autowired UserMapper userMapper;
 
-	@RequestMapping("introduce")
-    public String board() {
-        return "manager/introduce";
-    }
-
 	@RequestMapping(value="m_setting", method=RequestMethod.GET)
 	public String meminfo() {
 		return "m_setting";

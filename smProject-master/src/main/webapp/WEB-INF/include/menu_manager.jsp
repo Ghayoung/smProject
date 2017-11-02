@@ -4,7 +4,7 @@
 	<div class="container">
 		<!-- <div id="fh5co-menu-logo"> -->
 		<!-- START #fh5co-logo -->
-		<h1 id="fh5co-logo" class="pull-left"><a href="#"><img src="images/logo.png" alt="SM사업 멘토링"></a></h1>
+		<h1 id="fh5co-logo" class="pull-left"><a href="#"><img src="../images/logo.png" alt="SM사업 멘토링"></a></h1>
 		<!-- START #fh5co-menu-wrap -->
 		<nav id="fh5co-menu-wrap" role="navigation">
 			<ul class="sf-menu" id="fh5co-primary-menu">
@@ -35,7 +35,7 @@
 						<li><a href="m_userManage">회원관리</a></li>
 						<li><a href="m_mentoringManage">멘토링관리</a></li>
 						<li><a href="m_reportManage">보고서 관리</a></li>
-						<li><a href="m_setting">설정하기</a></li>
+						<li><a href="../manager/m_setting">설정하기</a></li>
 					</ul>
 				</li>
 				<li>

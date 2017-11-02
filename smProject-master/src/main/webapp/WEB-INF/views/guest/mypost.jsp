@@ -39,7 +39,7 @@
 										<div class="col-md-12">
 											<div class="col-md-8 animate-box">
                         							<div class="panel panel-default card" data-url="menteeapply_detail">
-                        								<img class="img-responsive" src="images/work_1.jpg" alt="Free HTML5 Template">
+                        								<img class="img-responsive" src="../images/work_1.jpg" alt="Free HTML5 Template">
                         								<hr>
 		                                              <div class="card-body">
 														<h3>주제: 이산수학</h3>

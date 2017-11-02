@@ -13,6 +13,11 @@ public class HomeController {
 		return "guest/main";
 	}
 
+	@RequestMapping("manager")
+	public String manager() {
+		return "guest/manager";
+	}
+
 	@RequestMapping("login")
 	public String login() {
 		return "guest/login";
