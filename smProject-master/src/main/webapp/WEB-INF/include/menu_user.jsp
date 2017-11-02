@@ -20,7 +20,7 @@
                      <li>
                          <a href="#" class="fh5co-sub-ddown">sm사업</a>
                         <ul class="fh5co-sub-menu">
-                           <li><a href="introduce">사업소개</a></li>
+                           <li><a href="../manager/introduce">사업소개</a></li>
                         </ul>
                      </li>
                      <li>
@@ -55,7 +55,7 @@
 								</ul>
 							</li>
 							<sec:authorize access="not authenticated">  
-							<li class="fh5co-special"><a href="guest/login">LOGIN</a></li>
+							<li class="fh5co-special"><a href="login">LOGIN</a></li>
 							</sec:authorize>
 							<sec:authorize access="authenticated">
 							<li class="fh5co-special"><a href="user/logout_processing">LOGOUT</a></li>

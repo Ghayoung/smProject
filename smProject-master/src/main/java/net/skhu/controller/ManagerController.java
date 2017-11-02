@@ -10,8 +10,14 @@ import net.skhu.dto.Setting;
 import net.skhu.mapper.UserMapper;
 
 @Controller
+@RequestMapping("/manager")
 public class ManagerController {
 	@Autowired UserMapper userMapper;
+
+	@RequestMapping("introduce")
+    public String board() {
+        return "manager/introduce";
+    }
 
 	@RequestMapping(value="m_setting", method=RequestMethod.GET)
 	public String meminfo() {

@@ -6,13 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class GuestController {
 
-	@RequestMapping({"/", "guest/main"})
+	@RequestMapping("/")
 	public String main() {
 		return "guest/main";
-	}
-//
-	@RequestMapping("guest/login")
-	public String login() {
-		return "guest/login";
 	}
 }
