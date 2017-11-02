@@ -4,14 +4,10 @@
      "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-  <definition name="layout_user" template="/include/layout.jsp">
-    <put-attribute name="user_menu" value="/include/menu_user.jsp" />
-    <put-attribute name="manager_menu" value="/include/menu_manager.jsp" />
+  <definition name="layout_user" template="/WEB-INF/views/include/layout.jsp">
+    <put-attribute name="user_menu" value="/WEB-INF/views/include/menu_user.jsp" />
+    <put-attribute name="manager_menu" value="/WEB-INF/views/include/menu_manager.jsp" />
     <put-attribute name="body" value="" />
-  </definition>
-  
-  <definition name="*" extends="layout_user">
-    <put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
   </definition>
   
   <definition name="*" extends="layout_user">
@@ -32,6 +28,10 @@
   
   <definition name="*" extends="layout_user">
     <put-attribute name="body" value="/WEB-INF/views/user/{1}.jsp" />
+  </definition>
+  
+   <definition name="*" extends="layout_user">
+    <put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
   </definition>
 
 </tiles-definitions>
