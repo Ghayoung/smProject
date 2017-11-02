@@ -10,7 +10,7 @@ public class GuestController {
 	public String main() {
 		return "guest/main";
 	}
-//
+
 	@RequestMapping("guest/login")
 	public String login() {
 		return "guest/login";
