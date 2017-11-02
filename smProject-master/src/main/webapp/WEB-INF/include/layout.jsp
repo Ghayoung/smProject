@@ -47,10 +47,7 @@
 
 	<!--메뉴-->
 	
-	<% if(session.getAttribute("id")==null || (int)session.getAttribute("type")==1){ %>
 	<tiles:insertAttribute name="user_menu" />
-	<% } else if((int)session.getAttribute("type")==2){ %>
-	<tiles:insertAttribute name="manager_menu" /> <% } %>
   	
   	<!--게시판 이름-->
   	

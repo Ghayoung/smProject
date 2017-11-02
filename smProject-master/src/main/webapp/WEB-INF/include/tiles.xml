@@ -10,12 +10,12 @@
     <put-attribute name="body" value="" />
   </definition>
   
-   <definition name="*" extends="layout_user">
-    <put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
-  </definition>
-  
   <definition name="*/*" extends="layout_user">
     <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+  </definition>
+  
+   <definition name="*" extends="layout_user">
+    <put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
   </definition>
 
 </tiles-definitions>

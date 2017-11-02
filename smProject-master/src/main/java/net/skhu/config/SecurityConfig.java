@@ -34,6 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/mentee/**").access("ROLE_MENTEE")
             .antMatchers("/guest/**").permitAll()
             .antMatchers("/").permitAll()
+            .antMatchers("/page/**").authenticated()
             .antMatchers("/**").authenticated();
 
         http.csrf().disable();
