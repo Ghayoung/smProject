@@ -19,4 +19,11 @@ public class UserService {
         return user;
     }
 
+	public void join(User user) {
+		String pw = Encryption.encrypt(user.getPw(), Encryption.SHA256);
+		user.setPw(pw);
+		userMapper.insert(user);
+		return;
+	}
+
 }

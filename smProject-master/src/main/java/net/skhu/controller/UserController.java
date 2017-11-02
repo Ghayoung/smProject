@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.skhu.dto.User;
 import net.skhu.mapper.UserMapper;
-import net.skhu.utils.Encryption;
+import net.skhu.service.UserService;
 
 @Controller
 @RequestMapping("/guest")
 public class UserController {
 
 	@Autowired UserMapper userMapper;
+	@Autowired UserService userService;
 
 	/*
 	@RequestMapping(value="meminfo", method=RequestMethod.GET)
@@ -59,11 +60,9 @@ public class UserController {
 
 	@RequestMapping(value="join", method=RequestMethod.POST)
 	public String join(Model model, User user) {
+		userService.join(user);
 		model.addAttribute("board", "회원가입");
-		String pw = Encryption.encrypt(user.getPw(), Encryption.SHA256);
-		user.setPw(pw);
-		userMapper.insert(user);
-		return "guest/join";
+		return "guest/login";
 
 	}
 
