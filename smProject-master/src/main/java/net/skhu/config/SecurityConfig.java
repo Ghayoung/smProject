@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/images/**");
         web.ignoring().antMatchers("/js/**");
         web.ignoring().antMatchers("/sass/**");
-        web.ignoring().antMatchers("/WEB-INF/include/**");
+        web.ignoring().antMatchers("/include/**");
     }
 
     @Override
@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/manager/**").access("ROLE_MANAGER")
             .antMatchers("/mentor/**").access("ROLE_MENTOR")
             .antMatchers("/mentee/**").access("ROLE_MENTEE")
+            .antMatchers("/include/**").permitAll()
             .antMatchers("/guest/**").permitAll()
             .antMatchers("/").permitAll()
             .antMatchers("/**").authenticated();
@@ -42,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .loginPage("/guest/login")
             .loginProcessingUrl("/guest/login_processing")
             .failureUrl("/guest/login?error")
-            .defaultSuccessUrl("/user/index", true)
+            .defaultSuccessUrl("/guest/main", true)
             .usernameParameter("user_id")
             .passwordParameter("pw");
 
