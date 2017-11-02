@@ -1,7 +1,5 @@
 package net.skhu.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.skhu.dto.User;
 import net.skhu.mapper.UserMapper;
+import net.skhu.utils.Encryption;
 
 @Controller
 @RequestMapping("/guest")
@@ -17,6 +16,7 @@ public class UserController {
 
 	@Autowired UserMapper userMapper;
 
+	/*
 	@RequestMapping(value="meminfo", method=RequestMethod.GET)
 	public String meminfo(Model model, HttpSession session) {
 		User user = userMapper.findOneById((int)session.getAttribute("id"));
@@ -46,6 +46,25 @@ public class UserController {
 			model.addAttribute("error","비밀번호를 다시 입력해주세요.");
 		}
 		return "meminfo";
+	}
+	*/
+
+	@RequestMapping(value="join", method=RequestMethod.GET)
+	public String join(Model model) {
+		User user = new User();
+		model.addAttribute("user", user);
+		model.addAttribute("board", "회원가입");
+		return "guest/join";
+	}
+
+	@RequestMapping(value="join", method=RequestMethod.POST)
+	public String join(Model model, User user) {
+		model.addAttribute("board", "회원가입");
+		String pw = Encryption.encrypt(user.getPw(), Encryption.SHA256);
+		user.setPw(pw);
+		userMapper.insert(user);
+		return "guest/join";
+
 	}
 
 }
