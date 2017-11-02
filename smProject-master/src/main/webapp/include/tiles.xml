@@ -4,9 +4,9 @@
      "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-  <definition name="layout_user" template="/WEB-INF/include/layout.jsp">
-    <put-attribute name="user_menu" value="/WEB-INF/include/menu_user.jsp" />
-    <put-attribute name="manager_menu" value="/WEB-INF/include/menu_manager.jsp" />
+  <definition name="layout_user" template="/include/layout.jsp">
+    <put-attribute name="user_menu" value="/include/menu_user.jsp" />
+    <put-attribute name="manager_menu" value="/include/menu_manager.jsp" />
     <put-attribute name="body" value="" />
   </definition>
   
