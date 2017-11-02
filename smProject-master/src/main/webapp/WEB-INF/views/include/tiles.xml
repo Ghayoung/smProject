@@ -13,7 +13,7 @@
   <definition name="*" extends="layout_user">
     <put-attribute name="body" value="/WEB-INF/views/guest/{1}.jsp" />
   </definition>
-  
+  zz
   <definition name="*" extends="layout_user">
     <put-attribute name="body" value="/WEB-INF/views/manager/{1}.jsp" />
   </definition>
