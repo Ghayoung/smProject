@@ -12,6 +12,9 @@ public class User {
 	String office;
 	String office_tel;
 	int type;
+	int major_id;
+	int minor_id;
+	int double_id;
 
 	public int getId() {
 		return id;
@@ -78,6 +81,24 @@ public class User {
 	}
 	public void setNewPw2(String newPw2) {
 		this.newPw2 = newPw2;
+	}
+	public int getMajor_id() {
+		return major_id;
+	}
+	public void setMajor_id(int major_id) {
+		this.major_id = major_id;
+	}
+	public int getMinor_id() {
+		return minor_id;
+	}
+	public void setMinor_id(int minor_id) {
+		this.minor_id = minor_id;
+	}
+	public int getDouble_id() {
+		return double_id;
+	}
+	public void setDouble_id(int double_id) {
+		this.double_id = double_id;
 	}
 
 
