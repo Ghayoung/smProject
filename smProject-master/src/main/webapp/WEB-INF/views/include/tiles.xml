@@ -9,7 +9,7 @@
     <put-attribute name="manager_menu" value="/WEB-INF/views/include/menu_manager.jsp" />
     <put-attribute name="body" value="" />
   </definition>
-  
+  //
   <definition name="*" extends="layout_user">
     <put-attribute name="body" value="/WEB-INF/views/guest/{1}.jsp" />
   </definition>
