@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import net.skhu.dto.Setting;
 import net.skhu.dto.User;
 
 @Mapper
@@ -14,4 +15,5 @@ public interface UserMapper {
 	void update(User user);
 	void delete(int id);
 	void insert(User user);
+	void insertSet(Setting set);
 }
