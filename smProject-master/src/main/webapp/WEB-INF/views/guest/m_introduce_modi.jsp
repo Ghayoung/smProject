@@ -27,21 +27,26 @@
 								
 							<div id="intro_modi_box" class="resp-tabs-container hor_1">
 							   
+								<div>
 									<div class="row">
 										<div class="col-md-12">
-										
-										<!-- form:form 추가하기 -->
+						
 										<div class="form-group">
 											<label for="tab">항목</label>
-											<form:input placeholder="항목" id="tab" type="text" class="form-control input-lg" path="title" />
-										</div>
+											<input placeholder="항목" id="tab" type="text" class="form-control input-lg">
+										</div>	
+									
 										<div class="form-group">
 											<label for="introduce_content">내용</label>
 											<textarea placeholder="내용" id="introduce_content" class="form-control input-lg" rows="10"></textarea>
 										</div>	
-										</div>
-										</div>
-										<div>
+									</div>
+									</div>
+								</div>
+								<!-- 새항목 추가 탭 end -->
+								
+								
+								<div> <!-- 사업소개 탭 -->
 									<div class="row">
 										<div class="col-md-12">
 										<div class="form-group">
@@ -51,7 +56,7 @@
 									</div>
 								</div>
 								</div>
-								<div>
+								<div> <!-- 장학금안내 탭 -->
 									<div class="row">
 										<div class="col-md-12">
 										<div class="form-group">
@@ -61,36 +66,36 @@
 									</div>
 									</div>
 								</div>
-								<div>
-									<div class="row">
-										<div class="col-md-12">
-										<div class="form-group">
-											<label for="introduce_content">내용4</label>
-											<textarea placeholder="내용" id="introduce_content" class="form-control input-lg" rows="10"></textarea>
-										</div>	
-										</div>
-									</div>
-									</div>
-								 <div>
+								<div> <!-- 활동방법 탭 -->
 									<div class="row">
 											<div class="col-md-12">
 										<div class="form-group">
-											<label for="introduce_content">내용5</label>
+											<label for="introduce_content">내용4</label>
 											<textarea placeholder="내용" id="introduce_content" class="form-control input-lg" rows="10"></textarea>
 										</div>	
 										
 									</div>
 						
 								</div>
+								</div>
+								 	<div> <!-- 사업일정 탭 -->
+									<div class="row">
+											<div class="col-md-12">
+										<div class="form-group">
+											<label for="introduce_content">내용5</label>
+											<textarea placeholder="내용" id="introduce_content" class="form-control input-lg" rows="10"></textarea>
+										</div>	
+											</div>
+									</div>
+									</div>
 							
-							</div>
-			
-				
-					</div>
+						
+						</div>
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
 							
 				</div>
 			
+			</div>
 					<div class="col-md-12">
 								<div class="form-group col-r">
 									<input type="submit" class="btn btn-primary btn-lg" value="저장">
@@ -102,3 +107,4 @@
 		</div>
 		</div>
 		<!-- END fhtco-main -->
+	
