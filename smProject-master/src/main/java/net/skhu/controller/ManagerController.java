@@ -16,13 +16,13 @@ public class ManagerController {
 
 	@RequestMapping(value="m_setting", method=RequestMethod.GET)
 	public String meminfo() {
-		return "m_setting";
+		return "manager/m_setting";
 	}
 
 	@RequestMapping(value="m_setting", method=RequestMethod.POST)
 	public String meminfo(Model model, Setting setting) {
 		userMapper.insertSet(setting);
-		return "m_setting";
+		return "manager/m_setting";
 	}
 	
 	

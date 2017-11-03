@@ -33,6 +33,6 @@
 </div>
 
 <script>
-	if(${param.error!=null}){alert("로그인 실패");};
+	if(${param.error!=null}){alert("다시 로그인해주세요.");};
 </script>
         
