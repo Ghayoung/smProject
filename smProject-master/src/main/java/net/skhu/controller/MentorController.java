@@ -1,5 +1,7 @@
 package net.skhu.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +12,7 @@ import net.skhu.dto.Mentor;
 import net.skhu.mapper.MentorMapper;
 
 @Controller
-@RequestMapping("/guest")
+@RequestMapping("/user")
 public class MentorController{
 	@Autowired MentorMapper mentorMapper;
 
@@ -31,13 +33,14 @@ public class MentorController{
 	public String mentorapply(Model model) {
 		Mentor mentor = new Mentor();
 		model.addAttribute("mentor", mentor);
-		return "guest/mentorapply";
+		return "user/mentorapply";
 	}
 
 	@RequestMapping(value="mentorapply", method=RequestMethod.POST)
-	public String mentorapply(Model model, Mentor mentor) {
+	public String mentorapply(Model model, Mentor mentor, HttpSession session) {
+		mentor.setMentor_u_id((int)session.getAttribute("user_id"));
 		mentorMapper.insert(mentor);
-		return "guest/mentorapply";
+		return "user/mentorapply";
 	}
 
 	/* 멘토가 신청서 수정  - 수정필요 */
