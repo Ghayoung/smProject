@@ -54,11 +54,6 @@ public class GuestController {
         return "guest/board_create";
     }
 
-    @RequestMapping("mentorapply")
-    public String mentorapply() {
-        return "guest/mentorapply";
-    }
-
     @RequestMapping("menteeapply")
     public String menteeapply() {
         return "guest/menteeapply";

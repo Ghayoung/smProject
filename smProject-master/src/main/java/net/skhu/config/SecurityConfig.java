@@ -29,14 +29,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
-        http.authorizeRequests()
-            .antMatchers("/manager/**").access("ROLE_MANAGER")
-            .antMatchers("/mentor/**").access("ROLE_MENTOR")
-            .antMatchers("/mentee/**").access("ROLE_MENTEE")
-            .antMatchers("/guest/**").permitAll()
-            .antMatchers("/").permitAll()
-            .antMatchers("/page/**").authenticated()
-            .antMatchers("/**").authenticated();
+    	http.authorizeRequests()
+        	.antMatchers("/user/**").authenticated()
+        	.antMatchers("/manager/**").access("ROLE_MANAGER")
+        	.antMatchers("/mentor/**").access("ROLE_MENTOR")
+        	.antMatchers("/mentee/**").access("ROLE_MENTEE")
+        	.antMatchers("/guest/**").permitAll()
+        	.antMatchers("/").permitAll()
+        	.antMatchers("/**").authenticated();
 
         http.csrf().disable();
 

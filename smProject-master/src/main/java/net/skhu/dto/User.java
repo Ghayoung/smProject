@@ -2,7 +2,7 @@ package net.skhu.dto;
 
 public class User {
 	int id;
-	String user_id;
+	int user_id;
 	String pw;
 	String newPw;
 	String newPw2;
@@ -22,10 +22,10 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getUser_id() {
+	public int getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(String user_id) {
+	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
 	public String getPw() {
