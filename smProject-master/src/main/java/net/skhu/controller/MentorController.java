@@ -31,13 +31,13 @@ public class MentorController{
 	public String mentorapply(Model model) {
 		Mentor mentor = new Mentor();
 		model.addAttribute("mentor", mentor);
-		return "guest/mentorapply";
+		return "user/mentorapply";
 	}
 
 	@RequestMapping(value="mentorapply", method=RequestMethod.POST)
 	public String mentorapply(Model model, Mentor mentor) {
 		mentorMapper.insert(mentor);
-		return "guest/mentorapply";
+		return "user/mentorapply";
 	}
 
 	/* 멘토가 신청서 수정  - 수정필요 */
