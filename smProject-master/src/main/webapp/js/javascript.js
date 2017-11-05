@@ -47,5 +47,11 @@ var submitcheck = true; //중복신청 방지
 			
 		}
 	}
-
+	
+	
+	document.getElementById('datePicker').valueAsDate = new Date();
+	document.getElementById('datePicker2').valueAsDate = new Date();
+	document.getElementById('datePicker3').valueAsDate = new Date();
+	document.getElementById('datePicker4').valueAsDate = new Date();
+	 
 	

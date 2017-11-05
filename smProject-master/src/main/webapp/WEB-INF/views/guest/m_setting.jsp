@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div id="fh5co-main">
 	
 			<div class="container">
@@ -23,18 +25,21 @@
 							<div class="col-md-12">
 								<label for="study_day">멘토 모집 기간</label>
 								<div class="form-group">
-									<form:input type="date" path="mentor_start_date" />
+								
+									<form:input type="date" path="mentor_start_date" id="datePicker"/>
 									<h3 style="width:25px; display:inline-block;">~</h3>
-									<form:input type="date" path="mentor_start_date" />
+									<form:input type="date" path="mentor_expire_date" id="datePicker2"/>
 								</div>
+								
 								<label for="study_day">멘티 모집 기간</label>
 								<div class="form-group">
-									<form:input type="date" path="mentee_start_date" />
+								
+									<form:input type="date" path="mentee_start_date" id="datePicker3"/>
 									<h3 style="width:25px; display:inline-block;">~</h3>
-									<form:input type="date" path="mentee_expire_date" />
+									<form:input type="date" path="mentee_expire_date" id="datePicker4"/>
 								</div>	
-							
 							</div>
+							
 							<!--인원-->
 							<div class="col-md-6">
 								<div class="form-group">
@@ -64,22 +69,22 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label for="study_day">보고서 마감 요일</label>
-									<form:select path="report_deadline" class="form-control" id="search_term">
+									<form:select path="report_deadline" class="form-control">
 									  <option>--</option>
-									  <option>월요일</option>
-									  <option>화요일</option>
-									  <option>수요일</option>
-									  <option>목요일</option>
-									  <option>금요일</option>
-									  <option>토요일</option>
-									  <option>일요일</option>
+									  <option value=1>월요일</option>
+									  <option value=2>화요일</option>
+									  <option value=3>수요일</option>
+									  <option value=4>목요일</option>
+									  <option value=5>금요일</option>
+									  <option value=6>토요일</option>
+									  <option value=7>일요일</option>
 									</form:select>
 								</div>	
 							</div>
 							<!--버튼-->
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="submit" class="btn btn-primary btn-lg col-md-offset-11" value="설정">
+									<button type="submit" class="btn btn-primary btn-lg col-md-offset-11">설정</button>
 								</div>	
 							</div>
 							

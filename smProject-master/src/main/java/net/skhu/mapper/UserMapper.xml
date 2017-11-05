@@ -29,7 +29,7 @@
 	    DELETE FROM user WHERE id = #{id}
 	</delete>
 	
-	<insert id="insertSet" useGeneratedKeys="true" keyProperty="id">
+	<insert id="m_setting" useGeneratedKeys="true" keyProperty="id">
 	    INSERT into setting (mentor_start_date, mentor_expire_date, mentee_start_date, mentee_expire_date, study_count, max_mentor, max_mentee, min_mentee, report_deadline)
 	    VALUES (#{mentor_start_date}, #{mentor_expire_date}, #{mentee_start_date}, #{mentee_expire_date}, #{study_count}, #{max_mentor}, #{max_mentee}, #{min_mentee}, #{report_deadline})
 	</insert>

@@ -1,41 +1,39 @@
 package net.skhu.dto;
 
-import java.util.Date;
-
 public class Setting {
 
-	Date mentor_start_date;
-	Date mentor_expire_date;
-	Date mentee_start_date;
-	Date mentee_expire_date;
+	String mentor_start_date;
+	String mentor_expire_date;
+	String mentee_start_date;
+	String mentee_expire_date;
 	int study_count;
 	int max_mentor;
 	int max_mentee;
 	int min_mentee;
 	int report_deadline;
 
-	public Date getMentor_start_date() {
+	public String getMentor_start_date() {
 		return mentor_start_date;
 	}
-	public void setMentor_start_date(Date mentor_start_date) {
+	public void setMentor_start_date(String mentor_start_date) {
 		this.mentor_start_date = mentor_start_date;
 	}
-	public Date getMentor_expire_date() {
+	public String getMentor_expire_date() {
 		return mentor_expire_date;
 	}
-	public void setMentor_expire_date(Date mentor_expire_date) {
+	public void setMentor_expire_date(String mentor_expire_date) {
 		this.mentor_expire_date = mentor_expire_date;
 	}
-	public Date getMentee_start_date() {
+	public String getMentee_start_date() {
 		return mentee_start_date;
 	}
-	public void setMentee_start_date(Date mentee_start_date) {
+	public void setMentee_start_date(String mentee_start_date) {
 		this.mentee_start_date = mentee_start_date;
 	}
-	public Date getMentee_expire_date() {
+	public String getMentee_expire_date() {
 		return mentee_expire_date;
 	}
-	public void setMentee_expire_date(Date mentee_expire_date) {
+	public void setMentee_expire_date(String mentee_expire_date) {
 		this.mentee_expire_date = mentee_expire_date;
 	}
 	public int getStudy_count() {

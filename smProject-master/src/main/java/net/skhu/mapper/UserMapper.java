@@ -15,5 +15,5 @@ public interface UserMapper {
 	void update(User user);
 	void delete(int id);
 	void insert(User user);
-	void insertSet(Setting setting);
+	void m_setting(Setting setting);
 }

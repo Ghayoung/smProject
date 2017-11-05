@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import net.skhu.dto.Setting;
 import net.skhu.dto.User;
 import net.skhu.mapper.UserMapper;
 import net.skhu.service.UserService;
@@ -154,10 +155,30 @@ public class GuestController {
         return "guest/m_reportManage";
     }
 
-    @RequestMapping("m_setting")
-    public String m_setting() {
-        return "guest/m_setting";
-    }
+    @RequestMapping(value="m_setting", method=RequestMethod.GET)
+	public String m_setting(Model model) {
+		Setting setting = new Setting();
+		model.addAttribute("setting", setting);
+		return "guest/m_setting";
+	}
+
+	@RequestMapping(value="m_setting", method=RequestMethod.POST)
+	public String m_setting(Model model, Setting setting) {
+		System.out.println(setting.getMax_mentee());
+		System.out.println(setting.getMax_mentor());
+		System.out.println(setting.getMin_mentee());
+		System.out.println(setting.getStudy_count());
+		System.out.println(setting.getReport_deadline());
+		System.out.println(setting.getMentor_start_date());
+		System.out.println(setting.getMentor_expire_date());
+		System.out.println(setting.getMentee_start_date());
+		System.out.println(setting.getMentee_expire_date());
+
+		userMapper.m_setting(setting);
+		model.addAttribute("setting", setting);
+		return "guest/m_setting";
+
+	}
 
 	@RequestMapping(value="join", method=RequestMethod.GET)
 	public String join(Model model) {
