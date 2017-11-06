@@ -4,8 +4,6 @@ public class User {
 	int id;
 	int user_id;
 	String pw;
-	String newPw;
-	String newPw2;
 	String name;
 	String email;
 	String phone;
@@ -69,18 +67,6 @@ public class User {
 	}
 	public void setType(int type) {
 		this.type = type;
-	}
-	public String getNewPw() {
-		return newPw;
-	}
-	public void setNewPw(String newPw) {
-		this.newPw = newPw;
-	}
-	public String getNewPw2() {
-		return newPw2;
-	}
-	public void setNewPw2(String newPw2) {
-		this.newPw2 = newPw2;
 	}
 	public int getMajor_id() {
 		return major_id;
