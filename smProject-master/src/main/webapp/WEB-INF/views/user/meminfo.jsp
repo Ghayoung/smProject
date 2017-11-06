@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div id="fh5co-main">
 	<div class="container">
@@ -15,37 +15,37 @@
 							<li>회원정보수정</li>
 							<li>회원탈퇴</li>
 						</ul>
-						<form:form method="post" modelAttribute="user">
+						<form method="post" action="/mybatisEx/user/meminfo">
 						<div class="resp-tabs-container hor_1">
 								<!--정보수정-->
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="password">현재 비밀번호</label>
-											<form:input path="pw" placeholder="현재 비밀번호" id="current_password" type="password" class="form-control input-lg" />
+											<input name="pw" placeholder="현재 비밀번호" id="current_password" type="password" class="form-control input-lg">
 										</div>	
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="email">이메일</label>
-											<form:input path="email" placeholder="이메일" id="email" type="text" class="form-control input-lg" />
+											<input name="email" id="email" type="text" class="form-control input-lg" value="${ user.email }"/>
 										</div>	
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="phonenum">전화번호</label>
-											<form:input path="phone" placeholder="전화번호" id="phonenum" type="text" class="form-control input-lg" />
+											<input name="phone" placeholder="전화번호" id="phonenum" type="text" class="form-control input-lg"  value="${ user.phone }"/>
 										</div>	
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="password">새 비밀번호</label>
-											<form:input path="newPw" placeholder="비밀번호" id="password" type="password" class="form-control input-lg" />
+											<input name="newPw" placeholder="비밀번호" id="password" type="password" class="form-control input-lg" />
 										</div>	
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<form:input path="newPw2" placeholder="비밀번호 다시 입력" id="re_password" type="password" class="form-control input-lg" />
+											<input name="newPw2" placeholder="비밀번호 다시 입력" id="re_password" type="password" class="form-control input-lg" />
 										</div>	
 									</div>
 									<!--
@@ -96,7 +96,7 @@
 							</div>
 							<div class="fh5co-spacer fh5co-spacer-md"></div>
 						</div>
-						</form:form>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -129,5 +129,5 @@
 </div>
 <!-- 팝업창끝 -->
 <script>
-	if(${error!=null}){alert("${error}");};
+	if(${param.error!=null}){alert("정보 수정 실패");};
 </script>

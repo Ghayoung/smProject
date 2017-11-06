@@ -33,6 +33,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
         String role = "";
         switch (user.getType()) {
+        case 1: role = "ROLE_USER"; break;
         case 2: role = "ROLE_MANAGER"; break;
         }
         grantedAuthorities.add(new SimpleGrantedAuthority(role));
