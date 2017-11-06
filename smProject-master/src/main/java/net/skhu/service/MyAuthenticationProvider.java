@@ -17,30 +17,26 @@ import net.skhu.dto.User;
 @Component
 public class MyAuthenticationProvider implements AuthenticationProvider {
 
-	@Autowired UserService userService;
+    @Autowired UserService userService;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String user_id = authentication.getName();
-        String pw = authentication.getCredentials().toString();
-        return authenticate(user_id, pw);
+        String loginId = authentication.getName();
+        String passwd = authentication.getCredentials().toString();
+        return authenticate(loginId, passwd);
     }
 
-    public Authentication authenticate(String user_id, String pw) throws AuthenticationException {
-        User user = userService.login(user_id, pw);
+    public Authentication authenticate(String loginId, String password) throws AuthenticationException {
+        User user = userService.login(loginId, password);
         if (user == null) return null;
 
         List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
         String role = "";
         switch (user.getType()) {
-        case 0: role = "ROLE_GUEST"; break;
-        case 1: role = "ROLE_USER"; break;
         case 2: role = "ROLE_MANAGER"; break;
-        case 3: role = "ROLE_MENTOR"; break;
-        case 4: role = "ROLE_MENTEE"; break;
         }
         grantedAuthorities.add(new SimpleGrantedAuthority(role));
-        return new MyAuthenticaion(user_id, pw, grantedAuthorities, user);
+        return new MyAuthenticaion(loginId, password, grantedAuthorities, user);
     }
 
     @Override
@@ -52,9 +48,9 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
         private static final long serialVersionUID = 1L;
         User user;
 
-        public MyAuthenticaion (String user_id, String pw,
+        public MyAuthenticaion (String loginId, String passwd,
                                 List<GrantedAuthority> grantedAuthorities, User user) {
-            super(user_id, pw, grantedAuthorities);
+            super(loginId, passwd, grantedAuthorities);
             this.user = user;
         }
 
@@ -66,5 +62,4 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
             this.user = user;
         }
     }
-
 }
