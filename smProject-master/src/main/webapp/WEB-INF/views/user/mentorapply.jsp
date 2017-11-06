@@ -16,7 +16,7 @@
 						<div class="fh5co-spacer fh5co-spacer-sm"></div>
 					</div>
 					<div class="col-md-12 animate-box">
-						<form action="mentorapply" method="post" enctype="multipart/form-data">
+						<form name="form" action="mentorapply" method="post" enctype="multipart/form-data" onsubmit="return checkMentorApply();">
 						
 							<div class="col-md-12">
 								<div class="form-group">

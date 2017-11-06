@@ -59,15 +59,6 @@ public class ManagerController {
 
 	@RequestMapping(value="m_setting", method=RequestMethod.POST)
 	public String m_setting(Model model, Setting setting) {
-		System.out.println(setting.getMax_mentee());
-		System.out.println(setting.getMax_mentor());
-		System.out.println(setting.getMin_mentee());
-		System.out.println(setting.getStudy_count());
-		System.out.println(setting.getReport_deadline());
-		System.out.println(setting.getMentor_start_date());
-		System.out.println(setting.getMentor_expire_date());
-		System.out.println(setting.getMentee_start_date());
-		System.out.println(setting.getMentee_expire_date());
 
 		userMapper.m_setting(setting);
 		model.addAttribute("setting", setting);

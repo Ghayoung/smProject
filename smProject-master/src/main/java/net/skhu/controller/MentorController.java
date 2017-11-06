@@ -48,11 +48,8 @@ public class MentorController {
 	}
 
 	@RequestMapping(value = "mentorapply", method = RequestMethod.POST)
-	public String mentorapply(HttpServletRequest request, @RequestBody MultipartFile file1, @RequestBody MultipartFile file2, @RequestBody MultipartFile file3) {
-
-		int t_fk=fileService.fileUpload(file1);
-		int intro_fk=fileService.fileUpload(file2);
-		int doc_fk=fileService.fileUpload(file3);
+	public String mentorapply(HttpServletRequest request, @RequestBody MultipartFile file1,
+			@RequestBody MultipartFile file2, @RequestBody MultipartFile file3) {
 
 		User user = UserService.getCurrentUser();
 		mentor.setMentor_u_id(user.getId());
@@ -67,10 +64,15 @@ public class MentorController {
 		mentor.setYear(y);
 		mentor.setSubject(request.getParameter("subject"));
 
-		mentor.setApply_f_time_id(t_fk);
-		mentor.setApply_f_intro_fk(intro_fk);
-		mentor.setApply_f_doc_fk(doc_fk);
+		if (file1 != null && file2 != null && file3 != null) {
+			int t_fk = fileService.fileUpload(file1);
+			int intro_fk = fileService.fileUpload(file2);
+			int doc_fk = fileService.fileUpload(file3);
 
+			mentor.setApply_f_time_id(t_fk);
+			mentor.setApply_f_intro_fk(intro_fk);
+			mentor.setApply_f_doc_fk(doc_fk);
+		}
 		mentorMapper.insert_apply(mentor);
 
 		return "user/mentorapply";
