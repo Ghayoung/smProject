@@ -1,14 +1,15 @@
 package net.skhu.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import net.skhu.dto.Setting;
 import net.skhu.mapper.UserMapper;
 
 @Controller
-@Secured("ROLE_MANAGER")
 @RequestMapping("/manager")
 public class ManagerController {
 	@Autowired UserMapper userMapper;
@@ -48,12 +49,12 @@ public class ManagerController {
         return "manager/m_reportManage";
     }
 
-    /*
+
     @RequestMapping(value="m_setting", method=RequestMethod.GET)
 	public String m_setting(Model model) {
 		Setting setting = new Setting();
 		model.addAttribute("setting", setting);
-		return "guest/m_setting";
+		return "manager/m_setting";
 	}
 
 	@RequestMapping(value="m_setting", method=RequestMethod.POST)
@@ -70,10 +71,7 @@ public class ManagerController {
 
 		userMapper.m_setting(setting);
 		model.addAttribute("setting", setting);
-		return "guest/m_setting";
+		return "manager/m_setting";
 
 	}
-	*/
-
-
 }
