@@ -4,11 +4,11 @@
 
 <mapper namespace="net.skhu.mapper.FileMapper">
 
-	<select id="findOne" resultType="File">
+	<select id="findOne" resultType="FileDTO">
 		SELECT * FROM file WHERE id = #{id}
 	</select>
 
-	<select id="findAll" resultType="File">
+	<select id="findAll" resultType="FileDTO">
 		SELECT * FROM file
 	</select>
 	

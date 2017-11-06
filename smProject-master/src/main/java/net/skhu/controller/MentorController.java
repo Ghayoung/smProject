@@ -1,7 +1,6 @@
 package net.skhu.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +15,6 @@ import net.skhu.service.FileService;
 import net.skhu.service.UserService;
 
 @Controller
-@Secured("ROLE_MENTOR")
 @RequestMapping("/user")
 public class MentorController {
 	@Autowired

@@ -9,12 +9,14 @@ import java.io.IOException;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.FileDTO;
 import net.skhu.mapper.FileMapper;
 
+@Service
 public class FileService {
 	@Autowired FileMapper fileMapper;
 	@Autowired private ServletContext servletContext;
