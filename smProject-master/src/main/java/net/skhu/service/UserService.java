@@ -1,5 +1,7 @@
 package net.skhu.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,6 +29,25 @@ public class UserService {
 		userMapper.insert(user);
 		return;
 	}
+
+	public User changeMeminfo(HttpServletRequest request) {
+		User user = UserService.getCurrentUser();
+		String pw = Encryption.encrypt(request.getParameter("pw"), Encryption.SHA256);
+		if(!(user.getPw().equals(pw))) {
+			return null;
+		}
+		if(!request.getParameter("newPw").equals("")) {
+			if(!(request.getParameter("newPw").equals(request.getParameter("newPw2")))) {
+				return null;
+			}
+			user.setPw(Encryption.encrypt(request.getParameter("newPw"), Encryption.SHA256));
+		}
+		user.setEmail(request.getParameter("email"));
+		user.setPhone(request.getParameter("phone"));
+		userMapper.update(user);
+		return user;
+	}
+
 
 	public static User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

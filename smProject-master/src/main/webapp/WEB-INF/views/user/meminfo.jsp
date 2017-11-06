@@ -15,7 +15,7 @@
 							<li>회원정보수정</li>
 							<li>회원탈퇴</li>
 						</ul>
-						<form method="post" action="/mybatisEx/user/meminfo">
+						<form method="post" action="/mybatisEx/user/meminfo_processing">
 						<div class="resp-tabs-container hor_1">
 								<!--정보수정-->
 								<div class="row">
@@ -75,7 +75,7 @@
 										</div>	
 									</div>
 									-->
-									<div class="col-md-8 col-md-offset-10">
+									<div class="col-md-8 col-r">
 										<div class="form-group">
 											<input type="submit" class="btn btn-primary btn-lg " value="저장">
 										</div>	

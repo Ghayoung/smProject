@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import net.skhu.dto.User;
+import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.service.UserService;
 
@@ -17,10 +19,13 @@ import net.skhu.service.UserService;
 public class UserController {
 
 	@Autowired UserMapper userMapper;
+	@Autowired DepartmentMapper departmentMapper;
 	@Autowired UserService userService;
 
-	@RequestMapping("board")
-    public String board() {
+	@RequestMapping(value="board", method=RequestMethod.GET)
+    public String board(Model model, @RequestParam(value="type", defaultValue="0") int type) {
+		if(type==1) model.addAttribute("board", "공지사항");
+		else if(type==2) model.addAttribute("board", "학습자료게시판");
         return "user/board";
     }
 
@@ -101,26 +106,17 @@ public class UserController {
 
 	@RequestMapping(value="meminfo", method=RequestMethod.GET)
 	public String meminfo(Model model) {
+		model.addAttribute("board", "회원정보 수정");
 		model.addAttribute("user", UserService.getCurrentUser());
 		return "user/meminfo";
 	}
 
-	@RequestMapping(value="meminfo", method=RequestMethod.POST)
-	public String meminfo(Model model, HttpServletRequest request) {
+	@RequestMapping(value="meminfo_processing", method=RequestMethod.POST)
+	public String meminfo_processing(Model model, HttpServletRequest request) {
+		User user=userService.changeMeminfo(request);
 		model.addAttribute("board", "회원정보 수정");
-		User user = UserService.getCurrentUser();
-		if(user.getPw() != request.getParameter("pw")) {
-			return "user/meminfo?error";
-		}
-		if(request.getParameter("newPw") != null) {
-			if(request.getParameter("newPw") != request.getParameter("newPw2")) {
-				return "user/meminfo?error";
-			}
-			user.setPw(request.getParameter("newPw"));
-		}
-		user.setEmail(request.getParameter("email"));
-		user.setPhone(request.getParameter("phone"));
-		userMapper.update(user);
+		model.addAttribute("user", UserService.getCurrentUser());
+		if(user==null) return "user/meminfo?error";
 		return "user/meminfo";
 	}
 

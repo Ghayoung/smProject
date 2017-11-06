@@ -26,7 +26,7 @@
                      <li>
 								<a href="#" class="fh5co-sub-ddown">알립니다</a>
 								<ul class="fh5co-sub-menu">
-									<li><a href="/mybatisEx/user/board">공지사항</a></li>
+									<li><a href="/mybatisEx/user/board?type=1">공지사항</a></li>
 									<li><a href="/mybatisEx/user/mentorapply">멘토모집</a></li>
 									<li><a href="/mybatisEx/user/menteeapply">멘토링신청</a></li>
 								</ul>
@@ -43,7 +43,7 @@
 								<ul class="fh5co-sub-menu">
 									<li><a href="/mybatisEx/user/timetable">시간표</a></li>
 									<li><a href="/mybatisEx/user/report">보고서</a></li>
-									<li><a href="/mybatisEx/user/board">학습자료게시판</a></li>
+									<li><a href="/mybatisEx/user/board?type=2">학습자료게시판</a></li>
 								</ul>
 							</li>
 							<li>
