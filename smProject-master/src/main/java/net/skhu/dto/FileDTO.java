@@ -1,6 +1,6 @@
 package net.skhu.dto;
 
-public class File {
+public class FileDTO {
 	int id;
 	String path;
 

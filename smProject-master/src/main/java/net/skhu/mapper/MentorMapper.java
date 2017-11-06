@@ -11,7 +11,7 @@ public interface MentorMapper {
 	Mentor findOne(int id);
 	Mentor findByMentor_u_id(int mentor_u_id);
 	List<Mentor> findAll();
-	void insert(Mentor mentor);
 	void update(Mentor mentor);
 	void delete(int id);
+	void insert_apply(Mentor mentor);
 }

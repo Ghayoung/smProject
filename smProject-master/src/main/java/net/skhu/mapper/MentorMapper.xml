@@ -16,9 +16,9 @@
 		SELECT * FROM mentor_apply
 	</select>
 	
-	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
-		INSERT mentor_apply (mentor_u_id, group_name, subject, year, grade, count, study_purpose, study_content, study_method, open_date, apply_f_time_id, apply_f_intro_fk, apply_f_doc_fk, mentee_num)
-		VALUES (#{mentor_u_id}, #{group_name}, #{subject}, #{year}, #{grade}, #{count}, #{study_purpose}, #{study_content}, #{study_method}, #{open_date}, #{apply_f_time_id}, #{apply_f_intro_fk}, #{apply_f_doc_fk}, #{mentee_num})
+	<insert id="insert_apply" useGeneratedKeys="true" keyProperty="id">
+		INSERT mentor_apply (mentor_u_id, group_name, subject, year, grade, count, study_purpose, study_content, study_method, open_date)
+		VALUES (#{mentor_u_id}, #{group_name}, #{subject}, #{year}, #{grade}, #{count}, #{study_purpose}, #{study_content}, #{study_method}, #{open_date})
 	</insert>
 	
 	<update id="update">

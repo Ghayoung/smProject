@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import net.skhu.dto.File;
+import net.skhu.dto.FileDTO;
 
 @Mapper
 public interface FileMapper {
-	File findOne(int id);
-	List<File> findAll();
-	void insert(File file);
-	void update(File file);
+	FileDTO findOne(int id);
+	List<FileDTO> findAll();
+	void fileUpload(FileDTO file);
+	void update(FileDTO file);
 	void delete(int id);
 }

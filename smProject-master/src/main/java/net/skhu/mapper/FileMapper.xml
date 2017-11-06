@@ -12,7 +12,7 @@
 		SELECT * FROM file
 	</select>
 	
-	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+	<insert id="fileUpload" useGeneratedKeys="true" keyProperty="id">
 		INSERT file (path)
 		VALUES (#{path})
 	</insert>
