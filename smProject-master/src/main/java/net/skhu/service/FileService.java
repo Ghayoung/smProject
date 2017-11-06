@@ -22,7 +22,7 @@ public class FileService {
 	@Autowired private ServletContext servletContext;
 	FileDTO fdto = new FileDTO();
 
-	public void fileUpload(MultipartFile file){
+	public int fileUpload(MultipartFile file){
 		String relPath = "/img/upload/";
 		String filePath = servletContext.getRealPath(relPath);
 		File upDirectory = new File(filePath);
@@ -35,7 +35,6 @@ public class FileService {
 		filePath += fileName;
 
 		final File uploadFile = new File(filePath);
-		System.out.println(uploadFile);
 
 		if (uploadFile.exists()) {
 			uploadFile.delete();
@@ -44,13 +43,15 @@ public class FileService {
 		try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadFile))) {
 			FileCopyUtils.copy(file.getInputStream(), stream);
 		} catch (FileNotFoundException e) {
-			return;
+			return 0;
 		} catch (IOException ioe) {
-			return;
+			return 0;
 		}
 
 		fdto.setPath(relPath + fileName);
 		fileMapper.fileUpload(fdto);
+
+		return fdto.getId();
 	}
 
 }

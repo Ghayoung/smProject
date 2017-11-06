@@ -17,8 +17,8 @@
 	</select>
 	
 	<insert id="insert_apply" useGeneratedKeys="true" keyProperty="id">
-		INSERT mentor_apply (mentor_u_id, group_name, subject, year, grade, count, study_purpose, study_content, study_method, open_date)
-		VALUES (#{mentor_u_id}, #{group_name}, #{subject}, #{year}, #{grade}, #{count}, #{study_purpose}, #{study_content}, #{study_method}, #{open_date})
+		INSERT mentor_apply (mentor_u_id, group_name, subject, year, grade, count, study_purpose, study_content, study_method, apply_f_time_id, apply_f_intro_fk, apply_f_doc_fk)
+		VALUES (#{mentor_u_id}, #{group_name}, #{subject}, #{year}, #{grade}, #{count}, #{study_purpose}, #{study_content}, #{study_method}, #{apply_f_time_id}, #{apply_f_intro_fk}, #{apply_f_doc_fk})
 	</insert>
 	
 	<update id="update">

@@ -17,6 +17,7 @@
 					</div>
 					<div class="col-md-12 animate-box">
 						<form action="mentorapply" method="post" enctype="multipart/form-data">
+						
 							<div class="col-md-12">
 								<div class="form-group">
 									<label for="group_name">그룹 이름</label>
@@ -44,7 +45,7 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="count">희망 멘티 인원</label>
-									<input name="count" placeholder="희망 멘티 인원" id="num" type="text" class="form-control input-lg"/>
+									<input name="count" placeholder="희망 멘티 인원" id="count" type="text" class="form-control input-lg"/>
 								</div>	
 							</div>
 							<div class="col-md-12">
@@ -65,6 +66,7 @@
 									<textarea name="study_method" placeholder="스터디 방법" id="study_method" class="form-control input-lg" rows="3"></textarea>
 								</div>	
 							</div>
+							
 							<div class="col-md-2">
 								<div class="form-group">
 									<p>시간표</p>
@@ -75,6 +77,7 @@
 									<input type="file" class="btn btn-lg " value="파일첨부" style="margin-top:-15px;"  name="file3"/>
 								</div>	
 							</div>
+							 
 							<div class="col-md-12">
 								<div class="form-group">
 									<input type="submit" class="btn btn-primary btn-lg col-md-offset-11" value="등록">

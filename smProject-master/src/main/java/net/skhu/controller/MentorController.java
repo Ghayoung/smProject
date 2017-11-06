@@ -1,5 +1,7 @@
 package net.skhu.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,32 +48,30 @@ public class MentorController {
 	}
 
 	@RequestMapping(value = "mentorapply", method = RequestMethod.POST)
-	public String mentorapply(Model model, @RequestBody String subject, @RequestBody String group_name,
-			@RequestBody String year, @RequestBody String grade, @RequestBody String count,
-			@RequestBody String study_purpose, @RequestBody String study_content, @RequestBody String study_method,
-			@RequestBody MultipartFile file1, @RequestBody MultipartFile file2, @RequestBody MultipartFile file3) {
+	public String mentorapply(HttpServletRequest request, @RequestBody MultipartFile file1, @RequestBody MultipartFile file2, @RequestBody MultipartFile file3) {
+
+		int t_fk=fileService.fileUpload(file1);
+		int intro_fk=fileService.fileUpload(file2);
+		int doc_fk=fileService.fileUpload(file3);
 
 		User user = UserService.getCurrentUser();
 		mentor.setMentor_u_id(user.getId());
-		int c = Integer.parseInt(count);
+		int c = Integer.parseInt(request.getParameter("count"));
 		mentor.setCount(c);
-		mentor.setGrade(grade);
-		mentor.setGroup_name(group_name);
-		mentor.setStudy_content(study_content);
-		mentor.setStudy_method(study_method);
-		mentor.setStudy_purpose(study_purpose);
-		int y = Integer.parseInt(year);
+		mentor.setGrade(request.getParameter("grade"));
+		mentor.setGroup_name(request.getParameter("group_name"));
+		mentor.setStudy_content(request.getParameter("study_content"));
+		mentor.setStudy_method(request.getParameter("study_method"));
+		mentor.setStudy_purpose(request.getParameter("study_purpose"));
+		int y = Integer.parseInt(request.getParameter("year"));
 		mentor.setYear(y);
-		mentor.setSubject(subject);
+		mentor.setSubject(request.getParameter("subject"));
+
+		mentor.setApply_f_time_id(t_fk);
+		mentor.setApply_f_intro_fk(intro_fk);
+		mentor.setApply_f_doc_fk(doc_fk);
 
 		mentorMapper.insert_apply(mentor);
-
-		fileService.fileUpload(file1);
-		fileService.fileUpload(file2);
-		fileService.fileUpload(file3);
-		System.out.println(file1);
-		System.out.println(file2);
-		System.out.println(file3);
 
 		return "user/mentorapply";
 	}
