@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:url var="R" value="/" />	
 		<div id="fh5co-main">
 	
 			<div class="container">
@@ -23,35 +25,21 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr data-url="board_detail">
-										<td>1</td>
-										<td>글 제목입니다.</td>
-										<td>작성자a</td>
-										<td>2017-09-17</td>
-										<td><a href="#"><img src="../images\file.png" border="0"></a></td>
-										<td><a href="#">답변완료</a></td>
-									</tr>
-									<tr data-url="board_detail">
-										<td>2</td>
-										<td>글 제목입니다.</td>
-										<td>작성자a</td>
-										<td>2017-09-17</td>
-										<td><a href="#"><img src="../images\file.png" border="0"></a></td>
-										<td><a href="#">답변완료</a></td>
-									</tr>
-									<tr data-url="board_detail">
-										<td>3</td>
-										<td>글 제목입니다.</td>
-										<td>작성자a</td>
-										<td>2017-09-17</td>
-										<td><a href="#"><img src="../images\file.png" border="0"></a></td>
-										<td><a href="#">답변완료</a></td>
-									</tr>
+									<c:forEach var="article" items="${ article }">
+								        <tr data-url="${R}user/board_detail?type=${ param.type }&id=${article.id}">
+								          <td>${ article.id }</td>
+								          <td>${ article.title }</td>
+								          <td>${ article.userName }</td>
+								          <td>${ article.post_date }</td>
+								          <td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
+								          <td><a href="#">답변완료</a></td>
+								        </tr>
+								      </c:forEach>
 								</tbody>
 							</table>
 						</div>
 					<div class="col-md-12">
-						<a href="board_create" class="btn btn-primary btn-lg col-md-offset-11">질문하기</a>
+						<a href="${R}user/board_create?type=${ param.type }" class="btn btn-primary btn-lg col-md-offset-11">질문하기</a>
 					</div>
 				  	</div>
 				</div>

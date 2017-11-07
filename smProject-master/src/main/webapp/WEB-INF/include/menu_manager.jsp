@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:url var="R" value="/" />
 <header id="fh5co-header-section" role="header" class="" >
 	<div class="container">
 		<!-- <div id="fh5co-menu-logo"> -->
@@ -11,46 +13,46 @@
 				<li>
 					<a href="#" class="fh5co-sub-ddown">sm사업</a>
 					<ul class="fh5co-sub-menu">
-						<li><a href="introduce">사업소개</a></li>
+						<li><a href="${R}guest/introduce">사업소개</a></li>
 					</ul>	
             		</li>
 				<li>
 					<a href="#" class="fh5co-sub-ddown">알립니다</a>
 					<ul class="fh5co-sub-menu">
-						<li><a href="/mybatisEx/user/board">공지사항</a></li>
+						<li><a href="${R}user/board?type=1">공지사항</a></li>
 					</ul>
 				</li>
 				<li>
 					<a href="#" class="fh5co-sub-ddown">참여광장</a>
 					<ul class="fh5co-sub-menu">
-						<li><a href="/mybatisEx/user/question">질문게시판</a></li>
-						<li><a href="/mybatisEx/user/board">컨퍼런스홍보</a></li>
+						<li><a href="${R}user/question">질문게시판</a></li>
+						<li><a href="${R}user/board?type=5">컨퍼런스홍보</a></li>
 					</ul>
 				</li>
 				<li>
 					<a href="#" class="fh5co-sub-ddown">관리하기</a>
 					<ul class="fh5co-sub-menu">
-						<li><a href="/mybatisEx/manager/m_register">신/편입생등록</a></li>
-						<li><a href="/mybatisEx/manager/m_contact">멘토선정</a></li>
-						<li><a href="/mybatisEx/manager/m_userManage">회원관리</a></li>
-						<li><a href="/mybatisEx/manager/m_mentoringManage">멘토링관리</a></li>
-						<li><a href="/mybatisEx/manager/m_reportManage">보고서 관리</a></li>
-						<li><a href="/mybatisEx/manager/m_setting">설정하기</a></li>
+						<li><a href="${R}manager/m_register">신/편입생등록</a></li>
+						<li><a href="${R}manager/m_contact">멘토선정</a></li>
+						<li><a href="${R}manager/m_userManage">회원관리</a></li>
+						<li><a href="${R}manager/m_mentoringManage">멘토링관리</a></li>
+						<li><a href="${R}manager/m_reportManage">보고서 관리</a></li>
+						<li><a href="${R}manager/m_setting">설정하기</a></li>
 					</ul>
 				</li>
 				<li>
 					<a href="#" class="fh5co-sub-ddown">마이페이지</a>
 					 <ul class="fh5co-sub-menu">
-					 	<li><a href="/mybatisEx/user/mypost">내가 쓴 글</a></li>
-					 	<li><a href="/mybatisEx/user/sendEmail">메일쓰기</a></li>
-					 	<li><a href="/mybatisEx/user/meminfo">회원정보수정</a></li>
+					 	<li><a href="${R}user/mypost">내가 쓴 글</a></li>
+					 	<li><a href="${R}user/sendEmail">메일쓰기</a></li>
+					 	<li><a href="${R}user/meminfo">회원정보수정</a></li>
 					</ul>
 				</li>
 				<sec:authorize access="not authenticated">  
-				<li class="fh5co-special"><a href="login">LOGIN</a></li>
+				<li class="fh5co-special"><a href="${R}guest/login">LOGIN</a></li>
 				</sec:authorize>
 				<sec:authorize access="authenticated">
-				<li class="fh5co-special"><a href="/mybatisEx/user/logout_processing">LOGOUT</a></li>
+				<li class="fh5co-special"><a href="${R}user/logout_processing">LOGOUT</a></li>
 				</sec:authorize>
 			</ul>
 		</nav>

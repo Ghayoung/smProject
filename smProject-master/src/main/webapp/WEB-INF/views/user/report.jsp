@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:url var="R" value="/" />
 <div id="fh5co-main">
 			<div class="container">
 				<div class="col-md-12" id="fh5co-features">
@@ -25,36 +27,36 @@
 									    </tr>
 								  	</thead>
 									<tbody>
-									    <tr data-url="report_detail">
+									    <tr data-url="${R}user/report_detail">
 									      <td><input type="checkbox" name="checkbox"></td>
 									      <th scope="row">1</th>
 									      <td>데이터타입 및 변수선언</td>
 									      <td>6202</td>
 									      <td>2017-09-17</td>
-									      <td><a href="#"><img src="../images\file.png" border="0"></a></td>
+									      <td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
 									    </tr>
-									    <tr data-url="report_detail">
+									    <tr data-url="${R}user/report_detail">
 									      <td><input type="checkbox" name="checkbox"></td>
 									      <th scope="row">2</th>
 									      <td>배열</td>
 									      <td>6202</td>
 									      <td>2017-09-17</td>
-									      <td><a href="#"><img src="../images\file.png" border="0"></a></td>
+									      <td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
 									    </tr>
-									    <tr data-url="report_detail">
+									    <tr data-url="${R}user/report_detail">
 									   	  <td><input type="checkbox" name="checkbox"></td>
 									      <th scope="row">3</th>
 									      <td>클래스및 패키지</td>
 									      <td>6202</td>
 									      <td>2017-09-17</td>
-									      <td><a href="#"><img src="../images\file.png" border="0"></a></td>
+									      <td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
 									    </tr>
 									</tbody>
 								</table>
 							</div>
 
 							<div class="col-r">
-								<a href="report_create" class="btn btn-primary btn-lg">보고서 작성</a>
+								<a href="${R}user/report_create" class="btn btn-primary btn-lg">보고서 작성</a>
 								<a href="#" class="btn btn-primary btn-lg">다운로드</a>
 							</div>
 						</div>

@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:url var="R" value="/" />
 <div id="fh5co-main">
 	
 			<div class="container">
@@ -54,11 +56,11 @@
 							</div>
 							
 							<div class="col-md-2">
-								<a href="#">첨부된 파일 <img src="../images\file.png" border="0"></a>
+								<a href="#">첨부된 파일 <img src="${R}images\file.png" border="0"></a>
 								<div class="fh5co-spacer fh5co-spacer-md"></div>
 							</div>
 							<div class="col-md-12">
-								<a href="report" class="btn btn-primary btn-lg col-md-offset-10">목록으로</a>	
+								<a href="${R}user/report" class="btn btn-primary btn-lg col-md-offset-10">목록으로</a>	
 							</div>
 					</div>
 					

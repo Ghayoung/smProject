@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:url var="R" value="/" />	
 <div id="fh5co-main">
 	<div class="container">
 		<div class="col-md-12" id="fh5co-features">
@@ -15,7 +16,7 @@
 							<li>회원정보수정</li>
 							<li>회원탈퇴</li>
 						</ul>
-						<form method="post" action="/mybatisEx/user/meminfo_processing">
+						<form method="post" action="${R}user/meminfo_processing">
 						<div class="resp-tabs-container hor_1">
 								<!--정보수정-->
 								<div class="row">

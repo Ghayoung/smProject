@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:url var="R" value="/" />
 
 		<div id="fh5co-main">
 	
@@ -18,7 +19,7 @@
 					</div>
 				
 				    <div class="col-md-12 animate-box">
-				    	<a href="/mybatisEx/manager/m_introduce_modi.jsp" class="btn btn-primary btn-md col-md-offset-11">수정하기</a>
+				    	<a href="${R}manager/m_introduce_modi" class="btn btn-primary btn-md col-md-offset-11">수정하기</a>
 						<div id="fh5co-tab-feature-center" class="fh5co-tab text-center">
 							<ul class="resp-tabs-list hor_1">
 								<li>사업소개</li>

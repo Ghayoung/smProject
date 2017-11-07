@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:url var="R" value="/" />	
 <div id="fh5co-main">
 			<div class="container">
 				<div class="col-md-12" id="fh5co-features">
@@ -25,27 +27,27 @@
 									    </tr>
 								  	</thead>
 									<tbody>
-									    <tr data-url="report_detail">
+									    <tr data-url="${R}user/report_detail">
 									      <th scope="row">1</th>
 									      <td>마재희</td>
 									      <td>소프트웨어공학과</td>
 									      <td>멘토</td>
 							
 									    </tr>
-									    <tr data-url="report_detail">
+									    <tr data-url="${R}user/report_detail">
 									      <th scope="row">2</th>
 									      <td>이혜민</td>
 									      <td>소프트웨어공학과</td>
 									      <td>멘티</td>
 								
 									    </tr>
-									    <tr data-url="report_detail">
+									    <tr data-url="${R}user/report_detail">
 									      <th scope="row">3</th>
 									      <td>최윤경</td>
 									      <td>소프트웨어공학과</td>
 									      <td>멘티</td>
 									    </tr>
-									      <tr data-url="report_detail">
+									      <tr data-url="${R}user/report_detail">
 									      <th scope="row">3</th>
 									      <td>남하영</td>
 									      <td>소프트웨어공학과</td>
@@ -76,7 +78,7 @@
 									     <td><input type="checkbox" name="checkbox" id="cb_1"></td>
 									      <th scope="row">1</th>
 									      <td>1</td>
-									      <td data-url="report_detail">배열</td>
+									      <td data-url="${R}user/report_detail">배열</td>
 									      <td>6202</td>
 									      <td>2017-09-24</td>
 									      
@@ -85,7 +87,7 @@
 									     <td><input type="checkbox" name="checkbox" id="cb_2"></td>
 									      <th scope="row">2</th>
 									      <td>1</td>
-									      <td data-url="report_detail">링크와 멀티미디어</td>
+									      <td data-url="${R}user/report_detail">링크와 멀티미디어</td>
 									      <td>6202</td>
 									      <td>2017-09-24</td>
 									      
@@ -94,7 +96,7 @@
 									      <td><input type="checkbox" name="checkbox" id="cb_3"></td>
 									      <th scope="row">3</th>
 									      <td>1</td>
-									      <td data-url="report_detail">집합</td>
+									      <td data-url="${R}user/report_detail">집합</td>
 									      <td>6202</td>
 									      <td>2017-09-24</td>
 									      
@@ -119,23 +121,23 @@
 									    </tr>
 								  	</thead>
 									<tbody>
-									    <tr data-url="report_detail">
+									    <tr data-url="${R}user/report_detail">
 									      <th scope="row">1</th>
 									      <td>배열</td>
 									      <td>2017-09-24</td>
-									      <td><a href="#"><img src="images\file.png" border="0"></a></td>
+									      <td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
 									    </tr>
-									    <tr data-url="report_detail">
+									    <tr data-url="${R}user/report_detail">
 									      <th scope="row">2</th>
 									      <td>링크와 멀티미디어</td>
 									      <td>2017-09-24</td>
-									      <td><a href="#"><img src="images\file.png" border="0"></a></td>
+									      <td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
 									    </tr>
-									    <tr data-url="report_detail">
+									    <tr data-url="${R}user/report_detail">
 									      <th scope="row">3</th>
 									      <td>집합</td>
 									      <td>2017-09-24</td>
-									      <td><a href="#"><img src="images\file.png" border="0"></a></td>
+									      <td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
 									    </tr>
 									</tbody>
 								</table>

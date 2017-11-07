@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 		<div id="fh5co-main">
 	
 			<div class="container">
@@ -16,25 +16,25 @@
 						<div class="fh5co-spacer fh5co-spacer-sm"></div>
 					</div>
 					<div class="col-md-12 animate-box">
-						<form action="#" method="post">
+						<form:form method="post" modelAttribute="article">
 							<div class="col-md-12">
 								<div class="form-group">
 									<label for="report_subject">글 제목</label>
-									<input placeholder="글 제목" id="report_subject" type="text" class="form-control input-lg">
+									<form:input path="title" placeholder="글 제목" id="report_subject" type="text" class="form-control input-lg" />
 								</div>	
 							</div>
 							
 							<div class="col-md-12">
 								<div class="form-group">
 									<label for="report_content">글 내용</label>
-									<textarea placeholder="글 내용" id="report_content" class="form-control input-lg" rows="10"></textarea>
+									<form:textarea path="content" placeholder="글 내용" id="report_content" class="form-control input-lg" rows="10" />
 								</div>	
 							</div>
 							
 							<div class="col-md-2">
 								<div class="form-group">
 									<label>파일 첨부</label>
-									<input type="file" class="btn btn-lg " value="파일첨부">
+									<!-- <input type="file" class="btn btn-lg " value="파일첨부"> -->
 								</div>	
 							</div>
 							<div class="col-md-12">
@@ -43,7 +43,7 @@
 								</div>	
 							</div>
 							
-						</form>	
+						</form:form>	
 					</div>
 					
 				</div>

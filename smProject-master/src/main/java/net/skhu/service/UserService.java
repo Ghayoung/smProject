@@ -7,13 +7,16 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import net.skhu.dto.Article;
 import net.skhu.dto.User;
+import net.skhu.mapper.ArticleMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.utils.Encryption;
 
 @Service
 public class UserService {
 	@Autowired UserMapper userMapper;
+	@Autowired ArticleMapper articleMapper;
 
 	public User login(String user_id, String pw) {
         User user = userMapper.findOneByUser_id(user_id);
@@ -46,6 +49,13 @@ public class UserService {
 		user.setPhone(request.getParameter("phone"));
 		userMapper.update(user);
 		return user;
+	}
+
+	public void createArticle(Article article, int type) {
+		article.setArt_u_id(UserService.getCurrentUser().getId());
+      	article.setArt_b_id(type);
+      	articleMapper.insert(article);
+      	return;
 	}
 
 

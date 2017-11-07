@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import net.skhu.dto.Article;
 import net.skhu.dto.User;
+import net.skhu.mapper.ArticleMapper;
+import net.skhu.mapper.BoardMapper;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.service.UserService;
@@ -20,23 +23,43 @@ public class UserController {
 
 	@Autowired UserMapper userMapper;
 	@Autowired DepartmentMapper departmentMapper;
+	@Autowired BoardMapper boardMapper;
+	@Autowired ArticleMapper articleMapper;
 	@Autowired UserService userService;
 
 	@RequestMapping(value="board", method=RequestMethod.GET)
     public String board(Model model, @RequestParam(value="type", defaultValue="0") int type) {
-		if(type==1) model.addAttribute("board", "공지사항");
-		else if(type==2) model.addAttribute("board", "학습자료게시판");
+		model.addAttribute("board", boardMapper.findOne(type).getB_name());
+		model.addAttribute("article", articleMapper.findAllByBoard(type));
         return "user/board";
     }
 
     @RequestMapping("board_detail")
-    public String board_detail() {
+    public String board_detail(Model model, @RequestParam(value="type", defaultValue="0") int type, @RequestParam(value="id") int id) {
+    	model.addAttribute("board", boardMapper.findOne(type).getB_name());
+    	model.addAttribute("article", articleMapper.findOne(id));
         return "user/board_detail";
     }
 
-    @RequestMapping("board_create")
-    public String board_create() {
-        return "user/board_create";
+    @RequestMapping(value="board_create", method=RequestMethod.GET)
+    public String board_create(Model model, @RequestParam(value="type", defaultValue="0") int type) {
+    	Article article = new Article();
+    	model.addAttribute("article", article);
+    	model.addAttribute("board", boardMapper.findOne(type).getB_name());
+    	return "user/board_create";
+    }
+
+    @RequestMapping(value="board_create", method=RequestMethod.POST)
+    public String board_create(Model model, Article article, @RequestParam(value="type", defaultValue="0") int type) {
+    	userService.createArticle(article, type);
+    	return "redirect:board?type="+type;
+    }
+
+    @RequestMapping("question")
+    public String question(Model model) {
+    	model.addAttribute("board", boardMapper.findOne(3).getB_name());
+		model.addAttribute("article", articleMapper.findAllByBoard(3));
+        return "user/question";
     }
 
     @RequestMapping("menteeapply")
@@ -47,21 +70,6 @@ public class UserController {
     @RequestMapping("menteeapply_detail")
     public String menteeapply_detail() {
         return "user/menteeapply_detail";
-    }
-
-    @RequestMapping("question")
-    public String question() {
-        return "user/question";
-    }
-
-    @RequestMapping("question_detail")
-    public String question_detail() {
-        return "user/question_detail";
-    }
-
-    @RequestMapping("question_create")
-    public String question_create() {
-        return "user/question_create";
     }
 
     @RequestMapping("timetable")

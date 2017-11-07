@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:url var="R" value="/" />	
 <div id="fh5co-main">
 	
 			<div class="container">
@@ -38,8 +40,8 @@
 										</div>
 										<div class="col-md-12">
 											<div class="col-md-8 animate-box">
-                        							<div class="panel panel-default card" data-url="menteeapply_detail">
-                        								<img class="img-responsive" src="../images/work_1.jpg" alt="Free HTML5 Template">
+                        							<div class="panel panel-default card" data-url="${R}user/menteeapply_detail">
+                        								<img class="img-responsive" src="${R}images/work_1.jpg" alt="Free HTML5 Template">
                         								<hr>
 		                                              <div class="card-body">
 														<h3>주제: 이산수학</h3>
@@ -85,7 +87,7 @@
                         										<td class="ellip">가나나다라마사사사사사사사사사사사사사사사사사사사</td>
                         										<td>요오옹</td>
                         										<td>17-09-17</td>
-                        										<td><a href="#"><img src="images\file.png" border="0"></a></td>
+                        										<td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
                         									    <td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">수정</a></td>
                         									    <td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">삭제</a></td>
                         									</tr>
@@ -94,7 +96,7 @@
                         										<td class="ellip">가나나다라마바사</td>
                         										<td>요오옹</td>
                         										<td>17-09-17</td>
-                        										<td><a href="#"><img src="images\file.png" border="0"></a></td>
+                        										<td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
                         										<td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">수정</a></td>
                         									    <td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">삭제</a></td>
                         									</tr>
@@ -103,7 +105,7 @@
                         										<td class="ellip">가나나다라마바사</td>
                         										<td>요오옹</td>
                         										<td>17-09-17</td>
-                        										<td><a href="#"><img src="images\file.png" border="0"></a></td>
+                        										<td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
                         										<td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">수정</a></td>
                         									    <td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">삭제</a></td>
                         									</tr>
@@ -145,7 +147,7 @@
                         										<td class="ellip">가나나다라마바사</td>
                         										<td>요오옹</td>
                         										<td>17-09-17</td>
-                        										<td><a href="#"><img src="images\file.png" border="0"></a></td>
+                        										<td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
                         									    <td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">수정</a></td>
                         									    <td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">삭제</a></td>
                         									</tr>
@@ -154,7 +156,7 @@
                         										<td class="ellip">가나나다라마바사</td>
                         										<td>요오옹</td>
                         										<td>17-09-17</td>
-                        										<td><a href="#"><img src="images\file.png" border="0"></a></td>
+                        										<td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
                         										<td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">수정</a></td>
                         									    <td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">삭제</a></td>
                         									</tr>
@@ -163,7 +165,7 @@
                         										<td class="ellip">가나나다라마바사가나나다라마바사가나나다라마바사</td>
                         										<td>요오옹</td>
                         										<td>17-09-17</td>
-                        										<td><a href="#"><img src="images\file.png" border="0"></a></td>
+                        										<td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
                         										<td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">수정</a></td>
                         									    <td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">삭제</a></td>
                         									</tr>
@@ -205,7 +207,7 @@
                         										<td class="ellip">가나나다라마바사</td>
                         										<td>요오옹</td>
                         										<td>17-09-17</td>
-                        										<td><a href="#"><img src="images\file.png" border="0"></a></td>
+                        										<td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
                         									    <td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">수정</a></td>
                         									    <td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">삭제</a></td>
                         									</tr>
@@ -214,7 +216,7 @@
                         										<td class="ellip">가나나다라마바사</td>
                         										<td>요오옹</td>
                         										<td>17-09-17</td>
-                        										<td><a href="#"><img src="images\file.png" border="0"></a></td>
+                        										<td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
                         										<td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">수정</a></td>
                         									    <td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">삭제</a></td>
                         									</tr>
@@ -223,7 +225,7 @@
                         										<td class="ellip">가나나다라마바사가나나다라마바사가나나다라마바사</td>
                         										<td>요오옹</td>
                         										<td>17-09-17</td>
-                        										<td><a href="#"><img src="images\file.png" border="0"></a></td>
+                        										<td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
                         										<td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">수정</a></td>
                         									    <td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">삭제</a></td>
                         									</tr>
@@ -265,7 +267,7 @@
                         										<td class="ellip">가나나다라마바사</td>
                         										<td>요오옹</td>
                         										<td>17-09-17</td>
-                        										<td><a href="#"><img src="images\file.png" border="0"></a></td>
+                        										<td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
                         									    <td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">수정</a></td>
                         									    <td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">삭제</a></td>
                         									</tr>
@@ -274,7 +276,7 @@
                         										<td class="ellip">가나나다라마바사</td>
                         										<td>요오옹</td>
                         										<td>17-09-17</td>
-                        										<td><a href="#"><img src="images\file.png" border="0"></a></td>
+                        										<td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
                         										<td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">수정</a></td>
                         									    <td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">삭제</a></td>
                         									</tr>
@@ -283,7 +285,7 @@
                         										<td class="ellip">가나나다라마바사가나나다라마바사가나나다라마바사</td>
                         										<td>요오옹</td>
                         										<td>17-09-17</td>
-                        										<td><a href="#"><img src="images\file.png" border="0"></a></td>
+                        										<td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
                         										<td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">수정</a></td>
                         									    <td><a href="#" class="btn btn-primary btn-sm " style="margin:auto;">삭제</a></td>
                         									</tr>
