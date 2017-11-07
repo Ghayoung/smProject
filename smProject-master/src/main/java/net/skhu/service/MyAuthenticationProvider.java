@@ -35,6 +35,8 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
         switch (user.getType()) {
         case 1: role = "ROLE_USER"; break;
         case 2: role = "ROLE_MANAGER"; break;
+        case 3: role = "ROLE_MENTOR"; break;
+        case 4: role = "ROLE_MENTEE"; break;
         }
         grantedAuthorities.add(new SimpleGrantedAuthority(role));
         return new MyAuthenticaion(loginId, password, grantedAuthorities, user);
