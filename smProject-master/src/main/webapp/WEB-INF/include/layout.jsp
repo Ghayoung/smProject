@@ -43,7 +43,9 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-	
+	<script type="text/javascript" src="${R}editor/js/HuskyEZCreator.js" charset="utf-8"></script> 
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+
 </head>
 <body>
 

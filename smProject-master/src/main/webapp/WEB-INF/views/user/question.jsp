@@ -27,7 +27,7 @@
 								<tbody>
 									<c:forEach var="article" items="${ article }" varStatus="status">
 								        <tr data-url="${R}user/board_detail?type=${ param.type }&id=${article.id}">
-								          <td>${ status.index }</td>
+								          <td>${ status.index+1 }</td>
 								          <td>${ article.title }</td>
 								          <td>${ article.userName }</td>
 								          <td>${ article.post_date }</td>

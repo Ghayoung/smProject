@@ -4,7 +4,6 @@ public class Introduce {
 	int id;
 	String content;
 	String title;
-	String text;
 
 	public int getId() {
 		return id;
@@ -23,12 +22,6 @@ public class Introduce {
 	}
 	public void setTitle(String title) {
 		this.title = title;
-	}
-	public String getText() {
-		return text;
-	}
-	public void setText(String text) {
-		this.text = text;
 	}
 
 

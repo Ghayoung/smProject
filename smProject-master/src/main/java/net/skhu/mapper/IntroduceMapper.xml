@@ -13,12 +13,12 @@
 	</select>
 	
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
-	  INSERT introduce (content, text)
-	  VALUES (#{content}, #{text})
+	  INSERT introduce (content, title)
+	  VALUES (#{content}, #{title})
 	</insert>
 	
 	<update id="update">
-		UPDATE introduce SET content=#{content}, text=#{text} WHERE id=#{id}
+		UPDATE introduce SET content=#{content}, title=#{title} WHERE id=#{id}
 	</update>
 	
 	<delete id="delete">

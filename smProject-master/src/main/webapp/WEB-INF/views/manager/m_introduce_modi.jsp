@@ -13,7 +13,7 @@
 	    		<div id="fh5co-tab-feature-center" class="fh5co-tab text-center">
 	    			<ul id="intro_modi_list" class="resp-tabs-list hor_1">
 	    				<c:forEach var="introduce" items="${ introduces }">
-	    					<li>${introduce.content }<a href="${R}manager/introduce_delete?id=${introduce.id}" class="btn2 btn-primary btn-sm">x</a></li>
+	    					<li>${introduce.title }<a href="${R}manager/introduce_delete?id=${introduce.id}" class="btn2 btn-primary btn-sm">x</a></li>
 	    				</c:forEach>
 	    				<li>+새 항목</li>
 	    			</ul>
@@ -24,11 +24,11 @@
 			    					<div class="row">
 			    						<div class="form-group">
 			    							<label for="tab">항목</label>
-			    							<input name="content" placeholder="항목" id="tab" type="text" class="form-control input-lg" value="${introduce.content}"/>
+			    							<input name="title" placeholder="항목" id="tab" type="text" class="form-control input-lg" value="${introduce.title}"/>
 			    						</div>
 			    						<div class="form-group">
 			    							<label for="introduce_content">내용</label>
-			    							<textarea name="text" placeholder="내용" id="introduce_content" class="form-control input-lg" rows="10">${introduce.text}</textarea>
+			    							<textarea name="content" placeholder="내용" id="introduce_content" class="form-control input-lg" rows="10">${introduce.content}</textarea>
 			    						</div>
 			    					</div>
 				    				<div class="col-md-12">
@@ -44,11 +44,11 @@
 		    					<div class="row">
 		    						<div class="form-group">
 		    							<label for="tab">항목</label>
-		    							<input name="content" placeholder="항목" id="tab" type="text" class="form-control input-lg"/>
+		    							<input name="title" placeholder="항목" id="tab" type="text" class="form-control input-lg"/>
 		    						</div>
 		    						<div class="form-group">
 		    							<label for="introduce_content">내용</label>
-		    							<textarea name="text" placeholder="내용" id="introduce_content" class="form-control input-lg" rows="10"></textarea>
+		    							<textarea name="content" placeholder="내용" id="introduce_content" class="form-control input-lg" rows="10"></textarea>
 		    						</div>
 		    					</div>
 			    				<div class="col-md-12">

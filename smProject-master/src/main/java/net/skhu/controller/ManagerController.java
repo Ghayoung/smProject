@@ -15,12 +15,14 @@ import net.skhu.dto.Introduce;
 import net.skhu.dto.Setting;
 import net.skhu.mapper.IntroduceMapper;
 import net.skhu.mapper.UserMapper;
+import net.skhu.service.ManagerService;
 
 @Controller
 @RequestMapping("/manager")
 public class ManagerController {
 	@Autowired UserMapper userMapper;
 	@Autowired IntroduceMapper introduceMapper;
+	@Autowired ManagerService managerService;
 
 	@RequestMapping(value="m_introduce_modi", method=RequestMethod.GET)
 	public String m_introduce_modi(Model model) {
@@ -32,18 +34,7 @@ public class ManagerController {
 
 	@RequestMapping(value="m_introduce_modi", method=RequestMethod.POST)
 	public String introduce_edit(Model model, @RequestParam(value="id") int id, HttpServletRequest request) {
-		if(id==0) {
-			Introduce introduce = new Introduce();
-			introduce.setContent(request.getParameter("content"));
-			introduce.setText(request.getParameter("text"));
-			introduceMapper.insert(introduce);
-		}
-		else {
-			Introduce introduce = introduceMapper.findOne(id);
-			introduce.setContent(request.getParameter("content"));
-			introduce.setText(request.getParameter("text"));
-			introduceMapper.update(introduce);
-		}
+		managerService.introduce_edit(id, request);
 		return "redirect:m_introduce_modi";
 	}
 

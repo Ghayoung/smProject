@@ -26,7 +26,7 @@
 						<div id="fh5co-tab-feature-center" class="fh5co-tab text-center">
 							<ul class="resp-tabs-list hor_1">
 								<c:forEach var="introduce" items="${ introduces }">
-							        <li>${ introduce.content }</li>
+							        <li>${ introduce.title }</li>
 							      </c:forEach>
 							</ul>
 							
@@ -35,7 +35,7 @@
 									<div>
 								        <div class="row">
 											<div class="col-md-12">
-												<h2 class="h3">${ introduce.text }</h2>
+												<h2 class="h3">${ introduce.content }</h2>
 											</div>
 										</div>
 									</div>
