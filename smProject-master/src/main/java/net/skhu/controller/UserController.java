@@ -38,6 +38,7 @@ public class UserController {
     public String board_detail(Model model, @RequestParam(value="type", defaultValue="0") int type, @RequestParam(value="id") int id) {
     	model.addAttribute("board", boardMapper.findOne(type).getB_name());
     	model.addAttribute("article", articleMapper.findOne(id));
+    	model.addAttribute("user", UserService.getCurrentUser().getId());
         return "user/board_detail";
     }
 
@@ -54,6 +55,26 @@ public class UserController {
     	userService.createArticle(article, type);
     	return "redirect:board?type="+type;
     }
+
+    @RequestMapping(value="board_edit", method=RequestMethod.GET)
+    public String board_edit(Model model, @RequestParam(value="type", defaultValue="0") int type, @RequestParam(value="id") int id) {
+    	model.addAttribute("article", articleMapper.findOne(id));
+    	model.addAttribute("board", boardMapper.findOne(type).getB_name());
+    	return "user/board_create";
+    }
+
+    @RequestMapping(value="board_edit", method=RequestMethod.POST)
+    public String board_edit(Model model, Article article, @RequestParam(value="type", defaultValue="0") int type, @RequestParam(value="id") int id) {
+    	articleMapper.update(article);
+    	return "redirect:board_detail?type="+type+"&id="+id;
+    }
+
+    @RequestMapping("board_delete")
+    public String board_delete(Model model, @RequestParam(value="id") int id, @RequestParam(value="type", defaultValue="0") int type) {
+    	articleMapper.delete(id);
+        return "redirect:board?type="+type;
+    }
+
 
     @RequestMapping("question")
     public String question(Model model) {

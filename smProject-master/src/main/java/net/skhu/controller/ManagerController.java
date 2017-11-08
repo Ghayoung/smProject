@@ -1,23 +1,57 @@
 package net.skhu.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import net.skhu.dto.Introduce;
 import net.skhu.dto.Setting;
+import net.skhu.mapper.IntroduceMapper;
 import net.skhu.mapper.UserMapper;
 
 @Controller
 @RequestMapping("/manager")
 public class ManagerController {
 	@Autowired UserMapper userMapper;
+	@Autowired IntroduceMapper introduceMapper;
 
-	@RequestMapping("m_introduce_modi")
-    public String m_introduce_modi() {
-        return "manager/m_introduce_modi";
-    }
+	@RequestMapping(value="m_introduce_modi", method=RequestMethod.GET)
+	public String m_introduce_modi(Model model) {
+		List<Introduce> introduces = introduceMapper.findAll();
+		model.addAttribute("introduces", introduces);
+		model.addAttribute("board","사업소개 수정");
+		return "manager/m_introduce_modi";
+	}
+
+	@RequestMapping(value="m_introduce_modi", method=RequestMethod.POST)
+	public String introduce_edit(Model model, @RequestParam(value="id") int id, HttpServletRequest request) {
+		if(id==0) {
+			Introduce introduce = new Introduce();
+			introduce.setContent(request.getParameter("content"));
+			introduce.setText(request.getParameter("text"));
+			introduceMapper.insert(introduce);
+		}
+		else {
+			Introduce introduce = introduceMapper.findOne(id);
+			introduce.setContent(request.getParameter("content"));
+			introduce.setText(request.getParameter("text"));
+			introduceMapper.update(introduce);
+		}
+		return "redirect:m_introduce_modi";
+	}
+
+	@RequestMapping("introduce_delete")
+	public String introduce_delete(Model model, @RequestParam(value="id") int id) {
+		introduceMapper.delete(id);
+		return "redirect:m_introduce_modi";
+	}
 
     @RequestMapping("m_register")
     public String m_register() {

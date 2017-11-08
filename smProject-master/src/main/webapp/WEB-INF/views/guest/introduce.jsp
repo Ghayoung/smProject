@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:url var="R" value="/" />
 
@@ -19,16 +20,27 @@
 					</div>
 				
 				    <div class="col-md-12 animate-box">
-				    	<a href="${R}manager/m_introduce_modi" class="btn btn-primary btn-md col-md-offset-11">수정하기</a>
+				    	<sec:authorize access="hasRole('MANAGER')">
+				    		<a href="${R}manager/m_introduce_modi" class="btn btn-primary btn-md col-md-offset-11">수정하기</a>
+						</sec:authorize>
 						<div id="fh5co-tab-feature-center" class="fh5co-tab text-center">
 							<ul class="resp-tabs-list hor_1">
-								<li>사업소개</li>
-								<li>장학금 안내</li>
-								<li>활동방법</li>
-								<li>사업일정</li>
+								<c:forEach var="introduce" items="${ introduces }">
+							        <li>${ introduce.content }</li>
+							      </c:forEach>
 							</ul>
 							
 							<div class="resp-tabs-container hor_1">
+								<c:forEach var="introduce" items="${ introduces }">
+									<div>
+								        <div class="row">
+											<div class="col-md-12">
+												<h2 class="h3">${ introduce.text }</h2>
+											</div>
+										</div>
+									</div>
+							      </c:forEach>	
+									<!-- 
 								<div>
 									<div class="row">
 										<div class="col-md-12">
@@ -37,7 +49,7 @@
 										<div class="col-md">
 										    <p>소프트웨어공학과 멘토링 사업이라는 말로 성공회대 소프트웨어공학과 내에서 선후배간 지식 공유가 이루어지는 것을 의미합니다.</p>
 										</div>
-									</div>
+									</div> 
 								</div>
 								<div>
 									<div class="row">
@@ -128,7 +140,7 @@
 										    <p>- 학교 일정상 성적 확인 후 추가 장학금 지급</p>
 										</div>
 									</div>
-								</div>
+								</div>-->
 							</div>
 						</div>
 					</div>

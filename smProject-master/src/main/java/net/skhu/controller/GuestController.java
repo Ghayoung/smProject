@@ -1,12 +1,16 @@
 package net.skhu.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import net.skhu.dto.Introduce;
 import net.skhu.dto.User;
+import net.skhu.mapper.IntroduceMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.service.UserService;
 
@@ -16,6 +20,7 @@ import net.skhu.service.UserService;
 public class GuestController {
 
 	@Autowired UserMapper userMapper;
+	@Autowired IntroduceMapper introduceMapper;
 	@Autowired UserService userService;
 
 	@RequestMapping("main")
@@ -24,7 +29,10 @@ public class GuestController {
 	}
 
 	@RequestMapping("introduce")
-	public String introduce() {
+	public String introduce(Model model) {
+		List<Introduce> introduces = introduceMapper.findAll();
+		model.addAttribute("introduces", introduces);
+		model.addAttribute("board" ,"사업소개");
 		return "guest/introduce";
 	}
 

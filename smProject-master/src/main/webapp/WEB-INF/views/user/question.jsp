@@ -25,9 +25,9 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="article" items="${ article }">
+									<c:forEach var="article" items="${ article }" varStatus="status">
 								        <tr data-url="${R}user/board_detail?type=${ param.type }&id=${article.id}">
-								          <td>${ article.id }</td>
+								          <td>${ status.index }</td>
 								          <td>${ article.title }</td>
 								          <td>${ article.userName }</td>
 								          <td>${ article.post_date }</td>

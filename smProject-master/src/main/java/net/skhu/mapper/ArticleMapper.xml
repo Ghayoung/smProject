@@ -5,7 +5,7 @@
 <mapper namespace="net.skhu.mapper.ArticleMapper">
 
 	<select id="findAllByBoard" resultType="Article">
-		SELECT a.*,u.name "userName" FROM article a LEFT JOIN user u ON a.art_u_id=u.id WHERE a.art_b_id = #{art_b_id}
+		SELECT a.*,u.name "userName" FROM article a LEFT JOIN user u ON a.art_u_id=u.id WHERE a.art_b_id = #{art_b_id} AND a.condition=0
 	</select>
 	
 	<select id="findOne" resultType="Article">
@@ -17,19 +17,16 @@
 	  VALUES (#{title}, #{content}, #{art_u_id}, now(), null, #{art_b_id})
 	</insert>
 	
-	<!-- 
 	<update id="update">
-	  UPDATE Student SET 
-	    studentNumber = #{studentNumber}, 
-	    name = #{name}, 
-	    departmentId = #{departmentId}, 
-	    year = #{year} 
+	  UPDATE article SET 
+	    title = #{title}, 
+	    content = #{content}, 
+	    post_date = now()
 	  WHERE id = #{id}
 	</update>
 	
-	<delete id="delete">
-	  DELETE FROM article WHERE id = #{id}
-	</delete>
-	-->
+	<select id="delete" resultType="Article">
+	  UPDATE article a SET a.condition=1 WHERE id = #{id}
+	</select>
 
 </mapper>

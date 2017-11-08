@@ -25,7 +25,7 @@
 				<li>
 					<a href="#" class="fh5co-sub-ddown">참여광장</a>
 					<ul class="fh5co-sub-menu">
-						<li><a href="${R}user/question">질문게시판</a></li>
+						<li><a href="${R}user/question?type=3">질문게시판</a></li>
 						<li><a href="${R}user/board?type=5">컨퍼런스홍보</a></li>
 					</ul>
 				</li>

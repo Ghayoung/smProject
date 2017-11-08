@@ -32,10 +32,12 @@
 								<a href="#">첨부된 파일 <img src="${R}images\file.png" border="0"></a>
 								<div class="fh5co-spacer fh5co-spacer-md"></div>
 						</div>
-						<div class="col-md-12 col-r">
-							<a href="${R}user/board_create" class="btn btn-primary btn-lg">수정</a>
-							<a href="#" class="btn btn-primary btn-lg">삭제</a>
-						</div>
+						<c:if test="${ article.art_u_id == user }">
+							<div class="col-md-12 col-r">
+								<a href="${R}user/board_edit?type=${param.type}&id=${param.id}" class="btn btn-primary btn-lg">수정</a>
+								<a href="${R}user/board_delete?type=${param.type}&id=${param.id}" class="btn btn-primary btn-lg">삭제</a>
+							</div>
+						</c:if>
 					</div>
 					
 				</div>
