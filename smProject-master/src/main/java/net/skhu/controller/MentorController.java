@@ -74,10 +74,6 @@ public class MentorController {
 	         int intro_fk = fileService.fileUpload(file2);
 	         int doc_fk = fileService.fileUpload(file3);
 
-	         System.out.println("t_fk:"+t_fk);
-	         System.out.println("intro_fk:"+intro_fk);
-	         System.out.println("doc_fk:"+doc_fk);
-
 	         mentor.setApply_f_time_id(t_fk);
 	         mentor.setApply_f_intro_fk(intro_fk);
 	         mentor.setApply_f_doc_fk(doc_fk);
