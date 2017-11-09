@@ -9,11 +9,30 @@
 	</select>
 	
 	<select id="findOneById" resultType="User">
-		SELECT * FROM user WHERE id = #{id}
+		SELECT * FROM user
+		WHERE id = #{id}
 	</select>
 	
 	<select id="findAll" resultType="User">
 		SELECT * FROM user
+	</select>
+	
+	<select id="findAllManager" resultType="User">
+		SELECT u.*, d.d_name
+		FROM user u left join department d ON u.major_id=d.id
+		WHERE type=2;
+	</select>
+	
+	<select id="findAllMentor" resultType="User">
+		SELECT u.*, d.d_name
+		FROM user u left join department d ON u.major_id=d.id
+		WHERE type=3;
+	</select>
+	
+	<select id="findAllMentee" resultType="User">
+		SELECT u.*, d.d_name
+		FROM user u left join department d ON u.major_id=d.id
+		WHERE type=4;
 	</select>
 
 	<update id="update">

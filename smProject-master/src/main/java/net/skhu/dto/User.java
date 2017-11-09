@@ -13,6 +13,7 @@ public class User {
 	int major_id;
 	int minor_id;
 	int double_id;
+	String d_name;
 
 	public int getId() {
 		return id;
@@ -85,6 +86,12 @@ public class User {
 	}
 	public void setDouble_id(int double_id) {
 		this.double_id = double_id;
+	}
+	public String getD_name() {
+		return d_name;
+	}
+	public void setD_name(String d_name) {
+		this.d_name = d_name;
 	}
 
 

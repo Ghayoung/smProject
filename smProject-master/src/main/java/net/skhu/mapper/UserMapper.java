@@ -12,6 +12,9 @@ public interface UserMapper {
 	User findOneByUser_id(String user_id);
 	User findOneById(int id);
 	List<User> findAll();
+	List<User> findAllManager();
+	List<User> findAllMentor();
+	List<User> findAllMentee();
 	void update(User user);
 	void delete(int id);
 	void insert(User user);
