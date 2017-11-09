@@ -14,35 +14,19 @@
 				-->
 		<div class="row animate-box">
 			<h2 class="fh5co-uppercase-heading-sm text-center">회원 관리</h2>
-			<form action="#" method="post">
+			<form action="m_userManage" method="post">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="search" class="sr-only">검색어</label> <input
-							placeholder="회원 검색" id="search" type="text"
-							class="form-control input-lg">
+						<label for="search" class="sr-only ">검색어</label> 
+						<input
+							placeholder="회원 검색" id="search" type="text" 
+							class="form-control input-lg" value="${ keyword }">
 					</div>
 				</div>
 				<div class="col-md-2">
 					<div class="form-group">
-						<label for="search_year" class="sr-only">년도</label> <input
-							placeholder="2017" id="search_year" type="text"
-							class="form-control input-lg">
-					</div>
-				</div>
-				<div class="col-md-2">
-					<div class="form-group">
-						<label for="search_term" class="sr-only">학기</label> <select
-							class="form-control input-lg" id="search_term">
-							<option>--학기</option>
-							<option>1</option>
-							<option>2</option>
-						</select>
-					</div>
-				</div>
-				<div class="col-md-2">
-					<div class="form-group">
-						<!--<input type="submit" class="btn btn-primary btn-lg " value="검색">-->
-						<a class="btn btn-primary btn-lg search_btn">검색</a>
+						<input type="submit" class="btn btn-primary btn-lg " value="검색">
+						<!-- <a class="btn btn-primary btn-lg search_btn">검색</a> -->
 					</div>
 				</div>
 			</form>
