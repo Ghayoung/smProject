@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import net.skhu.dto.Introduce;
 import net.skhu.dto.Setting;
+import net.skhu.dto.User;
 import net.skhu.mapper.IntroduceMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.service.ManagerService;
@@ -59,8 +60,17 @@ public class ManagerController {
         return "manager/m_contact_detail";
     }
 
-    @RequestMapping("m_userManage")
-    public String m_userManage() {
+    @RequestMapping(value="m_userManage", method=RequestMethod.GET)
+    public String m_userManage(Model model) {
+    	List<User> users= userMapper.findAll();
+		model.addAttribute("users", users);
+        return "manager/m_userManage";
+	}
+    
+    @RequestMapping(value="m_userManage", method=RequestMethod.POST)
+    public String m_userManage(Model model,User user) {
+    	List<User> users= userMapper.findAll();
+		model.addAttribute("users", users);
         return "manager/m_userManage";
     }
 

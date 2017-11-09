@@ -107,9 +107,9 @@
 				    <div class="col-md-12 animate-box">
 						<div id="fh5co-tab-feature-center" class="fh5co-tab text-center">
 							<ul class="resp-tabs-list hor_1">
-								<li>관리자</li>
-								<li>멘토</li>
-								<li>멘티</li>
+								<li id=1>관리자</li>
+								<li id=2>멘토</li>
+								<li id=3>멘티</li>
 							</ul>
 						
 							<div class="resp-tabs-container hor_1">
@@ -132,62 +132,19 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td>1</td>
-														<td>최윤경</td>
-														<td>소프트웨어공학과</td>
-														<td>학생</td>
-														<td>2017-09-22</td>
-														<td><a href="#" class="btn btn-primary">권한삭제</a></td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>최윤경</td>
-														<td>소프트웨어공학과</td>
-														<td>학생</td>
-														<td>2017-09-22</td>
-														<td><a href="#" class="btn btn-primary">권한삭제</a></td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>최윤경</td>
-														<td>소프트웨어공학과</td>
-														<td>학생</td>
-														<td>2017-09-22</td>
-														<td><a href="#" class="btn btn-primary">권한삭제</a></td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>최윤경</td>
-														<td>소프트웨어공학과</td>
-														<td>학생</td>
-														<td>2017-09-22</td>
-														<td><a href="#" class="btn btn-primary">권한삭제</a></td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>최윤경</td>
-														<td>소프트웨어공학과</td>
-														<td>학생</td>
-														<td>2017-09-22</td>
-														<td><a href="#" class="btn btn-primary">권한삭제</a></td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>최윤경</td>
-														<td>소프트웨어공학과</td>
-														<td>학생</td>
-														<td>2017-09-22</td>
-														<td><a href="#" class="btn btn-primary">권한삭제</a></td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>최윤경</td>
-														<td>소프트웨어공학과</td>
-														<td>학생</td>
-														<td>2017-09-22</td>
-														<td><a href="#" class="btn btn-primary">권한삭제</a></td>
-													</tr>
+													<c:forEach var="user" items="${ users }">
+														<tr>
+															<td>${ user.id }</td>
+															<td>${ user.name }</td>
+															<td>${ user.major_id }</td>
+															<td></td>
+															<td></td>
+															<td><button class="btn btn-primary col-md-offset-8" data-target="#layerpop" data-toggle="modal">권한부여</button>
+															</td>
+															
+														</tr>
+													</c:forEach>
+													
 													
 												</tbody>
 											</table>
