@@ -75,7 +75,7 @@ public class ManagerController {
 	}
 
     @RequestMapping(value="m_userManage", method=RequestMethod.POST)
-    public String m_userManage(Model model,@RequestParam(defaultValue="") String keyword, 
+    public String m_userManage(Model model,@RequestParam(defaultValue="") String keyword,
     		@RequestParam(defaultValue="2017") int searchYear, @RequestParam(defaultValue="2") int searchSemester){
     	List<User> SearchUsers= userMapper.findByName(keyword);
 		model.addAttribute("SearchUsers", SearchUsers);
