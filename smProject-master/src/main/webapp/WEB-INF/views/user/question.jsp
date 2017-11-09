@@ -26,8 +26,8 @@
 								</thead>
 								<tbody>
 									<c:forEach var="article" items="${ article }" varStatus="status">
-								        <tr data-url="${R}user/board_detail?type=${ param.type }&id=${article.id}">
-								          <td>${ status.index+1 }</td>
+								        <tr data-url="${R}user/board_detail?id=${article.id}&${ pagination.queryString }">
+								          <td>${ (pagination.pg-1)*15+status.count }</td>
 								          <td>${ article.title }</td>
 								          <td>${ article.userName }</td>
 								          <td>${ article.post_date }</td>
@@ -40,7 +40,7 @@
 						</div>
 						<my:pagination pageSize="${ pagination.sz }" recordCount="${ pagination.recordCount }" />
 					<div class="col-md-12">
-						<a href="${R}user/board_create?type=${ param.type }" class="btn btn-primary btn-lg col-md-offset-11">질문하기</a>
+						<a href="${R}user/board_create?${ pagination.queryString }" class="btn btn-primary btn-lg col-md-offset-11">질문하기</a>
 					</div>
 				  	</div>
 				</div>
