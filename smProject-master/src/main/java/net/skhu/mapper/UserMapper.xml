@@ -34,6 +34,12 @@
 		FROM user u left join department d ON u.major_id=d.id
 		WHERE type=4;
 	</select>
+	
+	<select id="findByName" resultType="User">
+		SELECT u.*, d.d_name
+		FROM user u left join department d ON u.major_id=d.id
+		WHERE name like '%'||#{name}||'%';
+	</select>
 
 	<update id="update">
 		UPDATE user SET pw = #{pw}, email = #{email}, phone = #{phone} WHERE id = #{id}

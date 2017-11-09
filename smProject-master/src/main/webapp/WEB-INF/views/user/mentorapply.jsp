@@ -20,8 +20,8 @@
 						
 							<div class="col-md-12">
 								<div class="form-group">
-									<label for="group_name">그룹 이름</label>
-									<input name="group_name" placeholder="그룹 이름" id="group_name" type="text" class="form-control input-lg"/>
+									<label for="group_name">팀명</label>
+									<input name="group_name" placeholder="팀명" id="group_name" type="text" class="form-control input-lg"/>
 								</div>	
 							</div>
 							<div class="col-md-12">
