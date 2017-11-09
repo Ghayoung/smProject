@@ -144,6 +144,54 @@ function checkM_setting(){
 	}
 }
 
+function checkInput(){
+	if($("#form [name=user_id]").val()==""){
+		alert("아이디를 입력해주세요");
+		$("#form [name=user_id]").focus();
+		return false;
+	}
+	else if($("#form [name=pw]").val()==""){
+		alert("비밀번호를 입력해주세요");
+		$("#form [name=pw]").focus();
+		return false;
+	}
+	else if($("#form [name=name]").val()==""){
+		alert("이름을 입력해주세요");
+		$("#form [name=name]").focus();
+		return false;
+	}
+	else if($("#form [name=type]").val()==""){
+		alert("권한을 입력해주세요");
+		$("#form [name=type]").focus();
+		return false;
+	}
+	else if($("#form [name=major_id]").val()==""){
+		alert("학과를 입력해주세요");
+		$("#form [name=major_id]").focus();
+		return false;
+	}
+	else if($("#form [name=title]").val()==""){
+		alert("제목을 입력해주세요");
+		$("#form [name=title]").focus();
+		return false;
+	}
+	else if($("#form [name=content]").val()==""){
+		alert("내용을 입력해주세요");
+		$("#form [name=content]").focus();
+		return false;
+	}
+	else if(!($("#form [name=newPw]").val()=="")){
+		if($("#form [name=newPw]").val()!=$("#form [name=newPw2]").val()){
+			alert("비밀번호가 일치하지 않습니다");
+			$("#form [name=newPw]").focus();
+			return false;
+		}
+	}
+	else{//
+		form.submit();
+	}
+}
+
 var oEditors = []; 
 $(function(){ 
 	nhn.husky.EZCreator.createInIFrame({ 
