@@ -71,7 +71,7 @@ public class ManagerController {
 
         return "manager/m_userManage";
 	}
-    
+
     @RequestMapping(value="m_userManage", method=RequestMethod.POST)
     public String m_userManage(Model model,User user) {
     	List<User> users= userMapper.findAll();

@@ -118,6 +118,32 @@ function checkMentorApply(){
 	}
 }
 
+function checkM_setting(){
+	if(document.form.max_mentor.value==0){
+		alert("최대 멘토 인원을입력해주세요");
+		document.form.max_mentor.focus();
+		return false;
+	}else if(document.form.study_count.value==0){
+		alert("멘토링 모임 횟수를 입력해주세요");
+		document.form.study_count.focus();
+		return false;
+	}else if(document.form.min_mentee.value==0){
+		alert("멘토당 최소 멘티 인원을 입력해주세요");
+		document.form.study_count.focus();
+		return false;
+	}else if(document.form.max_mentee.value==0){
+		alert("멘토당 최대 멘티 인원을 입력해주세요");
+		document.form.study_count.focus();
+		return false;
+	}else if(document.form.report_deadline.value==0){
+		alert("보고서 마감 요일을 선택해주세요");
+		document.form.study_count.focus();
+		return false;
+	}else{//
+		form.submit();
+	}
+}
+
 var oEditors = []; 
 $(function(){ 
 	nhn.husky.EZCreator.createInIFrame({ 
