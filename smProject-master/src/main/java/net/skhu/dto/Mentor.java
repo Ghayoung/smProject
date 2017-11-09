@@ -17,6 +17,7 @@ public class Mentor{
 	int apply_f_doc_fk;
 	int mentee_num;
 	String path; //file.path
+	String name;
 
 	public int getId() {
 		return id;
@@ -144,5 +145,13 @@ public class Mentor{
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name=name;
 	}
 }

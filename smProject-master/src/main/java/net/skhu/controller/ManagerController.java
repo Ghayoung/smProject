@@ -50,6 +50,7 @@ public class ManagerController {
         return "manager/m_register";
     }
 
+    /*
     @RequestMapping("m_contact")
     public String m_contact() {
         return "manager/m_contact";
@@ -59,6 +60,7 @@ public class ManagerController {
     public String m_contact_detail() {
         return "manager/m_contact_detail";
     }
+    */
 
     @RequestMapping(value="m_userManage", method=RequestMethod.GET)
     public String m_userManage(Model model) {
@@ -71,7 +73,7 @@ public class ManagerController {
 
         return "manager/m_userManage";
 	}
-    
+
     @RequestMapping(value="m_userManage", method=RequestMethod.POST)
     public String m_userManage(Model model,@RequestParam(value="search") String search){
     	System.out.println(search);
