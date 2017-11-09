@@ -38,6 +38,7 @@
 								</tbody>
 							</table>
 						</div>
+						<my:pagination pageSize="${ pagination.sz }" recordCount="${ pagination.recordCount }" />
 					<div class="col-md-12">
 						<a href="${R}user/board_create?type=${ param.type }" class="btn btn-primary btn-lg col-md-offset-11">질문하기</a>
 					</div>
