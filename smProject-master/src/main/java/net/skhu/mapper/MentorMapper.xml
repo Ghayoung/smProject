@@ -5,7 +5,7 @@
 <mapper namespace="net.skhu.mapper.MentorMapper">
 
 	<select id="findOne" resultType="Mentor">
-		SELECT * FROM mentor_apply WHERE id = #{id}
+		select m.*, u.name, f.path from mentor_apply m left join user u on m.mentor_u_id=u.user_id left join file f on m.apply_f_intro_fk = f.id WHERE id = #{id}
 	</select>
 	
 	<select id="findByMentor_u_id" resultType="Mentor">
@@ -13,10 +13,7 @@
 	</select>
 	
 	<select id="findAll" resultType="Mentor">
-		SELECT m.*, u.name, f.path
-		FROM mentor_apply m
-		left join user u on m.mentor_u_id = u.user_id
-		left join file f on m.apply_f_intro_fk = f.id
+		select m.*, u.name, f.path from mentor_apply m left join user u on m.mentor_u_id=u.user_id left join file f on m.apply_f_intro_fk = f.id
 	</select>
 	
 	<insert id="insert_apply" useGeneratedKeys="true" keyProperty="id">

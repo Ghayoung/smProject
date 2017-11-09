@@ -4,9 +4,24 @@
 
 <mapper namespace="net.skhu.mapper.ArticleMapper">
 
-	<select id="findAllByBoard" resultType="Article">
+	<!-- <select id="findAllByBoard" resultType="Article">
 		SELECT a.*,u.name "userName" FROM article a LEFT JOIN user u ON a.art_u_id=u.id WHERE a.art_b_id = #{art_b_id} AND a.condition=0
-	</select>
+	</select> -->
+	
+	<select id="findAllByBoard" resultType="Article">
+	    <bind name="start" value="(pg - 1) * sz" />
+	    SELECT a.*, u.name "userName" 
+	    FROM article a LEFT JOIN user u ON a.art_u_id=u.id
+	    WHERE a.art_b_id = #{bd} AND a.condition=0
+	    LIMIT ${start}, ${sz}
+	  </select>
+	 
+	  <select id="count" resultType="int">
+	    SELECT COUNT(a.id) 
+	    FROM article a LEFT JOIN user u ON a.art_u_id=u.id
+	    WHERE a.art_b_id = #{bd} AND a.condition=0  
+	  </select>
+	
 	
 	<select id="findOne" resultType="Article">
 		SELECT * FROM article WHERE id = #{id}
@@ -14,14 +29,15 @@
 	
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
 	  INSERT article (title, content, art_u_id, post_date, art_f_id, art_b_id)
-	  VALUES (#{title}, #{content}, #{art_u_id}, now(), null, #{art_b_id})
+	  VALUES (#{title}, #{content}, #{art_u_id}, now(), #{art_f_id}, #{art_b_id})
 	</insert>
 	
 	<update id="update">
 	  UPDATE article SET 
 	    title = #{title}, 
 	    content = #{content}, 
-	    post_date = now()
+	    post_date = now(),
+	    art_f_id = #{art_f_id}
 	  WHERE id = #{id}
 	</update>
 	

@@ -16,7 +16,7 @@
 							<li>회원정보수정</li>
 							<li>회원탈퇴</li>
 						</ul>
-						<form method="post" action="${R}user/meminfo_processing">
+						<form id="form" method="post" action="${R}user/meminfo_processing" onsubmit="return checkInput();">
 						<div class="resp-tabs-container hor_1">
 								<!--정보수정-->
 								<div class="row">

@@ -33,11 +33,14 @@
 								<div class="fh5co-spacer fh5co-spacer-md"></div>
 						</div>
 						<c:if test="${ article.art_u_id == user }">
-							<div class="col-md-12 col-r">
-								<a href="${R}user/board_edit?type=${param.type}&id=${param.id}" class="btn btn-primary btn-lg">수정</a>
-								<a href="${R}user/board_delete?type=${param.type}&id=${param.id}" class="btn btn-primary btn-lg">삭제</a>
+							<div class="col-md-12 col-r" style="margin-bottom:10px;">
+								<a href="${R}user/board_edit?id=${article.id}&${ pagination.queryString }" class="btn btn-primary btn-lg">수정</a>
+								<a href="${R}user/board_delete?id=${article.id}&${ pagination.queryString }" class="btn btn-primary btn-lg">삭제</a>
 							</div>
 						</c:if>
+						<div class="col-md-12 col-r">
+							<a href="${R}user/board?${ pagination.queryString }" class="btn btn-primary btn-lg">목록으로</a>
+						</div>
 					</div>
 					
 				</div>
