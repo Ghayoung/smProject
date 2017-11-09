@@ -1,3 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -157,6 +166,34 @@
 										</tbody>
 									</table>
 								</div>
+						
+								<div>
+									
+									<!--멘토-->
+									<div class="row">
+										<div class="panel panel-default ">
+											<table class="table search_user">
+												<thead>
+													<tr>
+														<th>번호</th>
+														<th>이름</th>
+														<th>학과</th>
+														<th>구분</th>
+														<th>권한 부여일</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>1</td>
+														<td>최윤경</td>
+														<td>소프트웨어공학과</td>
+														<td>학생</td>
+														<td>2017-09-22</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
 							</div>
 
 							<button class="btn btn-primary col-md-offset-10"
@@ -196,6 +233,33 @@
 										</tbody>
 									</table>
 								</div>
+								<div>
+									<!--멘티-->
+									<div class="row">
+										<div class="panel panel-default ">
+											<table class="table search_user">
+												<thead>
+													<tr>
+														<th>번호</th>
+														<th>이름</th>
+														<th>학과</th>
+														<th>구분</th>
+														<th>권한 부여일</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>1</td>
+														<td>최윤경</td>
+														<td>소프트웨어공학과</td>
+														<td>학생</td>
+														<td>2017-09-22</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									
 							</div>
 						</div>
 						<div>
