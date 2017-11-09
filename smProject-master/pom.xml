@@ -15,7 +15,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.7.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
@@ -51,26 +51,40 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>jstl</artifactId>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
 		</dependency>
 		<dependency>
-	      <groupId>org.apache.tiles</groupId>
-	      <artifactId>tiles-jsp</artifactId>
-	      <version>3.0.7</version>
-	    </dependency>
-	    <dependency>
-	      <groupId>org.springframework.security</groupId>
-	      <artifactId>spring-security-taglibs</artifactId>
-	    </dependency>
-		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-web</artifactId>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>3.0.7</version>
 		</dependency>
 	    <dependency>
 	    	<groupId>org.springframework.security</groupId>
 	    	<artifactId>spring-security-config</artifactId>
 	    </dependency>
+	    <dependency>
+	      <groupId>org.projectlombok</groupId>
+	      <artifactId>lombok</artifactId>
+	      <scope>provided</scope>
+	    </dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

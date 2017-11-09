@@ -9,7 +9,7 @@
 
 				<!-- <div id="fh5co-menu-logo"> -->
 					<!-- START #fh5co-logo -->
-					<h1 id="fh5co-logo" class="pull-left"><a href="main"><img src="../images/logo.png" alt="SM사업 멘토링"></a></h1>
+					<h1 id="fh5co-logo" class="pull-left"><a href="main"><img src="${R}images/logo.png" alt="SM사업 멘토링"></a></h1>
 					
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation" >
@@ -28,7 +28,7 @@
                      <li>
 								<a href="#" class="fh5co-sub-ddown">알립니다</a>
 								<ul class="fh5co-sub-menu">
-									<li><a href="${R}user/board?type=1">공지사항</a></li>
+									<li><a href="${R}user/board?bd=1">공지사항</a></li>
 									<li><a href="${R}user/mentorapply">멘토모집</a></li>
 									<li><a href="${R}user/menteeapply">멘토링신청</a></li>
 								</ul>
@@ -36,8 +36,8 @@
 							<li>
 								<a href="#" class="fh5co-sub-ddown">참여광장</a>
 								<ul class="fh5co-sub-menu">
-									<li><a href="${R}user/question?type=3">질문게시판</a></li>
-									<li><a href="${R}user/board?type=5">컨퍼런스홍보</a></li>
+									<li><a href="${R}user/question?bd=3">질문게시판</a></li>
+									<li><a href="${R}user/board?bd=5">컨퍼런스홍보</a></li>
 								</ul>
 							</li>
 							<li>
@@ -45,7 +45,7 @@
 								<ul class="fh5co-sub-menu">
 									<li><a href="${R}user/timetable">시간표</a></li>
 									<li><a href="${R}user/report">보고서</a></li>
-									<li><a href="${R}user/board?type=2">학습자료게시판</a></li>
+									<li><a href="${R}user/board?bd=2">학습자료게시판</a></li>
 								</ul>
 							</li>
 							<li>

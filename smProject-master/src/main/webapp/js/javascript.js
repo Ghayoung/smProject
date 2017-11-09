@@ -118,6 +118,80 @@ function checkMentorApply(){
 	}
 }
 
+function checkM_setting(){
+	if(document.form.max_mentor.value==0){
+		alert("최대 멘토 인원을입력해주세요");
+		document.form.max_mentor.focus();
+		return false;
+	}else if(document.form.study_count.value==0){
+		alert("멘토링 모임 횟수를 입력해주세요");
+		document.form.study_count.focus();
+		return false;
+	}else if(document.form.min_mentee.value==0){
+		alert("멘토당 최소 멘티 인원을 입력해주세요");
+		document.form.study_count.focus();
+		return false;
+	}else if(document.form.max_mentee.value==0){
+		alert("멘토당 최대 멘티 인원을 입력해주세요");
+		document.form.study_count.focus();
+		return false;
+	}else if(document.form.report_deadline.value==0){
+		alert("보고서 마감 요일을 선택해주세요");
+		document.form.study_count.focus();
+		return false;
+	}else{//
+		form.submit();
+	}
+}
+
+function checkInput(){
+	if($("#form [name=user_id]").val()==""){
+		alert("아이디를 입력해주세요");
+		$("#form [name=user_id]").focus();
+		return false;
+	}
+	else if($("#form [name=pw]").val()==""){
+		alert("비밀번호를 입력해주세요");
+		$("#form [name=pw]").focus();
+		return false;
+	}
+	else if($("#form [name=name]").val()==""){
+		alert("이름을 입력해주세요");
+		$("#form [name=name]").focus();
+		return false;
+	}
+	else if($("#form [name=type]").val()==""){
+		alert("권한을 입력해주세요");
+		$("#form [name=type]").focus();
+		return false;
+	}
+	else if($("#form [name=major_id]").val()==""){
+		alert("학과를 입력해주세요");
+		$("#form [name=major_id]").focus();
+		return false;
+	}
+	else if($("#form [name=title]").val()==""){
+		alert("제목을 입력해주세요");
+		$("#form [name=title]").focus();
+		return false;
+	}
+	else if($("#form [name=content]").val()==""){
+		alert("내용을 입력해주세요");
+		$("#form [name=content]").focus();
+		return false;
+	}
+	else if(!($("#form [name=newPw]").val()=="")){
+		if($("#form [name=newPw]").val()!=$("#form [name=newPw2]").val()){
+			alert("비밀번호가 일치하지 않습니다");
+			$("#form [name=newPw]").focus();
+			return false;
+		}
+	}
+	else{//
+		form.submit();
+	}
+}
+
 var oEditors = []; 
 $(function(){ 
 	nhn.husky.EZCreator.createInIFrame({ 

@@ -16,25 +16,25 @@
 						<div class="fh5co-spacer fh5co-spacer-sm"></div>
 					</div>
 					<div class="col-md-12 animate-box">
-						<form:form method="post" modelAttribute="article">
+						<form:form id="form" method="post" modelAttribute="article" enctype="multipart/form-data" onsubmit="return checkInput();">
 							<div class="col-md-12">
 								<div class="form-group">
 									<label for="report_subject">글 제목</label>
-									<form:input path="title" placeholder="글 제목" id="report_subject" type="text" class="form-control input-lg" />
+									<form:input path="title" name="title" placeholder="글 제목" id="report_subject" type="text" class="form-control input-lg" />
 								</div>	
 							</div>
 							
 							<div class="col-md-12">
 								<div class="form-group">
 									<label for="report_content">글 내용</label>
-									<form:textarea path="content" placeholder="글 내용" id="report_content" class="form-control input-lg" rows="10" />
+									<form:textarea path="content" name="content" placeholder="글 내용" id="report_content" class="form-control input-lg" rows="10" />
 								</div>	
 							</div>
 							
 							<div class="col-md-2">
 								<div class="form-group">
 									<label>파일 첨부</label>
-									<!-- <input type="file" class="btn btn-lg " value="파일첨부"> -->
+									<input name="file" type="file" class="btn btn-lg " value="파일첨부">
 								</div>	
 							</div>
 							<div class="col-md-12">
