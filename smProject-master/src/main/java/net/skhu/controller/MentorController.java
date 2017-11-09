@@ -57,7 +57,7 @@ public class MentorController {
 	         @RequestBody MultipartFile file2, @RequestBody MultipartFile file3) {
 
 	      User user = UserService.getCurrentUser();
-	      mentor.setMentor_u_id(user.getId());
+	      mentor.setMentor_u_id(user.getUser_id());
 	      int c = Integer.parseInt(request.getParameter("count"));
 	      mentor.setCount(c);
 	      mentor.setGrade(request.getParameter("grade"));
@@ -73,6 +73,10 @@ public class MentorController {
 	         int t_fk = fileService.fileUpload(file1);
 	         int intro_fk = fileService.fileUpload(file2);
 	         int doc_fk = fileService.fileUpload(file3);
+
+	         System.out.println("t_fk:"+t_fk);
+	         System.out.println("intro_fk:"+intro_fk);
+	         System.out.println("doc_fk:"+doc_fk);
 
 	         mentor.setApply_f_time_id(t_fk);
 	         mentor.setApply_f_intro_fk(intro_fk);

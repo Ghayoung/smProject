@@ -35,7 +35,7 @@ public class FileService {
       filePath += fileName;
 
       final File uploadFile = new File(filePath);
-System.out.println(uploadFile);
+      System.out.println(uploadFile);
       if (uploadFile.exists()) {
          uploadFile.delete();
       }
@@ -43,8 +43,10 @@ System.out.println(uploadFile);
       try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadFile))) {
          FileCopyUtils.copy(file.getInputStream(), stream);
       } catch (FileNotFoundException e) {
+    	  System.out.println("error1!!!!!!!!!!!!!!!!!");
          return 0;
       } catch (IOException ioe) {
+    	  System.out.println("error2!!!!!!!!!!!!!!!!!");
          return 0;
       }
 
