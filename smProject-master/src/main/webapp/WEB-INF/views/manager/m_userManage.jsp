@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <div id="fh5co-main">
 	
 			<div class="container">
@@ -132,20 +135,18 @@
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach var="user" items="${ users }">
+													<c:forEach var="manager" items="${ managers }" varStatus="status">
 														<tr>
-															<td>${ user.id }</td>
-															<td>${ user.name }</td>
-															<td>${ user.major_id }</td>
-															<td></td>
-															<td></td>
-															<td><button class="btn btn-primary col-md-offset-8" data-target="#layerpop" data-toggle="modal">권한부여</button>
+															<td>${ status.index+1 }</td>
+															<td>${ manager.name }</td>
+															<td>${ manager.d_name }</td>
+															<td>학생</td>
+															<td>2017-11-09</td>
+															<td><button class="btn btn-primary col-sm" data-toggle="modal">권한부여</button>
 															</td>
 															
 														</tr>
 													</c:forEach>
-													
-													
 												</tbody>
 											</table>
 										</div>
@@ -172,13 +173,17 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td>1</td>
-														<td>최윤경</td>
-														<td>소프트웨어공학과</td>
-														<td>학생</td>
-														<td>2017-09-22</td>
-													</tr>
+													<c:forEach var="mentor" items="${ mentors }" varStatus="status">
+														<tr>
+															<td>${ status.index+1 }</td>
+															<td>${ mentor.name }</td>
+															<td>${ mentor.d_name }</td>
+															<td>학생</td>
+															<td>2017-11-09</td>
+															</td>
+															
+														</tr>
+													</c:forEach>
 												</tbody>
 											</table>
 										</div>
@@ -199,13 +204,17 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td>1</td>
-														<td>최윤경</td>
-														<td>소프트웨어공학과</td>
-														<td>학생</td>
-														<td>2017-09-22</td>
-													</tr>
+													<c:forEach var="mentee" items="${ mentees }" varStatus="status">
+														<tr>
+															<td>${ status.index+1 }</td>
+															<td>${ mentee.name }</td>
+															<td>${ mentee.d_name }</td>
+															<td>학생</td>
+															<td>2017-11-09</td>
+															</td>
+															
+														</tr>
+													</c:forEach>
 												</tbody>
 											</table>
 										</div>

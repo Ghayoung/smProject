@@ -62,8 +62,13 @@ public class ManagerController {
 
     @RequestMapping(value="m_userManage", method=RequestMethod.GET)
     public String m_userManage(Model model) {
-    	List<User> users= userMapper.findAll();
-		model.addAttribute("users", users);
+    	List<User> managers= userMapper.findAllManager();
+    	List<User> mentors= userMapper.findAllMentor();
+    	List<User> mentees= userMapper.findAllMentee();
+		model.addAttribute("managers", managers);
+		model.addAttribute("mentors", mentors);
+		model.addAttribute("mentees", mentees);
+
         return "manager/m_userManage";
 	}
     
