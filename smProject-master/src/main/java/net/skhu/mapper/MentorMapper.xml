@@ -13,7 +13,10 @@
 	</select>
 	
 	<select id="findAll" resultType="Mentor">
-		SELECT * FROM mentor_apply
+		SELECT m.*, u.name, f.path
+		FROM mentor_apply m
+		left join user u on m.mentor_u_id = u.user_id
+		left join file f on m.apply_f_intro_fk = f.id
 	</select>
 	
 	<insert id="insert_apply" useGeneratedKeys="true" keyProperty="id">
