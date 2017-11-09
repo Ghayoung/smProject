@@ -1,22 +1,28 @@
 package net.skhu.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Article;
 import net.skhu.dto.User;
 import net.skhu.mapper.ArticleMapper;
 import net.skhu.mapper.UserMapper;
+import net.skhu.model.Pagination;
 import net.skhu.utils.Encryption;
 
 @Service
 public class UserService {
 	@Autowired UserMapper userMapper;
 	@Autowired ArticleMapper articleMapper;
+	@Autowired FileService fileService;
 
 	public User login(String user_id, String pw) {
         User user = userMapper.findOneByUser_id(user_id);
@@ -51,11 +57,29 @@ public class UserService {
 		return user;
 	}
 
-	public void createArticle(Article article, int type) {
+	public List<Article> findAll(Pagination pagination){
+		int count = articleMapper.count(pagination);
+        pagination.setRecordCount(count);
+        return articleMapper.findAllByBoard(pagination);
+	}
+
+	public void createArticle(Article article, int type, @RequestBody MultipartFile file) {
 		article.setArt_u_id(UserService.getCurrentUser().getId());
       	article.setArt_b_id(type);
+      	if(file!=null) {
+      		int art_f_id = fileService.fileUpload(file);
+      		article.setArt_f_id(art_f_id);
+      	}
       	articleMapper.insert(article);
       	return;
+	}
+
+	public void editArticle(Article article, @RequestBody MultipartFile file) {
+		if(file!=null) {
+      		int art_f_id = fileService.fileUpload(file);
+      		article.setArt_f_id(art_f_id);
+      	}
+		articleMapper.update(article);
 	}
 
 

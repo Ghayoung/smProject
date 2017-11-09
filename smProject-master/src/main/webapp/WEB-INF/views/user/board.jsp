@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <c:url var="R" value="/" />	
 
 		<div id="fh5co-main">
@@ -34,8 +36,8 @@
 								</thead>
 								<tbody>
 									<c:forEach var="article" items="${ article }" varStatus="status">
-								        <tr data-url="${R}user/board_detail?type=${ param.type }&id=${article.id}">
-								          <td>${ status.index+1 }</td>
+								        <tr data-url="${R}user/board_detail?id=${article.id}&${ pagination.queryString }">
+								          <td>${ (pagination.pg-1)*15+status.count }</td>
 								          <td>${ article.title }</td>
 								          <td>${ article.userName }</td>
 								          <td>${ article.post_date }</td>
@@ -45,15 +47,16 @@
 								</tbody>
 							</table>
 						</div>
-						<c:if test="${ param.type > 1 }">
+						<my:pagination pageSize="${ pagination.sz }" recordCount="${ pagination.recordCount }" />
+						<c:if test="${ param.bd > 1 }">
 							<div class="col-md-12 col-r">
-								<a href="${R}user/board_create?type=${ param.type }" class="btn btn-primary btn-lg">글쓰기</a>
+								<a href="${R}user/board_create?${ pagination.queryString }" class="btn btn-primary btn-lg">글쓰기</a>
 							</div>
 						</c:if>
-						<c:if test="${ param.type == 1 }">
+						<c:if test="${ param.bd == 1 }">
 							<sec:authorize access="hasRole('MANAGER')">
 								<div class="col-md-12 col-r">
-									<a href="${R}user/board_create?type=${ param.type }" class="btn btn-primary btn-lg">글쓰기</a>
+									<a href="${R}user/board_create?${ pagination.queryString }" class="btn btn-primary btn-lg">글쓰기</a>
 								</div>
 							</sec:authorize>
 						</c:if>
