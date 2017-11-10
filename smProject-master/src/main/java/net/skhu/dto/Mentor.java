@@ -11,12 +11,15 @@ public class Mentor{
 	String study_purpose;
 	String study_content;
 	String study_method;
-	String open_date; //sql date 타입
+	String open_date;
 	int apply_f_time_id;
 	int apply_f_intro_fk;
 	int apply_f_doc_fk;
-	int mentee_num;
-	String path; //file.path
+	int condition;
+	int refusal;
+	String i_path;
+	String t_path;
+	String d_path;
 	String name;
 
 	public int getId() {
@@ -131,20 +134,44 @@ public class Mentor{
 		this.apply_f_doc_fk = apply_f_doc_fk;
 	}
 
-	public int getMentee_num() {
-		return mentee_num;
+	public int getCondition() {
+		return condition;
 	}
 
-	public void setMentee_num(int mentee_num) {
-		this.mentee_num = mentee_num;
+	public void setCondition(int condition) {
+		this.condition = condition;
 	}
 
-	public String getPath() {
-		return path;
+	public int getRefusal() {
+		return refusal;
 	}
 
-	public void setPath(String path) {
-		this.path = path;
+	public void setRefusal(int refusal) {
+		this.refusal = refusal;
+	}
+
+	public String getI_path() {
+		return i_path;
+	}
+
+	public void setI_path(String i_path) {
+		this.i_path = i_path;
+	}
+
+	public String getT_path() {
+		return t_path;
+	}
+
+	public void setT_path(String t_path) {
+		this.t_path = t_path;
+	}
+
+	public String getD_path() {
+		return d_path;
+	}
+
+	public void setD_path(String d_path) {
+		this.d_path = d_path;
 	}
 
 	public String getName() {

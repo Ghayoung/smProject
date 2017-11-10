@@ -69,9 +69,9 @@
 							
 							<div class="col-md-2">
 								<div class="form-group">
-									<p>시간표</p>
+									<p>홍보 이미지</p>
 									<input type="file" class="btn btn-lg " value="파일첨부" style="margin-top:-15px;" name="file1"/>
-									<p style="margin-top: 10px;">홍보 이미지</p>
+									<p style="margin-top: 10px;">시간표</p>
 									<input type="file" class="btn btn-lg" value="파일첨부" style="margin-top:-15px;" name="file2"/>
 									<p style="margin-top: 10px;">증빙서류</p>
 									<input type="file" class="btn btn-lg " value="파일첨부" style="margin-top:-15px;"  name="file3"/>

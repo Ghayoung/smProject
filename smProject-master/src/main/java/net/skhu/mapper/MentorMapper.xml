@@ -5,10 +5,12 @@
 <mapper namespace="net.skhu.mapper.MentorMapper">
 
 	<select id="findOne" resultType="Mentor">
-		select m.*, u.name, f.path
+		select m.*, u.name, fi.path i_path, ft.path t_path, fd.path d_path
 		from mentor_apply m
 		left join user u on m.mentor_u_id=u.id
-		left join file f on m.apply_f_intro_fk = f.id
+		left join file fi on m.apply_f_intro_fk = fi.id
+		left join file ft on m.apply_f_time_id = ft.id
+		left join file fd on m.apply_f_doc_fk = fd.id
 		WHERE m.id = #{m.id}
 	</select>
 	
@@ -17,10 +19,12 @@
 	</select>
 	
 	<select id="findAll" resultType="Mentor">
-		select m.*, u.name, f.path
+		select m.*, u.name, fi.path i_path, ft.path t_path, fd.path d_path
 		from mentor_apply m
 		left join user u on m.mentor_u_id=u.id
-		left join file f on m.apply_f_intro_fk = f.id
+		left join file fi on m.apply_f_intro_fk = fi.id
+		left join file ft on m.apply_f_time_id = ft.id
+		left join file fd on m.apply_f_doc_fk = fd.id
 	</select>
 	
 	<insert id="insert_apply" useGeneratedKeys="true" keyProperty="id">
@@ -34,7 +38,21 @@
 			year = #{year}, grade = #{grade}, count = #{count},
 			study_purpose = #{study_purpose}, study_content = #{study_content}, study_method = #{study_method},
 			open_date = #{open_date},
-			apply_f_time_id = #{apply_f_time_id}, apply_f_intro_fk = #{apply_f_intro_fk}, apply_f_doc_fk = #{apply_f_doc_fk}, mentee_num = #{mentee_num}
+			apply_f_time_id = #{apply_f_time_id}, apply_f_intro_fk = #{apply_f_intro_fk}, apply_f_doc_fk = #{apply_f_doc_fk}
+		WHERE id = #{id}
+	</update>
+	
+	<!--
+	<update id="update_condition">
+		UPDATE mentor_apply SET
+			condition = #{condition}
+		WHERE id = #{id}
+	</update>
+	-->
+	
+	<update id="update_refusal">
+		UPDATE mentor_apply SET
+			refusal = #{refusal}
 		WHERE id = #{id}
 	</update>
 	
