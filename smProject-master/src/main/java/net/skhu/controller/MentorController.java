@@ -53,7 +53,7 @@ public class MentorController {
 	   }
 
 	   @RequestMapping(value = "user/mentorapply", method = RequestMethod.POST)
-	   public String mentorapply(HttpServletRequest request, @RequestBody MultipartFile file1,
+	   public String mentorapply(Model model, HttpServletRequest request, @RequestBody MultipartFile file1,
 	         @RequestBody MultipartFile file2, @RequestBody MultipartFile file3) {
 
 	      User user = UserService.getCurrentUser();
