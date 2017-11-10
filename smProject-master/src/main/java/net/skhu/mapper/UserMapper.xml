@@ -45,9 +45,19 @@
 		UPDATE user SET pw = #{pw}, email = #{email}, phone = #{phone} WHERE id = #{id}
 	</update>
 	
-	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
-	    INSERT user (user_id, pw, name, type, major_id)
-	    VALUES (#{user_id}, #{pw}, #{name}, #{type}, #{major_id})
+	<insert id="insertWithMinor" useGeneratedKeys="true" keyProperty="id">
+	    INSERT user (user_id, pw, name, email, phone, office, office_tel, type, major_id, status_id, auth_date, minor_id)
+	    VALUES (#{user_id}, #{pw}, #{name}, #{email}, #{phone}, #{office}, #{office_tel}, #{type}, #{major_id}, #{status_id}, now(), #{minor_id})
+	</insert>
+	
+	<insert id="insertWithDouble" useGeneratedKeys="true" keyProperty="id">
+	    INSERT user (user_id, pw, name, email, phone, office, office_tel, type, major_id, status_id, auth_date, double_id)
+	    VALUES (#{user_id}, #{pw}, #{name}, #{email}, #{phone}, #{office}, #{office_tel}, #{type}, #{major_id}, #{status_id}, now(), #{double_id})
+	</insert>
+	
+	<insert id="insertWithDep" useGeneratedKeys="true" keyProperty="id">
+	    INSERT user (user_id, pw, name, email, phone, office, office_tel, type, major_id, status_id, auth_date)
+	    VALUES (#{user_id}, #{pw}, #{name}, #{email}, #{phone}, #{office}, #{office_tel}, #{type}, #{major_id}, #{status_id}, now())
 	</insert>
 	
 	<delete id="delete">

@@ -2,7 +2,7 @@
 	
 	'use strict';
 
-	// iPad and iPod detection	
+	// iPad and iPod detection
 	var isiPad = function(){
 	  return (navigator.platform.indexOf("iPad") != -1);
 	}
@@ -31,7 +31,8 @@
 				});
 				
 				$('<div id="fh5co-logo-mobile-wrap">').append(cloneLogo).insertBefore('#fh5co-header-section');
-				// $('#fh5co-logo-mobile-wrap').append('<a href="#" id="fh5co-mobile-menu-btn"><i class="ti-menu"></i></a>')
+				// $('#fh5co-logo-mobile-wrap').append('<a href="#"
+				// id="fh5co-mobile-menu-btn"><i class="ti-menu"></i></a>')
 				$('#fh5co-logo-mobile-wrap').append('<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle fh5co-nav-white " data-toggle="collapse" data-target="#fh5co-navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>');
 				$('<div id="fh5co-mobile-menu">').append(clone).insertBefore('#fh5co-header-section');
 
@@ -55,7 +56,7 @@
 	};
 
 
-	// ScrollTop 
+	// ScrollTop
 	var scrlTop =  function() {
 		$('.fh5co-gotop').click(function(event){
 			$('html, body').animate({
@@ -292,7 +293,7 @@
 	};
 
 	
-	// Waypoints 
+	// Waypoints
 	var featureWayPoint = function() {
 		if ($('#fh5co-features').length > 0 ) {
 			$('#fh5co-features').waypoint( function( direction ) {
@@ -489,9 +490,9 @@ var slider = function(){
 		dataUrl();
 		slider();
 		clickOpen();
-		//add_intro_modi();
+		// add_intro_modi();
 		remove_intro_modi();
-		//submitbtn();
+		// submitbtn();
 		m_submitbtn();
 		search();
 		search_manager();

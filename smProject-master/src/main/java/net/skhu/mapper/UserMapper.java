@@ -18,6 +18,8 @@ public interface UserMapper {
 	List<User> findByName(String name);
 	void update(User user);
 	void delete(int id);
-	void insert(User user);
+	void insertWithDep(User user);
+	void insertWithMinor(User user);
+	void insertWithDouble(User user);
 	void m_setting(Setting setting);
 }

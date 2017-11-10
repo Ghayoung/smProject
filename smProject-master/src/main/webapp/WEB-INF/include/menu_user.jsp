@@ -58,6 +58,7 @@
 							</li>
 							<sec:authorize access="not authenticated">  
 							<li class="fh5co-special"><a href="${R}guest/login">LOGIN</a></li>
+							<li class="fh5co-specialjoin"><a href="${R}guest/join">JOIN</a></li>
 							</sec:authorize>
 							<sec:authorize access="authenticated">
 							<li class="fh5co-special"><a href="${R}user/logout_processing">LOGOUT</a></li>
