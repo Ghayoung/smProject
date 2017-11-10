@@ -57,7 +57,7 @@ public class MentorController {
 	         @RequestBody MultipartFile file2, @RequestBody MultipartFile file3) {
 
 	      User user = UserService.getCurrentUser();
-	      mentor.setMentor_u_id(user.getUser_id());
+	      mentor.setMentor_u_id(user.getId());
 	      int c = Integer.parseInt(request.getParameter("count"));
 	      mentor.setCount(c);
 	      mentor.setGrade(request.getParameter("grade"));
