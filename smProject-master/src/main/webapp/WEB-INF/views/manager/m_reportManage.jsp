@@ -294,9 +294,10 @@
 										class="fh5co-uppercase-heading-sm">&nbsp;&nbsp;${ totalReport-conditionReports.reportCount }회
 											남았습니다.</span></label>
 									<div class="progress">
+									
 										<div class="progress-bar" role="progressbar"
 											style="width: ${ conditionReports.reportCount/totalReport*100 }%;" aria-valuenow="${ conditionReports.reportCount/totalReport*100 }%" aria-valuemin="0"
-											aria-valuemax="100">${ conditionReports.reportCount/totalReport*100 }%</div>
+											aria-valuemax="100"><fmt:parseNumber integerOnly="true" value="${ conditionReports.reportCount/totalReport*100 }"/>%</div>
 									</div>
 									
 									<div class="fh5co-spacer fh5co-spacer-sm"></div>

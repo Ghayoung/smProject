@@ -84,6 +84,8 @@ document.getElementById('datePicker').valueAsDate = new Date();
 document.getElementById('datePicker2').valueAsDate = new Date();
 document.getElementById('datePicker3').valueAsDate = new Date();
 document.getElementById('datePicker4').valueAsDate = new Date();
+document.getElementById('datePicker5').valueAsDate = new Date();
+document.getElementById('datePicker6').valueAsDate = new Date();
 
 function show_office() {
 	// 라디오 버튼 value 값 조건 비교

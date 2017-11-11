@@ -19,6 +19,12 @@
 		limit 0, 1
 	</select>
 	
+	<select id="findStartSM" resultType="String">
+		SELECT sm_start_date FROM setting
+		order by id desc
+		limit 0, 1
+	</select>
+	
 	<select id="findAll" resultType="User">
 		SELECT * FROM user
 	</select>
@@ -96,8 +102,8 @@
 	</delete>
 	
 	<insert id="m_setting" useGeneratedKeys="true" keyProperty="id">
-	    INSERT into setting (mentor_start_date, mentor_expire_date, mentee_start_date, mentee_expire_date, study_count, max_mentor, max_mentee, min_mentee, report_deadline)
-	    VALUES (#{mentor_start_date}, #{mentor_expire_date}, #{mentee_start_date}, #{mentee_expire_date}, #{study_count}, #{max_mentor}, #{max_mentee}, #{min_mentee}, #{report_deadline})
+	    INSERT into setting (mentor_start_date, mentor_expire_date, mentee_start_date, mentee_expire_date, sm_start_date, sm_expire_date, study_count, max_mentor, max_mentee, min_mentee, report_deadline)
+	    VALUES (#{mentor_start_date}, #{mentor_expire_date}, #{mentee_start_date}, #{mentee_expire_date}, #{sm_start_date}, #{sm_expire_date}, #{study_count}, #{max_mentor}, #{max_mentee}, #{min_mentee}, #{report_deadline})
 	</insert>
 
 </mapper>

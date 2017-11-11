@@ -98,11 +98,14 @@ public class ManagerController {
     	List<Report> conditionReports=userMapper.findAllCondition();
 
     	int totalReport = userMapper.findStudyCount();
+    	String startSM = userMapper.findStartSM();
+    	System.out.println(startSM);
 
     	model.addAttribute("reports", reports);
     	model.addAttribute("teamReports", teamReports);
     	model.addAttribute("conditionReports", conditionReports);
     	model.addAttribute("totalReport", totalReport);
+    	model.addAttribute("startSM", startSM);
         return "manager/m_reportManage";
     }
 
