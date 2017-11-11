@@ -157,15 +157,15 @@ function checkM_setting() {
 		return false;
 	} else if (document.form.min_mentee.value == 0) {
 		alert("멘토당 최소 멘티 인원을 입력해주세요");
-		document.form.study_count.focus();
+		document.form.min_mentee.focus();
 		return false;
 	} else if (document.form.max_mentee.value == 0) {
 		alert("멘토당 최대 멘티 인원을 입력해주세요");
-		document.form.study_count.focus();
+		document.form.max_mentee.focus();
 		return false;
 	} else if (document.form.report_deadline.value == 0) {
 		alert("보고서 마감 요일을 선택해주세요");
-		document.form.study_count.focus();
+		document.form.report_deadline.focus();
 		return false;
 	} else {//
 		form.submit();

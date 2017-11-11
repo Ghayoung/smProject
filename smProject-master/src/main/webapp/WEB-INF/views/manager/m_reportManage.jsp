@@ -287,43 +287,20 @@
 							<!--제출현황-->
 							<div>
 								<div class="row">
-
-
-
-
+								<c:forEach var="conditionReports" items="${ conditionReports }">
 									<!--미제출-->
-									<h2>1조</h2>
+									<h2>${ conditionReports.group_name }</h2>
 									<label for="report_subject">멘토링 진행률 <span
-										class="fh5co-uppercase-heading-sm">&nbsp;&nbsp;8회
+										class="fh5co-uppercase-heading-sm">&nbsp;&nbsp;${ totalReport-conditionReports.reportCount }회
 											남았습니다.</span></label>
 									<div class="progress">
 										<div class="progress-bar" role="progressbar"
-											style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
-											aria-valuemax="100">25%</div>
+											style="width: ${ conditionReports.reportCount/totalReport*100 }%;" aria-valuenow="${ conditionReports.reportCount/totalReport*100 }%" aria-valuemin="0"
+											aria-valuemax="100">${ conditionReports.reportCount/totalReport*100 }%</div>
 									</div>
+									
 									<div class="fh5co-spacer fh5co-spacer-sm"></div>
-
-									<h2>2조</h2>
-									<label for="report_subject">멘토링 진행률 <span
-										class="fh5co-uppercase-heading-sm">&nbsp;&nbsp;8회
-											남았습니다.</span></label>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar"
-											style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
-											aria-valuemax="100">25%</div>
-									</div>
-									<div class="fh5co-spacer fh5co-spacer-sm"></div>
-
-									<h2>3조</h2>
-									<label for="report_subject">멘토링 진행률 <span
-										class="fh5co-uppercase-heading-sm">&nbsp;&nbsp;8회
-											남았습니다.</span></label>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar"
-											style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
-											aria-valuemax="100">25%</div>
-									</div>
-
+								</c:forEach>
 								</div>
 							</div>
 							<!--제출현황 끝-->

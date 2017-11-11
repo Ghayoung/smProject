@@ -15,6 +15,8 @@ public class Report {
 	int rep_f_study_id;
 	int condition;
 	String group_name;
+	int reportCount;
+	int totalReportCount;
 
 	public int getId() {
 		return id;
@@ -100,5 +102,16 @@ public class Report {
 	public void setGroup_name(String group_name) {
 		this.group_name = group_name;
 	}
-
+	public int getReportCount() {
+		return reportCount;
+	}
+	public void setReportCount(int reportCount) {
+		this.reportCount = reportCount;
+	}
+	public int getTotalReportCount() {
+		return totalReportCount;
+	}
+	public void setTotalReportCount(int totalReportCount) {
+		this.totalReportCount = totalReportCount;
+	}
 }

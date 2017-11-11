@@ -25,4 +25,6 @@ public interface UserMapper {
 	void m_setting(Setting setting);
 	List<Report> findAllReport();
     List<Report> findAllWithReports();
+    List<Report> findAllCondition();
+    int findStudyCount();
 }

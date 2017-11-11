@@ -95,8 +95,14 @@ public class ManagerController {
     public String m_reportManage(Model model) {
     	List<Report> reports= userMapper.findAllReport();
     	List<Report> teamReports= userMapper.findAllWithReports();
+    	List<Report> conditionReports=userMapper.findAllCondition();
+
+    	int totalReport = userMapper.findStudyCount();
+
     	model.addAttribute("reports", reports);
     	model.addAttribute("teamReports", teamReports);
+    	model.addAttribute("conditionReports", conditionReports);
+    	model.addAttribute("totalReport", totalReport);
         return "manager/m_reportManage";
     }
 

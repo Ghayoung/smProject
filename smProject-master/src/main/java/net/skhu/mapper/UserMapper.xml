@@ -13,6 +13,12 @@
 		WHERE id = #{id}
 	</select>
 	
+	<select id="findStudyCount" resultType="int">
+		SELECT study_count FROM setting
+		order by id desc
+		limit 0, 1
+	</select>
+	
 	<select id="findAll" resultType="User">
 		SELECT * FROM user
 	</select>
@@ -29,7 +35,7 @@
 	</select>
 	
 	<select id="findAllWithReports" resultMap="resultMap1">     
-	  SELECT m.*, r.id report_id, r.subject rep_subject, r.place, r.create_date     
+	  SELECT m.*, r.subject rep_subject, r.place, r.create_date     
 	  FROM mentor_apply m LEFT JOIN report r ON m.mentor_u_id = r.rep_u_id   
 	</select> 
 	  
@@ -37,12 +43,16 @@
 		<id property="id" column="id" />    
 		<result property="group_name" column="group_name" />     
 		<collection property="reports" ofType="Report">       
-			<id property="id" column="report_id" />      
 			<result property="subject" column="rep_subject"/>      
 			<result property="place" column="place"/>       
 			<result property="create_date" column="create_date"/>     
 		</collection>   
 	</resultMap> 
+	
+	<select id="findAllCondition" resultType="Report">     
+	 	SELECT m.group_name, count(r.rep_u_id) reportCount
+	  	FROM mentor_apply m JOIN report r ON m.mentor_u_id = r.rep_u_id group by r.rep_u_id;   
+	</select> 
 	
 	<select id="findAllMentor" resultType="User">
 		SELECT u.*, d.d_name
