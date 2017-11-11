@@ -76,6 +76,7 @@
 									<td>${ searchUser.d_name }</td>
 									<td>학생</td>
 									<td>2017-11-09</td>
+								</tr>
 							</c:forEach>
 						</tbody>
 					</table>

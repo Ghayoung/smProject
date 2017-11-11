@@ -23,6 +23,27 @@
 		WHERE type=2;
 	</select>
 	
+	<select id="findAllReport" resultType="Report">
+		SELECT r.*, m.group_name
+		FROM report r left join mentor_apply m ON r.rep_u_id=m.mentor_u_id
+	</select>
+	
+	<select id="findAllWithReports" resultMap="resultMap1">     
+	  SELECT m.*, r.id report_id, r.subject rep_subject, r.place, r.create_date     
+	  FROM mentor_apply m LEFT JOIN report r ON m.mentor_u_id = r.rep_u_id   
+	</select> 
+	  
+	<resultMap id="resultMap1" type="Mentor">    
+		<id property="id" column="id" />    
+		<result property="group_name" column="group_name" />     
+		<collection property="reports" ofType="Report">       
+			<id property="id" column="report_id" />      
+			<result property="subject" column="rep_subject"/>      
+			<result property="place" column="place"/>       
+			<result property="create_date" column="create_date"/>     
+		</collection>   
+	</resultMap> 
+	
 	<select id="findAllMentor" resultType="User">
 		SELECT u.*, d.d_name
 		FROM user u left join department d ON u.major_id=d.id

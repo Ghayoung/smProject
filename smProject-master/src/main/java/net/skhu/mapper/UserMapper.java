@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import net.skhu.dto.Report;
 import net.skhu.dto.Setting;
 import net.skhu.dto.User;
 
@@ -22,4 +23,6 @@ public interface UserMapper {
 	void insertWithMinor(User user);
 	void insertWithDouble(User user);
 	void m_setting(Setting setting);
+	List<Report> findAllReport();
+    List<Report> findAllWithReports();
 }

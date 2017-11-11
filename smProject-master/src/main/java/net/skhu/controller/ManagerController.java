@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import net.skhu.dto.Introduce;
+import net.skhu.dto.Report;
 import net.skhu.dto.Setting;
 import net.skhu.dto.User;
 import net.skhu.mapper.IntroduceMapper;
@@ -82,12 +83,24 @@ public class ManagerController {
         return "manager/m_userManage";
     }
 
-    @RequestMapping("m_mentoringManage")
-    public String m_mentoringManage() {
+    @RequestMapping(value="m_mentoringManage", method=RequestMethod.GET)
+    public String m_mentoringManage(Model model) {
+    	List<Report> reports= userMapper.findAllReport();
+    	model.addAttribute("reports", reports);
+    	System.out.println("?"+reports);
         return "manager/m_mentoringManage";
     }
 
-    @RequestMapping("m_reportManage")
+    @RequestMapping(value="m_reportManage", method=RequestMethod.GET)
+    public String m_reportManage(Model model) {
+    	List<Report> reports= userMapper.findAllReport();
+    	List<Report> teamReports= userMapper.findAllWithReports();
+    	model.addAttribute("reports", reports);
+    	model.addAttribute("teamReports", teamReports);
+        return "manager/m_reportManage";
+    }
+
+    @RequestMapping(value="m_reportManage", method=RequestMethod.POST)
     public String m_reportManage() {
         return "manager/m_reportManage";
     }

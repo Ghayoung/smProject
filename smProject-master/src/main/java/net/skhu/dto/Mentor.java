@@ -1,5 +1,7 @@
 package net.skhu.dto;
 
+import java.util.List;
+
 public class Mentor{
 	int id;
 	int mentor_u_id;
@@ -21,6 +23,7 @@ public class Mentor{
 	String t_path;
 	String d_path;
 	String name;
+    List<Report> reports;
 
 	public int getId() {
 		return id;
@@ -180,5 +183,13 @@ public class Mentor{
 
 	public void setName(String name) {
 		this.name=name;
+	}
+
+	public List<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
 	}
 }

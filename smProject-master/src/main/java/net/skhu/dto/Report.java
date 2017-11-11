@@ -14,6 +14,8 @@ public class Report {
 	int rep_team_id;
 	int rep_f_study_id;
 	int condition;
+	String group_name;
+
 	public int getId() {
 		return id;
 	}
@@ -91,6 +93,12 @@ public class Report {
 	}
 	public void setCondition(int condition) {
 		this.condition = condition;
+	}
+	public String getGroup_name() {
+		return group_name;
+	}
+	public void setGroup_name(String group_name) {
+		this.group_name = group_name;
 	}
 
 }
