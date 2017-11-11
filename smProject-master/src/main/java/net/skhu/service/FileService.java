@@ -2,6 +2,7 @@ package net.skhu.service;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,40 +19,54 @@ import net.skhu.mapper.FileMapper;
 
 @Service
 public class FileService {
-   @Autowired FileMapper fileMapper;
-   @Autowired private ServletContext servletContext;
-   FileDTO fdto = new FileDTO();
+	@Autowired
+	FileMapper fileMapper;
+	@Autowired
+	private ServletContext servletContext;
+	FileDTO fdto = new FileDTO();
 
-   public int fileUpload(MultipartFile file){
-      String relPath = "/img/upload/";
-      String filePath = servletContext.getRealPath(relPath);
-      File upDirectory = new File(filePath);
-      if (!upDirectory.exists()) {
-         upDirectory.mkdirs();
-      }
+	public int fileUpload(MultipartFile file) {
+		String relPath = "/img/upload/";
+		String filePath = servletContext.getRealPath(relPath);
+		File upDirectory = new File(filePath);
+		if (!upDirectory.exists()) {
+			upDirectory.mkdirs();
+		}
 
-      String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+		String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
 
-      filePath += fileName;
+		filePath += fileName;
 
-      final File uploadFile = new File(filePath);
+		final File uploadFile = new File(filePath);
 
-      if (uploadFile.exists()) {
-         uploadFile.delete();
-      }
+		if (uploadFile.exists()) {
+			uploadFile.delete();
+		}
 
-      try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadFile))) {
-         FileCopyUtils.copy(file.getInputStream(), stream);
-      } catch (FileNotFoundException e) {
-         return 0;
-      } catch (IOException ioe) {
-         return 0;
-      }
+		FileInputStream fis = null;
 
-      fdto.setPath(relPath + fileName);
-      fileMapper.fileUpload(fdto);
+		try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadFile))) {
+			fis = new FileInputStream(uploadFile);
+			FileCopyUtils.copy(fis, stream);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return 0;
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+			return 0;
+		} finally {
+			if (fis != null)
+				try {
+					fis.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		}
 
-      return fdto.getId();
-   }
+		fdto.setPath(relPath + fileName);
+		fileMapper.fileUpload(fdto);
+
+		return fdto.getId();
+	}
 
 }

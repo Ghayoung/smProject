@@ -2,6 +2,7 @@ package net.skhu.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,107 +23,110 @@ import net.skhu.service.ManagerService;
 @Controller
 @RequestMapping("/manager")
 public class ManagerController {
-	@Autowired UserMapper userMapper;
-	@Autowired IntroduceMapper introduceMapper;
-	@Autowired ManagerService managerService;
+	@Autowired
+	UserMapper userMapper;
+	@Autowired
+	IntroduceMapper introduceMapper;
+	@Autowired
+	ManagerService managerService;
 
-	@RequestMapping(value="m_introduce_modi", method=RequestMethod.GET)
+	@RequestMapping(value = "m_introduce_modi", method = RequestMethod.GET)
 	public String m_introduce_modi(Model model) {
 		List<Introduce> introduces = introduceMapper.findAll();
 		model.addAttribute("introduces", introduces);
-		model.addAttribute("board","사업소개 수정");
+		model.addAttribute("board", "사업소개 수정");
 		return "manager/m_introduce_modi";
 	}
 
-	@RequestMapping(value="m_introduce_modi", method=RequestMethod.POST)
-	public String introduce_edit(Model model, @RequestParam(value="id") int id, HttpServletRequest request) {
+	@RequestMapping(value = "m_introduce_modi", method = RequestMethod.POST)
+	public String introduce_edit(Model model, @RequestParam(value = "id") int id, HttpServletRequest request) {
 		managerService.introduce_edit(id, request);
 		return "redirect:m_introduce_modi";
 	}
 
 	@RequestMapping("introduce_delete")
-	public String introduce_delete(Model model, @RequestParam(value="id") int id) {
+	public String introduce_delete(Model model, @RequestParam(value = "id") int id) {
 		introduceMapper.delete(id);
 		return "redirect:m_introduce_modi";
 	}
 
-    @RequestMapping("m_register")
-    public String m_register() {
-        return "manager/m_register";
-    }
+	@RequestMapping("m_register")
+	public String m_register() {
+		return "manager/m_register";
+	}
 
-    /*
-    @RequestMapping("m_contact")
-    public String m_contact() {
-        return "manager/m_contact";
-    }
+	/*
+	 * @RequestMapping("m_contact") public String m_contact() { return
+	 * "manager/m_contact"; }
+	 *
+	 * @RequestMapping("m_contact_detail") public String m_contact_detail() {
+	 * return "manager/m_contact_detail"; }
+	 */
 
-    @RequestMapping("m_contact_detail")
-    public String m_contact_detail() {
-        return "manager/m_contact_detail";
-    }
-    */
-
-    @RequestMapping(value="m_userManage", method=RequestMethod.GET)
-    public String m_userManage(Model model) {
-    	List<User> managers= userMapper.findAllManager();
-    	List<User> mentors= userMapper.findAllMentor();
-    	List<User> mentees= userMapper.findAllMentee();
+	@RequestMapping(value = "m_userManage", method = RequestMethod.GET)
+	public String m_userManage(Model model) {
+		List<User> managers = userMapper.findAllManager();
+		List<User> mentors = userMapper.findAllMentor();
+		List<User> mentees = userMapper.findAllMentee();
 		model.addAttribute("managers", managers);
 		model.addAttribute("mentors", mentors);
 		model.addAttribute("mentees", mentees);
 
-        return "manager/m_userManage";
+		return "manager/m_userManage";
 	}
 
-    @RequestMapping(value="m_userManage", method=RequestMethod.POST)
-    public String m_userManage(Model model,@RequestParam(defaultValue="") String keyword,
-    		@RequestParam(defaultValue="2017") int searchYear, @RequestParam(defaultValue="2") int searchSemester){
-    	List<User> SearchUsers= userMapper.findByName(keyword);
+	@RequestMapping(value = "m_userManage", method = RequestMethod.POST)
+	public String m_userManage(Model model, @RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "2017") int searchYear, @RequestParam(defaultValue = "2") int searchSemester) {
+		List<User> SearchUsers = userMapper.findByName(keyword);
 		model.addAttribute("SearchUsers", SearchUsers);
-        return "manager/m_userManage";
-    }
+		return "manager/m_userManage";
+	}
 
-    @RequestMapping(value="m_mentoringManage", method=RequestMethod.GET)
-    public String m_mentoringManage(Model model) {
-    	List<Report> reports= userMapper.findAllReport();
-    	model.addAttribute("reports", reports);
-    	System.out.println("?"+reports);
-        return "manager/m_mentoringManage";
-    }
+	@RequestMapping(value = "m_mentoringManage", method = RequestMethod.GET)
+	public String m_mentoringManage(Model model) {
 
-    @RequestMapping(value="m_reportManage", method=RequestMethod.GET)
-    public String m_reportManage(Model model) {
-    	List<Report> reports= userMapper.findAllReport();
-    	List<Report> teamReports= userMapper.findAllWithReports();
-    	List<Report> conditionReports=userMapper.findAllCondition();
+		return "manager/m_mentoringManage";
+	}
 
-    	int totalReport = userMapper.findStudyCount();
-    	String startSM = userMapper.findStartSM();
-    	System.out.println(startSM);
+	@RequestMapping(value = "m_reportManage", method = RequestMethod.GET)
+	public String m_reportManage(Model model, ServletRequest request) {
+		List<Report> reports = userMapper.findAllReport();
+		List<Report> teamReports = userMapper.findAllWithReports();
+		List<Report> conditionReports = userMapper.findAllCondition();
 
-    	model.addAttribute("reports", reports);
-    	model.addAttribute("teamReports", teamReports);
-    	model.addAttribute("conditionReports", conditionReports);
-    	model.addAttribute("totalReport", totalReport);
-    	model.addAttribute("startSM", startSM);
-        return "manager/m_reportManage";
-    }
+		int totalReport = userMapper.findStudyCount();
+		String startSM = (userMapper.findStartSM()).replaceAll("-", "");
+		System.out.println(startSM);
 
-    @RequestMapping(value="m_reportManage", method=RequestMethod.POST)
-    public String m_reportManage() {
-        return "manager/m_reportManage";
-    }
+//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+//		Date currentDay = new Date();
+//		String today = formatter.format(currentDay);
+//		System.out.println(today);
 
+		model.addAttribute("reports", reports);
+		model.addAttribute("teamReports", teamReports);
+		model.addAttribute("conditionReports", conditionReports);
+		model.addAttribute("totalReport", totalReport);
+		model.addAttribute("startSM", startSM);
+//		model.addAttribute("to_day", to_day);
+		request.setAttribute("reports", reports);
+		return "manager/m_reportManage";
+	}
 
-    @RequestMapping(value="m_setting", method=RequestMethod.GET)
+	@RequestMapping(value = "m_reportManage", method = RequestMethod.POST)
+	public String m_reportManage() {
+		return "manager/m_reportManage";
+	}
+
+	@RequestMapping(value = "m_setting", method = RequestMethod.GET)
 	public String m_setting(Model model) {
 		Setting setting = new Setting();
 		model.addAttribute("setting", setting);
 		return "manager/m_setting";
 	}
 
-	@RequestMapping(value="m_setting", method=RequestMethod.POST)
+	@RequestMapping(value = "m_setting", method = RequestMethod.POST)
 	public String m_setting(Model model, Setting setting) {
 
 		userMapper.m_setting(setting);

@@ -42,7 +42,7 @@
 	
 	<select id="findAllWithReports" resultMap="resultMap1">     
 	  SELECT m.*, r.subject rep_subject, r.place, r.create_date     
-	  FROM mentor_apply m LEFT JOIN report r ON m.mentor_u_id = r.rep_u_id   
+	  FROM mentor_apply m inner JOIN report r ON m.mentor_u_id = r.rep_u_id   
 	</select> 
 	  
 	<resultMap id="resultMap1" type="Mentor">    
