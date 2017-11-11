@@ -32,6 +32,11 @@
 		VALUES (#{mentor_u_id}, #{group_name}, #{subject}, #{year}, #{grade}, #{count}, #{study_purpose}, #{study_content}, #{study_method}, #{apply_f_time_id}, #{apply_f_intro_fk}, #{apply_f_doc_fk})
 	</insert>
 	
+	<insert id="insert_report" useGeneratedKeys="true" keyProperty="id">
+		INSERT report (subject, place, day, start_time, end_time, study_content, rep_f_photo_id, rep_u_id, rep_f_study_id)
+		VALUES (#{subject}, #{place}, #{day}, #{start_time}, #{end_time}, #{study_content}, #{rep_f_photo_id}, #{rep_u_id}, #{rep_f_study_id})
+	</insert>
+	
 	<update id="update">
 		UPDATE mentor_apply SET
 			mentor_u_id = #{mentor_u_id}, group_name = #{group_name}, subject = #{subject},

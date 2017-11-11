@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import net.skhu.dto.Mentor;
+import net.skhu.dto.Report;
 
 @Mapper
 public interface MentorMapper {
@@ -16,4 +17,5 @@ public interface MentorMapper {
 	void update_refusal(Mentor mentor);
 	void delete(int id);
 	void insert_apply(Mentor mentor);
+	void insert_report(Report report);
 }
