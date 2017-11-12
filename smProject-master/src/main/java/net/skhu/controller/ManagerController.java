@@ -98,24 +98,32 @@ public class ManagerController {
     * return "manager/m_contact_detail"; }
     */
 
-   @RequestMapping(value = "m_userManage", method = RequestMethod.GET)
+   @RequestMapping(value="m_userManage", method=RequestMethod.GET)
    public String m_userManage(Model model) {
-      List<User> managers = userMapper.findAllManager();
-      List<User> mentors = userMapper.findAllMentor();
-      List<User> mentees = userMapper.findAllMentee();
-      model.addAttribute("managers", managers);
-      model.addAttribute("mentors", mentors);
-      model.addAttribute("mentees", mentees);
+   	List<User> managers= userMapper.findAllManager();
+   	List<User> mentors= userMapper.findAllMentor();
+   	List<User> mentees= userMapper.findAllMentee();
+		model.addAttribute("managers", managers);
+		model.addAttribute("mentors", mentors);
+		model.addAttribute("mentees", mentees);
 
-      return "manager/m_userManage";
-   }
+       return "manager/m_userManage";
+	}
 
-   @RequestMapping(value = "m_userManage", method = RequestMethod.POST)
-   public String m_userManage(Model model, @RequestParam(defaultValue = "") String keyword,
-         @RequestParam(defaultValue = "2017") int searchYear, @RequestParam(defaultValue = "2") int searchSemester) {
-      List<User> SearchUsers = userMapper.findByName(keyword);
-      model.addAttribute("SearchUsers", SearchUsers);
-      return "manager/m_userManage";
+   @RequestMapping(value="m_userManage", method=RequestMethod.POST)
+   public String m_userManage(Model model,@RequestParam(value="search") String search){
+   	System.out.println(search);
+   	List<User> SearchUsers= userMapper.findByName(search);
+		model.addAttribute("SearchUsers", SearchUsers);
+		model.addAttribute("keyword", search);
+		
+		List<User> managers= userMapper.findAllManager();
+   	List<User> mentors= userMapper.findAllMentor();
+   	List<User> mentees= userMapper.findAllMentee();
+		model.addAttribute("managers", managers);
+		model.addAttribute("mentors", mentors);
+		model.addAttribute("mentees", mentees);
+       return "manager/m_userManage";
    }
 
    @RequestMapping(value = "m_mentoringManage", method = RequestMethod.GET)
