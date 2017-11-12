@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Introduce;
 import net.skhu.dto.Report;
@@ -18,6 +20,7 @@ import net.skhu.dto.Setting;
 import net.skhu.dto.User;
 import net.skhu.mapper.IntroduceMapper;
 import net.skhu.mapper.UserMapper;
+import net.skhu.service.FileService;
 import net.skhu.service.ManagerService;
 
 @Controller
@@ -29,6 +32,8 @@ public class ManagerController {
 	IntroduceMapper introduceMapper;
 	@Autowired
 	ManagerService managerService;
+	@Autowired
+	FileService fileservice;
 
 	@RequestMapping(value = "m_introduce_modi", method = RequestMethod.GET)
 	public String m_introduce_modi(Model model) {
@@ -50,8 +55,16 @@ public class ManagerController {
 		return "redirect:m_introduce_modi";
 	}
 
+
+	/* 신편입생 등록 */
 	@RequestMapping("m_register")
 	public String m_register() {
+		return "manager/m_register";
+	}
+
+	@RequestMapping(value = "m_register", method = RequestMethod.POST)
+	public String m_register2(@RequestBody MultipartFile file) {
+		System.out.println("register");
 		return "manager/m_register";
 	}
 
