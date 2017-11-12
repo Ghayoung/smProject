@@ -4,9 +4,13 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="net.skhu.dto.Report"%>
+<%@ page import="net.skhu.service.ReportDAO"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.*"%>
-<%@ page import="javax.servlet.http.HttpServletRequest"%>
+<%
+	List<Report> list = ReportDAO.findAll();
+%>
+
 <div id="fh5co-main">
 	<div class="container">
 		<div class="col-md-12" id="fh5co-features">
@@ -86,7 +90,6 @@
 									<%
 										Object startSM = request.getAttribute("startSM");
 										String start_sm = startSM.toString();
-										out.println(start_sm);
 
 										Calendar startCalendar = Calendar.getInstance();
 										Calendar deadCalendar = Calendar.getInstance();
@@ -103,16 +106,12 @@
 										deadCalendar.add(Calendar.DATE, 7);
 
 										currentCalendar.set(Calendar.MONTH, currentCalendar.get(Calendar.MONTH) + 1);
-
-										int y, m, d, y2, m2, d2;
-
-										
-									
-
+										int week = 0;
 										while (startCalendar.before(currentCalendar)) {
 									%>
 
-									<h2>주차</h2>
+									<h2><%=week + 1%>주차
+									</h2>
 									<div class="panel panel-default">
 										<table class="table board" id="r_table7">
 											<thead>
@@ -129,35 +128,26 @@
 											<tbody>
 												<%
 													Calendar reportCalendar = Calendar.getInstance();
-													
-																List<Report> reports = (List<Report>)request.getAttribute("reports");
-														for (int i = 0; i < reports.size(); ++i) {
+														int i = 0;
+														for (Report report : list) {
 
-															reportCalendar.set(Calendar.YEAR,
-																	Integer.parseInt(reports.get(i).getCreate_date().substring(0, 4)));
-															reportCalendar.set(Calendar.MONTH,
-																	Integer.parseInt(reports.get(i).getCreate_date().substring(5, 7)));
-															reportCalendar.set(Calendar.DATE, Integer.parseInt(reports.get(i).getCreate_date().substring(8)));
+															reportCalendar.set(Calendar.YEAR, Integer.parseInt(report.getCreate_date().substring(0, 4)));
+															reportCalendar.set(Calendar.MONTH, Integer.parseInt(report.getCreate_date().substring(5, 7)));
+															reportCalendar.set(Calendar.DATE, Integer.parseInt(report.getCreate_date().substring(8)));
 
 															if (startCalendar.before(reportCalendar) && reportCalendar.before(deadCalendar)) {
-																
-																y = reportCalendar.get(Calendar.YEAR);
-																m = reportCalendar.get(Calendar.MONTH);
-																d = reportCalendar.get(Calendar.DATE);
-																out.println("y=" + y);
-																out.println("m=" + m);
-																out.println("d=" + d);
 												%>
 												<tr>
 													<td><input type="checkbox" name="checkbox" id="cb_1"></td>
 													<th scope="row"><%=i + 1%></th>
-													<td><%=reports.get(i).getGroup_name()%></td>
-													<td data-url="report_detail"><%=reports.get(i).getSubject()%></td>
-													<td><%=reports.get(i).getPlace()%></td>
-													<td><%=reports.get(i).getCreate_date()%></td>
+													<td><%=report.getGroup_name()%></td>
+													<td data-url="report_detail"><%=report.getSubject()%></td>
+													<td><%=report.getPlace()%></td>
+													<td><%=report.getCreate_date()%></td>
 												</tr>
 												<%
 													}
+															i++;
 														}
 												%>
 											</tbody>
@@ -170,7 +160,8 @@
 									</div>
 									<%
 										startCalendar.add(Calendar.DATE, 7);
-
+											deadCalendar.add(Calendar.DATE, 7);
+											week++;
 										}
 									%>
 
