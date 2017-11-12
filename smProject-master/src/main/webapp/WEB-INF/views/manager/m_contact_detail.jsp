@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:url var="R" value="/" />
 <div id="fh5co-main">
 	
 			<div class="container">
@@ -15,16 +17,17 @@
 						<div class="fh5co-spacer fh5co-spacer-sm"></div>
 					</div>
 					<div class="col-md-12 animate-box">
-						<form action="#" method="post">
+						<form method="post">
 							<div class="col-md-12">
-								<img src="${R}${ mentor.path }" alt="Images" class="fh5co-align-center img-responsive">
+								<img src="${R}${ mentor.i_path }" alt="${R}${ mentor.i_path }" class="fh5co-align-center img-responsive">
 								<div class="fh5co-spacer fh5co-spacer-sm"></div>
 								<div class="fh5co-spacer fh5co-spacer-sm"></div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
+									<!-- 나중에 학번도 출력하게 변경 -->
 									<label for="name">멘토</label>
-									<input placeholder="${ mentor.name }" id="name" type="text" class="form-control input-lg">
+									<input placeholder="${ mentor.year }학년&nbsp;${ mentor.name }" id="name" type="text" class="form-control input-lg">
 								</div>	
 							</div>
 								<div class="col-md-6">
@@ -75,18 +78,27 @@
 									<textarea placeholder="${ mentor.study_method }" id="message" class="form-control input-lg" rows="3"></textarea>
 								</div>	
 							</div>
-							<!--
-							<div class="col-md-2">
-								<a href="#">첨부된 파일 <img src="images\file.png" border="0"></a>
-								<div class="fh5co-spacer fh5co-spacer-md"></div>
+						    <div class="col-md-12">
+								<label for="timetable">시간표</label><br>
+								<img src="${R}${ mentor.t_path }" alt="${R}${ mentor.t_path }"><br><br>
 						    </div>
-						    -->
+						    <div class="col-md-12">
+								<label for="doc">증빙서류</label><br>
+								<img src="${R}${ mentor.d_path }" alt="${R}${ mentor.d_path }">
+						    </div>
 							
+							<div class="fh5co-spacer fh5co-spacer-sm"></div>
 							<div class="col-md-12">
-									<input type="submit" class="btn btn-primary btn-lg col-md-offset-8" value="멘토선정">
-									<input type="button" class="btn btn-outline btn-lg" onclick="location.href='m_contact.do'" value="목록">
+								<c:choose>
+								<c:when test="${ mentor.m_condition == 0}">
+									<a href="mentor_detail_update.do?id=${ mentor.id }" class="btn btn-primary btn-lg col-md-offset-8">멘토선정</a>
+								</c:when>
+									<c:when test="${ mentor.m_condition == 1 }">
+									<a href="mentor_detail_update.do?id=${ mentor.id }" class="btn btn-cancel btn-lg col-md-offset-8">선정취소</a>
+								</c:when>
+								</c:choose>
+								<input type="button" class="btn btn-outline btn-lg" onclick="location.href='m_contact.do'" value="목록">
 							</div>
-							
 						</form>	
 					</div>
 					

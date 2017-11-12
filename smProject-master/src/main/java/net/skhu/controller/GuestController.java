@@ -52,8 +52,13 @@ public class GuestController {
 
 	@RequestMapping(value="join", method=RequestMethod.POST)
 	public String join(Model model, User user) {
+		if(user.getStatus_id()==2 || user.getStatus_id()==3)
+			user.setType(2);
+		else
+			user.setType(1);
+
 		userService.join(user);
-		model.addAttribute("board", "회원가입");
+		model.addAttribute("board", "로그인");
 		return "guest/login";
 
 	}

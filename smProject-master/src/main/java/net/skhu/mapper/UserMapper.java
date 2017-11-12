@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import net.skhu.dto.Report;
 import net.skhu.dto.Setting;
 import net.skhu.dto.User;
 
@@ -18,6 +19,14 @@ public interface UserMapper {
 	List<User> findByName(String name);
 	void update(User user);
 	void delete(int id);
-	void insert(User user);
+	void insertWithDep(User user);
+	void insertWithMinor(User user);
+	void insertWithDouble(User user);
+	void insertWithExcel(User user);
 	void m_setting(Setting setting);
+    List<Report> findAllWithReports();
+    List<Report> findAllCondition();
+    int findStudyCount();
+    String findStartSM();
+    Report findOneReport(int id);
 }

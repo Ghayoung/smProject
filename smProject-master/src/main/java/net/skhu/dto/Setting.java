@@ -6,6 +6,8 @@ public class Setting {
 	String mentor_expire_date;
 	String mentee_start_date;
 	String mentee_expire_date;
+	String sm_start_date;
+	String sm_expire_date;
 	int study_count;
 	int max_mentor;
 	int max_mentee;
@@ -66,5 +68,16 @@ public class Setting {
 	public void setReport_deadline(int report_deadline) {
 		this.report_deadline = report_deadline;
 	}
-
+	public String getSm_start_date() {
+		return sm_start_date;
+	}
+	public void setSm_start_date(String sm_start_date) {
+		this.sm_start_date = sm_start_date;
+	}
+	public String getSm_expire_date() {
+		return sm_expire_date;
+	}
+	public void setSm_expire_date(String sm_expire_date) {
+		this.sm_expire_date = sm_expire_date;
+	}
 }

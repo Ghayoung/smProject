@@ -1,8 +1,10 @@
 package net.skhu.dto;
 
+import java.util.Date;
+
 public class User {
 	int id;
-	int user_id;
+	String user_id;
 	String pw;
 	String name;
 	String email;
@@ -13,7 +15,11 @@ public class User {
 	int major_id;
 	int minor_id;
 	int double_id;
+	int condition;
+	int status_id;
+	Date auth_date;
 	String d_name;
+	String status_name;
 
 	public int getId() {
 		return id;
@@ -21,10 +27,10 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUser_id() {
+	public String getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(int user_id) {
+	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
 	public String getPw() {
@@ -92,6 +98,31 @@ public class User {
 	}
 	public void setD_name(String d_name) {
 		this.d_name = d_name;
+	}
+	public int getCondition() {
+		return condition;
+	}
+	public void setCondition(int condition) {
+		this.condition = condition;
+	}
+
+	public Date getAuth_date() {
+		return auth_date;
+	}
+	public void setAuth_date(Date auth_date) {
+		this.auth_date = auth_date;
+	}
+	public int getStatus_id() {
+		return status_id;
+	}
+	public void setStatus_id(int status_id) {
+		this.status_id = status_id;
+	}
+	public String getStatus_name() {
+		return status_name;
+	}
+	public void setStatus_name(String status_name) {
+		this.status_name = status_name;
 	}
 
 

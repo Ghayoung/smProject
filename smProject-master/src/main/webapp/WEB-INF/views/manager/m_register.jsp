@@ -15,23 +15,25 @@
 					
 						<div class="fh5co-spacer fh5co-spacer-md"></div>
 					</div>
-					<div class="col-md-8 col-md-offset-2 animate-box">
+				<div class="col-md-8 col-md-offset-2 animate-box">
 				<div class="panel panel-default ">
-												<p style="text-align:center;"><br><br><br>신입생/편입생 정보는 엑셀 파일을 업로드 해서 일괄 회원 등록할 수 있습니다.</p>
-							<div class="fh5co-spacer fh5co-spacer-md"></div>
-							
-										</div>
-						
-								<div class="fh5co-spacer fh5co-spacer-sm"></div>
-							<div class="col-md-12">
-									<label>신/편입생 명단</label>
-									<input type="file" class="btn btn-lg " value="파일첨부">
-							</div>
+						<p style="text-align:center;"><br><br><br>신입생/편입생 정보는 엑셀 파일을 업로드 해서 일괄 회원 등록할 수 있습니다.</p>
 						<div class="fh5co-spacer fh5co-spacer-md"></div>
-					<button class="btn btn-primary col-md-offset-10" data-target="#layerpop" data-toggle="modal">등록</button>
-				
-						</div>
+							
+				</div>
+						
+				<div class="fh5co-spacer fh5co-spacer-sm"></div>
+				<form name="form" action="m_register" method="post" enctype="multipart/form-data">
+					<div class="col-md-12">
+						<label>신/편입생 명단</label>
+						<input type="file" class="btn btn-lg " value="파일첨부" name="file">
 					</div>
+					<div class="fh5co-spacer fh5co-spacer-md"></div>
+					<input type=submit class="btn btn-primary col-md-offset-10" value="등록">
+					<!--<button class="btn btn-primary col-md-offset-10" data-target="#layerpop" data-toggle="modal">등록</button>-->
+				</form>
+				</div>
+				</div>
 					
 				</div>
 				<!-- END row -->
@@ -60,7 +62,7 @@
 	      </div>
 	      <!-- Footer -->
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+	        <a href="m_register.do" class="btn btn-primary" data-dismiss="modal">확인</a>
 	        <button type="button" class="btn btn-outline" data-dismiss="modal">닫기</button>
 	      </div>
 	    </div>

@@ -18,40 +18,40 @@ import net.skhu.mapper.FileMapper;
 
 @Service
 public class FileService {
-   @Autowired FileMapper fileMapper;
-   @Autowired private ServletContext servletContext;
-   FileDTO fdto = new FileDTO();
+	@Autowired
+	FileMapper fileMapper;
+	@Autowired
+	private ServletContext servletContext;
+	FileDTO fdto = new FileDTO();
 
-   public int fileUpload(MultipartFile file){
-      String relPath = "/img/upload/";
-      String filePath = servletContext.getRealPath(relPath);
-      File upDirectory = new File(filePath);
-      if (!upDirectory.exists()) {
-         upDirectory.mkdirs();
-      }
+	public int fileUpload(MultipartFile uploadedFile) {
+		String relPath = "img/upload/";
+		File upDirectory = new File(relPath);
+		if (!upDirectory.exists()) {
+			upDirectory.mkdirs();
+		}
 
-      String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+		String fileName = System.currentTimeMillis() + "_" + uploadedFile.getOriginalFilename();
 
-      filePath += fileName;
+		relPath += fileName;
 
-      final File uploadFile = new File(filePath);
-      System.out.println(uploadFile);
-      if (uploadFile.exists()) {
-         uploadFile.delete();
-      }
+		final File uploadFile = new File(relPath);
+		if (uploadFile.exists()) {
+			uploadFile.delete();
+		}
 
-      try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadFile))) {
-         FileCopyUtils.copy(file.getInputStream(), stream);
-      } catch (FileNotFoundException e) {
-         return 0;
-      } catch (IOException ioe) {
-         return 0;
-      }
+		try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadFile))) {
+			FileCopyUtils.copy(uploadedFile.getInputStream(), stream);
+		} catch (FileNotFoundException e) {
+			return 0;
+		} catch (IOException ioe) {
+			return 0;
+		}
 
-      fdto.setPath(relPath + fileName);
-      fileMapper.fileUpload(fdto);
+		fdto.setPath(relPath);
+		fileMapper.fileUpload(fdto);
 
-      return fdto.getId();
-   }
+		return fdto.getId();
+	}
 
 }

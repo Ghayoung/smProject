@@ -1,5 +1,7 @@
 package net.skhu.dto;
 
+import java.util.List;
+
 public class Mentor{
 	int id;
 	int mentor_u_id;
@@ -11,13 +13,17 @@ public class Mentor{
 	String study_purpose;
 	String study_content;
 	String study_method;
-	String open_date; //sql date 타입
+	String open_date;
 	int apply_f_time_id;
 	int apply_f_intro_fk;
 	int apply_f_doc_fk;
-	int mentee_num;
-	String path; //file.path
+	int m_condition;
+	String i_path;
+	String t_path;
+	String d_path;
 	String name;
+	int user_id;
+    List<Report> reports;
 
 	public int getId() {
 		return id;
@@ -131,20 +137,36 @@ public class Mentor{
 		this.apply_f_doc_fk = apply_f_doc_fk;
 	}
 
-	public int getMentee_num() {
-		return mentee_num;
+	public int getM_condition() {
+		return m_condition;
 	}
 
-	public void setMentee_num(int mentee_num) {
-		this.mentee_num = mentee_num;
+	public void setM_condition(int m_condition) {
+		this.m_condition = m_condition;
 	}
 
-	public String getPath() {
-		return path;
+	public String getI_path() {
+		return i_path;
 	}
 
-	public void setPath(String path) {
-		this.path = path;
+	public void setI_path(String i_path) {
+		this.i_path = i_path;
+	}
+
+	public String getT_path() {
+		return t_path;
+	}
+
+	public void setT_path(String t_path) {
+		this.t_path = t_path;
+	}
+
+	public String getD_path() {
+		return d_path;
+	}
+
+	public void setD_path(String d_path) {
+		this.d_path = d_path;
 	}
 
 	public String getName() {
@@ -152,6 +174,22 @@ public class Mentor{
 	}
 
 	public void setName(String name) {
-		this.name=name;
+		this.name = name;
+	}
+
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+
+	public List<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
 	}
 }

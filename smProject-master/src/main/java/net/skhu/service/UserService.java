@@ -20,33 +20,46 @@ import net.skhu.utils.Encryption;
 
 @Service
 public class UserService {
-	@Autowired UserMapper userMapper;
-	@Autowired ArticleMapper articleMapper;
-	@Autowired FileService fileService;
+	@Autowired
+	UserMapper userMapper;
+	@Autowired
+	ArticleMapper articleMapper;
+	@Autowired
+	FileService fileService;
 
 	public User login(String user_id, String pw) {
-        User user = userMapper.findOneByUser_id(user_id);
-        if (user == null) return null;
-        String password = Encryption.encrypt(pw, Encryption.SHA256);
-        if (user.getPw().equals(password) == false) return null;
-        return user;
-    }
+		User user = userMapper.findOneByUser_id(user_id);
+		if (user == null)
+			return null;
+		String password = Encryption.encrypt(pw, Encryption.SHA256);
+		if (user.getPw().equals(password) == false)
+			return null;
+		return user;
+	}
 
 	public void join(User user) {
 		String pw = Encryption.encrypt(user.getPw(), Encryption.SHA256);
 		user.setPw(pw);
-		userMapper.insert(user);
+
+		if (user.getDouble_id() == 0 && user.getMinor_id() == 0) {
+			userMapper.insertWithDep(user);
+		} else {
+			if (user.getDouble_id() == 0)
+				userMapper.insertWithMinor(user);
+			else if (user.getMinor_id() == 0)
+				userMapper.insertWithDouble(user);
+		}
 		return;
 	}
 
 	public User changeMeminfo(HttpServletRequest request) {
 		User user = UserService.getCurrentUser();
 		String pw = Encryption.encrypt(request.getParameter("pw"), Encryption.SHA256);
-		if(!(user.getPw().equals(pw))) {
+		if (!(user.getPw().equals(pw))) {
 			return null;
 		}
-		if(!request.getParameter("newPw").equals("")) {
-			if(!(request.getParameter("newPw").equals(request.getParameter("newPw2")))) {
+		if (!request.getParameter("newPw").equals("")) {
+			if (!(request.getParameter("newPw").equals(request.getParameter("newPw2")))) {
 				return null;
 			}
 			user.setPw(Encryption.encrypt(request.getParameter("newPw"), Encryption.SHA256));
@@ -57,43 +70,40 @@ public class UserService {
 		return user;
 	}
 
-	public List<Article> findAll(Pagination pagination){
+	public List<Article> findAll(Pagination pagination) {
 		int count = articleMapper.count(pagination);
-        pagination.setRecordCount(count);
-        return articleMapper.findAllByBoard(pagination);
+		pagination.setRecordCount(count);
+		return articleMapper.findAllByBoard(pagination);
 	}
 
 	public void createArticle(Article article, int type, @RequestBody MultipartFile file) {
 		article.setArt_u_id(UserService.getCurrentUser().getId());
-      	article.setArt_b_id(type);
-      	if(file!=null) {
-      		int art_f_id = fileService.fileUpload(file);
-      		article.setArt_f_id(art_f_id);
-      	}
-      	articleMapper.insert(article);
-      	return;
+		article.setArt_b_id(type);
+		if (file != null) {
+			int art_f_id = fileService.fileUpload(file);
+			article.setArt_f_id(art_f_id);
+		}
+		articleMapper.insert(article);
+		return;
 	}
 
 	public void editArticle(Article article, @RequestBody MultipartFile file) {
-		if(file!=null) {
-      		int art_f_id = fileService.fileUpload(file);
-      		article.setArt_f_id(art_f_id);
-      	}
+		if (file != null) {
+			int art_f_id = fileService.fileUpload(file);
+			article.setArt_f_id(art_f_id);
+		}
 		articleMapper.update(article);
 	}
 
-
 	public static User getCurrentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication instanceof MyAuthenticationProvider.MyAuthenticaion)
-            return ((MyAuthenticationProvider.MyAuthenticaion) authentication).getUser();
-        return null;
-    }
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication instanceof MyAuthenticationProvider.MyAuthenticaion)
+			return ((MyAuthenticationProvider.MyAuthenticaion) authentication).getUser();
+		return null;
+	}
 
-    public static void setCurrentUser(User user) {
-        ((MyAuthenticationProvider.MyAuthenticaion)
-                SecurityContextHolder.getContext().getAuthentication()).setUser(user);
-    }
-
-
+	public static void setCurrentUser(User user) {
+		((MyAuthenticationProvider.MyAuthenticaion) SecurityContextHolder.getContext().getAuthentication())
+				.setUser(user);
+	}
 }

@@ -13,6 +13,18 @@
 		WHERE id = #{id}
 	</select>
 	
+	<select id="findStudyCount" resultType="int">
+		SELECT study_count FROM setting
+		order by id desc
+		limit 0, 1
+	</select>
+	
+	<select id="findStartSM" resultType="String">
+		SELECT sm_start_date FROM setting
+		order by id desc
+		limit 0, 1
+	</select>
+	
 	<select id="findAll" resultType="User">
 		SELECT * FROM user
 	</select>
@@ -22,6 +34,31 @@
 		FROM user u left join department d ON u.major_id=d.id
 		WHERE type=2;
 	</select>
+	
+	<select id="findAllWithReports" resultMap="resultMap1">     
+	  SELECT m.*, r.id report_id, r.subject rep_subject, r.place, r.create_date     
+	  FROM mentor_apply m inner JOIN report r ON m.mentor_u_id = r.rep_u_id   
+	</select> 
+	  
+	<resultMap id="resultMap1" type="Mentor">    
+		<id property="id" column="id" />    
+		<result property="group_name" column="group_name" />     
+		<collection property="reports" ofType="Report">
+			<id property="id" column="report_id" />     
+			<result property="subject" column="rep_subject"/>      
+			<result property="place" column="place"/>       
+			<result property="create_date" column="create_date"/>     
+		</collection>   
+	</resultMap> 
+	
+	<select id="findAllCondition" resultType="Report">     
+	 	SELECT m.group_name, count(r.rep_u_id) reportCount
+	  	FROM mentor_apply m JOIN report r ON m.mentor_u_id = r.rep_u_id group by r.rep_u_id;   
+	</select>
+	
+	<select id="findOneReport" resultType="Report">
+		SELECT * FROM report where id=#{id}
+	</select> 
 	
 	<select id="findAllMentor" resultType="User">
 		SELECT u.*, d.d_name
@@ -45,9 +82,24 @@
 		UPDATE user SET pw = #{pw}, email = #{email}, phone = #{phone} WHERE id = #{id}
 	</update>
 	
-	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
-	    INSERT user (user_id, pw, name, type, major_id)
-	    VALUES (#{user_id}, #{pw}, #{name}, #{type}, #{major_id})
+	<insert id="insertWithMinor" useGeneratedKeys="true" keyProperty="id">
+	    INSERT user (user_id, pw, name, email, phone, office, office_tel, type, major_id, status_id, auth_date, minor_id)
+	    VALUES (#{user_id}, #{pw}, #{name}, #{email}, #{phone}, #{office}, #{office_tel}, #{type}, #{major_id}, #{status_id}, now(), #{minor_id})
+	</insert>
+	
+	<insert id="insertWithDouble" useGeneratedKeys="true" keyProperty="id">
+	    INSERT user (user_id, pw, name, email, phone, office, office_tel, type, major_id, status_id, auth_date, double_id)
+	    VALUES (#{user_id}, #{pw}, #{name}, #{email}, #{phone}, #{office}, #{office_tel}, #{type}, #{major_id}, #{status_id}, now(), #{double_id})
+	</insert>
+	
+	<insert id="insertWithDep" useGeneratedKeys="true" keyProperty="id">
+	    INSERT user (user_id, pw, name, email, phone, office, office_tel, type, major_id, status_id, auth_date)
+	    VALUES (#{user_id}, #{pw}, #{name}, #{email}, #{phone}, #{office}, #{office_tel}, #{type}, #{major_id}, #{status_id}, now())
+	</insert>
+	
+	<insert id="insertWithExcel" useGeneratedKeys="true" keyProperty="id">
+	    INSERT user (user_id, pw, name, email, phone, type, major_id, minor_id, double_id, status_id, auth_date)
+	    VALUES (#{user_id}, #{pw}, #{name}, #{email}, #{phone}, #{type}, #{major_id}, #{minor_id}, #{double_id}, #{status_id}, now())
 	</insert>
 	
 	<delete id="delete">
@@ -55,8 +107,8 @@
 	</delete>
 	
 	<insert id="m_setting" useGeneratedKeys="true" keyProperty="id">
-	    INSERT into setting (mentor_start_date, mentor_expire_date, mentee_start_date, mentee_expire_date, study_count, max_mentor, max_mentee, min_mentee, report_deadline)
-	    VALUES (#{mentor_start_date}, #{mentor_expire_date}, #{mentee_start_date}, #{mentee_expire_date}, #{study_count}, #{max_mentor}, #{max_mentee}, #{min_mentee}, #{report_deadline})
+	    INSERT into setting (mentor_start_date, mentor_expire_date, mentee_start_date, mentee_expire_date, sm_start_date, sm_expire_date, study_count, max_mentor, max_mentee, min_mentee, report_deadline)
+	    VALUES (#{mentor_start_date}, #{mentor_expire_date}, #{mentee_start_date}, #{mentee_expire_date}, #{sm_start_date}, #{sm_expire_date}, #{study_count}, #{max_mentor}, #{max_mentee}, #{min_mentee}, #{report_deadline})
 	</insert>
 
 </mapper>

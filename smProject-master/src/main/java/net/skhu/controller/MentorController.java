@@ -29,18 +29,43 @@ public class MentorController {
 	FileService fileService;
 	Mentor mentor = new Mentor();
 
-	/* 멘토 신청서 목록 출력 - 수정필요 */
-	 @RequestMapping(value = "manager/m_contact", method = RequestMethod.GET)
+	/* 멘토 신청서 목록 출력 */
+	 @RequestMapping("manager/m_contact")
 	 public String m_contact(Model model) {
 		 List<Mentor> mentors = mentorMapper.findAll();
 		 model.addAttribute("mentors", mentors);
 		 return "manager/m_contact";
 	 }
 
+	 /* 멘토 선정 여부 업데이트 */
+	 /* mentor_apply테이블의 condition을 m_condition으로 변경 */
+	 /* 멘토 선정됨: m_condition=0 멘토 탈락됨: m_condition=1 */
+	 @RequestMapping("manager/mentor_update")
+	 public String mentor_update(Model model, @RequestParam(value="id") int id) {
+		 Mentor mentor = mentorMapper.findOne(id);
+		 if(mentor.getM_condition()==0)
+			 mentor.setM_condition(1);
+		 else if(mentor.getM_condition()==1)
+			 mentor.setM_condition(0);
+		 mentorMapper.update_m_condition(mentor);
+		 return "redirect:m_contact";
+	 }
+
 	 @RequestMapping("manager/m_contact_detail")
 	 public String m_contact_detail(Model model, @RequestParam(value="id") int id) {
-	    model.addAttribute("mentor", mentorMapper.findOne(id));
-	       return "manager/m_contact_detail";
+	     model.addAttribute("mentor", mentorMapper.findOne(id));
+	     return "manager/m_contact_detail";
+	 }
+
+	 @RequestMapping("manager/mentor_detail_update")
+	 public String mentor_detail_update(Model model, @RequestParam(value="id") int id) {
+		 Mentor mentor = mentorMapper.findOne(id);
+		 if(mentor.getM_condition()==0)
+			 mentor.setM_condition(1);
+		 else if(mentor.getM_condition()==1)
+			 mentor.setM_condition(0);
+		 mentorMapper.update_m_condition(mentor);
+	     return "redirect:m_contact_detail?id="+mentor.getId();
 	 }
 
 
@@ -70,16 +95,12 @@ public class MentorController {
 	      mentor.setSubject(request.getParameter("subject"));
 
 	      if (file1 != null && file2 != null && file3 != null) {
-	         int t_fk = fileService.fileUpload(file1);
-	         int intro_fk = fileService.fileUpload(file2);
+	         int intro_fk = fileService.fileUpload(file1);
+	         int t_fk = fileService.fileUpload(file2);
 	         int doc_fk = fileService.fileUpload(file3);
 
-	         System.out.println("t_fk:"+t_fk);
-	         System.out.println("intro_fk:"+intro_fk);
-	         System.out.println("doc_fk:"+doc_fk);
-
-	         mentor.setApply_f_time_id(t_fk);
 	         mentor.setApply_f_intro_fk(intro_fk);
+	         mentor.setApply_f_time_id(t_fk);
 	         mentor.setApply_f_doc_fk(doc_fk);
 	      }
 	      mentorMapper.insert_apply(mentor);
