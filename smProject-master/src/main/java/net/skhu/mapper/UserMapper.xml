@@ -97,6 +97,11 @@
 	    VALUES (#{user_id}, #{pw}, #{name}, #{email}, #{phone}, #{office}, #{office_tel}, #{type}, #{major_id}, #{status_id}, now())
 	</insert>
 	
+	<insert id="insertWithExcel" useGeneratedKeys="true" keyProperty="id">
+	    INSERT user (user_id, pw, name, email, phone, type, major_id, minor_id, double_id, status_id, auth_date)
+	    VALUES (#{user_id}, #{pw}, #{name}, #{email}, #{phone}, #{type}, #{major_id}, #{minor_id}, #{double_id}, #{status_id}, now())
+	</insert>
+	
 	<delete id="delete">
 	    DELETE FROM user WHERE id = #{id}
 	</delete>

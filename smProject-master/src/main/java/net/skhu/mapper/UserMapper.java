@@ -22,6 +22,7 @@ public interface UserMapper {
 	void insertWithDep(User user);
 	void insertWithMinor(User user);
 	void insertWithDouble(User user);
+	void insertWithExcel(User user);
 	void m_setting(Setting setting);
     List<Report> findAllWithReports();
     List<Report> findAllCondition();

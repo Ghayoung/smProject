@@ -1,5 +1,6 @@
 package net.skhu.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+
+import net.skhu.domain.UserDomain;
 import net.skhu.dto.FileDTO;
 import net.skhu.dto.Introduce;
 import net.skhu.dto.Report;
@@ -21,6 +25,7 @@ import net.skhu.dto.User;
 import net.skhu.mapper.FileMapper;
 import net.skhu.mapper.IntroduceMapper;
 import net.skhu.mapper.UserMapper;
+import net.skhu.service.ExcelReadService;
 import net.skhu.service.FileService;
 import net.skhu.service.ManagerService;
 
@@ -37,6 +42,8 @@ public class ManagerController {
 	ManagerService managerService;
 	@Autowired
 	FileService fileservice;
+	@Autowired
+	ExcelReadService excelReadService;
 
 	@RequestMapping(value = "m_introduce_modi", method = RequestMethod.GET)
 	public String m_introduce_modi(Model model) {
@@ -66,8 +73,11 @@ public class ManagerController {
 	}
 
 	@RequestMapping(value = "m_register", method = RequestMethod.POST)
-	public String m_register2(@RequestBody MultipartFile file) {
-		System.out.println("register");
+	public String m_register(@RequestBody MultipartFile file) throws IOException, InvalidFormatException, org.apache.poi.openxml4j.exceptions.InvalidFormatException {
+		List<User> users = excelReadService.readExcelToList(file, UserDomain::rowOf);
+		for(int i=0; i<users.size(); i++) {
+			userMapper.insertWithExcel(users.get(i));
+		}
 		return "manager/m_register";
 	}
 
