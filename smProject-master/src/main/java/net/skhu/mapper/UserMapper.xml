@@ -58,7 +58,7 @@
 	
 	<select id="findOneReport" resultType="Report">
 		SELECT * FROM report where id=#{id}
-	</select> 
+	</select>  
 	
 	<select id="findAllMentor" resultType="User">
 		SELECT u.*, d.d_name

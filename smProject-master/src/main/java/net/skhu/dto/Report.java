@@ -17,6 +17,7 @@ public class Report {
 	String group_name;
 	int reportCount;
 	int totalReportCount;
+	String name;
 
 	public int getId() {
 		return id;
@@ -114,4 +115,11 @@ public class Report {
 	public void setTotalReportCount(int totalReportCount) {
 		this.totalReportCount = totalReportCount;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+
 }

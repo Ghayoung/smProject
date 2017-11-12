@@ -131,14 +131,7 @@ public class ManagerController {
 	@RequestMapping(value = "report_detail", method = RequestMethod.GET)
 	public String report_detail(Model model, @RequestParam("id") int id) {
 		Report report = userMapper.findOneReport(id);
-//		int f_photo = report.getRep_f_photo_id();
-//		int f_study = report.getRep_f_study_id();
-//		FileDTO photoFilePath = fileMapper.findOne(f_photo);
-//		FileDTO studyFilePath = fileMapper.findOne(f_study);
-
 		model.addAttribute("report", report);
-//		model.addAttribute("photoFilePath", photoFilePath);
-//		model.addAttribute("studyFilePath", studyFilePath);
 		return "user/report_detail";
 	}
 
@@ -178,6 +171,13 @@ public class ManagerController {
 		model.addAttribute("setting", setting);
 		return "manager/m_setting";
 
+	}
+
+	@RequestMapping(value = "excelDownload", method = RequestMethod.GET)
+	public String excelDownload(Model model, @RequestParam("id") int id) {
+		Report report = userMapper.findOneReport(id);
+		model.addAttribute("report", report);
+		return "m_excel";
 	}
 
 }

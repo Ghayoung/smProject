@@ -80,6 +80,12 @@ function minor_dep(v, showId, nonShowId) {
 	}
 }
 
+function excel() {
+	document.frm.action = "excel";
+	document.frm.excel_data.value = document.getElementById("excel_body").outerHTML;
+	document.frm.submit();
+}
+
 document.getElementById('datePicker').valueAsDate = new Date();
 document.getElementById('datePicker2').valueAsDate = new Date();
 document.getElementById('datePicker3').valueAsDate = new Date();
@@ -89,10 +95,10 @@ document.getElementById('datePicker6').valueAsDate = new Date();
 
 function show_office() {
 	// 라디오 버튼 value 값 조건 비교
-	if (document.getElementById('status_id').value==2) {
+	if (document.getElementById('status_id').value == 2) {
 		document.getElementById('officeDIV').style.display = ""; // 보여줌
 		return false;
-	}else{
+	} else {
 		document.getElementById('officeDIV').style.display = "none";
 		return false;
 	}
