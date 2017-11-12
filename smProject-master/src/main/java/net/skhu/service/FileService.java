@@ -25,18 +25,17 @@ public class FileService {
 	FileDTO fdto = new FileDTO();
 
 	public int fileUpload(MultipartFile uploadedFile) {
-		String relPath = "/img/upload/";
-		String filePath = servletContext.getRealPath(relPath);
-		File upDirectory = new File(filePath);
+		String relPath = "img/upload/";
+		File upDirectory = new File(relPath);
 		if (!upDirectory.exists()) {
 			upDirectory.mkdirs();
 		}
 
 		String fileName = System.currentTimeMillis() + "_" + uploadedFile.getOriginalFilename();
 
-		filePath += fileName;
+		relPath += fileName;
 
-		final File uploadFile = new File(filePath);
+		final File uploadFile = new File(relPath);
 		if (uploadFile.exists()) {
 			uploadFile.delete();
 		}
@@ -49,7 +48,7 @@ public class FileService {
 			return 0;
 		}
 
-		fdto.setPath(relPath + fileName);
+		fdto.setPath(relPath);
 		fileMapper.fileUpload(fdto);
 
 		return fdto.getId();

@@ -1,9 +1,16 @@
 package net.skhu.controller;
 
 import java.io.IOException;
+import java.io.BufferedOutputStream;
+import java.net.URLEncoder;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,9 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-
-import net.skhu.domain.UserDomain;
 import net.skhu.dto.FileDTO;
 import net.skhu.dto.Introduce;
 import net.skhu.dto.Report;
@@ -25,7 +29,6 @@ import net.skhu.dto.User;
 import net.skhu.mapper.FileMapper;
 import net.skhu.mapper.IntroduceMapper;
 import net.skhu.mapper.UserMapper;
-import net.skhu.service.ExcelReadService;
 import net.skhu.service.FileService;
 import net.skhu.service.ManagerService;
 
@@ -44,6 +47,8 @@ public class ManagerController {
 	FileService fileservice;
 	@Autowired
 	ExcelReadService excelReadService;
+	@Autowired
+	private ServletContext servletContext;
 
 	@RequestMapping(value = "m_introduce_modi", method = RequestMethod.GET)
 	public String m_introduce_modi(Model model) {
@@ -65,7 +70,6 @@ public class ManagerController {
 		return "redirect:m_introduce_modi";
 	}
 
-
 	/* 신편입생 등록 */
 	@RequestMapping("m_register")
 	public String m_register() {
@@ -73,11 +77,8 @@ public class ManagerController {
 	}
 
 	@RequestMapping(value = "m_register", method = RequestMethod.POST)
-	public String m_register(@RequestBody MultipartFile file) throws IOException, InvalidFormatException, org.apache.poi.openxml4j.exceptions.InvalidFormatException {
-		List<User> users = excelReadService.readExcelToList(file, UserDomain::rowOf);
-		for(int i=0; i<users.size(); i++) {
-			userMapper.insertWithExcel(users.get(i));
-		}
+	public String m_register2(@RequestBody MultipartFile file) {
+		System.out.println("register");
 		return "manager/m_register";
 	}
 
@@ -133,15 +134,37 @@ public class ManagerController {
 	@RequestMapping(value = "report_detail", method = RequestMethod.GET)
 	public String report_detail(Model model, @RequestParam("id") int id) {
 		Report report = userMapper.findOneReport(id);
-		int f_photo=report.getRep_f_photo_id();
-		int f_study=report.getRep_f_study_id();
-		FileDTO photoFilePath=fileMapper.findOne(f_photo);
-		FileDTO studyFilePath=fileMapper.findOne(f_study);
+//		int f_photo = report.getRep_f_photo_id();
+//		int f_study = report.getRep_f_study_id();
+//		FileDTO photoFilePath = fileMapper.findOne(f_photo);
+//		FileDTO studyFilePath = fileMapper.findOne(f_study);
 
 		model.addAttribute("report", report);
-		model.addAttribute("photoFilePath", photoFilePath);
-		model.addAttribute("studyFilePath", studyFilePath);
+//		model.addAttribute("photoFilePath", photoFilePath);
+//		model.addAttribute("studyFilePath", studyFilePath);
 		return "user/report_detail";
+	}
+
+	@RequestMapping("file/download")
+	public void download(@RequestParam("id") int id, HttpServletResponse response) throws Exception {
+		FileDTO uploadedfile = fileMapper.findOne(id);
+		if (uploadedfile == null)
+			return;
+		String fileName=(uploadedfile.getPath()).substring(11);
+
+		String filePath = (uploadedfile.getPath()).substring(0, 11);
+
+		filePath+=fileName;
+
+		Path path = Paths.get(filePath);
+
+		uploadedfile.setData(Files.readAllBytes(path));
+
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName,"UTF-8") + ";");
+		try (BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream())) {
+			output.write(uploadedfile.getData());
+		}
 	}
 
 	@RequestMapping(value = "m_setting", method = RequestMethod.GET)
@@ -159,4 +182,5 @@ public class ManagerController {
 		return "manager/m_setting";
 
 	}
+
 }

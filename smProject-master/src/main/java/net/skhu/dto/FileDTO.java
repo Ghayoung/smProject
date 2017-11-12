@@ -3,6 +3,7 @@ package net.skhu.dto;
 public class FileDTO {
 	int id;
 	String path;
+    byte[] data;
 
 	public int getId() {
 		return id;
@@ -19,4 +20,13 @@ public class FileDTO {
 	public void setPath(String path) {
 		this.path = path;
 	}
+
+	public byte[] getData() {
+		return data;
+	}
+
+	public void setData(byte[] data) {
+		this.data = data;
+	}
+
 }
