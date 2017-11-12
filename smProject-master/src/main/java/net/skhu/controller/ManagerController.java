@@ -188,7 +188,6 @@ public class ManagerController {
    public String excelDownload(Model model, @RequestParam("id") int id) {
       Report report = userMapper.findOneReport(id);
       model.addAttribute("report", report);
-      return "m_excel";
+      return "m_excel2";
    }
-
 }
