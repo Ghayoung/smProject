@@ -150,8 +150,7 @@ public class UserController {
 
 		report.setSubject(request.getParameter("subject"));
 		report.setPlace(request.getParameter("place"));
-		int day = Integer.parseInt(request.getParameter("day"));
-		report.setDay(day);
+		report.setDay(request.getParameter("day"));
 		report.setStart_time(request.getParameter("start_time"));
 		report.setEnd_time(request.getParameter("end_time"));
 		report.setStudy_content(request.getParameter("study_content"));

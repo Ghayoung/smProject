@@ -23,9 +23,9 @@ public interface UserMapper {
 	void insertWithMinor(User user);
 	void insertWithDouble(User user);
 	void m_setting(Setting setting);
-	List<Report> findAllReport();
     List<Report> findAllWithReports();
     List<Report> findAllCondition();
     int findStudyCount();
     String findStartSM();
+    Report findOneReport(int id);
 }

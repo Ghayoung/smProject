@@ -32,9 +32,17 @@
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
-							<label for="day">이번 주 모임 요일</label> <input
-								placeholder="모임 요일" id="day" type="text" name="day"
-								class="form-control input-lg">
+							<label for="study_day">이번 주 모임 요일</label>
+							<select id="day" class="form-control" name="day">
+								<option value=0>--</option>
+								<option value=월요일>월요일</option>
+								<option value=화요일>화요일</option>
+								<option value=수요일>수요일</option>
+								<option value=목요일>목요일</option>
+								<option value=금요일>금요일</option>
+								<option value=토요일>토요일</option>
+								<option value=일요일>일요일</option>
+							</select>
 						</div>
 					</div>
 					<div class="col-md-4">

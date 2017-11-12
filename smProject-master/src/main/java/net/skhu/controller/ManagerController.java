@@ -2,7 +2,6 @@ package net.skhu.controller;
 
 import java.util.List;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import net.skhu.dto.FileDTO;
 import net.skhu.dto.Introduce;
 import net.skhu.dto.Report;
 import net.skhu.dto.Setting;
 import net.skhu.dto.User;
+import net.skhu.mapper.FileMapper;
 import net.skhu.mapper.IntroduceMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.service.FileService;
@@ -28,6 +29,8 @@ import net.skhu.service.ManagerService;
 public class ManagerController {
 	@Autowired
 	UserMapper userMapper;
+	@Autowired
+	FileMapper fileMapper;
 	@Autowired
 	IntroduceMapper introduceMapper;
 	@Autowired
@@ -103,33 +106,32 @@ public class ManagerController {
 	}
 
 	@RequestMapping(value = "m_reportManage", method = RequestMethod.GET)
-	public String m_reportManage(Model model, ServletRequest request) {
-		List<Report> reports = userMapper.findAllReport();
+	public String m_reportManage(Model model) {
 		List<Report> teamReports = userMapper.findAllWithReports();
 		List<Report> conditionReports = userMapper.findAllCondition();
 
 		int totalReport = userMapper.findStudyCount();
 		String startSM = (userMapper.findStartSM()).replaceAll("-", "");
-		System.out.println(startSM);
 
-//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
-//		Date currentDay = new Date();
-//		String today = formatter.format(currentDay);
-//		System.out.println(today);
-
-		model.addAttribute("reports", reports);
 		model.addAttribute("teamReports", teamReports);
 		model.addAttribute("conditionReports", conditionReports);
 		model.addAttribute("totalReport", totalReport);
 		model.addAttribute("startSM", startSM);
-//		model.addAttribute("to_day", to_day);
-		request.setAttribute("reports", reports);
 		return "manager/m_reportManage";
 	}
 
-	@RequestMapping(value = "m_reportManage", method = RequestMethod.POST)
-	public String m_reportManage() {
-		return "manager/m_reportManage";
+	@RequestMapping(value = "report_detail", method = RequestMethod.GET)
+	public String report_detail(Model model, @RequestParam("id") int id) {
+		Report report = userMapper.findOneReport(id);
+		int f_photo=report.getRep_f_photo_id();
+		int f_study=report.getRep_f_study_id();
+		FileDTO photoFilePath=fileMapper.findOne(f_photo);
+		FileDTO studyFilePath=fileMapper.findOne(f_study);
+
+		model.addAttribute("report", report);
+		model.addAttribute("photoFilePath", photoFilePath);
+		model.addAttribute("studyFilePath", studyFilePath);
+		return "user/report_detail";
 	}
 
 	@RequestMapping(value = "m_setting", method = RequestMethod.GET)
