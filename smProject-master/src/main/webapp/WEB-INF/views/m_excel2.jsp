@@ -1,27 +1,40 @@
-<%@ page language="java" contentType="application/vnd.ms-excel;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java"
+	contentType="application/vnd.ms-excel;charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="net.skhu.dto.Report"%>
 <%@ page import="net.skhu.service.ReportDAO"%>
 <%
-String s1 = request.getParameter("id");
-int id = Integer.parseInt(s1);
+	String s1 = request.getParameter("id");
+	int id = Integer.parseInt(s1);
 
-Report list = ReportDAO.findOne(id);
+	Report list = ReportDAO.findOne(id);
 
-response.setHeader("Content-Disposition","attachment;filename=member.xls");
-response.setHeader("Content-Description", "JSP Generated Data");
-
-
+	response.setHeader("Content-Disposition", "attachment;filename=member.xls");
+	response.setHeader("Content-Description", "JSP Generated Data");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+function excel(){
+ document.frm.action = "excel";
+ document.frm.excel_data.value = document.getElementById("excel_body").outerHTML;
+ document.frm.submit();
+</script>
 <title>Insert title here</title>
 </head>
 <body>
-<h3>회원 목록</h3>
 
-	<table border="1">
+
+	<h3>회원 목록</h3>
+
+	<form name="frm" method="post" onsubmit="excel();">
+		<input type="hidden" name="excel_data" /> <input type="submit"
+			value="전송">
+	</form>
+
+	<table id="excel_body">
+		<caption>list</caption>
 		<thead>
 			<tr align="center">
 				<th scope="col" bgcolor="CDCDCD">스터디 주제</th>

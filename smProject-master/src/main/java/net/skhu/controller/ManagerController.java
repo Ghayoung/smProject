@@ -190,4 +190,9 @@ public class ManagerController {
       model.addAttribute("report", report);
       return "m_excel2";
    }
+
+   @RequestMapping(value = "excel", method = RequestMethod.POST)
+   public String excel(Model model) {
+      return "manager/excel";
+   }
 }
