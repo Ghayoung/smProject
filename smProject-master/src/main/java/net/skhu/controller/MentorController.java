@@ -53,7 +53,7 @@ public class MentorController {
 	   }
 
 	   @RequestMapping(value = "user/mentorapply", method = RequestMethod.POST)
-	   public String mentorapply(HttpServletRequest request, @RequestBody MultipartFile file1,
+	   public String mentorapply(Model model, HttpServletRequest request, @RequestBody MultipartFile file1,
 	         @RequestBody MultipartFile file2, @RequestBody MultipartFile file3) {
 
 	      User user = UserService.getCurrentUser();
@@ -73,6 +73,10 @@ public class MentorController {
 	         int t_fk = fileService.fileUpload(file1);
 	         int intro_fk = fileService.fileUpload(file2);
 	         int doc_fk = fileService.fileUpload(file3);
+
+	         System.out.println("t_fk:"+t_fk);
+	         System.out.println("intro_fk:"+intro_fk);
+	         System.out.println("doc_fk:"+doc_fk);
 
 	         mentor.setApply_f_time_id(t_fk);
 	         mentor.setApply_f_intro_fk(intro_fk);

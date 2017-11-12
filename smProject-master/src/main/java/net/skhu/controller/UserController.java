@@ -5,9 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Article;
 import net.skhu.dto.User;
@@ -15,6 +17,8 @@ import net.skhu.mapper.ArticleMapper;
 import net.skhu.mapper.BoardMapper;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.UserMapper;
+import net.skhu.model.Pagination;
+import net.skhu.service.ArticleService;
 import net.skhu.service.UserService;
 
 @Controller
@@ -26,47 +30,49 @@ public class UserController {
 	@Autowired BoardMapper boardMapper;
 	@Autowired ArticleMapper articleMapper;
 	@Autowired UserService userService;
+	@Autowired ArticleService articleService;
 
 	@RequestMapping(value="board", method=RequestMethod.GET)
-    public String board(Model model, @RequestParam(value="type", defaultValue="0") int type) {
-		model.addAttribute("board", boardMapper.findOne(type).getB_name());
-		model.addAttribute("article", articleMapper.findAllByBoard(type));
+    public String board(Model model, Pagination pagination) {
+		model.addAttribute("board", boardMapper.findOne(pagination.getBd()).getB_name());
+		model.addAttribute("article", userService.findAll(pagination));
         return "user/board";
     }
 
     @RequestMapping("board_detail")
-    public String board_detail(Model model, @RequestParam(value="type", defaultValue="0") int type, @RequestParam(value="id") int id) {
-    	model.addAttribute("board", boardMapper.findOne(type).getB_name());
+    public String board_detail(Model model, @RequestParam(value="id") int id, Pagination pagination) {
+    	model.addAttribute("board", boardMapper.findOne(pagination.getBd()).getB_name());
     	model.addAttribute("article", articleMapper.findOne(id));
     	model.addAttribute("user", UserService.getCurrentUser().getId());
         return "user/board_detail";
     }
 
     @RequestMapping(value="board_create", method=RequestMethod.GET)
-    public String board_create(Model model, @RequestParam(value="type", defaultValue="0") int type) {
+    public String board_create(Model model, Pagination pagination) {
     	Article article = new Article();
     	model.addAttribute("article", article);
-    	model.addAttribute("board", boardMapper.findOne(type).getB_name());
+    	model.addAttribute("board", boardMapper.findOne(pagination.getBd()).getB_name());
     	return "user/board_create";
     }
 
     @RequestMapping(value="board_create", method=RequestMethod.POST)
-    public String board_create(Model model, Article article, @RequestParam(value="type", defaultValue="0") int type) {
-    	userService.createArticle(article, type);
-    	return "redirect:board?type="+type;
+    public String board_create(Model model, Article article, Pagination pagination, @RequestBody MultipartFile file) {
+    	int id = pagination.getBd();
+    	userService.createArticle(article, id , file);
+    	return "redirect:board?id=" + id + "&" + pagination.getQueryString();
     }
 
     @RequestMapping(value="board_edit", method=RequestMethod.GET)
-    public String board_edit(Model model, @RequestParam(value="type", defaultValue="0") int type, @RequestParam(value="id") int id) {
+    public String board_edit(Model model, @RequestParam(value="id") int id, Pagination pagination) {
     	model.addAttribute("article", articleMapper.findOne(id));
-    	model.addAttribute("board", boardMapper.findOne(type).getB_name());
+    	model.addAttribute("board", boardMapper.findOne(pagination.getBd()).getB_name());
     	return "user/board_create";
     }
 
     @RequestMapping(value="board_edit", method=RequestMethod.POST)
-    public String board_edit(Model model, Article article, @RequestParam(value="type", defaultValue="0") int type, @RequestParam(value="id") int id) {
-    	articleMapper.update(article);
-    	return "redirect:board_detail?type="+type+"&id="+id;
+    public String board_edit(Model model, Article article, Pagination pagination, @RequestParam(value="id") int id, @RequestBody MultipartFile file) {
+    	userService.editArticle(article, file);
+    	return "redirect:board_detail?id="+id+ "&" + pagination.getQueryString();
     }
 
     @RequestMapping("board_delete")
@@ -75,11 +81,10 @@ public class UserController {
         return "redirect:board?type="+type;
     }
 
-
     @RequestMapping("question")
-    public String question(Model model) {
-    	model.addAttribute("board", boardMapper.findOne(3).getB_name());
-		model.addAttribute("article", articleMapper.findAllByBoard(3));
+    public String question(Model model, Pagination pagination) {
+    	model.addAttribute("board", boardMapper.findOne(pagination.getBd()).getB_name());
+		model.addAttribute("article", userService.findAll(pagination));
         return "user/question";
     }
 
@@ -143,10 +148,8 @@ public class UserController {
 	@RequestMapping(value="meminfo_processing", method=RequestMethod.POST)
 	public String meminfo_processing(Model model, HttpServletRequest request) {
 		User user=userService.changeMeminfo(request);
-		model.addAttribute("board", "회원정보 수정");
-		model.addAttribute("user", UserService.getCurrentUser());
-		if(user==null) return "user/meminfo?error";
-		return "user/meminfo";
+		if(user==null) return "redirect:meminfo?error";
+		return "redirect:meminfo";
 	}
 
 

@@ -9,7 +9,7 @@
 				<div class="fh5co-spacer fh5co-spacer-sm"></div>
 			</div>	
 			<div class="col-md-8 col-md-offset-2 animate-box">
-				<form method="post" action="login_processing">
+				<form id="form" method="post" action="login_processing" onsubmit="return checkInput();">
 					<div class="col-md-12">
 						<div class="form-group">
 							<label for="id">ID</label>
