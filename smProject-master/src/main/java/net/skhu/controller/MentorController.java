@@ -37,15 +37,17 @@ public class MentorController {
 		 return "manager/m_contact";
 	 }
 
-	 //@RequestMapping(value = "manager/m_contact", method = RequestMethod.POST)
+	 /* 멘토 선정 여부 업데이트 */
+	 /* mentor_apply테이블의 condition을 m_condition으로 변경 */
+	 /* 멘토 선정됨: m_condition=0 멘토 탈락됨: m_condition=1 */
 	 @RequestMapping("manager/mentor_update")
 	 public String mentor_update(Model model, @RequestParam(value="id") int id) {
 		 Mentor mentor = mentorMapper.findOne(id);
-		 if(mentor.getRefusal()==0)
-			 mentor.setRefusal(1);
-		 else if(mentor.getRefusal()==1)
-			 mentor.setRefusal(0);
-		 mentorMapper.update_refusal(mentor);
+		 if(mentor.getM_condition()==0)
+			 mentor.setM_condition(1);
+		 else if(mentor.getM_condition()==1)
+			 mentor.setM_condition(0);
+		 mentorMapper.update_m_condition(mentor);
 		 return "redirect:m_contact";
 	 }
 
@@ -58,11 +60,11 @@ public class MentorController {
 	 @RequestMapping("manager/mentor_detail_update")
 	 public String mentor_detail_update(Model model, @RequestParam(value="id") int id) {
 		 Mentor mentor = mentorMapper.findOne(id);
-		 if(mentor.getRefusal()==0)
-			 mentor.setRefusal(1);
-		 else if(mentor.getRefusal()==1)
-			 mentor.setRefusal(0);
-		 mentorMapper.update_refusal(mentor);
+		 if(mentor.getM_condition()==0)
+			 mentor.setM_condition(1);
+		 else if(mentor.getM_condition()==1)
+			 mentor.setM_condition(0);
+		 mentorMapper.update_m_condition(mentor);
 	     return "redirect:m_contact_detail?id="+mentor.getId();
 	 }
 

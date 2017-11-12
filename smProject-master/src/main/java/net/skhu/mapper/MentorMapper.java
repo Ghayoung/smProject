@@ -13,8 +13,7 @@ public interface MentorMapper {
 	Mentor findByMentor_u_id(int mentor_u_id);
 	List<Mentor> findAll();
 	void update(Mentor mentor);
-	//void update_condition(Mentor mentor);
-	void update_refusal(Mentor mentor);
+	void update_m_condition(Mentor mentor);
 	void delete(int id);
 	void insert_apply(Mentor mentor);
 	void insert_report(Report report);

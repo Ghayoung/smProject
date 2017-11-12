@@ -5,7 +5,7 @@
 <mapper namespace="net.skhu.mapper.MentorMapper">
 
 	<select id="findOne" resultType="Mentor">
-		select m.*, u.name, fi.path i_path, ft.path t_path, fd.path d_path
+		select m.*, u.name, u.user_id, fi.path i_path, ft.path t_path, fd.path d_path
 		from mentor_apply m
 		left join user u on m.mentor_u_id=u.id
 		left join file fi on m.apply_f_intro_fk = fi.id
@@ -43,21 +43,14 @@
 			year = #{year}, grade = #{grade}, count = #{count},
 			study_purpose = #{study_purpose}, study_content = #{study_content}, study_method = #{study_method},
 			open_date = #{open_date},
-			apply_f_time_id = #{apply_f_time_id}, apply_f_intro_fk = #{apply_f_intro_fk}, apply_f_doc_fk = #{apply_f_doc_fk}
+			apply_f_time_id = #{apply_f_time_id}, apply_f_intro_fk = #{apply_f_intro_fk}, apply_f_doc_fk = #{apply_f_doc_fk},
+			m_condition = #{m_condition}
 		WHERE id = #{id}
 	</update>
 	
-	<!--
-	<update id="update_condition">
+	<update id="update_m_condition">
 		UPDATE mentor_apply SET
-			condition = #{condition}
-		WHERE id = #{id}
-	</update>
-	-->
-	
-	<update id="update_refusal">
-		UPDATE mentor_apply SET
-			refusal = #{refusal}
+			m_condition = #{m_condition}
 		WHERE id = #{id}
 	</update>
 	

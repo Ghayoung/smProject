@@ -17,12 +17,12 @@ public class Mentor{
 	int apply_f_time_id;
 	int apply_f_intro_fk;
 	int apply_f_doc_fk;
-	int condition;
-	int refusal;
+	int m_condition;
 	String i_path;
 	String t_path;
 	String d_path;
 	String name;
+	int user_id;
     List<Report> reports;
 
 	public int getId() {
@@ -137,20 +137,12 @@ public class Mentor{
 		this.apply_f_doc_fk = apply_f_doc_fk;
 	}
 
-	public int getCondition() {
-		return condition;
+	public int getM_condition() {
+		return m_condition;
 	}
 
-	public void setCondition(int condition) {
-		this.condition = condition;
-	}
-
-	public int getRefusal() {
-		return refusal;
-	}
-
-	public void setRefusal(int refusal) {
-		this.refusal = refusal;
+	public void setM_condition(int m_condition) {
+		this.m_condition = m_condition;
 	}
 
 	public String getI_path() {
@@ -182,7 +174,15 @@ public class Mentor{
 	}
 
 	public void setName(String name) {
-		this.name=name;
+		this.name = name;
+	}
+
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 
 	public List<Report> getReports() {

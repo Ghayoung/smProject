@@ -33,6 +33,8 @@ public class FileService {
 			upDirectory.mkdirs();
 		}
 
+		System.out.println(filePath);
+
 		String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
 
 		filePath += fileName;
