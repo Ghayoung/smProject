@@ -20,9 +20,10 @@
 				class="row">
 				<div class="col-md-8">
 					<div class="form-group">
-						<label for="search" class="sr-only ">검색어</label> <input
+						<label for="search" class="sr-only ">검색어</label> 
+						<input name="search"
 							placeholder="회원 검색" id="search" type="text"
-							class="form-control input-lg" value="${ keyword }">
+							class="form-control input-lg" value=${keyword}>
 					</div>
 				</div>
 				<div class="col-md-2" style="margin-left: -20px">
@@ -38,7 +39,7 @@
 					///////////////////////////////////
 					-->
 			<div class="animate-box search_result col-md-12"
-				style="display: none;">
+				style="display: contents">
 				<div class="panel panel-default ">
 					<table class="table search_user">
 						<thead>

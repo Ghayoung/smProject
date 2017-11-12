@@ -75,7 +75,7 @@
 	<select id="findByName" resultType="User">
 		SELECT u.*, d.d_name
 		FROM user u left join department d ON u.major_id=d.id
-		WHERE name like '%'||#{name}||'%';
+		WHERE u.name LIKE CONCAT('%', #{keyword}, '%');
 	</select>
 
 	<update id="update">
