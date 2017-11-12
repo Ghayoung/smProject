@@ -4,7 +4,7 @@ public class Report {
 	int id;
 	String subject;
 	String place;
-	int day;
+	String day;
 	String start_time;
 	String end_time;
 	String study_content;
@@ -36,10 +36,10 @@ public class Report {
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	public int getDay() {
+	public String getDay() {
 		return day;
 	}
-	public void setDay(int day) {
+	public void setDay(String day) {
 		this.day = day;
 	}
 	public String getStart_time() {

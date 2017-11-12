@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Article;
-import net.skhu.dto.Report;
 import net.skhu.dto.User;
 import net.skhu.mapper.ArticleMapper;
 import net.skhu.mapper.UserMapper;
@@ -27,9 +26,6 @@ public class UserService {
 	ArticleMapper articleMapper;
 	@Autowired
 	FileService fileService;
-	@Autowired
-	static
-	UserMapper reportMapper;
 
 	public User login(String user_id, String pw) {
 		User user = userMapper.findOneByUser_id(user_id);
@@ -110,9 +106,4 @@ public class UserService {
 		((MyAuthenticationProvider.MyAuthenticaion) SecurityContextHolder.getContext().getAuthentication())
 				.setUser(user);
 	}
-
-	public static List<Report> findAllReport() {
-		return reportMapper.findAllReport();
-	}
-
 }

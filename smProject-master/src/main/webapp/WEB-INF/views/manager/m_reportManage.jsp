@@ -36,6 +36,9 @@
 
 								<div class="row">
 									<!--조별-->
+									<%
+										int n = 1;
+									%>
 									<c:forEach var="teamReports" items="${ teamReports }">
 
 										<h2>${ teamReports.group_name }</h2>
@@ -48,11 +51,11 @@
 												aria-valuemax="100">25%</div>
 										</div>
 										<div class="panel panel-default">
-											<table class="table board" id="r_table1">
+											<table class="table board" id="r_table<%=n%>">
 												<thead>
 													<tr>
 														<th style="padding-left: 4px;"><input type="checkbox"
-															onclick="selectAllCheckBox(this,'r_table1','cb')"></th>
+															onclick="selectAllCheckBox(this,'r_table<%=n%>','cb')"></th>
 														<th>번호</th>
 														<th>스터디주제</th>
 														<th>장소</th>
@@ -65,7 +68,7 @@
 														<tr>
 															<td><input type="checkbox" name="checkbox" id="cb_1"></td>
 															<th scope="row">${ status.index+1 }</th>
-															<td data-url="report_detail">${ reports.subject }</td>
+															<td data-url="report_detail?id=${ reports.id }">${ reports.subject }</td>
 															<td>${ reports.place }</td>
 															<td>${ reports.create_date }</td>
 														</tr>
@@ -77,6 +80,9 @@
 											<a href="#" class="btn btn-primary btn-lg">다운로드</a>
 										</div>
 										<div class="fh5co-spacer fh5co-spacer-md"></div>
+										<%
+											n++;
+										%>
 									</c:forEach>
 
 									<!--조별 끝-->
@@ -113,11 +119,11 @@
 									<h2><%=week + 1%>주차
 									</h2>
 									<div class="panel panel-default">
-										<table class="table board" id="r_table7">
+										<table class="table board" id="r_table<%=n%>">
 											<thead>
 												<tr>
 													<th style="padding-left: 4px;"><input type="checkbox"
-														onclick="selectAllCheckBox(this,'r_table7','cb')"></th>
+														onclick="selectAllCheckBox(this,'r_table<%=n%>','cb')"></th>
 													<th>번호</th>
 													<th>팀명</th>
 													<th>스터디내용</th>
@@ -141,7 +147,7 @@
 													<td><input type="checkbox" name="checkbox" id="cb_1"></td>
 													<th scope="row"><%=i + 1%></th>
 													<td><%=report.getGroup_name()%></td>
-													<td data-url="report_detail"><%=report.getSubject()%></td>
+													<td data-url="report_detail?id=<%=report.getId()%>"><%=report.getSubject()%></td>
 													<td><%=report.getPlace()%></td>
 													<td><%=report.getCreate_date()%></td>
 												</tr>
@@ -149,6 +155,7 @@
 													}
 															i++;
 														}
+														n++;
 												%>
 											</tbody>
 										</table>
@@ -174,11 +181,11 @@
 									<!--전체-->
 									<h2>전체보고서</h2>
 									<div class="panel panel-default">
-										<table class="table board" id="r_table7">
+										<table class="table board" id="r_table<%=n%>">
 											<thead>
 												<tr>
 													<th style="padding-left: 4px;"><input type="checkbox"
-														onclick="selectAllCheckBox(this,'r_table7','cb')"></th>
+														onclick="selectAllCheckBox(this,'r_table<%=n%>','cb')"></th>
 													<th>번호</th>
 													<th>팀명</th>
 													<th>스터디내용</th>
@@ -188,18 +195,23 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="reports" items="${ reports }"
-													varStatus="status">
-													<tr>
-														<td><input type="checkbox" name="checkbox" id="cb_1"></td>
-														<th scope="row">${ status.index+1 }</th>
-														<td>${ reports.group_name }</td>
-														<td data-url="report_detail">${ reports.subject }</td>
-														<td>${ reports.place }</td>
-														<td>${ reports.create_date }</td>
-
-													</tr>
-												</c:forEach>
+												<%
+													int i = 0;
+													for (Report report : list) {
+												%>
+												<tr>
+													<td><input type="checkbox" name="checkbox" id="cb_1"></td>
+													<th scope="row"><%=i + 1%></th>
+													<td><%=report.getGroup_name()%></td>
+													<td data-url="report_detail?id=<%=report.getId()%>"><%=report.getSubject()%></td>
+													<td><%=report.getPlace()%></td>
+													<td><%=report.getCreate_date()%></td>
+												</tr>
+												<%
+													}
+													i++;
+													n++;
+												%>
 											</tbody>
 										</table>
 
