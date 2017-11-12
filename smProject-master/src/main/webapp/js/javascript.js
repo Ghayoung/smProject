@@ -80,10 +80,10 @@ function minor_dep(v, showId, nonShowId) {
 	}
 }
 
-function excel() {
-	document.frm.action = "excel";
-	document.frm.excel_data.value = document.getElementById("excel_body").outerHTML;
-	document.frm.submit();
+function excel(){
+	 document.frm.action = "excel";
+	 document.frm.excel_data.value = document.getElementById("excel_body").outerHTML;
+	 document.frm.submit();
 }
 
 document.getElementById('datePicker').valueAsDate = new Date();
