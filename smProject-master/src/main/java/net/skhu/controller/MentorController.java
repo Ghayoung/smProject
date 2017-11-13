@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Mentor;
+import net.skhu.dto.Team;
 import net.skhu.dto.User;
 import net.skhu.mapper.MentorMapper;
+import net.skhu.mapper.TeamMapper;
+import net.skhu.mapper.UserMapper;
 import net.skhu.service.FileService;
 import net.skhu.service.UserService;
 

@@ -112,13 +112,8 @@
 
 					
 
-					<!-- 관리자추가버튼 -->
-					<div class="col-md-6">
-						<!-- <div class="form-group">
-							<button class="btn btn-primary" data-target="#layerpop"
-								data-toggle="modal">관리자추가</button>
-						</div> -->
-					</div> 
+		
+					<div class="col-md-6"></div> 
 
 
 					<form action="#" method="post" class="row">
