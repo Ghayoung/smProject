@@ -41,6 +41,7 @@ window.onload = function() {
 	}
 };
 
+
 function selectAllCheckBox(allcheck, containerID, checkboxIDMatch) { // (all체크박스,
 	// 그룹ID,
 	// 체크박스ID)
@@ -149,7 +150,11 @@ function checkSearch() {
 		alert("검색어를 입력해주세요");
 		document.fm.search.focus();
 		return false;
-	} else {
+	} else if (document.fm.mentoringSearch.value == "") {
+		alert("검색어를 입력해주세요");
+		document.fm.mentoringSearch.focus();
+		return false;
+	}else {
 		fm.submit();
 	}
 }

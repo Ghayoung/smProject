@@ -18,7 +18,7 @@
 		<div class="row animate-box">
 			<h2 class="fh5co-uppercase-heading-sm text-center" id="mentoringManage">멘토링 관리</h2>
 			<form action="m_mentoringManage" method="post" style="float: right"
-				class="row" name="fmm" onsubmit="return checkSearch();">
+				class="row" name="fm" onsubmit="return checkSearch();">
 				<div class="col-md-8">
 					<div class="form-group">
 						<label for="search" class="sr-only ">검색어</label> <input
