@@ -131,6 +131,13 @@ public class UserController {
 	 }
 
 	 /* 멘티신청 */
+	 @RequestMapping("mentee_update")
+	 public String mentee_update(Model model) {
+		 User user = UserService.getCurrentUser();
+		 if(user.getType()!=4)
+			 user.setType(4);
+		 return "";
+	 }
 
 
 	@RequestMapping("timetable")
