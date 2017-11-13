@@ -4,22 +4,17 @@
 
 <mapper namespace="net.skhu.mapper.TeamMapper">
 
-	<select id="findTeamByMentor" resultType="Team">
-		SELECT * FROM team WHERE group_m_apply_id = #{group_m_apply_id}
-	</select>
-	
-	<insert id="insertMentor" useGeneratedKeys="true" keyProperty="id">
-		INSERT team (group_m_apply_id)
-		VALUES (#{group_m_apply_id})
-	</insert>
-	
-	<insert id="insertMentee" useGeneratedKeys="true" keyProperty="id">
-		INSERT team (group_mentee_id)
-		VALUES (#{group_mentee_id})
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT team (group_m_apply_id, group_mentee_id)
+		VALUES (#{group_m_apply_id}, #{group_mentee_id})
 	</insert>
 	
 	<delete id="delete">
 	    DELETE FROM team WHERE group_m_apply_id = #{group_m_apply_id}
+	</delete>
+	
+	<delete id="deleteMentee">
+	    DELETE FROM team WHERE group_mentee_id = #{group_mentee_id}
 	</delete>
 
 	<select id="findAll" resultType="Team">

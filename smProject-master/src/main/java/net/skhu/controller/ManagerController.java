@@ -119,7 +119,8 @@ public class ManagerController {
 			 user.setType(3);
 			 Team team = new Team();
 			 team.setGroup_m_apply_id(mentor.getId());
-			 teamMapper.insertMentor(team);
+			 team.setGroup_mentee_id(mentor.getMentor_u_id());
+			 teamMapper.insert(team);
 		 }
 		 else if(mentor.getType()==3) {
 			 user.setType(1);
@@ -143,7 +144,8 @@ public class ManagerController {
 			 user.setType(3);
 			 Team team = new Team();
 			 team.setGroup_m_apply_id(mentor.getId());
-			 teamMapper.insertMentor(team);
+			 team.setGroup_mentee_id(mentor.getMentor_u_id());
+			 teamMapper.insert(team);
 		 }
 		 else if(mentor.getType()==3) {
 			 user.setType(1);
@@ -194,12 +196,12 @@ public class ManagerController {
 
    @RequestMapping(value = "m_mentoringManage", method = RequestMethod.GET)
    public String m_montoringManage(Model model) {
-	  
+
 	   	List<Team> teams= teamMapper.findAll();
 			model.addAttribute("teams", teams);
 	       return "manager/m_mentoringManage";
 		}
-   
+
    @RequestMapping(value="m_mentoringManage", method=RequestMethod.POST)
    public String m_mentoringManage(Model model,HttpServletRequest request){
 
@@ -210,7 +212,7 @@ public class ManagerController {
 
 	   List<Team> teams= teamMapper.findAll();
 	   model.addAttribute("teams", teams);
-	   
+
 	    return "manager/m_mentoringManage";
 
    }
