@@ -35,6 +35,8 @@ public class FileService {
 
 		relPath += fileName;
 
+		System.out.println(relPath+" 업로드");
+
 		final File uploadFile = new File(relPath);
 		if (uploadFile.exists()) {
 			uploadFile.delete();

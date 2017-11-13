@@ -23,14 +23,14 @@
 				</div>
 						
 				<div class="fh5co-spacer fh5co-spacer-sm"></div>
-				<form name="form" action="m_register" method="post" enctype="multipart/form-data">
+				<form name="r_form" action="m_register" method="post" enctype="multipart/form-data" onsubmit="return false">
 					<div class="col-md-12">
 						<label>신/편입생 명단</label>
 						<input type="file" class="btn btn-lg " value="파일첨부" name="file">
 					</div>
 					<div class="fh5co-spacer fh5co-spacer-md"></div>
-					<input type=submit class="btn btn-primary col-md-offset-10" value="등록">
-					<!--<button class="btn btn-primary col-md-offset-10" data-target="#layerpop" data-toggle="modal">등록</button>-->
+					<!--<input type=submit class="btn btn-primary col-md-offset-10" value="등록">-->
+					<button class="btn btn-primary col-md-offset-10" data-target="#layerpop" data-toggle="modal">등록</button>
 				</form>
 				</div>
 				</div>
@@ -62,7 +62,7 @@
 	      </div>
 	      <!-- Footer -->
 	      <div class="modal-footer">
-	        <a href="m_register.do" class="btn btn-primary" data-dismiss="modal">확인</a>
+	        <button onclick="register()" type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
 	        <button type="button" class="btn btn-outline" data-dismiss="modal">닫기</button>
 	      </div>
 	    </div>
