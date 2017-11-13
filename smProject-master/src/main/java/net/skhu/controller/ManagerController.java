@@ -30,9 +30,11 @@ import net.skhu.dto.FileDTO;
 import net.skhu.dto.Introduce;
 import net.skhu.dto.Report;
 import net.skhu.dto.Setting;
+import net.skhu.dto.Team;
 import net.skhu.dto.User;
 import net.skhu.mapper.FileMapper;
 import net.skhu.mapper.IntroduceMapper;
+import net.skhu.mapper.TeamMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.service.ExcelReadService;
 import net.skhu.service.FileService;
@@ -47,6 +49,8 @@ public class ManagerController {
    FileMapper fileMapper;
    @Autowired
    IntroduceMapper introduceMapper;
+   @Autowired
+   TeamMapper teamMapper;
    @Autowired
    ManagerService managerService;
    @Autowired
@@ -139,10 +143,12 @@ public class ManagerController {
    }
    
    @RequestMapping(value = "m_mentoringManage", method = RequestMethod.GET)
-   public String m_mentoringManage(Model model) {
-
-      return "manager/m_mentoringManage";
-   }
+   public String m_montoringManage(Model model) {
+	  
+	   	List<Team> teams= teamMapper.findAll();
+			model.addAttribute("teams", teams);
+	       return "manager/m_mentoringManage";
+		}
 
    @RequestMapping(value = "m_reportManage", method = RequestMethod.GET)
    public String m_reportManage(Model model) {
