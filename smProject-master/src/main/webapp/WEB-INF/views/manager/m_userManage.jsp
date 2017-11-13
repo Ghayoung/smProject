@@ -109,13 +109,7 @@
 			<div class="row">
 				<div class="col-md-12 animate-box">
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
-
-					
-
-		
 					<div class="col-md-6"></div> 
-
-
 					<form action="#" method="post" class="row">
 						<!-- 정렬조건 -->
 						<div class="col-md-6">
@@ -355,5 +349,4 @@
 			</div>
 		</div>
 	</div>
-</div>
 </div>

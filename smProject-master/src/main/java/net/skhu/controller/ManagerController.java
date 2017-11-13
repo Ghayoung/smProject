@@ -194,7 +194,7 @@ public class ManagerController {
 
    @RequestMapping(value = "m_mentoringManage", method = RequestMethod.GET)
    public String m_montoringManage(Model model) {
-	  
+
 	   	List<Team> teams= teamMapper.findAll();
 			model.addAttribute("teams", teams);
 	       return "manager/m_mentoringManage";
@@ -287,6 +287,6 @@ public class ManagerController {
 
    @RequestMapping(value = "excel", method = RequestMethod.POST)
    public String excel(Model model) {
-      return "manager/excel";
+      return "manager/m_excel";
    }
 }

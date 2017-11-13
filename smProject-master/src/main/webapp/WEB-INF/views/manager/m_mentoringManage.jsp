@@ -77,7 +77,7 @@
 						</tbody>
 					</table>
 				</div>
-			</div>
+			
 			<div class="fh5co-spacer fh5co-spacer-sm"></div>
 
 		</div>

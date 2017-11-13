@@ -6,6 +6,10 @@
 
 	response.setHeader("Content-Disposition", "attachment; filename=excel.xls");
 	response.setHeader("Content-Description", "JSP Generated Data");
+	response.setHeader("Content-Disposition", "attachment; filename=excel.xls");  
+	response.setHeader("Content-Description", "JSP Generated Data");  
+	response.setContentType("application/vnd.ms-excel");  
+
 %>
 
 <html>
