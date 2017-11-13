@@ -12,5 +12,4 @@ public interface TeamMapper {
 	void insertMentor(Team team);
 	void insertMentee(Team team);
 	void delete(int id);
-	List<Team> findAll();
 }
