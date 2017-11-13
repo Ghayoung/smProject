@@ -13,7 +13,8 @@
 					</div>
 					
 					<c:forEach var="mentor" items="${ mentors }">
-					<div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 text-center fh5co-work-item work-box">
+					<div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 text-center fh5co-work-item work-box"
+					style="border: 1px ridge; padding:7px;">
 						<figure><a href="${R}user/menteeapply_detail?id=${ mentor.id }"><img class="img-responsive" src="${R}user/getImage?id=${ mentor.apply_f_intro_fk }" alt=""></a></figure>
 						<h3>팀명:&nbsp;${ mentor.group_name }</h3>
 						<p>주제:&nbsp;${ mentor.subject }</p>

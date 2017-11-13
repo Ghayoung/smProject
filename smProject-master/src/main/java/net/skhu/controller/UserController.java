@@ -149,7 +149,24 @@ public class UserController {
 		 }
 		 userMapper.type_update(user);
 		 teamMapper.insert(team);
-		 return "user/mentee_update";
+		 return "redirect:menteeapply";
+	 }
+
+	 @RequestMapping("mentee_update_detail")
+	 public String mentee_update_detail(Model model, @RequestParam(value="id") int id) {
+		 Team team = new Team();
+		 User user = UserService.getCurrentUser();
+		 if(user.getType()!=4) {
+			 user.setType(4);
+			 team.setGroup_m_apply_id(id);
+			 team.setGroup_mentee_id(user.getId());
+		 } else if(user.getType()==4) {
+			 user.setType(1);
+			 teamMapper.deleteMentee(user.getId());
+		 }
+		 userMapper.type_update(user);
+		 teamMapper.insert(team);
+		 return "redirect:menteeapply_detail?id="+id;
 	 }
 
 
