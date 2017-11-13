@@ -1,12 +1,15 @@
 package net.skhu.controller;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Article;
+import net.skhu.dto.FileDTO;
 import net.skhu.dto.Mentor;
 import net.skhu.dto.Report;
 import net.skhu.dto.Team;
@@ -127,16 +131,18 @@ public class UserController {
 		 List<Mentor> mentors = mentorMapper.findMentor();
 		 User user = UserService.getCurrentUser();
 		 for(int i=0; i<mentors.size(); i++) {
+			 mentors.get(i).setState(2);
 			 if(user.getType()!=4) {
 				 mentors.get(i).setState(0);
 			 } else if(user.getType()==4) {
 				 List<Team> teams = teamMapper.findTeamByMentor(mentors.get(i).getId());
 				 for(int j=0; j<teams.size(); j++) {
-					 if(user.getId()==teams.get(j).getGroup_mentee_id())
+					 System.out.println("j: "+teams.get(j).getGroup_mentee_id()+" "+user.getId());
+					 if(user.getId()==teams.get(j).getGroup_mentee_id()) {
+						 mentors.get(i).setState(1);
 						 b=true;
+					 }
 				 }
-				 if(b) mentors.get(i).setState(1);
-				 else mentors.get(i).setState(2);
 			 }
 			 if(!b&&mentors.get(i).getMentee_count()==mentors.get(i).getCount())
 				 mentors.get(i).setState(2);
@@ -291,6 +297,28 @@ public class UserController {
 			return "redirect:meminfo?error";
 		return "redirect:meminfo";
 	}
+
+	@RequestMapping("file/download")
+	   public void download(@RequestParam("id") int id, HttpServletResponse response) throws Exception {
+	      FileDTO uploadedfile = fileMapper.findOne(id);
+	      if (uploadedfile == null)
+	         return;
+	      String fileName=(uploadedfile.getPath()).substring(11);
+
+	      String filePath = (uploadedfile.getPath()).substring(0, 11);
+
+	      filePath+=fileName;
+
+	      Path path = Paths.get(filePath);
+
+	      uploadedfile.setData(Files.readAllBytes(path));
+
+	      response.setContentType("application/octet-stream");
+	      response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName,"UTF-8") + ";");
+	      try (BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream())) {
+	         output.write(uploadedfile.getData());
+	      }
+	   }
 
 	@RequestMapping(value = "getImage")
 	public ResponseEntity<byte[]> getImage(@RequestParam("id") int id) {

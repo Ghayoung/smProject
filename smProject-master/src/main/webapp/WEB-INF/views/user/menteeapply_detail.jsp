@@ -65,7 +65,7 @@
 						<div class="panel panel-default">${ mentor.study_method }</div>
 					</div>
 					<div class="col-md-2">
-						<a href="${R}manager/file/download?id=${ mentor.apply_f_time_id }">
+						<a href="${R}user/file/download?id=${ mentor.apply_f_time_id }">
 							시간표 <img src="${R}images\file.png" border="0">
 						</a>
 					</div>
