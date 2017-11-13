@@ -104,13 +104,13 @@ function show_office() {
 	}
 }
 
-function searchResult() {
-	if (document.fm.search.value != "") {
-		document.getElementById('resultDIV').style.display = "";
+function checkSearch() {
+	if (document.fm.search.value == "") {
+		alert("검색어를 입력해주세요");
+		document.fm.search.focus();
 		return false;
 	} else {	
 		fm.submit();
-		document.getElementById('resultDIV').style.display = "";
 	}
 }
 
