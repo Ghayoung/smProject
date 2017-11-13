@@ -13,4 +13,5 @@ public interface TeamMapper {
 	void delete(int id);
 	Team findTeamByMentor(int id);
 	List<Team> findAll();
+	List<Team> findMentoringByName(String keyword);
 }
