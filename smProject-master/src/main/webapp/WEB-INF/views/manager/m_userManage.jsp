@@ -16,7 +16,8 @@
 				-->
 		<div class="row animate-box">
 			<h2 class="fh5co-uppercase-heading-sm text-center">회원 관리</h2>
-			<form method="post" style="float: right" class="row" name="fm" onsubmit="return checkSearch();">
+			<form method="post" style="float: right" class="row" name="fm"
+				onsubmit="return checkSearch();">
 				<div class="col-md-8">
 					<div class="form-group">
 						<label for="search" class="sr-only ">검색어</label> <input
@@ -92,26 +93,54 @@
 			<div class="row">
 				<div class="col-md-12 animate-box">
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
-					<form action="#" method="post" class="search_min">
-						<div class="col-md-2">
+
+					<form action="#" method="post" class="row">
+
+						<!-- 관리자추가버튼 -->
+						<div class="col-md-6">
 							<div class="form-group">
-								<label for="search_term" class="sr-only">학기</label> <select
-									class="form-control" id="search_term">
-									<option>--학기</option>
-									<option>1</option>
-									<option>2</option>
-								</select>
+								<button class="btn btn-primary" data-target="#layerpop"
+									data-toggle="modal">관리자추가</button>
 							</div>
 						</div>
-						<div class="col-md-2">
-							<div class="form-group">
-								<label for="search_year" class="sr-only">년도</label> <input
-									placeholder="2017학년도" id="search_year" type="text"
-									class="form-control">
+
+						<!-- 정렬조건 -->
+						<div class="col-md-6">
+							<div class="col-md-4"
+								style="margin-right: -30px; margin-left: 90px; padding-right: 20px">
+								<div class="form-group">
+									<label for="search_year" class="sr-only">년도</label> <input
+										placeholder="2017학년도" id="search_year" type="text"
+										class="form-control">
+								</div>
+							</div>
+
+							<div class="col-md-4" style="margin-right: -30px">
+								<div class="form-group">
+									<label for="search_term" class="sr-only">학기</label> <select
+										class="form-control" id="search_term">
+										<option>--학기</option>
+										<option>1</option>
+										<option>2</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="col-md-4" style="margin-right: -30px">
+								<div class="form-group">
+									<input type="submit" class="btn btn-primary" value="검색">
+
+								</div>
 							</div>
 						</div>
+						<!-- 정렬조건 끝 -->
 					</form>
 				</div>
+
+
+
+
+
 				<div class="col-md-12 animate-box">
 					<div id="fh5co-tab-feature-center" class="fh5co-tab text-center">
 						<ul class="resp-tabs-list hor_1">
@@ -155,8 +184,6 @@
 										</table>
 									</div>
 								</div>
-								<button class="btn btn-primary col-md-offset-10"
-									data-target="#layerpop" data-toggle="modal">관리자추가</button>
 							</div>
 
 							<!--멘토-->
@@ -285,8 +312,8 @@
 								</div>
 								<div class="col-md-2">
 									<div class="form-group">
-										<!--<input type="submit" class="btn btn-primary btn-lg " value="검색">-->
-										<a class="btn btn-primary btn-lg search_manager_btn">검색</a>
+										<input type="submit" class="btn btn-primary btn-lg " value="검색">
+										<!-- <a class="btn btn-primary btn-lg search_manager_btn">검색</a> -->
 									</div>
 								</div>
 							</div>
@@ -328,5 +355,4 @@
 			</div>
 		</div>
 	</div>
-</div>
 </div>
