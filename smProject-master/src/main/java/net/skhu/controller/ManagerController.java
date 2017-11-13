@@ -199,6 +199,21 @@ public class ManagerController {
 			model.addAttribute("teams", teams);
 	       return "manager/m_mentoringManage";
 		}
+   
+   @RequestMapping(value="m_mentoringManage", method=RequestMethod.POST)
+   public String m_mentoringManage(Model model,HttpServletRequest request){
+
+	   String keyword = request.getParameter("search");
+	   List<Team> searchTeams= teamMapper.findMentoringByName(keyword);
+	   model.addAttribute("SearchTeams", searchTeams);
+	   model.addAttribute("keyword", keyword);
+
+	   List<Team> teams= teamMapper.findAll();
+	   model.addAttribute("teams", teams);
+	   
+	    return "manager/m_mentoringManage";
+
+   }
 
    @RequestMapping(value = "m_reportManage", method = RequestMethod.GET)
    public String m_reportManage(Model model) {

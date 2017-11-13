@@ -39,20 +39,20 @@
 					///////////////////////////////////
 					-->
 		<%
-				Object keyword = null;
-				if (request.getAttribute("keyword") != null) {
-					keyword = request.getAttribute("keyword");
-				}
-				if (keyword == null) {
-			%>
+			Object keyword = null;
+			if (request.getAttribute("keyword") != null) {
+				keyword = request.getAttribute("keyword");
+			}
+			if (keyword == null) {
+		%>
 		<div class="animate-box col-md-12" style="display: none">
 			<%
-					} else {
-				%>
+				} else {
+			%>
 			<div class="animate-box col-md-12" style="display: block">
 				<%
-						}
-					%>
+					}
+				%>
 				<div class="panel panel-default">
 					<table class="table search_user">
 						<thead>
