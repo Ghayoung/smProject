@@ -4,6 +4,8 @@
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
+
 <div id="fh5co-main">
 
 	<div class="container">
@@ -14,10 +16,9 @@
 				///////////////////////////////////
 				-->
 		<div class="row animate-box">
-			<h2 class="fh5co-uppercase-heading-sm text-center"
-				id="#mentoringManage">멘토링 관리</h2>
+			<h2 class="fh5co-uppercase-heading-sm text-center" id="mentoringManage">멘토링 관리</h2>
 			<form action="#mentoringManage" method="post" style="float: right"
-				class="row" name="fm" onsubmit="return checkSearch();">
+				class="row" name="fmm" onsubmit="return checkSearch();">
 				<div class="col-md-8">
 					<div class="form-group">
 						<label for="search" class="sr-only ">검색어</label> <input
@@ -65,19 +66,19 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="team" items="${ teams }" varStatus="status">
+							<c:forEach var="searchteam" items="${ SearchTeams }" varStatus="status">
 								<tr>
 									<td>${ status.index+1 }</td>
-									<td>${ team.name }</td>
-									<td>${ team.group_name }</td>
-									<td>${ team.apply_mentee_count }/${ team.count }</td>
-									<td>${ team.open_date }</td>
+									<td>${ SearchTeams.name }</td>
+									<td>${ SearchTeams.group_name }</td>
+									<td>${ SearchTeams.apply_mentee_count }/${ SearchTeams.count }</td>
+									<td>${ SearchTeams.open_date }</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 				</div>
-			</div>
+			
 			<div class="fh5co-spacer fh5co-spacer-sm"></div>
 
 		</div>
@@ -158,5 +159,6 @@
 	</div>
 	<!-- END container -->
 
+</div>
 </div>
 <!-- END fhtco-main -->

@@ -27,14 +27,14 @@
 		group by t.group_m_apply_id		
 	</select>
 	
-	<select id="findByName" resultType="Team">
+	<select id="findMentoringByName" resultType="Team">
 		SELECT t.*, m.group_name, m.count, m.open_date, u.name, count(*) "apply_mentee_count"
 		FROM Team t right join mentor_apply m
 		on t.group_m_apply_id = m.id
 		left join user u
 		on m.mentor_u_id = u.id
 		group by t.group_m_apply_id	
-		WHERE m.group_name LIKE CONCAT('%', #{keyword}, '%');
+		HAVING m.group_name LIKE CONCAT('%', #{keyword}, '%');
 	</select>
 	
 </mapper>
