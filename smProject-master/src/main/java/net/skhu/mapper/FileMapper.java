@@ -13,4 +13,5 @@ public interface FileMapper {
 	void fileUpload(FileDTO file);
 	void update(FileDTO file);
 	void delete(int id);
+	String getImage(int id);
 }

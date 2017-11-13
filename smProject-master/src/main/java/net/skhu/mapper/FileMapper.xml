@@ -12,6 +12,11 @@
 		SELECT * FROM file
 	</select>
 	
+	<select id="getImage" resultType="String">
+		select path from file
+		where id=#{id}
+	</select>
+	
 	<insert id="fileUpload" useGeneratedKeys="true" keyProperty="id">
 		INSERT file (path)
 		VALUES (#{path})

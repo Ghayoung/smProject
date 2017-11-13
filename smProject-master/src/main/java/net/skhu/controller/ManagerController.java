@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -113,13 +115,13 @@ public class ManagerController {
    @RequestMapping(value="m_userManage", method=RequestMethod.POST)
    //public String m_userManage(Model model,@RequestParam(required=false, name="keyword") String keyword){
    public String m_userManage(Model model,HttpServletRequest request){
-	
+
 	   String keyword = request.getParameter("search");
 	   List<User> SearchUsers= userMapper.findByName(keyword);
-	   model.addAttribute("SearchUsers", SearchUsers);	   
+	   model.addAttribute("SearchUsers", SearchUsers);
 	   model.addAttribute("keyword", keyword);
 
-		
+
 		List<User> managers= userMapper.findAllManager();
 		List<User> mentors= userMapper.findAllMentor();
 		List<User> mentees= userMapper.findAllMentee();
@@ -179,6 +181,24 @@ public class ManagerController {
          output.write(uploadedfile.getData());
       }
    }
+
+	@RequestMapping(value = "getImage")
+	public ResponseEntity<byte[]> getImage(@RequestParam("id") int id) {
+
+		String fileName=fileMapper.getImage(id);
+
+		Path path = Paths.get(fileName);
+
+		byte[] image=null;
+		try {
+			image = Files.readAllBytes(path);
+			return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
+		}
+	}
 
    @RequestMapping(value = "m_setting", method = RequestMethod.GET)
    public String m_setting(Model model) {

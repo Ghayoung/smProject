@@ -19,7 +19,7 @@
 					<div class="col-md-12 animate-box">
 						<form method="post">
 							<div class="col-md-12">
-								<img src="${R}${ mentor.i_path }" alt="${R}${ mentor.i_path }" class="fh5co-align-center img-responsive">
+								<img src="${R}img/upload/file.png" alt="" class="fh5co-align-center img-responsive">
 								<div class="fh5co-spacer fh5co-spacer-sm"></div>
 								<div class="fh5co-spacer fh5co-spacer-sm"></div>
 							</div>
