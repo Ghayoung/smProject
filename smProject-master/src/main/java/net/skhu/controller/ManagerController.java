@@ -132,6 +132,12 @@ public class ManagerController {
 
    }
 
+   @RequestMapping("auth_update")
+   public String auth_update(@RequestParam("id") int id) {
+	   userMapper.auth_update(id);
+	   return "redirect:m_userManage";
+   }
+   
    @RequestMapping(value = "m_mentoringManage", method = RequestMethod.GET)
    public String m_mentoringManage(Model model) {
 

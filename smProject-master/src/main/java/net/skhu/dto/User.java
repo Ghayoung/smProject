@@ -17,7 +17,7 @@ public class User {
 	int double_id;
 	int condition;
 	int status_id;
-	Date auth_date;
+	String auth_date;
 	String d_name;
 	String status_name;
 
@@ -106,10 +106,10 @@ public class User {
 		this.condition = condition;
 	}
 
-	public Date getAuth_date() {
+	public String getAuth_date() {
 		return auth_date;
 	}
-	public void setAuth_date(Date auth_date) {
+	public void setAuth_date(String auth_date) {
 		this.auth_date = auth_date;
 	}
 	public int getStatus_id() {

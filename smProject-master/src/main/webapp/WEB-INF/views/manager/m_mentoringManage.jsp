@@ -10,45 +10,30 @@
 				-->
 				<div class="row animate-box">
 					<h2 class="fh5co-uppercase-heading-sm text-center">멘토링 관리</h2>
-					<form action="#" method="post">
-						<div class="col-md-12">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label for="search" class="sr-only">검색어</label>
-									<input placeholder="멘토링 검색" id="search" type="text" class="form-control input-lg">
-								</div>	
-							</div>
-							<div class="col-md-2">
-								<div class="form-group">
-									<label for="search_year" class="sr-only">년도</label>
-									<input placeholder="2017" id="search_year" type="text" class="form-control input-lg">
-								</div>	
-							</div>
-							<div class="col-md-2">
-								<div class="form-group">
-									<label for="search_term" class="sr-only">학기</label>
-									<select class="form-control input-lg" id="search_term">
-									  <option>--학기</option>
-									  <option>1</option>
-									  <option>2</option>
-									</select>
-								</div>	
-							</div>
-							<div class="col-md-2">
-								<div class="form-group">
-									<!--<input type="submit" class="btn btn-primary btn-lg " value="검색">-->
-									<a id="comment_btn" class="btn btn-primary btn-lg">검색</a>
-								</div>	
-							</div>
-						</div>
-					</form>
+					<form action="#userManage" method="post" style="float: right" class="row" name="fm"
+				onsubmit="return checkSearch();">
+				<div class="col-md-8">
+					<div class="form-group">
+						<label for="search" class="sr-only ">검색어</label> 
+						<input
+							name="mentoringSearch" placeholder="멘토방 검색" id="mentoringSearch" type="text"
+							class="form-control input-lg" value="${keyword}">
+					</div>
+				</div>
+				<div class="col-md-2" style="margin-left: -20px">
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary btn-lg " value="검색">
+						<!--	 <a class="btn btn-primary btn-lg search_btn">검색</a>   -->
+					</div>
+				</div>
+			</form>
 				</div>
 					<!-- 
 					///////////////////////////////////
 					검색 결과
 					///////////////////////////////////
 					-->
-				<div id="comment" class="row animate-box" style="display:none;">
+				<div id="comment" class="row animate-box">
 					<div class="panel panel-default ">
 						<table class="table search_user">
 							<thead>
