@@ -143,12 +143,12 @@ public class UserController {
 			 user.setType(4);
 			 team.setGroup_m_apply_id(id);
 			 team.setGroup_mentee_id(user.getId());
+			 teamMapper.insert(team);
 		 } else if(user.getType()==4) {
 			 user.setType(1);
 			 teamMapper.deleteMentee(user.getId());
 		 }
 		 userMapper.type_update(user);
-		 teamMapper.insert(team);
 		 return "redirect:menteeapply";
 	 }
 
@@ -160,12 +160,12 @@ public class UserController {
 			 user.setType(4);
 			 team.setGroup_m_apply_id(id);
 			 team.setGroup_mentee_id(user.getId());
+			 teamMapper.insert(team);
 		 } else if(user.getType()==4) {
 			 user.setType(1);
 			 teamMapper.deleteMentee(user.getId());
 		 }
 		 userMapper.type_update(user);
-		 teamMapper.insert(team);
 		 return "redirect:menteeapply_detail?id="+id;
 	 }
 
