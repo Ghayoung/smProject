@@ -35,6 +35,7 @@
 		left join file fi on m.apply_f_intro_fk = fi.id
 		left join file ft on m.apply_f_time_id = ft.id
 		left join file fd on m.apply_f_doc_fk = fd.id
+		order by u.type;
 	</select>
 	
 	<insert id="insert_apply" useGeneratedKeys="true" keyProperty="id">

@@ -17,7 +17,7 @@
 		<div class="row animate-box">
 			<h2 class="fh5co-uppercase-heading-sm text-center" id="userManage">회원 관리</h2>
 			<form action="#userManage" method="post" style="float: right"
-				class="row" name="fm" onsubmit="return checkSearch();">
+				class="row" name="fm" onsubmit="return checkSearch1();">
 				<div class="col-md-8">
 					<div class="form-group">
 						<label for="search" class="sr-only ">검색어</label> <input
