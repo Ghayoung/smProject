@@ -6,8 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import javax.servlet.ServletContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
@@ -20,8 +18,6 @@ import net.skhu.mapper.FileMapper;
 public class FileService {
 	@Autowired
 	FileMapper fileMapper;
-	@Autowired
-	private ServletContext servletContext;
 	FileDTO fdto = new FileDTO();
 
 	public int fileUpload(MultipartFile uploadedFile) {
