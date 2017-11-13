@@ -87,6 +87,10 @@
 	<update id="update">
 		UPDATE user SET pw = #{pw}, email = #{email}, phone = #{phone} WHERE id = #{id}
 	</update>
+	
+	<update id="type_update">
+		UPDATE user SET type = #{type} WHERE id = #{id}
+	</update>
 
 	<update id="auth_update">
 		UPDATE User

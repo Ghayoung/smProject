@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Mentor;
+import net.skhu.dto.Team;
 import net.skhu.dto.User;
 import net.skhu.mapper.MentorMapper;
+import net.skhu.mapper.TeamMapper;
+import net.skhu.mapper.UserMapper;
 import net.skhu.service.FileService;
 import net.skhu.service.UserService;
 
@@ -27,6 +30,10 @@ public class MentorController {
 	UserService userService;
 	@Autowired
 	FileService fileService;
+	@Autowired
+	UserMapper userMapper;
+	@Autowired
+	TeamMapper teamMapper;
 	Mentor mentor = new Mentor();
 
 	/* 멘토 신청서 목록 출력 */
@@ -39,14 +46,26 @@ public class MentorController {
 
 	 /* 멘토 선정 여부 업데이트 */
 	 /* mentor_apply테이블의 condition을 m_condition으로 변경 */
-	 /* 멘토 선정됨: m_condition=0 멘토 탈락됨: m_condition=1 */
+	 /* 신청서 선정됨: m_condition=0 신청서 탈락됨: m_condition=1 */
+	 /* 선정된 유저 타입 3으로 변경  탈락된 유저 타입 1으로 변경*/
+	 /* 그룹 생성 */
 	 @RequestMapping("manager/mentor_update")
 	 public String mentor_update(Model model, @RequestParam(value="id") int id) {
 		 Mentor mentor = mentorMapper.findOne(id);
-		 if(mentor.getM_condition()==0)
+		 User user = userMapper.findOneById(mentor.getMentor_u_id());
+		 if(mentor.getM_condition()==0) {
 			 mentor.setM_condition(1);
-		 else if(mentor.getM_condition()==1)
+			 user.setType(3);
+			 Team team = new Team();
+			 team.setGroup_m_apply_id(mentor.getId());
+			 teamMapper.insertMentor(team);
+		 }
+		 else if(mentor.getM_condition()==1) {
 			 mentor.setM_condition(0);
+			 user.setType(1);
+			 teamMapper.delete(mentor.getId());
+		 }
+		 userMapper.type_update(user);
 		 mentorMapper.update_m_condition(mentor);
 		 return "redirect:m_contact";
 	 }
@@ -60,10 +79,20 @@ public class MentorController {
 	 @RequestMapping("manager/mentor_detail_update")
 	 public String mentor_detail_update(Model model, @RequestParam(value="id") int id) {
 		 Mentor mentor = mentorMapper.findOne(id);
-		 if(mentor.getM_condition()==0)
+		 User user = userMapper.findOneById(mentor.getMentor_u_id());
+		 if(mentor.getM_condition()==0) {
 			 mentor.setM_condition(1);
-		 else if(mentor.getM_condition()==1)
+			 user.setType(3);
+			 Team team = new Team();
+			 team.setGroup_m_apply_id(mentor.getId());
+			 teamMapper.insertMentor(team);
+		 }
+		 else if(mentor.getM_condition()==1) {
 			 mentor.setM_condition(0);
+			 user.setType(1);
+			 teamMapper.delete(mentor.getId());
+		 }
+		 userMapper.type_update(user);
 		 mentorMapper.update_m_condition(mentor);
 	     return "redirect:m_contact_detail?id="+mentor.getId();
 	 }

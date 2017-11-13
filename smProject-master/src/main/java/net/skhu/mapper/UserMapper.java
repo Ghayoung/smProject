@@ -18,6 +18,7 @@ public interface UserMapper {
 	List<User> findAllMentee();
 	List<User> findByName(String keyword);
 	void update(User user);
+	void type_update(User user);
 	void delete(int id);
 	void insertWithDep(User user);
 	void insertWithMinor(User user);
