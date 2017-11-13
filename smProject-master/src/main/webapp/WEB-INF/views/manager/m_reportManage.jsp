@@ -42,6 +42,7 @@
 									<c:forEach var="teamReports" items="${ teamReports }">
 
 										<h2>${ teamReports.group_name }</h2>
+										<!--  
 										<label for="report_subject">멘토링 진행률 <span
 											class="fh5co-uppercase-heading-sm">&nbsp;&nbsp;8회
 												남았습니다.</span></label>
@@ -50,6 +51,7 @@
 												style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
 												aria-valuemax="100">25%</div>
 										</div>
+										-->
 										<div class="panel panel-default">
 											<table class="table board" id="r_table<%=n%>">
 												<thead>
@@ -100,20 +102,20 @@
 										Calendar startCalendar = Calendar.getInstance();
 										Calendar deadCalendar = Calendar.getInstance();
 										Calendar currentCalendar = Calendar.getInstance();
+										Calendar reportCalendar = Calendar.getInstance();
 
 										startCalendar.set(Calendar.YEAR, Integer.parseInt(start_sm.substring(0, 4)));
-										startCalendar.set(Calendar.MONTH, Integer.parseInt(start_sm.substring(4, 6)));
+										startCalendar.set(Calendar.MONTH, Integer.parseInt(start_sm.substring(4, 6)) - 1);
 										startCalendar.set(Calendar.DATE, Integer.parseInt(start_sm.substring(6)));
 
 										deadCalendar.set(Calendar.YEAR, Integer.parseInt(start_sm.substring(0, 4)));
-										deadCalendar.set(Calendar.MONTH, Integer.parseInt(start_sm.substring(4, 6)));
+										deadCalendar.set(Calendar.MONTH, Integer.parseInt(start_sm.substring(4, 6)) - 1);
 										deadCalendar.set(Calendar.DATE, Integer.parseInt(start_sm.substring(6)));
 
-										deadCalendar.add(Calendar.DATE, 7);
+										deadCalendar.add(Calendar.DATE, 6);
 
-										currentCalendar.set(Calendar.MONTH, currentCalendar.get(Calendar.MONTH) + 1);
 										int week = 0;
-										while (startCalendar.before(currentCalendar)) {
+										while (startCalendar.before(currentCalendar) || startCalendar.equals(currentCalendar)) {
 									%>
 
 									<h2><%=week + 1%>주차
@@ -133,15 +135,17 @@
 											</thead>
 											<tbody>
 												<%
-													Calendar reportCalendar = Calendar.getInstance();
-														int i = 0;
+													int i = 0;
 														for (Report report : list) {
 
-															reportCalendar.set(Calendar.YEAR, Integer.parseInt(report.getCreate_date().substring(0, 4)));
-															reportCalendar.set(Calendar.MONTH, Integer.parseInt(report.getCreate_date().substring(5, 7)));
-															reportCalendar.set(Calendar.DATE, Integer.parseInt(report.getCreate_date().substring(8)));
+															String rep_date = (report.getCreate_date()).replaceAll("-", "");
 
-															if (startCalendar.before(reportCalendar) && reportCalendar.before(deadCalendar)) {
+															reportCalendar.set(Calendar.YEAR, Integer.parseInt(rep_date.substring(0, 4)));
+															reportCalendar.set(Calendar.MONTH, Integer.parseInt(rep_date.substring(4, 6)) - 1);
+															reportCalendar.set(Calendar.DATE, Integer.parseInt(rep_date.substring(6)));
+
+															if ((reportCalendar.equals(startCalendar) || startCalendar.before(reportCalendar))
+																	&& ((reportCalendar.equals(deadCalendar) || reportCalendar.before(deadCalendar)))) {
 												%>
 												<tr>
 													<td><input type="checkbox" name="checkbox" id="cb_1"></td>

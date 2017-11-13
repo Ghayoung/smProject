@@ -94,7 +94,7 @@
 				<div class="col-md-12 animate-box">
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
 
-					<form action="#" method="post" class="row">
+					
 
 						<!-- 관리자추가버튼 -->
 						<div class="col-md-6">
@@ -103,7 +103,7 @@
 									data-toggle="modal">관리자추가</button>
 							</div>
 						</div>
-
+<form action="#" method="post" class="row">
 						<!-- 정렬조건 -->
 						<div class="col-md-6">
 							<div class="col-md-4"

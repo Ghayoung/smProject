@@ -14,7 +14,53 @@
     response.setHeader("Content-Description", "JSP Generated Data");
 
 %>
-<div id="fh5co-main">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script type="text/javascript">
+function excel(){
+ document.frm.action = "excel";
+ document.frm.excel_data.value = document.getElementById("excel_body").outerHTML;
+ document.frm.submit();
+</script>
+<title>Insert title here</title>
+</head>
+<body>
 
-</div>
 
+	<h3>회원 목록</h3>
+
+	<form name="frm" method="post" onsubmit="excel();">
+		<input type="hidden" name="excel_data" /> <input type="submit"
+			value="전송">
+	</form>
+
+	<table id="excel_body">
+		<caption>list</caption>
+		<thead>
+			<tr align="center">
+				<th scope="col" bgcolor="CDCDCD">스터디 주제</th>
+				<th scope="col" bgcolor="CDCDCD">스터디 장소</th>
+				<th scope="col" bgcolor="CDCDCD">모임요일</th>
+				<th scope="col" bgcolor="CDCDCD">시작시간</th>
+				<th scope="col" bgcolor="CDCDCD">종료시간</th>
+				<th scope="col" bgcolor="CDCDCD">스터디 내용</th>
+				<th scope="col" bgcolor="CDCDCD">작성자</th>
+				<th scope="col" bgcolor="CDCDCD">작성일</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td style="text-align: left;"><%=list.getSubject()%></td>
+				<td style="text-align: left;"><%=list.getPlace()%></td>
+				<td style="text-align: left;"><%=list.getDay()%></td>
+				<td style="text-align: left;"><%=list.getStart_time()%></td>
+				<td style="text-align: left;"><%=list.getEnd_time()%></td>
+				<td style="text-align: left;"><%=list.getStudy_content()%></td>
+				<td style="text-align: left;"><%=list.getName()%></td>
+				<td style="text-align: left;"><%=list.getCreate_date()%></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
