@@ -16,12 +16,11 @@
 				-->
 		<div class="row animate-box">
 			<h2 class="fh5co-uppercase-heading-sm text-center" id="userManage">회원 관리</h2>
-			<form action="#userManage" method="post" style="float: right" class="row" name="fm"
-				onsubmit="return checkSearch();">
+			<form action="#userManage" method="post" style="float: right"
+				class="row" name="fm" onsubmit="return checkSearch();">
 				<div class="col-md-8">
 					<div class="form-group">
-						<label for="search" class="sr-only ">검색어</label> 
-						<input
+						<label for="search" class="sr-only ">검색어</label> <input
 							name="search" placeholder="회원 검색" id="search" type="text"
 							class="form-control input-lg" value="${keyword}">
 					</div>

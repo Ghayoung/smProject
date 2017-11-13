@@ -205,7 +205,7 @@ public class ManagerController {
    @RequestMapping(value="m_mentoringManage", method=RequestMethod.POST)
    public String m_mentoringManage(Model model,HttpServletRequest request){
 
-	   String keyword = request.getParameter("search");
+	   String keyword = request.getParameter("mentoringSearch");
 	   List<Team> searchTeams= teamMapper.findMentoringByName(keyword);
 	   model.addAttribute("SearchTeams", searchTeams);
 	   model.addAttribute("keyword", keyword);
