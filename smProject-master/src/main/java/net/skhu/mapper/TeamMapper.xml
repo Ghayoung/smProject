@@ -3,113 +3,19 @@
              "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="net.skhu.mapper.TeamMapper">
-
-	<select id="findAll" resultType="Team">
-		SELECT t.*, m.group_name, m.count, m.open_date, u.name
-		FROM Team t right join mentor_apply m
-		on t.group_m_apply_id = m.id
-		left join user u
-		on m.mentor_u_id = u.id
-		
-	</select>
 	
-	<!-- <select id="findAllManager" resultType="User">
-		SELECT u.*, d.d_name, s.status_name
-		FROM department d right join user u 
-		ON d.id=u.major_id 
-		left join status s
-		on u.status_id=s.id
-		WHERE type=2;
-	</select>
-	
-	<select id="findAllWithReports" resultMap="resultMap1">     
-	  SELECT m.*, r.id report_id, r.subject rep_subject, r.place, r.create_date     
-	  FROM mentor_apply m inner JOIN report r ON m.mentor_u_id = r.rep_u_id   
-	</select> 
-	  
-	<resultMap id="resultMap1" type="Mentor">    
-		<id property="id" column="id" />    
-		<result property="group_name" column="group_name" />     
-		<collection property="reports" ofType="Report">
-			<id property="id" column="report_id" />     
-			<result property="subject" column="rep_subject"/>      
-			<result property="place" column="place"/>       
-			<result property="create_date" column="create_date"/>     
-		</collection>   
-	</resultMap> 
-	
-	<select id="findAllCondition" resultType="Report">     
-	 	SELECT m.group_name, count(r.rep_u_id) reportCount
-	  	FROM mentor_apply m JOIN report r ON m.mentor_u_id = r.rep_u_id group by r.rep_u_id;   
-	</select>
-	
-	<select id="findOneReport" resultType="Report">
-		SELECT * FROM report where id=#{id}
-	</select>  
-	
-	<select id="findAllMentor" resultType="User">
-		SELECT u.*, d.d_name
-		FROM user u left join department d ON u.major_id=d.id
-		WHERE type=3;
-	</select>
-	
-	<select id="findAllMentee" resultType="User">
-		SELECT u.*, d.d_name
-		FROM user u left join department d ON u.major_id=d.id
-		WHERE type=4;
-	</select>
-	
-	<select id="findByName" resultType="User">
-		SELECT u.*, d.d_name, s.status_name
-		FROM department d right join user u 
-		ON d.id=u.major_id 
-		left join status s
-		on u.status_id=s.id
-		WHERE u.name LIKE CONCAT('%', #{keyword}, '%');
-	</select>
-
-	<update id="update">
-		UPDATE user SET pw = #{pw}, email = #{email}, phone = #{phone} WHERE id = #{id}
-	</update>
-
-	<update id="auth_update">
-		UPDATE User
-		<set>
-			<if test="type=2">type=1,</if>
-			<if test="type=1">type=2,</if>
-			auth_date=now();
-		</set>
-		WHERE id = #{id}
-	</update>
-	
-	<insert id="insertWithMinor" useGeneratedKeys="true" keyProperty="id">
-	    INSERT user (user_id, pw, name, email, phone, office, office_tel, type, major_id, status_id, auth_date, minor_id)
-	    VALUES (#{user_id}, #{pw}, #{name}, #{email}, #{phone}, #{office}, #{office_tel}, #{type}, #{major_id}, #{status_id}, now(), #{minor_id})
+	<insert id="insertMentor" useGeneratedKeys="true" keyProperty="id">
+		INSERT team (group_m_apply_id)
+		VALUES (#{group_m_apply_id})
 	</insert>
 	
-	<insert id="insertWithDouble" useGeneratedKeys="true" keyProperty="id">
-	    INSERT user (user_id, pw, name, email, phone, office, office_tel, type, major_id, status_id, auth_date, double_id)
-	    VALUES (#{user_id}, #{pw}, #{name}, #{email}, #{phone}, #{office}, #{office_tel}, #{type}, #{major_id}, #{status_id}, now(), #{double_id})
-	</insert>
-	
-	<insert id="insertWithDep" useGeneratedKeys="true" keyProperty="id">
-	    INSERT user (user_id, pw, name, email, phone, office, office_tel, type, major_id, status_id, auth_date)
-	    VALUES (#{user_id}, #{pw}, #{name}, #{email}, #{phone}, #{office}, #{office_tel}, #{type}, #{major_id}, #{status_id}, now())
-	</insert>
-	
-	<insert id="insertWithExcel" useGeneratedKeys="true" keyProperty="id">
-	    INSERT user (user_id, pw, name, email, phone, type, major_id, minor_id, double_id, status_id, auth_date)
-	    VALUES (#{user_id}, #{pw}, #{name}, #{email}, #{phone}, #{type}, #{major_id}, #{minor_id}, #{double_id}, #{status_id}, now())
+	<insert id="insertMentee" useGeneratedKeys="true" keyProperty="id">
+		INSERT team (group_mentee_id)
+		VALUES (#{group_mentee_id})
 	</insert>
 	
 	<delete id="delete">
-	    DELETE FROM user WHERE id = #{id}
+	    DELETE FROM team WHERE group_m_apply_id = #{group_m_apply_id}
 	</delete>
-	
-	<insert id="m_setting" useGeneratedKeys="true" keyProperty="id">
-	    INSERT into setting (mentor_start_date, mentor_expire_date, mentee_start_date, mentee_expire_date, sm_start_date, sm_expire_date, study_count, max_mentor, max_mentee, min_mentee, report_deadline)
-	    VALUES (#{mentor_start_date}, #{mentor_expire_date}, #{mentee_start_date}, #{mentee_expire_date}, #{sm_start_date}, #{sm_expire_date}, #{study_count}, #{max_mentor}, #{max_mentee}, #{min_mentee}, #{report_deadline})
-	</insert> -->
 
 </mapper>
-
