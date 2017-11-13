@@ -17,6 +17,7 @@ function selectAllCheckBox(allcheck, containerID, checkboxIDMatch) { // (all체�
 	}
 };
 
+/*
 var submitcheck = true; // 중복신청 방지
 
 window.onload = function() {
@@ -40,6 +41,7 @@ window.onload = function() {
 		};
 	}
 };
+*/
 
 
 function selectAllCheckBox(allcheck, containerID, checkboxIDMatch) { // (all체크박스,

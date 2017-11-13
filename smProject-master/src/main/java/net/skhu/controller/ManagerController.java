@@ -119,7 +119,8 @@ public class ManagerController {
 			 user.setType(3);
 			 Team team = new Team();
 			 team.setGroup_m_apply_id(mentor.getId());
-			 teamMapper.insertMentor(team);
+			 team.setGroup_mentee_id(mentor.getMentor_u_id());
+			 teamMapper.insert(team);
 		 }
 		 else if(mentor.getType()==3) {
 			 user.setType(1);
@@ -143,7 +144,8 @@ public class ManagerController {
 			 user.setType(3);
 			 Team team = new Team();
 			 team.setGroup_m_apply_id(mentor.getId());
-			 teamMapper.insertMentor(team);
+			 team.setGroup_mentee_id(mentor.getMentor_u_id());
+			 teamMapper.insert(team);
 		 }
 		 else if(mentor.getType()==3) {
 			 user.setType(1);
