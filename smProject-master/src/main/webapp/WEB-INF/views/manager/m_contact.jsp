@@ -20,11 +20,11 @@
 						<p>주제:&nbsp;${ mentor.subject }</p>
 						<p>${ mentor.year }학년&nbsp;${ mentor.name }</p>
 						<c:choose>
-						<c:when test="${ mentor.m_condition == 0}">
+						<c:when test="${ mentor.type == 1}">
 							<a href="mentor_update.do?id=${ mentor.id }" class="btn btn-primary btm-md m_submitbtn">멘토선정</a>
 							<div class="fh5co-spacer fh5co-spacer-md"></div>
 						</c:when>
-						<c:when test="${ mentor.m_condition == 1 }">
+						<c:when test="${ mentor.type == 3 }">
 							<a href="mentor_update.do?id=${ mentor.id }" class="btn btn-cancel btm-md m_submitbtn">선정취소</a>
 							<div class="fh5co-spacer fh5co-spacer-md"></div>
 						</c:when>

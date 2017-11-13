@@ -1,8 +1,16 @@
 package net.skhu.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,11 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Article;
+import net.skhu.dto.Mentor;
 import net.skhu.dto.Report;
 import net.skhu.dto.User;
 import net.skhu.mapper.ArticleMapper;
 import net.skhu.mapper.BoardMapper;
 import net.skhu.mapper.DepartmentMapper;
+import net.skhu.mapper.FileMapper;
 import net.skhu.mapper.MentorMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.model.Pagination;
@@ -38,6 +48,8 @@ public class UserController {
 	ArticleMapper articleMapper;
 	@Autowired
 	MentorMapper mentorMapper;
+	@Autowired
+	FileMapper fileMapper;
 	@Autowired
 	UserService userService;
 	@Autowired
@@ -104,15 +116,22 @@ public class UserController {
 		return "user/question";
 	}
 
-	@RequestMapping("menteeapply")
-	public String menteeapply() {
-		return "user/menteeapply";
-	}
+	/* 합격 멘토 신청서 목록 출력 */
+	 @RequestMapping("menteeapply")
+	 public String menteeapply(Model model) {
+		 List<Mentor> mentors = mentorMapper.findMentor();
+		 model.addAttribute("mentors", mentors);
+		 return "user/menteeapply";
+	 }
 
-	@RequestMapping("menteeapply_detail")
-	public String menteeapply_detail() {
-		return "user/menteeapply_detail";
-	}
+	 @RequestMapping("menteeapply_detail")
+	 public String menteeapply_detail(Model model, @RequestParam(value="id") int id) {
+	     model.addAttribute("mentor", mentorMapper.findOne(id));
+	     return "user/menteeapply_detail";
+	 }
+
+	 /* 멘티신청 */
+
 
 	@RequestMapping("timetable")
 	public String timetable() {
@@ -200,6 +219,24 @@ public class UserController {
 		if (user == null)
 			return "redirect:meminfo?error";
 		return "redirect:meminfo";
+	}
+
+	@RequestMapping(value = "getImage")
+	public ResponseEntity<byte[]> getImage(@RequestParam("id") int id) {
+
+		String fileName=fileMapper.getImage(id);
+
+		Path path = Paths.get(fileName);
+
+		byte[] image=null;
+		try {
+			image = Files.readAllBytes(path);
+			return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
+		}
 	}
 
 }

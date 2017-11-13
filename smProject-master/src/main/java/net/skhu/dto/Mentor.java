@@ -24,6 +24,7 @@ public class Mentor{
 	String name;
 	int user_id;
     List<Report> reports;
+    int type;
 
 	public int getId() {
 		return id;
@@ -135,6 +136,14 @@ public class Mentor{
 
 	public void setApply_f_doc_fk(int apply_f_doc_fk) {
 		this.apply_f_doc_fk = apply_f_doc_fk;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
 	}
 
 	public int getM_condition() {

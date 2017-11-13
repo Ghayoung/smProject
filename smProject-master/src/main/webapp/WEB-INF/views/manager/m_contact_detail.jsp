@@ -90,10 +90,10 @@
 							<div class="fh5co-spacer fh5co-spacer-sm"></div>
 							<div class="col-md-12">
 								<c:choose>
-								<c:when test="${ mentor.m_condition == 0}">
+								<c:when test="${ mentor.type == 1}">
 									<a href="mentor_detail_update.do?id=${ mentor.id }" class="btn btn-primary btn-lg col-md-offset-8">멘토선정</a>
 								</c:when>
-									<c:when test="${ mentor.m_condition == 1 }">
+									<c:when test="${ mentor.type == 3 }">
 									<a href="mentor_detail_update.do?id=${ mentor.id }" class="btn btn-cancel btn-lg col-md-offset-8">선정취소</a>
 								</c:when>
 								</c:choose>
