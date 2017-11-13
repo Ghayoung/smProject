@@ -6,6 +6,7 @@ public class Team {
 	int group_mentee_id;
 	String group_name;
 	int count;//희망 멘티수
+	int apply_mentee_count;//신청한 멘티 수
 	String open_date;
 	String name;//mentor name
 	
@@ -51,6 +52,12 @@ public class Team {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public int getApply_mentee_count() {
+		return apply_mentee_count;
+	}
+	public void setApply_mentee_count(int apply_mentee_count) {
+		this.apply_mentee_count = apply_mentee_count;
 	}
 	
 	
