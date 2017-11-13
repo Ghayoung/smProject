@@ -4,6 +4,10 @@
 
 <mapper namespace="net.skhu.mapper.TeamMapper">
 	
+	<select id="findAll" resultType="Team">
+		
+	</select>
+	
 	<insert id="insertMentor" useGeneratedKeys="true" keyProperty="id">
 		INSERT team (group_m_apply_id)
 		VALUES (#{group_m_apply_id})
