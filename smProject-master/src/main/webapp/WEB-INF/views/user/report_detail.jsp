@@ -22,8 +22,6 @@
 			<form:form method="post" modelAttribute="report" name="frm"
 				onsubmit="return excel();">
 				<div class="col-md-12 animate-box board" id="excel_body">
-
-
 					<input type="hidden" name="excel_data" />
 					<div class="col-md-12">
 						<label>스터디 주제</label>
