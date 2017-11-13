@@ -206,6 +206,7 @@ public class ManagerController {
    public String m_mentoringManage(Model model,HttpServletRequest request){
 
 	   String keyword = request.getParameter("mentoringSearch");
+	   System.out.println(keyword);
 	   List<Team> searchTeams= teamMapper.findMentoringByName(keyword);
 	   model.addAttribute("SearchTeams", searchTeams);
 	   model.addAttribute("keyword", keyword);
@@ -304,6 +305,6 @@ public class ManagerController {
 
    @RequestMapping(value = "excel", method = RequestMethod.POST)
    public String excel(Model model) {
-      return "manager/excel";
+      return "manager/excel3";
    }
 }

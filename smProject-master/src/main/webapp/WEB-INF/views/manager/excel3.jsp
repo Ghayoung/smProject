@@ -1,4 +1,6 @@
-<%@ page contentType="application/vnd.ms-excel;charset=euc-kr"%>
+<%@ page language="java"
+	contentType="application/vnd.ms-excel;charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%
 	//중요한 사항 : "attachment; filename=excel.xls" 로 적으면 excel.xls 파일이 생성되고 다운로드된다. 
 	//의심하지 말고 아래줄은 그냥 적어요 
@@ -6,6 +8,10 @@
 
 	response.setHeader("Content-Disposition", "attachment; filename=excel.xls");
 	response.setHeader("Content-Description", "JSP Generated Data");
+	response.setHeader("Content-Disposition", "attachment; filename=excel.xls");  
+	response.setHeader("Content-Description", "JSP Generated Data");  
+	response.setContentType("application/vnd.ms-excel");  
+
 %>
 
 <html>

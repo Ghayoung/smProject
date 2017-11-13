@@ -17,7 +17,7 @@
 				-->
 		<div class="row animate-box">
 			<h2 class="fh5co-uppercase-heading-sm text-center" id="mentoringManage">멘토링 관리</h2>
-			<form action="#mentoringManage" method="post" style="float: right"
+			<form action="m_mentoringManage" method="post" style="float: right"
 				class="row" name="fmm" onsubmit="return checkSearch();">
 				<div class="col-md-8">
 					<div class="form-group">
@@ -69,10 +69,10 @@
 							<c:forEach var="searchteam" items="${ SearchTeams }" varStatus="status">
 								<tr>
 									<td>${ status.index+1 }</td>
-									<td>${ SearchTeams.name }</td>
-									<td>${ SearchTeams.group_name }</td>
-									<td>${ SearchTeams.apply_mentee_count }/${ SearchTeams.count }</td>
-									<td>${ SearchTeams.open_date }</td>
+									<td>${ searchteam.name }</td>
+									<td>${ searchteam.group_name }</td>
+									<td>${ searchteam.apply_mentee_count }/${ searchteam.count }</td>
+									<td>${ searchteam.open_date }</td>
 								</tr>
 							</c:forEach>
 						</tbody>
