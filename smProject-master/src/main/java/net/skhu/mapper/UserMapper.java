@@ -29,4 +29,5 @@ public interface UserMapper {
     int findStudyCount();
     String findStartSM();
     Report findOneReport(int id);
+    void auth_update(int id);
 }
