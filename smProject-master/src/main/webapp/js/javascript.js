@@ -60,6 +60,14 @@ function selectAllCheckBox(allcheck, containerID, checkboxIDMatch) { // (all체�
 	}
 }
 
+function register(){
+	if(document.r_form.file.value == "")
+		alert("파일을 등록해주세요");
+	else{
+		r_form.submit();
+	}
+}
+
 function double_dep(v, showId, nonShowId) {
 	// 라디오 버튼 value 값 조건 비교
 	if (v == "1") {

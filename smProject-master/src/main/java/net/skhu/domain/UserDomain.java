@@ -3,6 +3,7 @@ package net.skhu.domain;
 import org.apache.poi.ss.usermodel.Row;
 
 import net.skhu.dto.User;
+import net.skhu.utils.Encryption;
 
 public class UserDomain{
 
@@ -10,7 +11,8 @@ public class UserDomain{
     	User user = new User();
 
     	user.setUser_id(row.getCell(0).getStringCellValue());
-    	user.setPw(row.getCell(1).getStringCellValue());
+    	String pw = Encryption.encrypt(row.getCell(1).getStringCellValue(), Encryption.SHA256);
+    	user.setPw(pw);
     	user.setName(row.getCell(2).getStringCellValue());
     	user.setEmail(row.getCell(3).getStringCellValue());
     	user.setPhone(row.getCell(4).getStringCellValue());
