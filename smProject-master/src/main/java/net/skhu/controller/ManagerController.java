@@ -52,9 +52,9 @@ public class ManagerController {
    @Autowired
    MentorMapper mentorMapper;
    @Autowired
-   TeamMapper teamMapper;
-   @Autowired
    IntroduceMapper introduceMapper;
+   @Autowired
+   TeamMapper teamMapper;
    @Autowired
    ManagerService managerService;
    @Autowired
@@ -193,10 +193,12 @@ public class ManagerController {
    }
 
    @RequestMapping(value = "m_mentoringManage", method = RequestMethod.GET)
-   public String m_mentoringManage(Model model) {
-
-      return "manager/m_mentoringManage";
-   }
+   public String m_montoringManage(Model model) {
+	  
+	   	List<Team> teams= teamMapper.findAll();
+			model.addAttribute("teams", teams);
+	       return "manager/m_mentoringManage";
+		}
 
    @RequestMapping(value = "m_reportManage", method = RequestMethod.GET)
    public String m_reportManage(Model model) {
