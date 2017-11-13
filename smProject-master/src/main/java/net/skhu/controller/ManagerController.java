@@ -119,7 +119,8 @@ public class ManagerController {
 			 user.setType(3);
 			 Team team = new Team();
 			 team.setGroup_m_apply_id(mentor.getId());
-			 teamMapper.insertMentor(team);
+			 team.setGroup_mentee_id(mentor.getMentor_u_id());
+			 teamMapper.insert(team);
 		 }
 		 else if(mentor.getType()==3) {
 			 user.setType(1);
@@ -143,7 +144,8 @@ public class ManagerController {
 			 user.setType(3);
 			 Team team = new Team();
 			 team.setGroup_m_apply_id(mentor.getId());
-			 teamMapper.insertMentor(team);
+			 team.setGroup_mentee_id(mentor.getMentor_u_id());
+			 teamMapper.insert(team);
 		 }
 		 else if(mentor.getType()==3) {
 			 user.setType(1);
@@ -200,23 +202,24 @@ public class ManagerController {
 
    @RequestMapping(value = "m_mentoringManage", method = RequestMethod.GET)
    public String m_montoringManage(Model model) {
-	  
+
 	   	List<Team> teams= teamMapper.findAll();
 			model.addAttribute("teams", teams);
 	       return "manager/m_mentoringManage";
 		}
-   
+
    @RequestMapping(value="m_mentoringManage", method=RequestMethod.POST)
    public String m_mentoringManage(Model model,HttpServletRequest request){
 
 	   String keyword = request.getParameter("mentoringSearch");
+	   System.out.println(keyword);
 	   List<Team> searchTeams= teamMapper.findMentoringByName(keyword);
 	   model.addAttribute("SearchTeams", searchTeams);
 	   model.addAttribute("keyword", keyword);
 
 	   List<Team> teams= teamMapper.findAll();
 	   model.addAttribute("teams", teams);
-	   
+
 	    return "manager/m_mentoringManage";
 
    }
@@ -308,6 +311,6 @@ public class ManagerController {
 
    @RequestMapping(value = "excel", method = RequestMethod.POST)
    public String excel(Model model) {
-      return "manager/excel";
+      return "manager/excel3";
    }
 }

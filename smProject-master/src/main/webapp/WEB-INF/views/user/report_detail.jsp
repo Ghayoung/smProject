@@ -66,7 +66,7 @@
 					<div class="col-md-12">
 						<a href="${R}manager/m_reportManage"
 							class="btn btn-primary btn-lg col-md-offset-10">목록으로</a> <a
-							href="${R}manager/excelDownload?id=${ report.id }"
+							href="${R}manager/excel"
 							class="btn btn-primary btn-lg col-md-offset-10">다운로드</a>
 					</div>
 

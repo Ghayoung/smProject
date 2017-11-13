@@ -22,12 +22,14 @@ import org.springframework.web.multipart.MultipartFile;
 import net.skhu.dto.Article;
 import net.skhu.dto.Mentor;
 import net.skhu.dto.Report;
+import net.skhu.dto.Team;
 import net.skhu.dto.User;
 import net.skhu.mapper.ArticleMapper;
 import net.skhu.mapper.BoardMapper;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.FileMapper;
 import net.skhu.mapper.MentorMapper;
+import net.skhu.mapper.TeamMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.model.Pagination;
 import net.skhu.service.ArticleService;
@@ -50,6 +52,8 @@ public class UserController {
 	MentorMapper mentorMapper;
 	@Autowired
 	FileMapper fileMapper;
+	@Autowired
+	TeamMapper teamMapper;
 	@Autowired
 	UserService userService;
 	@Autowired
@@ -132,11 +136,37 @@ public class UserController {
 
 	 /* 멘티신청 */
 	 @RequestMapping("mentee_update")
-	 public String mentee_update(Model model) {
+	 public String mentee_update(Model model, @RequestParam(value="id") int id) {
+		 Team team = new Team();
 		 User user = UserService.getCurrentUser();
-		 if(user.getType()!=4)
+		 if(user.getType()!=4) {
 			 user.setType(4);
-		 return "";
+			 team.setGroup_m_apply_id(id);
+			 team.setGroup_mentee_id(user.getId());
+		 } else if(user.getType()==4) {
+			 user.setType(1);
+			 teamMapper.deleteMentee(user.getId());
+		 }
+		 userMapper.type_update(user);
+		 teamMapper.insert(team);
+		 return "redirect:menteeapply";
+	 }
+
+	 @RequestMapping("mentee_update_detail")
+	 public String mentee_update_detail(Model model, @RequestParam(value="id") int id) {
+		 Team team = new Team();
+		 User user = UserService.getCurrentUser();
+		 if(user.getType()!=4) {
+			 user.setType(4);
+			 team.setGroup_m_apply_id(id);
+			 team.setGroup_mentee_id(user.getId());
+		 } else if(user.getType()==4) {
+			 user.setType(1);
+			 teamMapper.deleteMentee(user.getId());
+		 }
+		 userMapper.type_update(user);
+		 teamMapper.insert(team);
+		 return "redirect:menteeapply_detail?id="+id;
 	 }
 
 

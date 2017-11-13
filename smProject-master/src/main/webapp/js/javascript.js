@@ -17,6 +17,7 @@ function selectAllCheckBox(allcheck, containerID, checkboxIDMatch) { // (all체�
 	}
 };
 
+/*
 var submitcheck = true; // 중복신청 방지
 
 window.onload = function() {
@@ -40,6 +41,8 @@ window.onload = function() {
 		};
 	}
 };
+*/
+
 
 function selectAllCheckBox(allcheck, containerID, checkboxIDMatch) { // (all체크박스,
 	// 그룹ID,
@@ -159,7 +162,11 @@ function checkSearch1() {
 		alert("검색어를 입력해주세요");
 		document.fm.search.focus();
 		return false;
-	} else {
+	} else if (document.fm.mentoringSearch.value == "") {
+		alert("검색어를 입력해주세요");
+		document.fm.mentoringSearch.focus();
+		return false;
+	}else {
 		fm.submit();
 	}
 }
