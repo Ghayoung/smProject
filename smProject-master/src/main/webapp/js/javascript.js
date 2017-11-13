@@ -71,20 +71,41 @@ function register(){
 function double_dep(v, showId, nonShowId) {
 	// 라디오 버튼 value 값 조건 비교
 	if (v == "1") {
-		document.getElementById(showId).style.display = ""; // 보여줌
-		document.getElementById(nonShowId).style.display = "none";
+		if (document.getElementById('status_id').value == 1
+				|| document.getElementById('status_id').value == 0) {
+			document.getElementById(showId).style.display = ""; // 보여줌
+			document.getElementById(nonShowId).style.display = "none";
+		} else {
+			document.getElementById(showId).style.display = "none";
+			document.getElementById(nonShowId).style.display = "none";
+		}
 	} else {
-		document.getElementById(showId).style.display = "none"; // 숨김
+		if (document.getElementById('status_id').value != 0
+				|| document.getElementById('status_id').value != 1
+				|| document.getElementById('status_id').value != 3) {
+			document.getElementById(showId).style.display = "none"; // 숨김
+		}
 	}
 }
 
 function minor_dep(v, showId, nonShowId) {
 	// 라디오 버튼 value 값 조건 비교
 	if (v == "2") {
-		document.getElementById(showId).style.display = ""; // 보여줌
-		document.getElementById(nonShowId).style.display = "none";
+		if (document.getElementById('status_id').value == 1
+				|| document.getElementById('status_id').value == 0) {
+			document.getElementById(showId).style.display = ""; // 보여줌
+			document.getElementById(nonShowId).style.display = "none";
+		} else {
+			document.getElementById(showId).style.display = "none";
+			document.getElementById(nonShowId).style.display = "none";
+		}
+
 	} else {
-		document.getElementById(showId).style.display = "none"; // 숨김
+		if (document.getElementById('status_id').value != 0
+				|| document.getElementById('status_id').value != 1
+				|| document.getElementById('status_id').value != 3) {
+			document.getElementById(showId).style.display = "none"; // 숨김
+		}
 	}
 }
 
@@ -103,8 +124,19 @@ document.getElementById('datePicker6').valueAsDate = new Date();
 
 function show_office() {
 	// 라디오 버튼 value 값 조건 비교
-	if (document.getElementById('status_id').value == 2) {
+	if (document.getElementById('status_id').value == 0) {
+		document.getElementById('search_minor').style.display = "none";
+		document.getElementById('search_double').style.display = "none";
+		return false;
+	} else if (document.getElementById('status_id').value == 2) {
 		document.getElementById('officeDIV').style.display = ""; // 보여줌
+		document.getElementById('search_minor').style.display = "none";
+		document.getElementById('search_double').style.display = "none";
+		return false;
+	} else if (document.getElementById('status_id').value == 3) {
+		document.getElementById('officeDIV').style.display = "none";
+		document.getElementById('search_minor').style.display = "none";
+		document.getElementById('search_double').style.display = "none";
 		return false;
 	} else {
 		document.getElementById('officeDIV').style.display = "none";
@@ -117,7 +149,7 @@ function checkSearch() {
 		alert("검색어를 입력해주세요");
 		document.fm.search.focus();
 		return false;
-	} else {	
+	} else {
 		fm.submit();
 	}
 }
@@ -211,6 +243,21 @@ function checkInput() {
 		alert("학과를 선택해주세요");
 		$("#form [name=major_id]").focus();
 		return false;
+	} else if ($("#form [name=status_id]").val() == 0) {
+		alert("직책을 선택해주세요");
+		$("#form [name=status_id]").focus();
+		return false;
+	} else if ($("#form [name=status_id]").val() == 2) {
+		if ($("#form [name=office]").val() == "") {
+			alert("사무실을 입력해주세요");
+			$("#form [name=office]").focus();
+			return false;
+		}
+		if ($("#form [name=office_tel]").val() == "") {
+			alert("사무실 전화번호를 입력해주세요");
+			$("#form [name=office_tel]").focus();
+			return false;
+		}
 	} else if (document.all.radio[0].checked == true) {
 		if ($("#form [name=double_id]").val() == 0) {
 			alert("복수전공 학과를 선택해주세요");
@@ -233,21 +280,6 @@ function checkInput() {
 			$("#form [name=minor_id]").focus();
 		}
 		return false;
-	} else if ($("#form [name=status_id]").val() == 0) {
-		alert("직책을 선택해주세요");
-		$("#form [name=status_id]").focus();
-		return false;
-	} else if ($("#form [name=status_id]").val() == 2) {
-		if ($("#form [name=office]").val() == "") {
-			alert("사무실을 입력해주세요");
-			$("#form [name=office]").focus();
-			return false;
-		}
-		if ($("#form [name=office_tel]").val() == "") {
-			alert("사무실 전화번호를 입력해주세요");
-			$("#form [name=office_tel]").focus();
-			return false;
-		}
 	} else if ($("#form [name=name]").val() == "") {
 		alert("이름을 입력해주세요");
 		$("#form [name=name]").focus();
@@ -309,4 +341,4 @@ $(function() {
 $("#save").click(function() {
 	oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
 	$("#frm").submit();
-});
+})

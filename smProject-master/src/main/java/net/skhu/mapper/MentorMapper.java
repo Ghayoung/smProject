@@ -11,6 +11,7 @@ import net.skhu.dto.Report;
 public interface MentorMapper {
 	Mentor findOne(int id);
 	Mentor findByMentor_u_id(int mentor_u_id);
+	List<Mentor> findMentor();
 	List<Mentor> findAll();
 	void update(Mentor mentor);
 	void update_m_condition(Mentor mentor);
