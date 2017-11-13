@@ -28,16 +28,32 @@
 	</select>
 	
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
-	  INSERT article (title, content, art_u_id, post_date, art_f_id, art_b_id)
-	  VALUES (#{title}, #{content}, #{art_u_id}, now(), #{art_f_id}, #{art_b_id})
+	  INSERT article (title, content, art_u_id, post_date, art_b_id, art_f_id)
+	  VALUES (#{title}, #{content}, #{art_u_id}, now(), #{art_b_id}, #{art_f_id})
 	</insert>
 	
-	<update id="update">
+	<insert id="insertNoFile" useGeneratedKeys="true" keyProperty="id">
+	  INSERT article (title, content, art_u_id, post_date, art_b_id)
+	  VALUES (#{title}, #{content}, #{art_u_id}, now(), #{art_b_id})
+	</insert>
+	
+	<update id="update2">
 	  UPDATE article SET 
 	    title = #{title}, 
 	    content = #{content}, 
 	    post_date = now(),
 	    art_f_id = #{art_f_id}
+	  WHERE id = #{id}
+	</update>
+	
+	<update id="update">
+	  UPDATE article
+	  <set>
+	  	<if test="title != null">title = #{title},</if> 
+	    <if test="content != null">content = #{content},</if> 
+	    post_date = now(),
+	    <if test="art_f_id != 0">art_f_id = #{art_f_id}</if>
+	  </set>
 	  WHERE id = #{id}
 	</update>
 	

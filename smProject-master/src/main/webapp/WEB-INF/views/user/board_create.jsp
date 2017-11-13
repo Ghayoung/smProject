@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 		<div id="fh5co-main">
 	
 			<div class="container">
@@ -31,10 +32,11 @@
 								</div>	
 							</div>
 							
-							<div class="col-md-2">
+							<div class="col-md-12">
 								<div class="form-group">
 									<label>파일 첨부</label>
-									<input name="file" type="file" class="btn btn-lg " value="파일첨부">
+									<c:if test="${ file!=null }"><p>첨부된 파일: ${ file }</p></c:if>
+									<input name="file" type="file" class="btn btn-lg ">
 								</div>	
 							</div>
 							<div class="col-md-12">

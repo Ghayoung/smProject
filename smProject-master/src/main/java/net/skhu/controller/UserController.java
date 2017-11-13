@@ -1,6 +1,7 @@
 package net.skhu.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import net.skhu.dto.User;
 import net.skhu.mapper.ArticleMapper;
 import net.skhu.mapper.BoardMapper;
 import net.skhu.mapper.DepartmentMapper;
+import net.skhu.mapper.FileMapper;
 import net.skhu.mapper.MentorMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.model.Pagination;
@@ -28,6 +30,7 @@ import net.skhu.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 
+	@Autowired FileMapper fileMapper;
 	@Autowired
 	UserMapper userMapper;
 	@Autowired
@@ -78,7 +81,9 @@ public class UserController {
 
 	@RequestMapping(value = "board_edit", method = RequestMethod.GET)
 	public String board_edit(Model model, @RequestParam(value = "id") int id, Pagination pagination) {
-		model.addAttribute("article", articleMapper.findOne(id));
+		Article article = articleMapper.findOne(id);
+		model.addAttribute("article", article);
+		model.addAttribute("file", fileService.getFileName(article.getArt_f_id()));
 		model.addAttribute("board", boardMapper.findOne(pagination.getBd()).getB_name());
 		return "user/board_create";
 	}
@@ -201,5 +206,32 @@ public class UserController {
 			return "redirect:meminfo?error";
 		return "redirect:meminfo";
 	}
+/*
+	@RequestMapping("file/download")
+	   public void download(@RequestParam("id") int id, HttpServletResponse response) throws Exception {
+	      FileDTO uploadedfile = fileMapper.findOne(id);
+	      if (uploadedfile == null)
+	         return;
+	      String fileName=(uploadedfile.getPath()).substring(11);
 
+	      String filePath = (uploadedfile.getPath()).substring(0, 11);
+
+	      filePath+=fileName;
+
+	      Path path = Paths.get(filePath);
+
+	      uploadedfile.setData(Files.readAllBytes(path));
+
+	      response.setContentType("application/octet-stream");
+	      response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName,"UTF-8") + ";");
+	      try (BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream())) {
+	         output.write(uploadedfile.getData());
+	      }
+	   }
+*/
+
+	@RequestMapping("file/download")
+	   public void download(@RequestParam("id") int id, HttpServletResponse response) throws Exception {
+		fileService.fileDownload(id, response);
+	}
 }

@@ -34,7 +34,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         	.antMatchers("/user/**").authenticated()
         	.antMatchers("/guest/**").permitAll()
         	.antMatchers("/").permitAll()
-        	.antMatchers("/**").authenticated();
+        	.antMatchers("/**").authenticated()
+        	.and()
+            .exceptionHandling().accessDeniedPage("/accessDenied.jsp");;
 
         http.csrf().disable();
 

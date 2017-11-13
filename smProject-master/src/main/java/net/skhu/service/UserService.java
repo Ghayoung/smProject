@@ -79,16 +79,19 @@ public class UserService {
 	public void createArticle(Article article, int type, @RequestBody MultipartFile file) {
 		article.setArt_u_id(UserService.getCurrentUser().getId());
 		article.setArt_b_id(type);
-		if (file != null) {
+		if (!file.isEmpty()) {
 			int art_f_id = fileService.fileUpload(file);
 			article.setArt_f_id(art_f_id);
+			articleMapper.insert(article);
 		}
-		articleMapper.insert(article);
+		else {
+			articleMapper.insertNoFile(article);
+		}
 		return;
 	}
 
 	public void editArticle(Article article, @RequestBody MultipartFile file) {
-		if (file != null) {
+		if (!file.isEmpty()) {
 			int art_f_id = fileService.fileUpload(file);
 			article.setArt_f_id(art_f_id);
 		}

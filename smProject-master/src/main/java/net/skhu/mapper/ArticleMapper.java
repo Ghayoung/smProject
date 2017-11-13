@@ -13,6 +13,7 @@ public interface ArticleMapper {
 	int count(Pagination pagination);
 	Article findOne(int id);
 	void insert(Article article);
+	void insertNoFile(Article article);
 	void update(Article article);
     void delete(int id);
 
