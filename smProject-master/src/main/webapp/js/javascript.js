@@ -80,10 +80,10 @@ function minor_dep(v, showId, nonShowId) {
 	}
 }
 
-function excel(){
-	 document.frm.action = "excel";
-	 document.frm.excel_data.value = document.getElementById("excel_body").outerHTML;
-	 document.frm.submit();
+function excel() {
+	document.frm.action = "excel";
+	document.frm.excel_data.value = document.getElementById("excel_body").outerHTML;
+	document.frm.submit();
 }
 
 document.getElementById('datePicker').valueAsDate = new Date();
@@ -101,6 +101,16 @@ function show_office() {
 	} else {
 		document.getElementById('officeDIV').style.display = "none";
 		return false;
+	}
+}
+
+function searchResult() {
+	if (document.fm.search.value != "") {
+		document.getElementById('resultDIV').style.display = "";
+		return false;
+	} else {	
+		fm.submit();
+		document.getElementById('resultDIV').style.display = "";
 	}
 }
 

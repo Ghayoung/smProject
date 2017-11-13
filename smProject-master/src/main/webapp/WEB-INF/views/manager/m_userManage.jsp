@@ -16,20 +16,19 @@
 				-->
 		<div class="row animate-box">
 			<h2 class="fh5co-uppercase-heading-sm text-center">회원 관리</h2>
-			<form action="m_userManage" method="post" style="float: right"
-				class="row">
+			<form method="post" style="float: right" class="row" name="fm" onsubmit="return searchResult();">
 				<div class="col-md-8">
 					<div class="form-group">
-						<label for="search" class="sr-only ">검색어</label> 
-						<input name="search"
-							placeholder="회원 검색" id="search" type="text"
-							class="form-control input-lg" value=${keyword}>
+						<label for="search" class="sr-only ">검색어</label> <input
+							name="search" placeholder="회원 검색" id="search" type="text"
+							class="form-control input-lg" value="${keyword}">
 					</div>
 				</div>
 				<div class="col-md-2" style="margin-left: -20px">
 					<div class="form-group">
-						<input type="submit" class="btn btn-primary btn-lg " value="검색">
-						<!-- <a class="btn btn-primary btn-lg search_btn">검색</a> -->
+						<input type="submit" class="btn btn-primary btn-lg " value="검색"
+							id="search_btn"> 
+					<!--	 <a class="btn btn-primary btn-lg search_btn">검색</a>   -->
 					</div>
 				</div>
 			</form>
@@ -38,8 +37,8 @@
 					검색 결과
 					///////////////////////////////////
 					-->
-			<div class="animate-box search_result col-md-12"
-				style="display: contents">
+			<div class="animate-box col-md-12"
+				style="display: none" id="resultDIV">
 				<div class="panel panel-default ">
 					<table class="table search_user">
 						<thead>
