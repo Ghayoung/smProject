@@ -14,8 +14,9 @@
 				///////////////////////////////////
 				-->
 		<div class="row animate-box">
-			<h2 class="fh5co-uppercase-heading-sm text-center">멘토링 관리</h2>
-			<form action="#userManage" method="post" style="float: right"
+			<h2 class="fh5co-uppercase-heading-sm text-center"
+				id="#mentoringManage">멘토링 관리</h2>
+			<form action="#mentoringManage" method="post" style="float: right"
 				class="row" name="fm" onsubmit="return checkSearch();">
 				<div class="col-md-8">
 					<div class="form-group">
@@ -37,34 +38,49 @@
 					검색 결과
 					///////////////////////////////////
 					-->
-		<div id="comment" class="row animate-box" style="display: none;">
-			<div class="panel panel-default ">
-				<table class="table search_user">
-					<thead>
-						<tr>
-							<th>번호</th>
-							<th>멘토이름</th>
-							<th>멘토링 이름</th>
-							<th>멘티 수</th>
-							<th>개설일</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="team" items="${ teams }" varStatus="status">
+		<%
+				Object keyword = null;
+				if (request.getAttribute("keyword") != null) {
+					keyword = request.getAttribute("keyword");
+				}
+				if (keyword == null) {
+			%>
+		<div class="animate-box col-md-12" style="display: none">
+			<%
+					} else {
+				%>
+			<div class="animate-box col-md-12" style="display: block">
+				<%
+						}
+					%>
+				<div class="panel panel-default">
+					<table class="table search_user">
+						<thead>
 							<tr>
-								<td>${ status.index+1 }</td>
-								<td>${ team.name }</td>
-								<td>${ team.group_name }</td>
-								<td>${ team.count }</td>
-								<td>${ team.open_date }</td>
+								<th>번호</th>
+								<th>멘토이름</th>
+								<th>멘토링 이름</th>
+								<th>신청인원/정원</th>
+								<th>개설일</th>
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							<c:forEach var="team" items="${ teams }" varStatus="status">
+								<tr>
+									<td>${ status.index+1 }</td>
+									<td>${ team.name }</td>
+									<td>${ team.group_name }</td>
+									<td>${ team.apply_mentee_count }/${ team.count }</td>
+									<td>${ team.open_date }</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 			</div>
 			<div class="fh5co-spacer fh5co-spacer-sm"></div>
-		</div>
 
+		</div>
 		<!-- 
 				///////////////////////////////////
 				회원 목록
@@ -113,7 +129,7 @@
 												<th>번호</th>
 												<th>멘토이름</th>
 												<th>멘토링 이름</th>
-												<th>멘티 수</th>
+												<th>신청인원/정원</th>
 												<th>개설일</th>
 
 											</tr>
@@ -124,7 +140,7 @@
 													<td>${ status.index+1 }</td>
 													<td>${ team.name }</td>
 													<td>${ team.group_name }</td>
-													<td>${ team.count }</td>
+													<td>${ team.apply_mentee_count }/${ team.count }</td>
 													<td>${ team.open_date }</td>
 												</tr>
 											</c:forEach>
