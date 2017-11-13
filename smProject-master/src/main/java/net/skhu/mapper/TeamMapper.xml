@@ -3,6 +3,10 @@
              "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="net.skhu.mapper.TeamMapper">
+
+	<select id="findTeamByMentor" resultType="Team">
+		SELECT * FROM team WHERE group_m_apply_id = #{group_m_apply_id}
+	</select>
 	
 	<insert id="insertMentor" useGeneratedKeys="true" keyProperty="id">
 		INSERT team (group_m_apply_id)

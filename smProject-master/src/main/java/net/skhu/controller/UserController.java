@@ -23,12 +23,14 @@ import net.skhu.dto.Article;
 import net.skhu.dto.Mentor;
 import net.skhu.dto.Report;
 import net.skhu.dto.User;
+import net.skhu.dto.Team;
 import net.skhu.mapper.ArticleMapper;
 import net.skhu.mapper.BoardMapper;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.FileMapper;
 import net.skhu.mapper.MentorMapper;
 import net.skhu.mapper.UserMapper;
+import net.skhu.mapper.TeamMapper;
 import net.skhu.model.Pagination;
 import net.skhu.service.ArticleService;
 import net.skhu.service.FileService;
@@ -50,6 +52,8 @@ public class UserController {
 	MentorMapper mentorMapper;
 	@Autowired
 	FileMapper fileMapper;
+	@Autowired
+	TeamMapper teamMapper;
 	@Autowired
 	UserService userService;
 	@Autowired
@@ -132,10 +136,12 @@ public class UserController {
 
 	 /* 멘티신청 */
 	 @RequestMapping("mentee_update")
-	 public String mentee_update(Model model) {
+	 public String mentee_update(Model model, @RequestParam(value="id") int id) {
+		 Team team =
 		 User user = UserService.getCurrentUser();
-		 if(user.getType()!=4)
+		 if(user.getType()!=4) {
 			 user.setType(4);
+		 }
 		 return "";
 	 }
 
