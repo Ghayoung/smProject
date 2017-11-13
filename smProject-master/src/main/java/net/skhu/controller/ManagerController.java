@@ -194,10 +194,25 @@ public class ManagerController {
 	   return "redirect:m_userManage";
    }
    
-   @RequestMapping("semester_user")
-   public String semester_user(@RequestParam("id") int id) {
-	   userMapper.auth_update(id);
-	   return "redirect:m_userManage";
+   @RequestMapping(value="term_search_user")
+   	   public String term_search_user(Model model,HttpServletRequest request){
+
+		   int year = Integer.parseInt(request.getParameter("search_year"));
+		   
+
+		   List<User> TermSearchUsers= userMapper.findByTerm(year);
+		   model.addAttribute("TermSearchUsers", TermSearchUsers);
+		   model.addAttribute("year", year);
+//
+//
+//			List<User> managers= userMapper.findAllManager();
+//			List<User> mentors= userMapper.findAllMentor();
+//			List<User> mentees= userMapper.findAllMentee();
+//			model.addAttribute("managers", managers);
+//			model.addAttribute("mentors", mentors);
+//			model.addAttribute("mentees", mentees);
+//			
+		    return "manager/m_userManage";
    }
 
    @RequestMapping(value = "m_mentoringManage", method = RequestMethod.GET)

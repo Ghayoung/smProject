@@ -102,6 +102,15 @@
 		WHERE id = #{id}
 	</update>
 	
+	<select id="findByTerm" resultType="User">
+	SELECT u.*, d.d_name, s.status_name
+		FROM department d right join user u 
+		ON d.id=u.major_id 
+		left join status s
+		on u.status_id=s.id
+		WHERE u.auth_date like CONCAT(#{year},'%')
+	</select>
+	
 	<insert id="insertWithMinor" useGeneratedKeys="true" keyProperty="id">
 	    INSERT user (user_id, pw, name, email, phone, office, office_tel, type, major_id, status_id, auth_date, minor_id)
 	    VALUES (#{user_id}, #{pw}, #{name}, #{email}, #{phone}, #{office}, #{office_tel}, #{type}, #{major_id}, #{status_id}, now(), #{minor_id})

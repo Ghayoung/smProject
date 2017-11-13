@@ -109,27 +109,27 @@
 				<div class="col-md-12 animate-box">
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
 					<div class="col-md-6"></div> 
-					<form action="#" method="post" class="row">
+					<form action="term_search_user" method="post" class="row">
 						<!-- 정렬조건 -->
 						<div class="col-md-6">
 							<div class="col-md-4"
 								style="margin-right: -30px; margin-left: 90px; padding-right: 20px">
 								<div class="form-group">
 									<label for="search_year" class="sr-only">년도</label> <input
-										placeholder="2017학년도" id="search_year" type="text"
-										class="form-control">
+										placeholder="2017학년도" id="search_year" name="search_year" type="text"
+										class="form-control" value=${year}>
 								</div>
 							</div>
 
 							<div class="col-md-4" style="margin-right: -30px">
-								<div class="form-group">
+								<!--  <div class="form-group">
 									<label for="search_term" class="sr-only">학기</label> <select
-										class="form-control" id="search_term">
+										class="form-control" id="search_sem" name="search_sem">
 										<option>--학기</option>
 										<option>1</option>
 										<option>2</option>
 									</select>
-								</div>
+								</div>-->
 							</div>
 
 							<div class="col-md-4" style="margin-right: -30px">
