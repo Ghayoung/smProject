@@ -8,8 +8,8 @@ import net.skhu.dto.Team;
 
 @Mapper
 public interface TeamMapper {
-	List<Team> findAll();
 	void insertMentor(Team team);
 	void insertMentee(Team team);
 	void delete(int id);
+	List<Team> findAll();
 }
