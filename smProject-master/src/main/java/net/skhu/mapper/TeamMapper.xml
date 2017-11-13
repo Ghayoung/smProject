@@ -28,7 +28,7 @@
 	</select>
 	
 	<select id="findMentoringByName" resultType="Team">
-		SELECT t.*, m.group_name, m.count, m.open_date, u.name, count(*) "apply_mentee_count"
+		SELECT t.*, m.group_name, m.count, m.open_date, u.name, count(*) 'apply_mentee_count'
 		FROM Team t right join mentor_apply m
 		on t.group_m_apply_id = m.id
 		left join user u
