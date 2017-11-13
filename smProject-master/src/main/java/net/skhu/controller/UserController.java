@@ -123,14 +123,48 @@ public class UserController {
 	/* 합격 멘토 신청서 목록 출력 */
 	 @RequestMapping("menteeapply")
 	 public String menteeapply(Model model) {
+		 boolean b=false;
 		 List<Mentor> mentors = mentorMapper.findMentor();
+		 User user = UserService.getCurrentUser();
+		 for(int i=0; i<mentors.size(); i++) {
+			 if(user.getType()!=4) {
+				 mentors.get(i).setState(0);
+			 } else if(user.getType()==4) {
+				 List<Team> teams = teamMapper.findTeamByMentor(mentors.get(i).getId());
+				 for(int j=0; j<teams.size(); j++) {
+					 if(user.getId()==teams.get(j).getGroup_mentee_id())
+						 b=true;
+				 }
+				 if(b) mentors.get(i).setState(1);
+				 else mentors.get(i).setState(2);
+			 }
+			 if(!b&&mentors.get(i).getMentee_count()==mentors.get(i).getCount())
+				 mentors.get(i).setState(2);
+		 }
 		 model.addAttribute("mentors", mentors);
 		 return "user/menteeapply";
 	 }
 
 	 @RequestMapping("menteeapply_detail")
 	 public String menteeapply_detail(Model model, @RequestParam(value="id") int id) {
-	     model.addAttribute("mentor", mentorMapper.findOne(id));
+	     boolean b=false;
+	     Mentor mentor = mentorMapper.findOne(id);
+		 User user = UserService.getCurrentUser();
+		 if(user.getType()!=4) {
+			 mentor.setState(0);
+		 } else if(user.getType()==4) {
+			 List<Team> teams = teamMapper.findTeamByMentor(mentor.getId());
+			 for(int j=0; j<teams.size(); j++) {
+				 if(user.getId()==teams.get(j).getGroup_mentee_id())
+					 b=true;
+			 }
+			 if(b) mentor.setState(1);
+			 else mentor.setState(2);
+		 }
+		 if(!b&&mentor.getMentee_count()==mentor.getCount()) {
+			 mentor.setState(2);
+		 }
+		 model.addAttribute("mentor", mentor);
 	     return "user/menteeapply_detail";
 	 }
 

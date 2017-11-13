@@ -11,7 +11,7 @@ public interface TeamMapper {
 	void insert(Team team);
 	void delete(int id);
 	void deleteMentee(int id);
-	Team findTeamByMentor(int id);
+	List<Team> findTeamByMentor(int id); //멘토 신청서 ID로 가져옴
 	List<Team> findAll();
 	List<Team> findMentoringByName(String keyword);
 }

@@ -23,6 +23,10 @@
 							alt="" class="fh5co-align-center img-responsive">
 						<div class="fh5co-spacer fh5co-spacer-md"></div>
 					</div>
+					<div class="col-md-12">
+						<label for="count">신청인원: &nbsp;${ mentor.mentee_count }/${ mentor.count }</label>
+					</div>
+					<div class="fh5co-spacer fh5co-spacer-sm"></div>
 					<div class="col-md-6">
 						<!-- 나중에 학번도 출력하게 변경 -->
 						<label for="name">멘토</label>
@@ -61,13 +65,24 @@
 						<div class="panel panel-default">${ mentor.study_method }</div>
 					</div>
 					<div class="col-md-2">
-						<a href="${R}mentor/file/download?id=${ mentor.apply_f_time_id }">
+						<a href="${R}manager/file/download?id=${ mentor.apply_f_time_id }">
 							시간표 <img src="${R}images\file.png" border="0">
 						</a>
 					</div>
-							
+					
+					<div class="fh5co-spacer fh5co-spacer-sm"></div>
 					<div class="col-md-12">
-						<a href="mentee_update_detail.do?id=${ mentor.id }" class="btn btn-primary btn-lg col-md-offset-9">신청</a>
+						<c:choose>
+						<c:when test="${ mentor.state == 0 }">
+						<a href="mentee_update_detail.do?id=${ mentor.id }" class="btn btn-primary btn-lg col-md-offset-8">신청</a>
+						</c:when>
+						<c:when test="${ mentor.state == 1 }">
+						<a href="mentee_update_detail.do?id=${ mentor.id }" class="btn btn-cancel btn-lg col-md-offset-8">신청취소</a>
+						</c:when>
+						<c:when test="${ mentor.state == 2 }">
+						<input type=button class="btn btn-outline btn-lg col-md-offset-8" value="신청불가" disabled>
+						</c:when>
+						</c:choose>
 						<input type="button" class="btn btn-outline btn-lg" onclick="location.href='${R}user/menteeapply.do'" value="목록">
 					</div>
 							

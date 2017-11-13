@@ -19,19 +19,18 @@
 						<h3>팀명:&nbsp;${ mentor.group_name }</h3>
 						<p>주제:&nbsp;${ mentor.subject }</p>
 						<p>${ mentor.year }학년&nbsp;${ mentor.name }</p>
-						<a href="mentee_update.do?id=${ mentor.id }" class="btn btn-primary btn-lg mt_submit">신청</a>
-						<!--
+						<p>신청인원:&nbsp;${ mentor.mentee_count }/${ mentor.count }</p>
 						<c:choose>
-						<c:when test="${ mentor.m_condition == 0}">
-							<a href="mentor_update.do?id=${ mentor.id }" class="btn btn-primary btm-md m_submitbtn">멘토선정</a>
-							<div class="fh5co-spacer fh5co-spacer-md"></div>
+						<c:when test="${ mentor.state == 0 }">
+						<a href="mentee_update.do?id=${ mentor.id }" class="btn btn-primary btm-md mt_submit">신청</a>
 						</c:when>
-						<c:when test="${ mentor.m_condition == 1 }">
-							<a href="mentor_update.do?id=${ mentor.id }" class="btn btn-cancel btm-md m_submitbtn">선정취소</a>
-							<div class="fh5co-spacer fh5co-spacer-md"></div>
+						<c:when test="${ mentor.state == 1 }">
+						<a href="mentee_update.do?id=${ mentor.id }" class="btn btn-cancel btm-md mt_submit">신청취소</a>
+						</c:when>
+						<c:when test="${ mentor.state == 2 }">
+						<input type=button class="btn btn-outline btm-md mt_submit" value="신청불가" disabled>
 						</c:when>
 						</c:choose>
-						-->
 						</div>
 					</c:forEach>
 				</div>
