@@ -65,20 +65,11 @@
 
 					<div class="col-md-12">
 						<a href="${R}manager/m_reportManage"
-							class="btn btn-primary btn-lg col-md-offset-10">목록으로</a> <a
-							href="${R}manager/excel"
-							class="btn btn-primary btn-lg col-md-offset-10">다운로드</a>
+							class="btn btn-primary btn-lg col-md-offset-10">목록으로</a>
 					</div>
 
 
 
-				</div>
-
-				<div class="col-md-12">
-					<div class="form-group">
-						<button type="submit"
-							class="btn btn-primary btn-lg col-md-offset-11">설정</button>
-					</div>
 				</div>
 			</form:form>
 		</div>
