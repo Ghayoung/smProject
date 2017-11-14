@@ -31,6 +31,8 @@ public interface UserMapper {
     String findStartSM();
     Report findOneReport(int id);
     void auth_update(int id);
-    List<User> findByTerm(int year);
+    List<User> findManagerByTerm(int year);
+    List<User> findMentorByTerm(int year);
+    List<User> findMenteeByTerm(int year);    
     void dropUser(int id);
 }

@@ -92,7 +92,7 @@
 			<div class="row">
 				<div class="col-md-12 animate-box">
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
-					<form action="#" method="post" class="search_min">
+					<%-- <form action="#" method="post" class="search_min">
 						<div class="col-md-2">
 							<div class="form-group">
 								<label for="search_term" class="sr-only">학기</label> <select
@@ -110,7 +110,7 @@
 									class="form-control">
 							</div>
 						</div>
-					</form>
+					</form> --%>
 				</div>
 				<div class="col-md-12 animate-box">
 					<div id="fh5co-tab-feature-center" class="fh5co-tab text-center">

@@ -64,14 +64,20 @@
 	</select>  
 	
 	<select id="findAllMentor" resultType="User">
-		SELECT u.*, d.d_name
-		FROM user u left join department d ON u.major_id=d.id
-		WHERE type=3;
+		SELECT u.*, d.d_name, s.status_name
+		FROM department d right join user u 
+		ON d.id=u.major_id 
+		left join status s
+		on u.status_id=s.id
+		WHERE type=3
 	</select>
 	
 	<select id="findAllMentee" resultType="User">
-		SELECT u.*, d.d_name
-		FROM user u left join department d ON u.major_id=d.id
+		SELECT u.*, d.d_name, s.status_name
+		FROM department d right join user u 
+		ON d.id=u.major_id 
+		left join status s
+		on u.status_id=s.id
 		WHERE type=4;
 	</select>
 	
@@ -102,13 +108,34 @@
 		WHERE id = #{id}
 	</update>
 	
-	<select id="findByTerm" resultType="User">
+	<select id="findManagerByTerm" resultType="User">
+	SELECT u.*, d.d_name, s.status_name
+		FROM department d right join user u 
+		ON d.id=u.major_id 
+		left join status s
+		on u.status_id=s.id
+		WHERE u.auth_date like CONCAT(#{year},'%') 
+		AND u.type=2
+	</select>
+	
+	<select id="findMentorByTerm" resultType="User">
 	SELECT u.*, d.d_name, s.status_name
 		FROM department d right join user u 
 		ON d.id=u.major_id 
 		left join status s
 		on u.status_id=s.id
 		WHERE u.auth_date like CONCAT(#{year},'%')
+		AND u.type=3
+	</select>
+	
+	<select id="findMenteeByTerm" resultType="User">
+	SELECT u.*, d.d_name, s.status_name
+		FROM department d right join user u 
+		ON d.id=u.major_id 
+		left join status s
+		on u.status_id=s.id
+		WHERE u.auth_date like CONCAT(#{year},'%')
+		AND u.type=4
 	</select>
 	
 	<insert id="insertWithMinor" useGeneratedKeys="true" keyProperty="id">

@@ -190,16 +190,19 @@ public class ManagerController {
 	   return "redirect:m_userManage";
    }
    
-   @RequestMapping(value="term_search_user")
+   @RequestMapping(value="term_search_user", method=RequestMethod.POST)
    	   public String term_search_user(Model model,HttpServletRequest request){
 
 		   int year = Integer.parseInt(request.getParameter("search_year"));
-		   
-
-		   List<User> TermSearchUsers= userMapper.findByTerm(year);
-		   model.addAttribute("TermSearchUsers", TermSearchUsers);
 		   model.addAttribute("year", year);
-//
+		   
+		   List<User> TermSearchManagers = userMapper.findManagerByTerm(year);
+		   List<User> TermSearchMentors = userMapper.findMentorByTerm(year);
+		   List<User> TermSearchMentees = userMapper.findMenteeByTerm(year);
+		   model.addAttribute("TermSearchManagers",TermSearchManagers);
+		   model.addAttribute("TermSearchMentors",TermSearchMentors);
+		   model.addAttribute("TermSearchMentees",TermSearchMentees);
+
 //
 //			List<User> managers= userMapper.findAllManager();
 //			List<User> mentors= userMapper.findAllMentor();
