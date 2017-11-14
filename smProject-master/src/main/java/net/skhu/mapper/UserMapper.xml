@@ -103,7 +103,7 @@
 		<set>
 			<if test="type=2">type=1,</if>
 			<if test="type=1">type=2,</if>
-			auth_date=now();
+			auth_date=now()
 		</set>
 		WHERE id = #{id}
 	</update>

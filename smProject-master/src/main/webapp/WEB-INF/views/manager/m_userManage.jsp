@@ -185,7 +185,7 @@
 														<td>${ TermSearchManagers.status_name }</td>
 														<td>${ TermSearchManagers.auth_date }</td>
 														<td><a href="auth_update?id=${ TermSearchManagers.id }"
-															class="btn btn-primary col-sm">권한삭제</a></td>
+															class="btn btn-primary col-sm">권한삭제 </a></td>
 													</tr>
 
 												</c:forEach>
@@ -201,8 +201,8 @@
 														<td>${ manager.d_name }</td>
 														<td>${ manager.status_name }</td>
 														<td>${ manager.auth_date }</td>
-														<td><a href="auth_update?id=${ searchUser.id }"
-															class="btn btn-primary col-sm">권한삭제</a></td>
+														<td><a href="auth_update?id=${ manager.id }"
+															class="btn btn-primary col-sm">권한삭제 </a></td>
 													</tr>
 												</c:forEach>
 												<%
