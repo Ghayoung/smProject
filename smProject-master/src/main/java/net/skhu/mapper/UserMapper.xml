@@ -30,8 +30,11 @@
 	</select>
 	
 	<select id="findAllManager" resultType="User">
-		SELECT u.*, d.d_name
-		FROM user u left join department d ON u.major_id=d.id
+		SELECT u.*, d.d_name, s.status_name
+		FROM department d right join user u 
+		ON d.id=u.major_id 
+		left join status s
+		on u.status_id=s.id
 		WHERE type=2;
 	</select>
 	
@@ -73,14 +76,40 @@
 	</select>
 	
 	<select id="findByName" resultType="User">
-		SELECT u.*, d.d_name
-		FROM user u left join department d ON u.major_id=d.id
+		SELECT u.*, d.d_name, s.status_name
+		FROM department d right join user u 
+		ON d.id=u.major_id 
+		left join status s
+		on u.status_id=s.id
 		WHERE u.name LIKE CONCAT('%', #{keyword}, '%');
 	</select>
 
 	<update id="update">
 		UPDATE user SET pw = #{pw}, email = #{email}, phone = #{phone} WHERE id = #{id}
 	</update>
+	
+	<update id="type_update">
+		UPDATE user SET type = #{type} WHERE id = #{id}
+	</update>
+
+	<update id="auth_update">
+		UPDATE User
+		<set>
+			<if test="type=2">type=1,</if>
+			<if test="type=1">type=2,</if>
+			auth_date=now();
+		</set>
+		WHERE id = #{id}
+	</update>
+	
+	<select id="findByTerm" resultType="User">
+	SELECT u.*, d.d_name, s.status_name
+		FROM department d right join user u 
+		ON d.id=u.major_id 
+		left join status s
+		on u.status_id=s.id
+		WHERE u.auth_date like CONCAT(#{year},'%')
+	</select>
 	
 	<insert id="insertWithMinor" useGeneratedKeys="true" keyProperty="id">
 	    INSERT user (user_id, pw, name, email, phone, office, office_tel, type, major_id, status_id, auth_date, minor_id)

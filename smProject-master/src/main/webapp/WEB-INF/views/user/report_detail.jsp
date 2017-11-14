@@ -22,8 +22,6 @@
 			<form:form method="post" modelAttribute="report" name="frm"
 				onsubmit="return excel();">
 				<div class="col-md-12 animate-box board" id="excel_body">
-
-
 					<input type="hidden" name="excel_data" />
 					<div class="col-md-12">
 						<label>스터디 주제</label>
@@ -67,20 +65,11 @@
 
 					<div class="col-md-12">
 						<a href="${R}manager/m_reportManage"
-							class="btn btn-primary btn-lg col-md-offset-10">목록으로</a> <a
-							href="${R}manager/excelDownload?id=${ report.id }"
-							class="btn btn-primary btn-lg col-md-offset-10">다운로드</a>
+							class="btn btn-primary btn-lg col-md-offset-10">목록으로</a>
 					</div>
 
 
 
-				</div>
-
-				<div class="col-md-12">
-					<div class="form-group">
-						<button type="submit"
-							class="btn btn-primary btn-lg col-md-offset-11">설정</button>
-					</div>
 				</div>
 			</form:form>
 		</div>

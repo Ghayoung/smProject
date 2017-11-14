@@ -18,6 +18,7 @@ public interface UserMapper {
 	List<User> findAllMentee();
 	List<User> findByName(String keyword);
 	void update(User user);
+	void type_update(User user);
 	void delete(int id);
 	void insertWithDep(User user);
 	void insertWithMinor(User user);
@@ -29,4 +30,6 @@ public interface UserMapper {
     int findStudyCount();
     String findStartSM();
     Report findOneReport(int id);
+    void auth_update(int id);
+    List<User> findByTerm(int year);
 }

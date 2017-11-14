@@ -24,6 +24,9 @@ public class Mentor{
 	String name;
 	int user_id;
     List<Report> reports;
+    int type;
+    int mentee_count;
+    int state;
 
 	public int getId() {
 		return id;
@@ -137,6 +140,14 @@ public class Mentor{
 		this.apply_f_doc_fk = apply_f_doc_fk;
 	}
 
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
 	public int getM_condition() {
 		return m_condition;
 	}
@@ -191,5 +202,21 @@ public class Mentor{
 
 	public void setReports(List<Report> reports) {
 		this.reports = reports;
+	}
+
+	public int getMentee_count() {
+		return mentee_count;
+	}
+
+	public void setMentee_count(int mentee_count) {
+		this.mentee_count = mentee_count;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
 	}
 }
