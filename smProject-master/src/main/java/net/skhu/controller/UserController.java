@@ -298,7 +298,7 @@ public class UserController {
    @RequestMapping(value = "memDrop", method = RequestMethod.GET)
    public String memDrop(Model model) {
 	   userService.memDrop();
-      return "/user/logout_processing";
+      return "guset/main";
    }
 
    @RequestMapping("file/download")
