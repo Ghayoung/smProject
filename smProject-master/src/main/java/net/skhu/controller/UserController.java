@@ -108,10 +108,9 @@ public class UserController {
    }
 
    @RequestMapping("board_delete")
-   public String board_delete(Model model, @RequestParam(value = "id") int id,
-         @RequestParam(value = "type", defaultValue = "0") int type) {
+   public String board_delete(Model model, @RequestParam(value = "id") int id, Pagination pagination) {
       articleMapper.delete(id);
-      return "redirect:board?type=" + type;
+      return "redirect:board?"+pagination.getQueryString();
    }
 
    @RequestMapping("question")
@@ -261,7 +260,10 @@ public class UserController {
    }
 
    @RequestMapping("mypost")
-   public String mypost() {
+   public String mypost(Model model) {
+	   model.addAttribute("board", "내가 쓴 글");
+	   System.out.println(":하이");
+	   model.addAttribute("postBoards", userService.findAllArticleBydUser());
       return "user/mypost";
    }
 

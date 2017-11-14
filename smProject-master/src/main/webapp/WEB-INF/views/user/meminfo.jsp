@@ -16,10 +16,10 @@
 							<li>회원정보수정</li>
 							<li>회원탈퇴</li>
 						</ul>
-						<form id="form" method="post" action="${R}user/meminfo_processing" onsubmit="return checkInput();">
-						<div class="resp-tabs-container hor_1">
+							<div class="resp-tabs-container hor_1">
 								<!--정보수정-->
 								<div class="row">
+								<form id="form" method="post" action="${R}user/meminfo_processing" onsubmit="return checkInputMeminfo();">
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="password">현재 비밀번호</label>
@@ -81,8 +81,8 @@
 											<input type="submit" class="btn btn-primary btn-lg " value="저장">
 										</div>	
 									</div>
+								</form>
 								</div>
-							</form>
 							<!--회원탈퇴-->
 							<div class="row">
 								<div class="panel panel-default ">
@@ -105,7 +105,7 @@
 	</div>
 </div>
 
-<!-- 팝업창시작 -->
+<!-- 팝업창시작-->
 <div class="modal fade" id="layerpop" >
   <div class="modal-dialog">
     <div class="modal-content">

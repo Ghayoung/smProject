@@ -5,7 +5,11 @@
 <mapper namespace="net.skhu.mapper.BoardMapper">
 
 	<select id="findAll" resultType="Board">
-		SELECT * FROM board
+		SELECT * FROM board WHERE id!=4
+	</select>
+	
+	<select id="findAllNoManager" resultType="Board">
+		SELECT * FROM board WHERE id!=1 AND id!=4
 	</select>
 	
 	<select id="findOne" resultType="Board">

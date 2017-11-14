@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Article;
+import net.skhu.dto.Board;
+import net.skhu.dto.Post;
 import net.skhu.dto.User;
 import net.skhu.mapper.ArticleMapper;
+import net.skhu.mapper.BoardMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.model.Pagination;
 import net.skhu.utils.Encryption;
@@ -24,6 +27,8 @@ public class UserService {
 	UserMapper userMapper;
 	@Autowired
 	ArticleMapper articleMapper;
+	@Autowired
+	BoardMapper boardMapper;
 	@Autowired
 	FileService fileService;
 
@@ -85,6 +90,21 @@ public class UserService {
 		int count = articleMapper.count(pagination);
 		pagination.setRecordCount(count);
 		return articleMapper.findAllByBoard(pagination);
+	}
+
+	public List<Board> findAllArticleBydUser(){
+		User user = UserService.getCurrentUser();
+		List<Board> boards;
+		if(user.getType()==2) boards = boardMapper.findAll();
+		else boards = boardMapper.findAllNoManager();
+		for(Board board: boards) {
+			Post post = new Post();
+			post.setB_id(board.getId());
+			post.setU_id(user.getId());
+			List<Article> articles = articleMapper.findAllByBoardAndUser(post);
+			board.setArticles(articles);
+		}
+		return boards;
 	}
 
 	public void createArticle(Article article, int type, @RequestBody MultipartFile file, HttpServletRequest request) {

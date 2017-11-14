@@ -253,8 +253,8 @@ function checkInput() {
 		$("#form [name=user_id]").focus();
 		return false;
 	} else if ($("#form [name=pw]").val() == "") {
-		/*alert("비밀번호를 입력해주세요");
-		$("#form [name=pw]").focus();*/
+		alert("비밀번호를 입력해주세요");
+		$("#form [name=pw]").focus();
 		return false;
 	} else if ($("#form [name=major_id]").val() == 0) {
 		alert("학과를 선택해주세요");
@@ -320,6 +320,24 @@ function checkInput() {
 	}
 }
 
+function checkInputMeminfo(){
+	if($("#form [name=pw]").val() == ""){
+		alert("비밀번호를 입력해주세요");
+		$("#form [name=pw]").focus();
+		return false;
+	}
+	else if (!($("#form [name=newPw]").val() == "")) {
+		if ($("#form [name=newPw]").val() != $("#form [name=newPw2]").val()) {
+			alert("비밀번호가 일치하지 않습니다");
+			$("#form [name=newPw]").focus();
+			return false;
+		}
+	}
+	else {//
+		form.submit();
+	}
+}
+
 var oEditors = [];
 $(function() {
 	nhn.husky.EZCreator.createInIFrame({
@@ -354,7 +372,7 @@ $("#save").click(function() {
 
 
 
-function save(){
+/*function save(){
 	if ($("#form [name=title]").val() == "") {
 		alert("제목을 입력해주세요");
 		$("#form [name=title]").focus();
@@ -364,3 +382,4 @@ function save(){
 	$("input[name=content]").val(s);
 	$("#form").submit();
 }
+*/
