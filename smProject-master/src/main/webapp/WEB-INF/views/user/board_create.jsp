@@ -24,7 +24,8 @@
 									<form:input path="title" name="title" placeholder="글 제목" id="report_subject" type="text" class="form-control input-lg" />
 								</div>	
 							</div>
-							<!-- <div class="col-md-12">
+							<!-- 
+							<div class="col-md-12">
 								<div class="form-group">
 									<label for="report_subject">글 내용</label>
 									<div id="summernote">${ article.content }</div>
@@ -36,27 +37,26 @@
 									<label for="report_content">글 내용</label>
 									<form:textarea path="content" name="content" placeholder="글 내용" class="form-control input-lg" rows="10" />
 								</div>	
-							</div>
 							
-							<!-- <div class="col-md-12">
+							<div class="col-md-12">
 								<div class="form-group">
 									<label>파일 첨부</label>
 									<c:if test="${ file!=null }"><p>첨부된 파일: ${ file }</p></c:if>
 									<input name="file" type="file" class="btn btn-lg ">
 								</div>	
-							</div> -->
-							<!--							<div class="col-md-12">
+							</div>
+							<div class="col-md-12">
 								<div class="form-group">
 									<input type="submit" class="btn btn-primary btn-lg col-md-offset-11" value="등록">
 								</div>	
-							</div> -->
-							<div class="col-md-12">
-								<div class="form-group">
-									<a class="btn btn-primary btn-lg col-md-offset-11" onclick="save()">등록</a>
-								</div>	
 							</div>
-							
-						</form:form>	
+						</form:form>
+						<!-- 	
+						<div class="col-md-12">
+							<div class="form-group">
+								<a class="btn btn-primary btn-lg col-md-offset-11" onclick="save()">등록</a>
+							</div>	
+						</div> -->
 					</div>
 					
 				</div>

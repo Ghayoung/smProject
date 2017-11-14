@@ -253,8 +253,8 @@ function checkInput() {
 		$("#form [name=user_id]").focus();
 		return false;
 	} else if ($("#form [name=pw]").val() == "") {
-		alert("비밀번호를 입력해주세요");
-		$("#form [name=pw]").focus();
+		/*alert("비밀번호를 입력해주세요");
+		$("#form [name=pw]").focus();*/
 		return false;
 	} else if ($("#form [name=major_id]").val() == 0) {
 		alert("학과를 선택해주세요");
