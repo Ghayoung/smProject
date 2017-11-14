@@ -18,31 +18,17 @@ function selectAllCheckBox(allcheck, containerID, checkboxIDMatch) { // (all체�
 };
 
 /*
-var submitcheck = true; // 중복신청 방지
-
-window.onload = function() {
-	var btns = document.getElementsByClassName("submitbtn"); // 신청 버튼의 집합
-	for (var i = 0; i < btns.length; i++) {
-		var btn = btns.item(i);
-		btn.onclick = function() {
-			if (this.value == "신청" && submitcheck) {
-				alert("신청되었습니다");// 확인용 임시코드
-				submitcheck = false;
-				this.value = "신청취소";
-				this.className = "btn btn-cancel btn-lg submitbtn";
-			} else if (this.value == "신청취소") {
-				alert("취소되었습니다");// 확인용 임시코드
-				submitcheck = true;
-				this.value = "신청";
-				this.className = "btn btn-primary btn-lg submitbtn";
-			} else {
-				alert("이미 신청했습니다");// 확인용 임시코드
-			}
-		};
-	}
-};
-*/
-
+ * var submitcheck = true; // 중복신청 방지
+ * 
+ * window.onload = function() { var btns =
+ * document.getElementsByClassName("submitbtn"); // 신청 버튼의 집합 for (var i = 0; i <
+ * btns.length; i++) { var btn = btns.item(i); btn.onclick = function() { if
+ * (this.value == "신청" && submitcheck) { alert("신청되었습니다");// 확인용 임시코드
+ * submitcheck = false; this.value = "신청취소"; this.className = "btn btn-cancel
+ * btn-lg submitbtn"; } else if (this.value == "신청취소") { alert("취소되었습니다");// 확인용
+ * 임시코드 submitcheck = true; this.value = "신청"; this.className = "btn btn-primary
+ * btn-lg submitbtn"; } else { alert("이미 신청했습니다");// 확인용 임시코드 } }; } };
+ */
 
 function selectAllCheckBox(allcheck, containerID, checkboxIDMatch) { // (all체크박스,
 	// 그룹ID,
@@ -63,10 +49,10 @@ function selectAllCheckBox(allcheck, containerID, checkboxIDMatch) { // (all체�
 	}
 }
 
-function register(){
-	if(document.r_form.file.value == "")
+function register() {
+	if (document.r_form.file.value == "")
 		alert("파일을 등록해주세요");
-	else{
+	else {
 		r_form.submit();
 	}
 }
@@ -166,7 +152,7 @@ function checkSearch1() {
 		alert("검색어를 입력해주세요");
 		document.fm.mentoringSearch.focus();
 		return false;
-	}else {
+	} else {
 		fm.submit();
 	}
 }
@@ -253,8 +239,8 @@ function checkInput() {
 		$("#form [name=user_id]").focus();
 		return false;
 	} else if ($("#form [name=pw]").val() == "") {
-		/*alert("비밀번호를 입력해주세요");
-		$("#form [name=pw]").focus();*/
+		alert("비밀번호를 입력해주세요");
+		$("#form [name=pw]").focus();
 		return false;
 	} else if ($("#form [name=major_id]").val() == 0) {
 		alert("학과를 선택해주세요");
@@ -275,28 +261,6 @@ function checkInput() {
 			$("#form [name=office_tel]").focus();
 			return false;
 		}
-	} else if (document.all.radio[0].checked == true) {
-		if ($("#form [name=double_id]").val() == 0) {
-			alert("복수전공 학과를 선택해주세요");
-			$("#form [name=double_id]").focus();
-		}
-		if ($("#form [name=double_id]").val() == $("#form [name=major_id]")
-				.val()) {
-			alert("올바르지 않은 복수전공입니다");
-			$("#form [name=double_id]").focus();
-		}
-		return false;
-	} else if (document.all.radio[1].checked == true) {
-		if ($("#form [name=minor_id]").val() == 0) {
-			alert("부전공 학과를 선택해주세요");
-			$("#form [name=minor_id]").focus();
-		}
-		if ($("#form [name=minor_id]").val() == $("#form [name=major_id]")
-				.val()) {
-			alert("올바르지 않은 부전공입니다");
-			$("#form [name=minor_id]").focus();
-		}
-		return false;
 	} else if ($("#form [name=name]").val() == "") {
 		alert("이름을 입력해주세요");
 		$("#form [name=name]").focus();
@@ -315,9 +279,68 @@ function checkInput() {
 			$("#form [name=newPw]").focus();
 			return false;
 		}
+	} else if (document.all.radio[0].checked == true) {
+		if ($("#form [name=double_id]").val() == 0) {
+			alert("복수전공 학과를 선택해주세요");
+			$("#form [name=double_id]").focus();
+			return false;
+		}
+		if ($("#form [name=double_id]").val() == $("#form [name=major_id]")
+				.val()) {
+			alert("올바르지 않은 복수전공입니다");
+			$("#form [name=double_id]").focus();
+			return false;
+		}
+		if (document.all.radio[1].checked == true) {
+			if ($("#form [name=minor_id]").val() == 0) {
+				alert("부전공 학과를 선택해주세요");
+				$("#form [name=minor_id]").focus();
+				return false;
+			}
+			if ($("#form [name=minor_id]").val() == $("#form [name=major_id]")
+					.val()) {
+				alert("올바르지 않은 부전공입니다");
+				$("#form [name=minor_id]").focus();
+				return false;
+			}
+			form.submit();
+		}
+		return false;
+	} else if (document.all.radio[1].checked == true) {
+		if ($("#form [name=minor_id]").val() == 0) {
+			alert("부전공 학과를 선택해주세요");
+			$("#form [name=minor_id]").focus();
+			return false;
+
+		}
+		return false;
+		if ($("#form [name=minor_id]").val() == $("#form [name=major_id]")
+				.val()) {
+			alert("올바르지 않은 부전공입니다");
+			$("#form [name=minor_id]").focus();
+			return false;
+
+		}
+		return false;
+		if (document.all.radio[0].checked == true) {
+			if ($("#form [name=double_id]").val() == 0) {
+				alert("복수전공 학과를 선택해주세요");
+				$("#form [name=double_id]").focus();
+				return false;
+			}
+			if ($("#form [name=double_id]").val() == $("#form [name=major_id]")
+					.val()) {
+				alert("올바르지 않은 복수전공입니다");
+				$("#form [name=double_id]").focus();
+				return false;
+			}
+			form.submit();
+		}
+		return false;
 	} else {//
 		form.submit();
 	}
+
 }
 
 var oEditors = [];
@@ -352,15 +375,13 @@ $("#save").click(function() {
 	$("#frm").submit();
 });
 
-
-
-function save(){
+function save() {
 	if ($("#form [name=title]").val() == "") {
 		alert("제목을 입력해주세요");
 		$("#form [name=title]").focus();
 		return false;
-	} 
-	var s=$("#summernote").summernote('code');
+	}
+	var s = $("#summernote").summernote('code');
 	$("input[name=content]").val(s);
 	$("#form").submit();
 }
