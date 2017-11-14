@@ -33,6 +33,6 @@ public interface UserMapper {
     void auth_update(int id);
     List<User> findManagerByTerm(int year);
     List<User> findMentorByTerm(int year);
-    List<User> findMenteeByTerm(int year);
-
+    List<User> findMenteeByTerm(int year);    
+    void dropUser(int id);
 }

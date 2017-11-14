@@ -10,9 +10,11 @@ import net.skhu.model.Pagination;
 @Mapper
 public interface ArticleMapper {
 	List<Article> findAllByBoard(Pagination pagination);
+	List<Article> findByUser(int art_u_id);
 	int count(Pagination pagination);
 	Article findOne(int id);
 	void insert(Article article);
+	void insertNoFile(Article article);
 	void update(Article article);
     void delete(int id);
 

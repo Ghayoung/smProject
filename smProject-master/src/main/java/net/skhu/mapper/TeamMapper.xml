@@ -9,6 +9,10 @@
 		VALUES (#{group_m_apply_id}, #{group_mentee_id})
 	</insert>
 	
+	<select id="findTeamByMentor" resultType="Team">
+		SELECT * from team where group_m_apply_id = #{group_m_apply_id}
+	</select>
+	
 	<delete id="delete">
 	    DELETE FROM team WHERE group_m_apply_id = #{group_m_apply_id}
 	</delete>

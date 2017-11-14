@@ -29,7 +29,9 @@
 						</div>
 						
 						<div class="col-md-2">
-								<a href="#">첨부된 파일 <img src="${R}images\file.png" border="0"></a>
+							<c:if test="${ article.art_f_id != 0 }">
+								<a href="${R}user/file/download?id=${ article.art_f_id }">첨부된 파일 <img src="${R}images\file.png" border="0"></a>
+							</c:if>
 								<div class="fh5co-spacer fh5co-spacer-md"></div>
 						</div>
 						<c:if test="${ article.art_u_id == user }">

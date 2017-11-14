@@ -9,7 +9,7 @@
 
 				<!-- <div id="fh5co-menu-logo"> -->
 					<!-- START #fh5co-logo -->
-					<h1 id="fh5co-logo" class="pull-left"><a href="main"><img src="${R}images/logo.png" alt="SM사업 멘토링"></a></h1>
+					<h1 id="fh5co-logo" class="pull-left"><a href="${R}guest/main"><img src="${R}images/logo.png" alt="SM사업 멘토링"></a></h1>
 					
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation" >

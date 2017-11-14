@@ -1,8 +1,6 @@
 package net.skhu.controller;
 
-import java.io.BufferedOutputStream;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,7 +8,6 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -26,7 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
 import net.skhu.domain.UserDomain;
-import net.skhu.dto.FileDTO;
 import net.skhu.dto.Introduce;
 import net.skhu.dto.Mentor;
 import net.skhu.dto.Report;
@@ -263,7 +259,7 @@ public class ManagerController {
       model.addAttribute("report", report);
       return "user/report_detail";
    }
-
+/*
    @RequestMapping("file/download")
    public void download(@RequestParam("id") int id, HttpServletResponse response) throws Exception {
       FileDTO uploadedfile = fileMapper.findOne(id);
@@ -285,7 +281,7 @@ public class ManagerController {
          output.write(uploadedfile.getData());
       }
    }
-
+*/
 	@RequestMapping(value = "getImage")
 	public ResponseEntity<byte[]> getImage(@RequestParam("id") int id) {
 
