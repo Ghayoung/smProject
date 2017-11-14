@@ -26,7 +26,7 @@
 	</select>
 	
 	<select id="findAll" resultType="User">
-		SELECT * FROM user
+		SELECT * FROM user u WHERE u.condition=0
 	</select>
 	
 	<select id="findAllManager" resultType="User">
@@ -134,6 +134,10 @@
 	<delete id="delete">
 	    DELETE FROM user WHERE id = #{id}
 	</delete>
+	
+	<update id="dropUser">
+		UPDATE user u SET u.condition = 1 WHERE id = #{id}
+	</update>
 	
 	<insert id="m_setting" useGeneratedKeys="true" keyProperty="id">
 	    INSERT into setting (mentor_start_date, mentor_expire_date, mentee_start_date, mentee_expire_date, sm_start_date, sm_expire_date, study_count, max_mentor, max_mentee, min_mentee, report_deadline)

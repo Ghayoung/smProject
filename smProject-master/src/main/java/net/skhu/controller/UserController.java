@@ -1,8 +1,6 @@
 package net.skhu.controller;
 
-import java.io.BufferedOutputStream;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Article;
-import net.skhu.dto.FileDTO;
 import net.skhu.dto.Mentor;
 import net.skhu.dto.Report;
 import net.skhu.dto.Team;
@@ -90,9 +87,9 @@ public class UserController {
    }
 
    @RequestMapping(value = "board_create", method = RequestMethod.POST)
-   public String board_create(Model model, Article article, Pagination pagination, @RequestBody MultipartFile file) {
+   public String board_create(Model model, Article article, Pagination pagination, @RequestBody MultipartFile file, HttpServletRequest request) {
       int id = pagination.getBd();
-      userService.createArticle(article, id, file);
+      userService.createArticle(article, id, file, request);
       return "redirect:board?id=" + id + "&" + pagination.getQueryString();
    }
 
@@ -105,8 +102,8 @@ public class UserController {
 
    @RequestMapping(value = "board_edit", method = RequestMethod.POST)
    public String board_edit(Model model, Article article, Pagination pagination, @RequestParam(value = "id") int id,
-         @RequestBody MultipartFile file) {
-      userService.editArticle(article, file);
+         @RequestBody MultipartFile file, HttpServletRequest request) {
+      userService.editArticle(article, file, request);
       return "redirect:board_detail?id=" + id + "&" + pagination.getQueryString();
    }
 
@@ -298,26 +295,15 @@ public class UserController {
       return "redirect:meminfo";
    }
 
+   @RequestMapping(value = "memDrop", method = RequestMethod.GET)
+   public String memDrop(Model model) {
+	   userService.memDrop();
+      return "/user/logout_processing";
+   }
+
    @RequestMapping("file/download")
       public void download(@RequestParam("id") int id, HttpServletResponse response) throws Exception {
-         FileDTO uploadedfile = fileMapper.findOne(id);
-         if (uploadedfile == null)
-            return;
-         String fileName=(uploadedfile.getPath()).substring(11);
-
-         String filePath = (uploadedfile.getPath()).substring(0, 11);
-
-         filePath+=fileName;
-
-         Path path = Paths.get(filePath);
-
-         uploadedfile.setData(Files.readAllBytes(path));
-
-         response.setContentType("application/octet-stream");
-         response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName,"UTF-8") + ";");
-         try (BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream())) {
-            output.write(uploadedfile.getData());
-         }
+         fileService.fileDownload(id, response);
       }
 
    @RequestMapping(value = "getImage")

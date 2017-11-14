@@ -309,14 +309,6 @@ function checkInput() {
 		alert("연락처를 입력해주세요");
 		$("#form [name=phone]").focus();
 		return false;
-	} else if ($("#form [name=title]").val() == "") {
-		alert("제목을 입력해주세요");
-		$("#form [name=title]").focus();
-		return false;
-	} else if ($("#form [name=content]").val() == "") {
-		alert("내용을 입력해주세요");
-		$("#form [name=content]").focus();
-		return false;
 	} else if (!($("#form [name=newPw]").val() == "")) {
 		if ($("#form [name=newPw]").val() != $("#form [name=newPw2]").val()) {
 			alert("비밀번호가 일치하지 않습니다");
@@ -358,4 +350,17 @@ $(function() {
 $("#save").click(function() {
 	oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
 	$("#frm").submit();
-})
+});
+
+
+
+function save(){
+	if ($("#form [name=title]").val() == "") {
+		alert("제목을 입력해주세요");
+		$("#form [name=title]").focus();
+		return false;
+	} 
+	var s=$("#summernote").summernote('code');
+	$("input[name=content]").val(s);
+	$("#form").submit();
+}

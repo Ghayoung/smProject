@@ -32,4 +32,5 @@ public interface UserMapper {
     Report findOneReport(int id);
     void auth_update(int id);
     List<User> findByTerm(int year);
+    void dropUser(int id);
 }

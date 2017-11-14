@@ -82,6 +82,7 @@
 										</div>	
 									</div>
 								</div>
+							</form>
 							<!--회원탈퇴-->
 							<div class="row">
 								<div class="panel panel-default ">
@@ -97,7 +98,6 @@
 							</div>
 							<div class="fh5co-spacer fh5co-spacer-md"></div>
 						</div>
-						</form>
 					</div>
 				</div>
 			</div>
@@ -122,7 +122,7 @@
       </div>
       <!-- Footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+        <button onclick="location.href='${R}user/memDrop'" type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
         <button type="button" class="btn btn-outline" data-dismiss="modal">닫기</button>
       </div>
     </div>

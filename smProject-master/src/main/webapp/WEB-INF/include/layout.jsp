@@ -15,7 +15,15 @@
 <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 <meta name="author" content="FREEHTML5.CO" />
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-  	<link rel="shortcut icon" href="../images/favicon.ico">
+  	<link rel="shortcut icon" href="${R}images/favicon.ico">
+  	
+  	<!-- include libraries(jQuery, bootstrap) -->
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+	<!-- include summernote css/js-->
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
   	<!-- Google Webfont -->
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
@@ -43,9 +51,7 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-	<script type="text/javascript" src="${R}editor/js/HuskyEZCreator.js" charset="utf-8"></script> 
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
-
+	
 </head>
 <body>
 
@@ -82,9 +88,7 @@
 	</div>
 	
 	<!--바디-->
-	
 	<tiles:insertAttribute name="body" />
-  
 	<!--메인 페이지 하단-->
 		
 		<footer role="contentinfo" id="fh5co-footer">

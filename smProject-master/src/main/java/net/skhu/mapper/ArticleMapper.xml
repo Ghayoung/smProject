@@ -21,6 +21,10 @@
 	    FROM article a LEFT JOIN user u ON a.art_u_id=u.id
 	    WHERE a.art_b_id = #{bd} AND a.condition=0  
 	  </select>
+	  
+	<select id="findByUser" resultType="Article">
+		SELECT * FROM article WHERE art_u_id=#{art_u_id}
+	</select>
 	
 	
 	<select id="findOne" resultType="Article">

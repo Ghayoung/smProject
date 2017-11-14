@@ -31,6 +31,8 @@ public class UserService {
 		User user = userMapper.findOneByUser_id(user_id);
 		if (user == null)
 			return null;
+		if(user.getCondition()==1)
+			return null;
 		String password = Encryption.encrypt(pw, Encryption.SHA256);
 		if (user.getPw().equals(password) == false)
 			return null;
@@ -70,15 +72,25 @@ public class UserService {
 		return user;
 	}
 
+	public void memDrop() {
+		User user = UserService.getCurrentUser();
+		userMapper.dropUser(user.getId());
+		List<Article> articles = articleMapper.findByUser(user.getId());
+		for(Article a: articles) {
+			articleMapper.delete(a.getId());
+		}
+	}
+
 	public List<Article> findAll(Pagination pagination) {
 		int count = articleMapper.count(pagination);
 		pagination.setRecordCount(count);
 		return articleMapper.findAllByBoard(pagination);
 	}
 
-	public void createArticle(Article article, int type, @RequestBody MultipartFile file) {
+	public void createArticle(Article article, int type, @RequestBody MultipartFile file, HttpServletRequest request) {
 		article.setArt_u_id(UserService.getCurrentUser().getId());
 		article.setArt_b_id(type);
+		article.setContent(request.getParameter("content"));
 		if (!file.isEmpty()) {
 			int art_f_id = fileService.fileUpload(file);
 			article.setArt_f_id(art_f_id);
@@ -90,7 +102,8 @@ public class UserService {
 		return;
 	}
 
-	public void editArticle(Article article, @RequestBody MultipartFile file) {
+	public void editArticle(Article article, @RequestBody MultipartFile file, HttpServletRequest request) {
+		article.setContent(request.getParameter("content"));
 		if (!file.isEmpty()) {
 			int art_f_id = fileService.fileUpload(file);
 			article.setArt_f_id(art_f_id);
