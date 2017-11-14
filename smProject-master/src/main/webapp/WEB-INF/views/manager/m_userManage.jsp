@@ -15,7 +15,8 @@
 				///////////////////////////////////
 				-->
 		<div class="row animate-box">
-			<h2 class="fh5co-uppercase-heading-sm text-center" id="userManage">회원 관리</h2>
+			<h2 class="fh5co-uppercase-heading-sm text-center" id="userManage">회원
+				관리</h2>
 			<form action="#userManage" method="post" style="float: right"
 				class="row" name="fm" onsubmit="return checkSearch1();">
 				<div class="col-md-8">
@@ -61,34 +62,33 @@
 									<th>학과</th>
 									<th>구분</th>
 									<th>이메일</th>
-									<th style="text-align:center">권한</th>
+									<th style="text-align: center">권한</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="searchUser" items="${ SearchUsers }"
 									varStatus="status">
-									<tr >
+									<tr>
 										<td>${ status.index+1 }</td>
 										<td>${ searchUser.name }</td>
 										<td>${ searchUser.d_name }</td>
 										<td>${ searchUser.status_name }</td>
 										<td>${ searchUser.email }</td>
-										<td style="text-align:center">
-											<c:choose>
-											    <c:when test="${searchUser.type eq '1'}">
-											   		<a href="auth_update?id=${ searchUser.id }" class="btn btn-primary col-sm">권한부여</a>
-											    </c:when>
-											    <c:when test="${searchUser.type eq '2'}">
-											   		<span class="text-info">관리자</span>
-											    </c:when>
+										<td style="text-align: center"><c:choose>
+												<c:when test="${searchUser.type eq '1'}">
+													<a href="auth_update?id=${ searchUser.id }"
+														class="btn btn-primary col-sm">권한부여</a>
+												</c:when>
+												<c:when test="${searchUser.type eq '2'}">
+													<span class="text-info">관리자</span>
+												</c:when>
 												<c:when test="${searchUser.type eq '3'}">
-											   		<span class="text-primary">멘토</span>
-											    </c:when>
-											    <c:when test="${searchUser.type eq '4'}">
-											   		<span class="text-warning">멘티</span>
-											    </c:when>
-											</c:choose>
-										</td>
+													<span class="text-primary">멘토</span>
+												</c:when>
+												<c:when test="${searchUser.type eq '4'}">
+													<span class="text-warning">멘티</span>
+												</c:when>
+											</c:choose></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -108,29 +108,29 @@
 			<div class="row">
 				<div class="col-md-12 animate-box">
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
-					<div class="col-md-6"></div> 
+					<div class="col-md-6"></div>
 					<form action="term_search_user" method="post" class="row">
 						<!-- 정렬조건 -->
 						<div class="col-md-6">
 							<div class="col-md-4"
-								style="margin-right: -30px; margin-left: 90px; padding-right: 20px">
+								style="margin-right: -30px; margin-left: 180px; padding-right: 20px">
 								<div class="form-group">
 									<label for="search_year" class="sr-only">년도</label> <input
-										placeholder="2017학년도" id="search_year" name="search_year" type="text"
-										class="form-control" value=${year}>
+										placeholder="2017학년도" id="search_year" name="search_year"
+										type="text" class="form-control" value="${year}">
 								</div>
 							</div>
 
-							<div class="col-md-4" style="margin-right: -30px">
-								<!--  <div class="form-group">
+							<!-- <div class="col-md-4" style="margin-right: -30px">
+								 <div class="form-group">
 									<label for="search_term" class="sr-only">학기</label> <select
 										class="form-control" id="search_sem" name="search_sem">
 										<option>--학기</option>
 										<option>1</option>
 										<option>2</option>
 									</select>
-								</div>-->
-							</div>
+								</div>
+							</div> -->
 
 							<div class="col-md-4" style="margin-right: -30px">
 								<div class="form-group">
@@ -173,6 +173,26 @@
 												</tr>
 											</thead>
 											<tbody>
+												<%
+													if (request.getAttribute("TermSearchManagers") != null ) {
+												%>
+												<c:forEach var="TermSearchManagers"
+													items="${ TermSearchManagers }" varStatus="status">
+													<tr>
+														<td>${ status.index+1 }</td>
+														<td>${ TermSearchManagers.name }</td>
+														<td>${ TermSearchManagers.d_name }</td>
+														<td>${ TermSearchManagers.status_name }</td>
+														<td>${ TermSearchManagers.auth_date }</td>
+														<td><a href="auth_update?id=${ TermSearchManagers.id }"
+															class="btn btn-primary col-sm">권한삭제</a></td>
+													</tr>
+
+												</c:forEach>
+												<%
+													} else {
+												%>
+
 												<c:forEach var="manager" items="${ managers }"
 													varStatus="status">
 													<tr>
@@ -181,9 +201,13 @@
 														<td>${ manager.d_name }</td>
 														<td>${ manager.status_name }</td>
 														<td>${ manager.auth_date }</td>
-														<td><a href="auth_update?id=${ searchUser.id }" class="btn btn-primary col-sm">권한삭제</a></td>
+														<td><a href="auth_update?id=${ searchUser.id }"
+															class="btn btn-primary col-sm">권한삭제</a></td>
 													</tr>
 												</c:forEach>
+												<%
+													}
+												%>
 											</tbody>
 										</table>
 									</div>
@@ -205,17 +229,37 @@
 												</tr>
 											</thead>
 											<tbody>
+											<%
+													if (request.getAttribute("TermSearchMentors") != null ) {
+												%>
+												<c:forEach var="TermSearchMentors"
+													items="${ TermSearchMentors }" varStatus="status">
+													<tr>
+														<td>${ status.index+1 }</td>
+														<td>${ TermSearchMentors.name }</td>
+														<td>${ TermSearchMentors.d_name }</td>
+														<td>${ TermSearchMentors.status_name }</td>
+														<td>${ TermSearchMentors.auth_date }</td>
+													</tr>
+
+												</c:forEach>
+												<%
+													} else {
+												%>
 												<c:forEach var="mentor" items="${ mentors }"
 													varStatus="status">
 													<tr>
 														<td>${ status.index+1 }</td>
 														<td>${ mentor.name }</td>
 														<td>${ mentor.d_name }</td>
-														<td>학생</td>
-														<td>2017-11-09</td>
+														<td>${ mentor.status_name }</td>
+														<td>${ mentor.auth_date }</td>
 
 													</tr>
 												</c:forEach>
+												<%
+													}
+												%>
 											</tbody>
 										</table>
 									</div>
@@ -238,17 +282,37 @@
 												</tr>
 											</thead>
 											<tbody>
+											<%
+													if (request.getAttribute("TermSearchMentees") != null ) {
+												%>
+												<c:forEach var="TermSearchMentees"
+													items="${ TermSearchMentees }" varStatus="status">
+													<tr>
+														<td>${ status.index+1 }</td>
+														<td>${ TermSearchMentees.name }</td>
+														<td>${ TermSearchMentees.d_name }</td>
+														<td>${ TermSearchMentees.status_name }</td>
+														<td>${ TermSearchMentees.auth_date }</td>
+													</tr>
+
+												</c:forEach>
+												<%
+													} else {
+												%>
 												<c:forEach var="mentee" items="${ mentees }"
 													varStatus="status">
 													<tr>
 														<td>${ status.index+1 }</td>
 														<td>${ mentee.name }</td>
 														<td>${ mentee.d_name }</td>
-														<td>학생</td>
-														<td>2017-11-09</td>
+														<td>${ mentee.status_name }</td>
+														<td>${ mentee.auth_date }</td>
 
 													</tr>
 												</c:forEach>
+												<%
+													}
+												%>
 											</tbody>
 										</table>
 									</div>
@@ -301,8 +365,10 @@
 
 								<div class="col-md-3">
 									<div class="form-group">
-										<input type="button" class="btn btn-primary btn-lg search_manager_btn" id="submitBtn"
-											value="검색" data-dismiss="modal" data-toggle="modal" data-target="#layerpop">
+										<input type="button"
+											class="btn btn-primary btn-lg search_manager_btn"
+											id="submitBtn" value="검색" data-dismiss="modal"
+											data-toggle="modal" data-target="#layerpop">
 										<!-- <a class="btn btn-primary btn-lg search_manager_btn">검색</a> -->
 									</div>
 								</div>
@@ -314,7 +380,8 @@
 					검색 결과
 					///////////////////////////////////
 					-->
-						<div class="animate-box search_result_manager col-md-12" id="search_user">
+						<div class="animate-box search_result_manager col-md-12"
+							id="search_user">
 							<div class="panel panel-default ">
 								<table class="table search_user">
 									<thead>
@@ -342,7 +409,7 @@
 							</div>
 							<div class="fh5co-spacer fh5co-spacer-sm"></div>
 						</div>
-						
+
 					</div>
 				</div>
 			</div>
