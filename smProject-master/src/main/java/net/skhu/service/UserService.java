@@ -3,20 +3,24 @@ package net.skhu.service;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Article;
 import net.skhu.dto.Board;
+import net.skhu.dto.Comment;
 import net.skhu.dto.Post;
 import net.skhu.dto.User;
 import net.skhu.mapper.ArticleMapper;
 import net.skhu.mapper.BoardMapper;
+import net.skhu.mapper.CommentMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.model.Pagination;
 import net.skhu.utils.Encryption;
@@ -29,6 +33,8 @@ public class UserService {
 	ArticleMapper articleMapper;
 	@Autowired
 	BoardMapper boardMapper;
+	@Autowired
+	CommentMapper commentMapper;
 	@Autowired
 	FileService fileService;
 
@@ -131,6 +137,19 @@ public class UserService {
 		articleMapper.update(article);
 	}
 
+	public void addComment(Comment newComment, int id){
+		newComment.setCom_a_id(id);
+		newComment.setCom_u_id(UserService.getCurrentUser().getId());
+		commentMapper.insert(newComment);
+	}
+
+	public void editComment(HttpServletRequest request, int cid){
+		Comment comment = new Comment();
+		comment.setId(cid);
+		comment.setC_content(request.getParameter("c_content"));
+		commentMapper.update(comment);
+	}
+
 	public static User getCurrentUser() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication instanceof MyAuthenticationProvider.MyAuthenticaion)
@@ -141,5 +160,12 @@ public class UserService {
 	public static void setCurrentUser(User user) {
 		((MyAuthenticationProvider.MyAuthenticaion) SecurityContextHolder.getContext().getAuthentication())
 				.setUser(user);
+	}
+
+	public static void logout(HttpServletRequest request, HttpServletResponse response){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+  		if (auth != null){
+  			new SecurityContextLogoutHandler().logout(request, response, auth);
+  		}
 	}
 }

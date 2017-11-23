@@ -10,5 +10,6 @@ import net.skhu.dto.Board;
 public interface BoardMapper {
 	List<Board> findAll();
 	List<Board> findAllNoManager();
+	List<Board> findAllWithArticle();
 	Board findOne(int id);
 }

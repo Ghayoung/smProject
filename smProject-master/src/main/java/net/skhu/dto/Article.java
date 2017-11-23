@@ -9,7 +9,14 @@ public class Article {
 	int art_f_id;
 	int art_b_id;
 	String userName;
+	int com_count;
 
+	public int getCom_count() {
+		return com_count;
+	}
+	public void setCom_count(int com_count) {
+		this.com_count = com_count;
+	}
 	public int getId() {
 		return id;
 	}

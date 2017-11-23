@@ -15,7 +15,7 @@
                         <c:forEach var="postBoard" items="${ postBoards }">
                         	<li><i class="fh5co-tab-menu-icon ti-clipboard"></i>${ postBoard.b_name }</li>
                         </c:forEach>
-                        <li><i class="fh5co-tab-menu-icon ti-clipboard"></i> 보고서</li>
+                        <li><a href="${R}user/mypost?myreport"><i class="fh5co-tab-menu-icon ti-clipboard"></i> 보고서</a></li>
                         <li><i class="fh5co-tab-menu-icon ti-comments"></i> 댓글</li>
 					</ul>
 					<div class="resp-tabs-container hor_1">

@@ -21,12 +21,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Article;
+import net.skhu.dto.Comment;
 import net.skhu.dto.Mentor;
 import net.skhu.dto.Report;
 import net.skhu.dto.Team;
 import net.skhu.dto.User;
 import net.skhu.mapper.ArticleMapper;
 import net.skhu.mapper.BoardMapper;
+import net.skhu.mapper.CommentMapper;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.FileMapper;
 import net.skhu.mapper.MentorMapper;
@@ -56,6 +58,8 @@ public class UserController {
    @Autowired
    TeamMapper teamMapper;
    @Autowired
+   CommentMapper commentMapper;
+   @Autowired
    UserService userService;
    @Autowired
    ArticleService articleService;
@@ -72,8 +76,12 @@ public class UserController {
 
    @RequestMapping("board_detail")
    public String board_detail(Model model, @RequestParam(value = "id") int id, Pagination pagination) {
-      model.addAttribute("board", boardMapper.findOne(pagination.getBd()).getB_name());
-      model.addAttribute("article", articleMapper.findOne(id));
+      Article article = articleMapper.findOne(id);
+      Comment newComment = new Comment();
+	  model.addAttribute("board", boardMapper.findOne(pagination.getBd()).getB_name());
+      model.addAttribute("article", article);
+      model.addAttribute("comments", commentMapper.findAllByArticle(id));
+      model.addAttribute("newComment", newComment);
       model.addAttribute("user", UserService.getCurrentUser().getId());
       return "user/board_detail";
    }
@@ -90,7 +98,9 @@ public class UserController {
    public String board_create(Model model, Article article, Pagination pagination, @RequestBody MultipartFile file, HttpServletRequest request) {
       int id = pagination.getBd();
       userService.createArticle(article, id, file, request);
-      return "redirect:board?id=" + id + "&" + pagination.getQueryString();
+      long recordCount=articleMapper.count(pagination);
+      long pageCount=(recordCount+pagination.getSz()-1)/pagination.getSz();
+      return "redirect:board?bd="+id+"&pg="+pageCount;
    }
 
    @RequestMapping(value = "board_edit", method = RequestMethod.GET)
@@ -111,6 +121,24 @@ public class UserController {
    public String board_delete(Model model, @RequestParam(value = "id") int id, Pagination pagination) {
       articleMapper.delete(id);
       return "redirect:board?"+pagination.getQueryString();
+   }
+
+   @RequestMapping(value="comment_edit", method = RequestMethod.POST)
+   public String comment_edit(Model model, @RequestParam(value="cid") int cid, HttpServletRequest request, @RequestParam(value = "id") int id, Pagination pagination){
+	   userService.editComment(request, cid);
+	   return "redirect:board_detail?id=" + id + "&" + pagination.getQueryString();
+   }
+
+   @RequestMapping(value="comment_create", method = RequestMethod.POST)
+   public String comment_create(Model model, Comment newComment, @RequestParam(value = "id") int id, Pagination pagination){
+	   userService.addComment(newComment, id);
+	   return "redirect:board_detail?id=" + id + "&" + pagination.getQueryString();
+   }
+
+   @RequestMapping("comment_delete")
+   public String comment_delete(Model model, @RequestParam(value="cid") int cid, @RequestParam(value = "id") int id, Pagination pagination){
+	   commentMapper.delete(cid);
+	   return "redirect:board_detail?id=" + id + "&" + pagination.getQueryString();
    }
 
    @RequestMapping("question")
@@ -262,7 +290,6 @@ public class UserController {
    @RequestMapping("mypost")
    public String mypost(Model model) {
 	   model.addAttribute("board", "내가 쓴 글");
-	   System.out.println(":하이");
 	   model.addAttribute("postBoards", userService.findAllArticleBydUser());
       return "user/mypost";
    }
@@ -290,17 +317,23 @@ public class UserController {
    }
 
    @RequestMapping(value = "meminfo_processing", method = RequestMethod.POST)
-   public String meminfo_processing(Model model, HttpServletRequest request) {
+   public String meminfo_processing(Model model, HttpServletRequest request, HttpServletResponse response) {
       User user = userService.changeMeminfo(request);
       if (user == null)
          return "redirect:meminfo?error";
+      if(!request.getParameter("newPw").equals("")){
+    	UserService.logout(request, response);
+  		return "redirect:/mybatisEx/guest/login";
+      }
+
       return "redirect:meminfo";
    }
 
    @RequestMapping(value = "memDrop", method = RequestMethod.GET)
-   public String memDrop(Model model) {
-	   userService.memDrop();
-      return "guset/main";
+   public String memDrop(Model model, HttpServletRequest request, HttpServletResponse response) {
+	  userService.memDrop();
+	  UserService.logout(request, response);
+	  return "redirect:/mybatisEx/guest/login";
    }
 
    @RequestMapping("file/download")

@@ -408,22 +408,6 @@ var slider = function(){
 			$("#comment").toggle();
 		});
 	}
-	
-	var add_intro_modi = function(){
-		$('#add_intro_modi').on('click',function(){
-			var text= "<div class='row'><div class='col-md-12'><div class='form-group'>"
-			+"<label for='introduce_content'>내용</label>"
-			+"<textarea placeholder='내용' id='introduce_content' class='form-control input-lg' rows='10'></textarea></div></div></div>";
-			$("#intro_modi_box").html();
-			$("#intro_modi_list").html("<li>새 항목<a href='introduce_modi.html' class='btn2 btn-primary btn-sm'>x</a></li>")
-		});
-	}
-	
-	var remove_intro_modi = function(){
-		$("#remove_intro_modi").on('click',function(){
-			$("#intro_modi").children().last().remove();	
-		});
-	}
 
 	var submitbtn = function(){
 		$(".submitbtn").click(function(){
@@ -490,9 +474,6 @@ var slider = function(){
 		dataUrl();
 		slider();
 		clickOpen();
-		// add_intro_modi();
-		remove_intro_modi();
-		// submitbtn();
 		m_submitbtn();
 		search();
 		search_manager();

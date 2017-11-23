@@ -27,11 +27,14 @@
 							<table class="table board">
 								<thead>
 									<tr>
-										<th>번호</th>
+										<th style="width:6%;">번호</th>
 										<th>제목</th>
-										<th>작성자</th>
-										<th>작성일</th>
-										<th>파일</th>
+										<th style="width:17%;">작성자</th>
+										<th style="width:17%;">작성일</th>
+										<th style="width:6%;">파일</th>
+										<c:if test="${ param.bd == 3 }">
+											<th style="width:10%;">답변</th>
+										</c:if>
 									</tr>
 								</thead>
 								<tbody>
@@ -42,6 +45,9 @@
 								          <td>${ article.userName }</td>
 								          <td>${ article.post_date }</td>
 								          <td><c:if test="${ article.art_f_id != 0 }"><a href="${R}user/file/download?id=${ article.art_f_id }"><img src="${R}images\file.png" border="0"></a></c:if></td>
+								          <c:if test="${ param.bd == 3 }">
+											<td><a href="#">답변완료</a></td>
+										</c:if>
 								        </tr>
 								      </c:forEach>
 								</tbody>
