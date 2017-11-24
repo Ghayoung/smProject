@@ -51,13 +51,13 @@
 
 					<div class="col-md-2">
 						<a href="${R}user/file/download?id=${ report.rep_f_photo_id }">
-							인증샷 <img src="${R}images\file.png" border="0">
+							인증샷 <img src="${R}images\camera.gif" border="0">
 						</a>
 						<div class="fh5co-spacer fh5co-spacer-md"></div>
 					</div>
 
 					<div class="col-md-2">
-						<a href="${R}manager/file/download?id=${ report.rep_f_study_id }">
+						<a href="${R}user/file/download?id=${ report.rep_f_study_id }">
 							활동증명 <img src="${R}images\file.png" border="0">
 						</a>
 						<div class="fh5co-spacer fh5co-spacer-md"></div>

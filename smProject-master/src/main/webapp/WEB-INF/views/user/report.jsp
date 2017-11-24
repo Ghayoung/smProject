@@ -1,67 +1,64 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:url var="R" value="/" />
 <div id="fh5co-main">
-			<div class="container">
-				<div class="col-md-12" id="fh5co-features">
-					<div class="row">
-						<div class="col-md-12 animate-box">
-							<h2 class="fh5co-uppercase-heading-sm text-center">보고서</h2>
-							<div class="fh5co-spacer fh5co-spacer-sm"></div>
+	<div class="container">
+		<div class="col-md-12" id="fh5co-features">
+			<div class="row">
+				<div class="col-md-12 animate-box">
+					<h2 class="fh5co-uppercase-heading-sm text-center">보고서</h2>
+					<div class="fh5co-spacer fh5co-spacer-sm"></div>
+				</div>
+				<div class="col-md-12 animate-box">
+					<label for="report_subject">멘토링 진행률 <span
+						class="fh5co-uppercase-heading-sm">&nbsp;&nbsp;${ totalReport-conditionReports.reportCount }회
+							남았습니다.</span></label>
+					<div class="progress">
+						<div class="progress-bar" role="progressbar"
+							style="width: ${ conditionReports.reportCount/totalReport*100 }%;"
+							aria-valuenow="${ conditionReports.reportCount/totalReport*100 }%"
+							aria-valuemin="0" aria-valuemax="100">
+							<fmt:parseNumber integerOnly="true"
+								value="${ conditionReports.reportCount/totalReport*100 }" />
+							%
 						</div>
-						<div class="col-md-12 animate-box">
-							<label for="report_subject">멘토링 진행률 <span class="fh5co-uppercase-heading-sm">&nbsp;&nbsp;8회 남았습니다.</span></label>
-							<div class="progress">
-								<div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-							</div>	
-							<div class="panel panel-default">
-								<table class="table board">
-  									<thead>
-									    <tr>
-									      <th style="padding-left:4px;"><input id="allcheck" type="checkbox"></th>
-									      <th>번호</th>
-									      <th>스터디진도</th>
-									      <th>장소</th>
-									      <th>작성일</th>
-									      <th>파일</th>
-									    </tr>
-								  	</thead>
-									<tbody>
-									    <tr data-url="${R}user/report_detail">
-									      <td><input type="checkbox" name="checkbox"></td>
-									      <th scope="row">1</th>
-									      <td>데이터타입 및 변수선언</td>
-									      <td>6202</td>
-									      <td>2017-09-17</td>
-									      <td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
-									    </tr>
-									    <tr data-url="${R}user/report_detail">
-									      <td><input type="checkbox" name="checkbox"></td>
-									      <th scope="row">2</th>
-									      <td>배열</td>
-									      <td>6202</td>
-									      <td>2017-09-17</td>
-									      <td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
-									    </tr>
-									    <tr data-url="${R}user/report_detail">
-									   	  <td><input type="checkbox" name="checkbox"></td>
-									      <th scope="row">3</th>
-									      <td>클래스및 패키지</td>
-									      <td>6202</td>
-									      <td>2017-09-17</td>
-									      <td><a href="#"><img src="${R}images\file.png" border="0"></a></td>
-									    </tr>
-									</tbody>
-								</table>
-							</div>
+					</div>
+					<div class="panel panel-default">
+						<table class="table board" id="r_table1">
+							<thead>
+								<tr>
+									<th style="padding-left: 4px;"><input type="checkbox"
+										onclick="selectAllCheckBox(this,'r_table1','cb')"></th>
+									<th>번호</th>
+									<th>스터디진도</th>
+									<th>장소</th>
+									<th>작성일</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="teamReports" items="${ teamReports }"
+									varStatus="status">
+									<tr>
+										<td><input type="checkbox" name="checkbox" id="cb_1"></td>
+										<th scope="row">${ status.index+1 }</th>
+										<td data-url="report_detail?id=${ teamReports.id }">${ teamReports.subject }</td>
+										<td>${ teamReports.place }</td>
+										<td>${ teamReports.create_date }</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
 
-							<div class="col-r">
-								<a href="${R}user/report_create" class="btn btn-primary btn-lg">보고서 작성</a>
-								<a href="#" class="btn btn-primary btn-lg">다운로드</a>
-							</div>
-						</div>
-				 	</div>
- 					<div class="fh5co-spacer fh5co-spacer-md"></div>
+					<div class="col-r">
+						<a href="${R}user/report_create" class="btn btn-primary btn-lg">보고서
+							작성</a> <a href="#" class="btn btn-primary btn-lg">다운로드</a>
+					</div>
 				</div>
 			</div>
+			<div class="fh5co-spacer fh5co-spacer-md"></div>
 		</div>
+	</div>
+</div>

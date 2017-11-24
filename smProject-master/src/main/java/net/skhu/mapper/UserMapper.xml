@@ -54,9 +54,21 @@
 		</collection>   
 	</resultMap> 
 	
+	<select id="findAllReportsById" resultType="Report">     
+	 	SELECT distinct r.*
+	  	FROM team t join mentor_apply m on t.group_m_apply_id=m.id JOIN report r ON m.mentor_u_id = r.rep_u_id
+	  	where t.group_mentee_id=#{id}
+	</select>
+	
 	<select id="findAllCondition" resultType="Report">     
 	 	SELECT m.group_name, count(r.rep_u_id) reportCount
-	  	FROM mentor_apply m JOIN report r ON m.mentor_u_id = r.rep_u_id group by r.rep_u_id;   
+	  	FROM mentor_apply m JOIN report r ON m.mentor_u_id = r.rep_u_id group by r.rep_u_id 
+	</select>
+	
+	<select id="findAllConditionById" resultType="Report">     
+	 	SELECT m.group_name, count(r.rep_u_id) reportCount
+	  	FROM team t join mentor_apply m on t.group_m_apply_id=m.id JOIN report r ON m.mentor_u_id = r.rep_u_id
+	  	where t.group_mentee_id=#{id} group by r.rep_u_id
 	</select>
 	
 	<select id="findOneReport" resultType="Report">

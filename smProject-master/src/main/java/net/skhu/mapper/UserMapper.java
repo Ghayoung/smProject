@@ -27,12 +27,14 @@ public interface UserMapper {
 	void m_setting(Setting setting);
     List<Report> findAllWithReports();
     List<Report> findAllCondition();
+    List<Report> findAllReportsById(int id);
+    Report findAllConditionById(int id);
     int findStudyCount();
     String findStartSM();
     Report findOneReport(int id);
     void auth_update(int id);
     List<User> findManagerByTerm(int year);
     List<User> findMentorByTerm(int year);
-    List<User> findMenteeByTerm(int year);    
+    List<User> findMenteeByTerm(int year);
     void dropUser(int id);
 }
