@@ -164,14 +164,24 @@ textarea {
     float: left;
   }
 }
-.w_3{
-  width:3%;
+
+.w_4{
+  width:4%;
+}
+.w_5{
+  width:5%;
 }
 .w_6{
   width:6%;
 }
 .w_7{
   width:7%;
+}
+.w_8{
+  width:8%;
+}
+.w_9{
+  width:9%;
 }
 .w_10{
   width:10%;
@@ -185,8 +195,8 @@ textarea {
 .w_15{
   width:15%;
 }
-.w_31{
-  width:31%;
+.w_22{
+  width:22%;
 }
 .w_45{
   width:45%;

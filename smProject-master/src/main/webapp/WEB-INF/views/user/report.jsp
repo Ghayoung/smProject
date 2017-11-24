@@ -52,10 +52,21 @@
 						</table>
 					</div>
 
+					<%
+						Object userType = null;
+						if (request.getAttribute("userType") != null) {
+							userType = request.getAttribute("userType");
+							Integer t = (Integer) userType;
+							if (t == 3) {
+					%>
 					<div class="col-r">
 						<a href="${R}user/report_create" class="btn btn-primary btn-lg">보고서
-							작성</a> <a href="#" class="btn btn-primary btn-lg">다운로드</a>
+							작성</a>
 					</div>
+					<%
+						}
+						}
+					%>
 				</div>
 			</div>
 			<div class="fh5co-spacer fh5co-spacer-md"></div>

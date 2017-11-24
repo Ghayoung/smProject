@@ -8,7 +8,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -61,8 +60,6 @@ public class ManagerController {
    FileService fileservice;
    @Autowired
    ExcelReadService excelReadService;
-   @Autowired
-   private ServletContext servletContext;
 
    @RequestMapping(value = "m_introduce_modi", method = RequestMethod.GET)
    public String m_introduce_modi(Model model) {
@@ -261,7 +258,7 @@ public class ManagerController {
    public String report_detail(Model model, @RequestParam("id") int id) {
       Report report = userMapper.findOneReport(id);
       model.addAttribute("report", report);
-      return "user/report_detail";
+      return "manager/m_report_detail";
    }
 
    @RequestMapping("file/download")

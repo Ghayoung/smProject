@@ -52,7 +52,13 @@
 			<result property="place" column="place"/>       
 			<result property="create_date" column="create_date"/>     
 		</collection>   
-	</resultMap> 
+	</resultMap>
+	
+	<select id="findAllReportsByWriter" resultType="Report">     
+	 	SELECT *
+	  	FROM report
+	  	where rep_u_id=#{id}
+	</select> 
 	
 	<select id="findAllReportsById" resultType="Report">     
 	 	SELECT distinct r.*

@@ -64,7 +64,7 @@
 					</div>
 
 					<div class="col-md-12">
-						<a href="${R}manager/m_reportManage"
+						<a href="${R}user/report"
 							class="btn btn-primary btn-lg col-md-offset-10">목록으로</a>
 					</div>
 

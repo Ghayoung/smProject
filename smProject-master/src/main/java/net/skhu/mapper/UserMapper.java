@@ -28,6 +28,7 @@ public interface UserMapper {
     List<Report> findAllWithReports();
     List<Report> findAllCondition();
     List<Report> findAllReportsById(int id);
+    List<Report> findAllReportsByWriter(int id);
     Report findAllConditionById(int id);
     int findStudyCount();
     String findStartSM();

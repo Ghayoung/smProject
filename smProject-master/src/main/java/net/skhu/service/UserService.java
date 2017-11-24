@@ -17,6 +17,7 @@ import net.skhu.dto.Article;
 import net.skhu.dto.Board;
 import net.skhu.dto.Comment;
 import net.skhu.dto.Post;
+import net.skhu.dto.Report;
 import net.skhu.dto.User;
 import net.skhu.mapper.ArticleMapper;
 import net.skhu.mapper.BoardMapper;
@@ -111,6 +112,12 @@ public class UserService {
 			board.setArticles(articles);
 		}
 		return boards;
+	}
+
+	public List<Report> findAllReportByUser(){
+		User user = UserService.getCurrentUser();
+		List<Report> reports=userMapper.findAllReportsByWriter(user.getId());
+		return reports;
 	}
 
 	public void createArticle(Article article, int type, @RequestBody MultipartFile file, HttpServletRequest request) {

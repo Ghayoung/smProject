@@ -256,6 +256,7 @@ public class UserController {
 		model.addAttribute("teamReports", teamReports);
 		model.addAttribute("conditionReports", conditionReports);
 		model.addAttribute("totalReport", totalReport);
+		model.addAttribute("userType", user.getType());
 		return "user/report";
 	}
 
@@ -264,11 +265,6 @@ public class UserController {
 		Report report = userMapper.findOneReport(id);
 		model.addAttribute("report", report);
 		return "user/report_detail";
-	}
-
-	@RequestMapping("report_create")
-	public String report_create() {
-		return "user/report_create";
 	}
 
 	@RequestMapping(value = "report_create", method = RequestMethod.GET)
@@ -308,6 +304,7 @@ public class UserController {
 	public String mypost(Model model) {
 		model.addAttribute("board", "내가 쓴 글");
 		model.addAttribute("postBoards", userService.findAllArticleBydUser());
+		model.addAttribute("postReports", userService.findAllReportByUser());
 		return "user/mypost";
 	}
 
