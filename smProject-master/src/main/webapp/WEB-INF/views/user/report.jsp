@@ -29,8 +29,6 @@
 						<table class="table board" id="r_table1">
 							<thead>
 								<tr>
-									<th style="padding-left: 4px;"><input type="checkbox"
-										onclick="selectAllCheckBox(this,'r_table1','cb')"></th>
 									<th>번호</th>
 									<th>스터디진도</th>
 									<th>장소</th>
@@ -41,7 +39,6 @@
 								<c:forEach var="teamReports" items="${ teamReports }"
 									varStatus="status">
 									<tr>
-										<td><input type="checkbox" name="checkbox" id="cb_1"></td>
 										<th scope="row">${ status.index+1 }</th>
 										<td data-url="report_detail?id=${ teamReports.id }">${ teamReports.subject }</td>
 										<td>${ teamReports.place }</td>
