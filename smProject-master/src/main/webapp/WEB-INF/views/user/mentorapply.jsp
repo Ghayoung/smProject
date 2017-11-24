@@ -38,7 +38,7 @@
 							</div>
 							<div class="col-md-4">
 								<div class="form-group">
-									<label for="grade">해당 과목 성적</label>
+									<label for="grade">해당 과목 성적(전공 관련만)</label>
 									<input name="grade" placeholder="해당 과목 성적" id="grade" type="text" class="form-control input-lg"/>
 								</div>	
 							</div>

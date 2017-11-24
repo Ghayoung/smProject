@@ -22,33 +22,53 @@
 					<div class="resp-tabs-container hor_1">
 						<!-- 
 						///////////////////////////////////
-						멘토/멘티 신청
+						멘토/멘티 신청, 작성자-남하영
 						///////////////////////////////////
 						-->
 						<div>
 							<div class="row">
 								<div class="col-md-12">
-									<h2 class="h3">멘토/멘티 신청</h2>
+									<h2 class="h3">멘토/멘티 신청내역</h2>
 								</div>
+								<c:if test="${ mentor != null }">
 								<div class="col-md-12">
-									<div class="col-md-8 animate-box">
-										<div class="panel panel-default card"
-											data-url="${R}user/menteeapply_detail">
-											<img class="img-responsive" src="${R}images/work_1.jpg"
-												alt="Free HTML5 Template">
-											<hr>
-											<div class="card-body">
-												<h3>주제: 이산수학</h3>
-												<p>멘토: 3학년 남하영</p>
-												<p>소개: 소개멘트</p>
-												<p>신청인원: 1/4</p>
-												<a href="#" class="btn btn-primary btn-sm "
-													style="margin: auto;">수정</a> <a href="#"
-													class="btn btn-primary btn-sm " style="margin: auto;">삭제</a>
-											</div>
-										</div>
+									<div class="col-md-6 animate-box text-center fh5co-work-item work-box"
+										style="border: 1px ridge; padding:7px;">
+										<figure>
+											<c:if test="${ mentor.type != 4 }">
+											<a href="${R}user/mentorapply_detail?id=${ mentor.id }">
+											<img
+											class="img-responsive"
+											src="${R}user/getImage?id=${ mentor.apply_f_intro_fk }" alt=""
+											style="width: 275px; height: 183px; margin-left:auto; margin-right:auto;"></a>
+											</c:if>
+											<c:if test="${ mentor.type == 4 }">
+											<a href="${R}user/menteeapply_detail?id=${ mentor.id }">
+											<img
+											class="img-responsive"
+											src="${R}user/getImage?id=${ mentor.apply_f_intro_fk }" alt=""
+											style="width: 275px; height: 183px; margin-left:auto; margin-right:auto;"></a>
+											</c:if>
+										</figure>
+										<h3>팀명:&nbsp;${ mentor.group_name }</h3>
+										<p>주제:&nbsp;${ mentor.subject }</p>
+										<p>${ mentor.user_id }&nbsp;${ mentor.name }</p>
+										<c:if test="${ mentor.type != 4 }">
+										<a href="mentorapply_edit.do?id=${ mentor.id }" class="btn btn-primary btn-sm " style="margin: auto;">수정</a>
+										<a href="mentorapply_delete.do?id=${ mentor.id }" id="m_delete" class="btn btn-primary btn-sm " style="margin: auto;" onclick="return delapply();">삭제</a>
+										</c:if>
+										<c:if test="${ mentor.type == 4 }">
+										<a href="mentee_update_mypost.do?id=${ mentor.id }" class="btn btn-cancel btm-md mt_submit">신청취소</a>
+										</c:if>
 									</div>
 								</div>
+								</c:if>
+								<c:if test="${ mentor == null }">
+								<div class="fh5co-spacer fh5co-spacer-sm"></div>
+								<div class="col-md-12 text-center">
+								<h4>신청내역이 없습니다.</h4>
+								</div>
+								</c:if>
 							</div>
 						</div>
 

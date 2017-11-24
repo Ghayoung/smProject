@@ -24,13 +24,17 @@
 						<div class="fh5co-spacer fh5co-spacer-md"></div>
 					</div>
 					<div class="col-md-12">
+						<c:if test="${ mentor.mentee_count eq mentor.count }">
+						<label for="count">신청인원: &nbsp;<strong style=color:red>${ mentor.mentee_count }/${ mentor.count }</strong></label>
+						</c:if>
+						<c:if test="${ mentor.mentee_count ne mentor.count }">
 						<label for="count">신청인원: &nbsp;${ mentor.mentee_count }/${ mentor.count }</label>
+						</c:if>
 					</div>
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
 					<div class="col-md-6">
-						<!-- 나중에 학번도 출력하게 변경 -->
 						<label for="name">멘토</label>
-						<div class="panel panel-default">${ mentor.name }</div>
+						<div class="panel panel-default">${ mentor.user_id }&nbsp;${ mentor.name }</div>
 					</div>
 					<div class="col-md-6">
 						<label for="group_name">주제</label>

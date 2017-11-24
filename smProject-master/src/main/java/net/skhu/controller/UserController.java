@@ -66,6 +66,7 @@ public class UserController {
 	@Autowired
 	FileService fileService;
 	Report report = new Report();
+	Mentor mentor = new Mentor();
 
 	@RequestMapping(value = "board", method = RequestMethod.GET)
 	public String board(Model model, Pagination pagination) {
@@ -152,22 +153,21 @@ public class UserController {
 		return "user/question";
 	}
 
-	/* 합격 멘토 신청서 목록 출력 */
+	/* 합격 멘토 신청서 목록 출력, 작성자-남하영 */
 	@RequestMapping("menteeapply")
 	public String menteeapply(Model model) {
 		boolean b = false;
 		List<Mentor> mentors = mentorMapper.findMentor();
 		User user = UserService.getCurrentUser();
 		for (int i = 0; i < mentors.size(); i++) {
-			mentors.get(i).setState(2);
-			if (user.getType() != 4) {
-				mentors.get(i).setState(0);
+			mentors.get(i).setState(2); //신청불가
+			if (user.getType() == 1) {
+				mentors.get(i).setState(0); //신청가능
 			} else if (user.getType() == 4) {
 				List<Team> teams = teamMapper.findTeamByMentor(mentors.get(i).getId());
 				for (int j = 0; j < teams.size(); j++) {
-					System.out.println("j: " + teams.get(j).getGroup_mentee_id() + " " + user.getId());
 					if (user.getId() == teams.get(j).getGroup_mentee_id()) {
-						mentors.get(i).setState(1);
+						mentors.get(i).setState(1); //신청취소
 						b = true;
 					}
 				}
@@ -184,18 +184,17 @@ public class UserController {
 		boolean b = false;
 		Mentor mentor = mentorMapper.findOne(id);
 		User user = UserService.getCurrentUser();
-		if (user.getType() != 4) {
-			mentor.setState(0);
+		mentor.setState(2); //신청불가
+		if (user.getType() == 1) {
+			mentor.setState(0); //신청가능
 		} else if (user.getType() == 4) {
 			List<Team> teams = teamMapper.findTeamByMentor(mentor.getId());
 			for (int j = 0; j < teams.size(); j++) {
-				if (user.getId() == teams.get(j).getGroup_mentee_id())
+				if (user.getId() == teams.get(j).getGroup_mentee_id()) {
 					b = true;
+					mentor.setState(1); //신청취소
+				}
 			}
-			if (b)
-				mentor.setState(1);
-			else
-				mentor.setState(2);
 		}
 		if (!b && mentor.getMentee_count() == mentor.getCount()) {
 			mentor.setState(2);
@@ -204,7 +203,104 @@ public class UserController {
 		return "user/menteeapply_detail";
 	}
 
-	/* 멘티신청 */
+	@RequestMapping("mentorapply_detail")
+	public String mentorapply_detail(Model model, @RequestParam(value = "id") int id) {
+		model.addAttribute("mentor", mentorMapper.findOne(id));
+	    return "user/mentorapply_detail";
+	}
+
+	@RequestMapping("mentorapply_submit")
+	public String mentorapply_submit() {
+		return "user/mentorapply_submit";
+	}
+
+	/* 멘토링 신청서 작성, 작성자-남하영 */
+	@RequestMapping(value = "mentorapply", method = RequestMethod.GET)
+	public String mentorapply_submit(Model model) {
+		User user = UserService.getCurrentUser();
+	    Mentor mentor = mentorMapper.findByMentor_u_id(user.getId());
+	    if(mentor == null)
+	    	return "user/mentorapply";
+	    else
+	    	return "user/mentorapply_submit";
+	}
+
+	@RequestMapping(value = "mentorapply", method = RequestMethod.POST)
+	public String mentorapply_submit(Model model, HttpServletRequest request, @RequestBody MultipartFile file1,
+	      @RequestBody MultipartFile file2, @RequestBody MultipartFile file3) {
+
+	   User user = UserService.getCurrentUser();
+	   mentor.setMentor_u_id(user.getId());
+	   int c = Integer.parseInt(request.getParameter("count"));
+	   mentor.setCount(c);
+	   mentor.setGrade(request.getParameter("grade"));
+	   mentor.setGroup_name(request.getParameter("group_name"));
+	   mentor.setStudy_content(request.getParameter("study_content"));
+	   mentor.setStudy_method(request.getParameter("study_method"));
+	   mentor.setStudy_purpose(request.getParameter("study_purpose"));
+	   int y = Integer.parseInt(request.getParameter("year"));
+	   mentor.setYear(y);
+	   mentor.setSubject(request.getParameter("subject"));
+
+	   if (file1 != null && file2 != null && file3 != null) {
+	      int intro_fk = fileService.fileUpload(file1);
+	      int t_fk = fileService.fileUpload(file2);
+	      int doc_fk = fileService.fileUpload(file3);
+
+	      mentor.setApply_f_intro_fk(intro_fk);
+	      mentor.setApply_f_time_id(t_fk);
+	      mentor.setApply_f_doc_fk(doc_fk);
+	   }
+	   mentorMapper.insert_apply(mentor);
+
+	   return "user/mentorapply_submit";
+	}
+
+	/* 멘토링 신청서 수정, 작성자-남하영 */
+	@RequestMapping("mentorapply_edit")
+	public String mentorapply_edit(Model model, @RequestParam(value = "id") int id) {
+		model.addAttribute("mentor", mentorMapper.findOne(id));
+		return "user/mentorapply_edit";
+	}
+
+	@RequestMapping(value = "mentorapply_edit", method = RequestMethod.POST)
+	public String mentorapply_edit(Model model, HttpServletRequest request, @RequestBody MultipartFile file1,
+	      @RequestBody MultipartFile file2, @RequestBody MultipartFile file3) {
+		System.out.println("edit 진입");
+		User user = UserService.getCurrentUser();
+		mentor.setMentor_u_id(user.getId());
+		int c = Integer.parseInt(request.getParameter("count"));
+		mentor.setCount(c);
+		mentor.setGrade(request.getParameter("grade"));
+		mentor.setGroup_name(request.getParameter("group_name"));
+		mentor.setStudy_content(request.getParameter("study_content"));
+		mentor.setStudy_method(request.getParameter("study_method"));
+		mentor.setStudy_purpose(request.getParameter("study_purpose"));
+		int y = Integer.parseInt(request.getParameter("year"));
+		mentor.setYear(y);
+		mentor.setSubject(request.getParameter("subject"));
+
+		if (file1 != null && file2 != null && file3 != null) {
+		   int intro_fk = fileService.fileUpload(file1);
+		   int t_fk = fileService.fileUpload(file2);
+		   int doc_fk = fileService.fileUpload(file3);
+
+		   mentor.setApply_f_intro_fk(intro_fk);
+		   mentor.setApply_f_time_id(t_fk);
+		   mentor.setApply_f_doc_fk(doc_fk);
+		}
+		mentorMapper.update(mentor);
+		return "user/mentorapply_submit";
+	}
+
+	/* 멘토링 신청서 삭제, 작성자-남하영 */
+	@RequestMapping("mentorapply_delete")
+	public String mentorapply_delete(@RequestParam(value = "id") int id) {
+		mentorMapper.delete(id);
+		return "user/mypost";
+	}
+
+	/* 멘티신청, 작성자-남하영 */
 	@RequestMapping("mentee_update")
 	public String mentee_update(Model model, @RequestParam(value = "id") int id) {
 		Team team = new Team();
@@ -237,6 +333,23 @@ public class UserController {
 		}
 		userMapper.type_update(user);
 		return "redirect:menteeapply_detail?id=" + id;
+	}
+
+	@RequestMapping("mentee_update_mypost")
+	public String mentee_update_mypost(Model model, @RequestParam(value = "id") int id) {
+		Team team = new Team();
+		User user = UserService.getCurrentUser();
+		if (user.getType() != 4) {
+			user.setType(4);
+			team.setGroup_m_apply_id(id);
+			team.setGroup_mentee_id(user.getId());
+			teamMapper.insert(team);
+		} else if (user.getType() == 4) {
+			user.setType(1);
+			teamMapper.deleteMentee(user.getId());
+		}
+		userMapper.type_update(user);
+		return "user/mypost";
 	}
 
 	@RequestMapping("timetable")
@@ -305,6 +418,19 @@ public class UserController {
 		model.addAttribute("board", "내가 쓴 글");
 		model.addAttribute("postBoards", userService.findAllArticleBydUser());
 		model.addAttribute("postReports", userService.findAllReportByUser());
+
+		//하영
+		User user = UserService.getCurrentUser();
+		Mentor mentor = mentorMapper.findByMentor_u_id(user.getId());
+	    if(mentor != null)
+	    	mentor.setType(user.getType());
+	    else if(user.getType() == 4) {
+	    	Team team = teamMapper.findTeamByMember(user.getId());
+	    	mentor = mentorMapper.findOne(team.getGroup_m_apply_id());
+	    	mentor.setType(user.getType());
+		}
+	    model.addAttribute("mentor", mentor);
+
 		return "user/mypost";
 	}
 

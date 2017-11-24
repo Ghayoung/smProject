@@ -81,7 +81,7 @@ public class ManagerController {
       return "redirect:m_introduce_modi";
    }
 
-   /* 신편입생 등록 */
+   /* 신편입생 등록, 작성자-남하영 */
    @RequestMapping("m_register")
    public String m_register() {
       return "manager/m_register";
@@ -97,7 +97,7 @@ public class ManagerController {
       return "manager/m_register";
    }
 
-     /* 멘토 신청서 목록 출력 */
+     /* 멘토 신청서 목록 출력 , 작성자-남하영 */
 	 @RequestMapping("m_contact")
 	 public String m_contact(Model model) {
 		 List<Mentor> mentors = mentorMapper.findAll();
@@ -105,7 +105,7 @@ public class ManagerController {
 		 return "manager/m_contact";
 	 }
 
-	 /* 멘토 선정 여부 업데이트 */
+	 /* 멘토 선정 여부 업데이트, 작성자-남하영  */
 	 /* mentor_apply테이블의 condition을 m_condition으로 변경, team.mentee_id NN 해제 */
 	 /* 선정된 유저 타입 3으로 변경, 탈락된 유저 타입 1으로 변경, 그룹 생성*/
 	 @RequestMapping("mentor_update")

@@ -14,8 +14,7 @@
 				<h4 class="fh5co-lead">사진을 클릭하면 상세보기로 이동합니다.</h4>
 				<div class="fh5co-spacer fh5co-spacer-sm"></div>
 			</div>
-
-			<c:forEach var="mentor" items="${ mentors }">
+				<c:forEach var="mentor" items="${ mentors }">
 				<div
 					class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 text-center fh5co-work-item work-box"
 					style="border: 1px ridge; padding:7px;">
@@ -27,7 +26,7 @@
 					</figure>
 					<h3>팀명:&nbsp;${ mentor.group_name }</h3>
 					<p>주제:&nbsp;${ mentor.subject }</p>
-					<p>${ mentor.year }학년&nbsp;${ mentor.name }</p>
+					<p>${ mentor.user_id }&nbsp;${ mentor.name }</p>
 					<c:choose>
 						<c:when test="${ mentor.type == 1}">
 							<a href="mentor_update.do?id=${ mentor.id }"
@@ -39,7 +38,7 @@
 						</c:when>
 					</c:choose>
 				</div>
-			</c:forEach>
+				</c:forEach>
 		</div>
 		<!-- END row -->
 

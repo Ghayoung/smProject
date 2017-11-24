@@ -13,6 +13,10 @@
 		SELECT * from team where group_m_apply_id = #{group_m_apply_id}
 	</select>
 	
+	<select id="findTeamByMember" resultType="Team">
+		SELECT * from team where group_mentee_id = #{group_mentee_id}
+	</select>
+	
 	<delete id="delete">
 	    DELETE FROM team WHERE group_m_apply_id = #{group_m_apply_id}
 	</delete>
@@ -22,8 +26,8 @@
 	</delete>
 
 	<select id="findAll" resultType="Team">
-		SELECT t.*, m.group_name, m.count, m.open_date, u.name, count(*) "apply_mentee_count"
-		FROM Team t right join mentor_apply m
+		SELECT t.*, m.group_name, m.count, m.open_date, u.name, count(*)-1 "apply_mentee_count"
+		FROM Team t join mentor_apply m
 		on t.group_m_apply_id = m.id
 		left join user u
 		on m.mentor_u_id = u.id
@@ -31,8 +35,8 @@
 	</select>
 	
 	<select id="findMentoringByName" resultType="Team">
-		SELECT t.*, m.group_name, m.count, m.open_date, u.name, count(*) 'apply_mentee_count'
-		FROM Team t right join mentor_apply m
+		SELECT t.*, m.group_name, m.count, m.open_date, u.name, count(*)-1 'apply_mentee_count'
+		FROM Team t join mentor_apply m
 		on t.group_m_apply_id = m.id
 		left join user u
 		on m.mentor_u_id = u.id

@@ -12,16 +12,24 @@
 		left join file ft on m.apply_f_time_id = ft.id
 		left join file fd on m.apply_f_doc_fk = fd.id
 		left join team t on m.id = t.group_m_apply_id
-		WHERE m.id = #{m.id}
+		where m.id = #{m.id}
 		group by t.group_m_apply_id
 	</select>
 	
 	<select id="findByMentor_u_id" resultType="Mentor">
-		SELECT * FROM mentor_apply WHERE mentor_u_id = #{mentor_u_id}
+		select m.*, u.name, u.type, u.user_id, fi.path i_path, ft.path t_path, fd.path d_path, count(t.group_m_apply_id)-1 mentee_count
+		from mentor_apply m
+		left join user u on m.mentor_u_id=u.id
+		left join file fi on m.apply_f_intro_fk = fi.id
+		left join file ft on m.apply_f_time_id = ft.id
+		left join file fd on m.apply_f_doc_fk = fd.id
+		left join team t on m.id = t.group_m_apply_id
+		where mentor_u_id = #{mentor_u_id}
+		group by t.group_m_apply_id
 	</select>
 	
 	<select id="findMentor" resultType="Mentor">
-		select m.*, u.name, u.type, fi.path i_path, ft.path t_path, fd.path d_path, count(t.group_m_apply_id)-1 mentee_count
+		select m.*, u.name, u.type, u.user_id, fi.path i_path, ft.path t_path, fd.path d_path, count(t.group_m_apply_id)-1 mentee_count
 		from mentor_apply m
 		left join user u on m.mentor_u_id=u.id
 		left join file fi on m.apply_f_intro_fk = fi.id
@@ -33,7 +41,7 @@
 	</select>
 	
 	<select id="findAll" resultType="Mentor">
-		select m.*, u.name, u.type, fi.path i_path, ft.path t_path, fd.path d_path
+		select m.*, u.name, u.type, u.user_id, fi.path i_path, ft.path t_path, fd.path d_path
 		from mentor_apply m
 		left join user u on m.mentor_u_id=u.id
 		left join file fi on m.apply_f_intro_fk = fi.id
@@ -54,13 +62,11 @@
 	
 	<update id="update">
 		UPDATE mentor_apply SET
-			mentor_u_id = #{mentor_u_id}, group_name = #{group_name}, subject = #{subject},
+			group_name = #{group_name}, subject = #{subject},
 			year = #{year}, grade = #{grade}, count = #{count},
 			study_purpose = #{study_purpose}, study_content = #{study_content}, study_method = #{study_method},
-			open_date = #{open_date},
-			apply_f_time_id = #{apply_f_time_id}, apply_f_intro_fk = #{apply_f_intro_fk}, apply_f_doc_fk = #{apply_f_doc_fk},
-			m_condition = #{m_condition}
-		WHERE id = #{id}
+			apply_f_time_id = #{apply_f_time_id}, apply_f_intro_fk = #{apply_f_intro_fk}, apply_f_doc_fk = #{apply_f_doc_fk}
+		WHERE mentor_u_id = #{mentor_u_id}
 	</update>
 	
 	<update id="update_m_condition">

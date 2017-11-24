@@ -170,11 +170,11 @@ function checkMentorApply() {
 		alert("학년을 입력해주세요");
 		document.form.year.focus();
 		return false;
-	} else if (document.form.grade.value == "") {
+	} /* else if (document.form.grade.value == "") {
 		alert("해당 과목 성적을 입력해주세요");
 		document.form.grade.focus();
 		return false;
-	} else if (document.form.count.value == "") {
+	}*/ else if (document.form.count.value == "") {
 		alert("희망 멘티 인원을 입력해주세요");
 		document.form.count.focus();
 		return false;
@@ -400,6 +400,9 @@ $("#save").click(function() {
 	$("#frm").submit();
 });
 
+function delapply(){
+	return confirm("멘토신청을 취소하시겠습니까?");
+}
 
 /*
 function save() {
