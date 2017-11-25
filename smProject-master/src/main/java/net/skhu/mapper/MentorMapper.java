@@ -18,4 +18,6 @@ public interface MentorMapper {
 	void delete(int id);
 	void insert_apply(Mentor mentor);
 	void insert_report(Report report);
+	void update_report(int id, Report report);
+	void deleteMyReport(int id);
 }

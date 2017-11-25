@@ -160,13 +160,13 @@
 															<td class="ellip"
 																data-url="report_detail?id=${ postReports.id }">${ postReports.subject }</td>
 															<td>${ postReports.create_date }</td>
-															<td><a href="#" style="margin-left:17px;"><img src="${R}images\camera.gif"
+															<td><a href="${R}user/file/download?id=${ postReports.rep_f_photo_id }" style="margin-left:17px;"><img src="${R}images\camera.gif"
 																	border="0"></a></td>
-															<td><a href="#" style="margin-left:10px;"><img src="${R}images\file.png"
+															<td><a href="${R}user/file/download?id=${ postReports.rep_f_study_id }" style="margin-left:10px;"><img src="${R}images\file.png"
 																	border="0"></a></td>
-															<td><a href="#" class="btn btn-primary btn-sm "
+															<td><a href="modifyMyReport?id=${ postReports.id }" class="btn btn-primary btn-sm "
 																style="margin: auto;">수정</a></td>
-															<td><a href="#" class="btn btn-primary btn-sm "
+															<td><a href="deleteMyReport?id=${ postReports.id }" class="btn btn-primary btn-sm "
 																style="margin: auto;">삭제</a></td>
 														</tr>
 													</c:forEach>

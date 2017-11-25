@@ -57,13 +57,13 @@
 	<select id="findAllReportsByWriter" resultType="Report">     
 	 	SELECT *
 	  	FROM report
-	  	where rep_u_id=#{id}
+	  	where rep_u_id=#{id} and condition=0
 	</select> 
 	
 	<select id="findAllReportsById" resultType="Report">     
 	 	SELECT distinct r.*
 	  	FROM team t join mentor_apply m on t.group_m_apply_id=m.id JOIN report r ON m.mentor_u_id = r.rep_u_id
-	  	where t.group_mentee_id=#{id}
+	  	where t.group_mentee_id=#{id} and r.condition=0
 	</select>
 	
 	<select id="findAllCondition" resultType="Report">     
@@ -74,7 +74,7 @@
 	<select id="findAllConditionById" resultType="Report">     
 	 	SELECT m.group_name, count(r.rep_u_id) reportCount
 	  	FROM team t join mentor_apply m on t.group_m_apply_id=m.id JOIN report r ON m.mentor_u_id = r.rep_u_id
-	  	where t.group_mentee_id=#{id} group by r.rep_u_id
+	  	where t.group_mentee_id=#{id} and r.condition=0 group by r.rep_u_id
 	</select>
 	
 	<select id="findOneReport" resultType="Report">
