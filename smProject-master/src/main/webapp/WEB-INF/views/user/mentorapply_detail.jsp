@@ -13,7 +13,7 @@
 				-->
 		<div class="row">
 			<div class="col-md-12 animate-box">
-				<h2 class="fh5co-uppercase-heading-sm text-center">멘토 상세보기</h2>
+				<h2 class="fh5co-uppercase-heading-sm text-center">신청서 상세보기</h2>
 				<div class="fh5co-spacer fh5co-spacer-sm"></div>
 			</div>
 			<div class="col-md-12 animate-box board">
@@ -71,9 +71,9 @@
 					</div>
 
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
-					<div class="col-md-16 col-r">
-						<input type="button" class="btn btn-outline btn-lg"
-							onclick="location.href='mypost.do'" value="목록">
+					<div class="col-md-12">
+					<a href="mentorapply_edit.do?id=${ mentor.id }" class="btn btn-primary btn-lg col-md-offset-8">수정</a>
+					<input type="button" class="btn btn-outline btn-lg" onclick="location.href='mypost.do'" value="목록">
 					</div>
 				</form>
 			</div>

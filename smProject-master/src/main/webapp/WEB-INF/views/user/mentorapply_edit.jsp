@@ -70,18 +70,19 @@
 							<div class="col-md-2">
 								<div class="form-group">
 									<p>홍보 이미지</p>
-									<input type="file" class="btn btn-lg " value="파일첨부" style="margin-top:-15px;" name="file1"/>
+									<input type="file" class="btn btn-lg " value="파일첨부" style="margin-top:-15px;" name="e_file1"/>
 									<p style="margin-top: 10px;">시간표</p>
-									<input type="file" class="btn btn-lg" value="파일첨부" style="margin-top:-15px;" name="file2"/>
+									<input type="file" class="btn btn-lg" value="파일첨부" style="margin-top:-15px;" name="e_file2"/>
 									<p style="margin-top: 10px;">증빙서류</p>
-									<input type="file" class="btn btn-lg " value="파일첨부" style="margin-top:-15px;"  name="file3"/>
+									<input type="file" class="btn btn-lg " value="파일첨부" style="margin-top:-15px;"  name="e_file3"/>
 								</div>	
 							</div>
 							 
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="submit" class="btn btn-primary btn-lg col-md-offset-11" value="수정">
-								</div>	
+									<input type="submit" class="btn btn-primary btn-lg col-md-offset-8" value="등록">
+									<input type="button" class="btn btn-outline btn-lg" onclick="location.href='mypost.do'" value="목록">
+								</div>
 							</div>
 							
 						</form>	

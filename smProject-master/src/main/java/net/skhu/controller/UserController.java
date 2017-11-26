@@ -264,9 +264,10 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "mentorapply_edit", method = RequestMethod.POST)
-	public String mentorapply_edit(Model model, HttpServletRequest request, @RequestBody MultipartFile file1,
-			@RequestBody MultipartFile file2, @RequestBody MultipartFile file3) {
+	public String mentorapply_edit(Model model, HttpServletRequest request, @RequestBody MultipartFile e_file1,
+			@RequestBody MultipartFile e_file2, @RequestBody MultipartFile e_file3) {
 		User user = UserService.getCurrentUser();
+		Mentor myMentor = mentorMapper.findByMentor_u_id(user.getId());
 		mentor.setMentor_u_id(user.getId());
 		int c = Integer.parseInt(request.getParameter("count"));
 		mentor.setCount(c);
@@ -278,14 +279,23 @@ public class UserController {
 		int y = Integer.parseInt(request.getParameter("year"));
 		mentor.setYear(y);
 		mentor.setSubject(request.getParameter("subject"));
-
-		if (file1 != null && file2 != null && file3 != null) {
-			int intro_fk = fileService.fileUpload(file1);
-			int t_fk = fileService.fileUpload(file2);
-			int doc_fk = fileService.fileUpload(file3);
-
+		if(e_file1.getSize() == 0) {
+			mentor.setApply_f_intro_fk(myMentor.getApply_f_intro_fk());
+		}
+		else {
+			int intro_fk = fileService.fileUpload(e_file1);
 			mentor.setApply_f_intro_fk(intro_fk);
+		}
+		if(e_file2.getSize() == 0)
+			mentor.setApply_f_time_id(myMentor.getApply_f_time_id());
+		else {
+			int t_fk = fileService.fileUpload(e_file2);
 			mentor.setApply_f_time_id(t_fk);
+		}
+		if(e_file3.getSize() == 0)
+			mentor.setApply_f_doc_fk(myMentor.getApply_f_doc_fk());
+		else {
+			int doc_fk = fileService.fileUpload(e_file3);
 			mentor.setApply_f_doc_fk(doc_fk);
 		}
 		mentorMapper.update(mentor);
