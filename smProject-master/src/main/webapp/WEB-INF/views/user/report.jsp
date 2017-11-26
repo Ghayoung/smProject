@@ -40,7 +40,7 @@
 									varStatus="status">
 									<tr>
 										<th scope="row">${ status.index+1 }</th>
-										<td data-url="report_detail?id=${ teamReports.id }">${ teamReports.subject }</td>
+										<td class="w_45" data-url="report_detail?id=${ teamReports.id }">${ teamReports.subject }</td>
 										<td>${ teamReports.place }</td>
 										<td>${ teamReports.create_date }</td>
 									</tr>

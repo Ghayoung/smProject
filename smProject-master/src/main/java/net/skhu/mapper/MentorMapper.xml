@@ -60,6 +60,22 @@
 		VALUES (#{subject}, #{place}, #{day}, #{start_time}, #{end_time}, #{study_content}, #{rep_f_photo_id}, #{rep_u_id}, #{rep_f_study_id}, now())
 	</insert>
 	
+	<update id="update_report">
+		UPDATE report
+		<set>
+			subject = #{param2.subject},
+			place = #{param2.place},
+			day = #{param2.day},
+			start_time = #{param2.start_time},
+			end_time = #{param2.end_time},
+			study_content = #{param2.study_content},
+			<if test="param2.rep_f_photo_id != 0">rep_f_photo_id = #{param2.rep_f_photo_id},</if> 
+			<if test="param2.rep_f_study_id != 0">rep_f_study_id = #{param2.rep_f_study_id},</if> 
+			create_date = now()
+		</set>	 
+		WHERE id = #{param1}
+	</update>
+	
 	<update id="update">
 		UPDATE mentor_apply SET
 			group_name = #{group_name}, subject = #{subject},
@@ -78,5 +94,9 @@
 	<delete id="delete">
 	    DELETE FROM mentor_apply WHERE id = #{id}
 	</delete>
+	
+	<update id="deleteMyReport">
+	    update report set condition=1 WHERE id = #{id}
+	</update>
 
 </mapper>

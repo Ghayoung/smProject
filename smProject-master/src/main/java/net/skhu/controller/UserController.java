@@ -160,14 +160,14 @@ public class UserController {
 		List<Mentor> mentors = mentorMapper.findMentor();
 		User user = UserService.getCurrentUser();
 		for (int i = 0; i < mentors.size(); i++) {
-			mentors.get(i).setState(2); //신청불가
+			mentors.get(i).setState(2); // 신청불가
 			if (user.getType() == 1) {
-				mentors.get(i).setState(0); //신청가능
+				mentors.get(i).setState(0); // 신청가능
 			} else if (user.getType() == 4) {
 				List<Team> teams = teamMapper.findTeamByMentor(mentors.get(i).getId());
 				for (int j = 0; j < teams.size(); j++) {
 					if (user.getId() == teams.get(j).getGroup_mentee_id()) {
-						mentors.get(i).setState(1); //신청취소
+						mentors.get(i).setState(1); // 신청취소
 						b = true;
 					}
 				}
@@ -184,15 +184,15 @@ public class UserController {
 		boolean b = false;
 		Mentor mentor = mentorMapper.findOne(id);
 		User user = UserService.getCurrentUser();
-		mentor.setState(2); //신청불가
+		mentor.setState(2); // 신청불가
 		if (user.getType() == 1) {
-			mentor.setState(0); //신청가능
+			mentor.setState(0); // 신청가능
 		} else if (user.getType() == 4) {
 			List<Team> teams = teamMapper.findTeamByMentor(mentor.getId());
 			for (int j = 0; j < teams.size(); j++) {
 				if (user.getId() == teams.get(j).getGroup_mentee_id()) {
 					b = true;
-					mentor.setState(1); //신청취소
+					mentor.setState(1); // 신청취소
 				}
 			}
 		}
@@ -206,7 +206,7 @@ public class UserController {
 	@RequestMapping("mentorapply_detail")
 	public String mentorapply_detail(Model model, @RequestParam(value = "id") int id) {
 		model.addAttribute("mentor", mentorMapper.findOne(id));
-	    return "user/mentorapply_detail";
+		return "user/mentorapply_detail";
 	}
 
 	@RequestMapping("mentorapply_submit")
@@ -218,54 +218,17 @@ public class UserController {
 	@RequestMapping(value = "mentorapply", method = RequestMethod.GET)
 	public String mentorapply_submit(Model model) {
 		User user = UserService.getCurrentUser();
-	    Mentor mentor = mentorMapper.findByMentor_u_id(user.getId());
-	    if(mentor == null)
-	    	return "user/mentorapply";
-	    else
-	    	return "user/mentorapply_submit";
+		Mentor mentor = mentorMapper.findByMentor_u_id(user.getId());
+		if (mentor == null)
+			return "user/mentorapply";
+		else
+			return "user/mentorapply_submit";
 	}
 
 	@RequestMapping(value = "mentorapply", method = RequestMethod.POST)
 	public String mentorapply_submit(Model model, HttpServletRequest request, @RequestBody MultipartFile file1,
-	      @RequestBody MultipartFile file2, @RequestBody MultipartFile file3) {
+			@RequestBody MultipartFile file2, @RequestBody MultipartFile file3) {
 
-	   User user = UserService.getCurrentUser();
-	   mentor.setMentor_u_id(user.getId());
-	   int c = Integer.parseInt(request.getParameter("count"));
-	   mentor.setCount(c);
-	   mentor.setGrade(request.getParameter("grade"));
-	   mentor.setGroup_name(request.getParameter("group_name"));
-	   mentor.setStudy_content(request.getParameter("study_content"));
-	   mentor.setStudy_method(request.getParameter("study_method"));
-	   mentor.setStudy_purpose(request.getParameter("study_purpose"));
-	   int y = Integer.parseInt(request.getParameter("year"));
-	   mentor.setYear(y);
-	   mentor.setSubject(request.getParameter("subject"));
-
-	   if (file1 != null && file2 != null && file3 != null) {
-	      int intro_fk = fileService.fileUpload(file1);
-	      int t_fk = fileService.fileUpload(file2);
-	      int doc_fk = fileService.fileUpload(file3);
-
-	      mentor.setApply_f_intro_fk(intro_fk);
-	      mentor.setApply_f_time_id(t_fk);
-	      mentor.setApply_f_doc_fk(doc_fk);
-	   }
-	   mentorMapper.insert_apply(mentor);
-
-	   return "user/mentorapply_submit";
-	}
-
-	/* 멘토링 신청서 수정, 작성자-남하영 */
-	@RequestMapping("mentorapply_edit")
-	public String mentorapply_edit(Model model, @RequestParam(value = "id") int id) {
-		model.addAttribute("mentor", mentorMapper.findOne(id));
-		return "user/mentorapply_edit";
-	}
-
-	@RequestMapping(value = "mentorapply_edit", method = RequestMethod.POST)
-	public String mentorapply_edit(Model model, HttpServletRequest request, @RequestBody MultipartFile file1,
-	      @RequestBody MultipartFile file2, @RequestBody MultipartFile file3) {
 		User user = UserService.getCurrentUser();
 		mentor.setMentor_u_id(user.getId());
 		int c = Integer.parseInt(request.getParameter("count"));
@@ -280,13 +243,50 @@ public class UserController {
 		mentor.setSubject(request.getParameter("subject"));
 
 		if (file1 != null && file2 != null && file3 != null) {
-		   int intro_fk = fileService.fileUpload(file1);
-		   int t_fk = fileService.fileUpload(file2);
-		   int doc_fk = fileService.fileUpload(file3);
+			int intro_fk = fileService.fileUpload(file1);
+			int t_fk = fileService.fileUpload(file2);
+			int doc_fk = fileService.fileUpload(file3);
 
-		   mentor.setApply_f_intro_fk(intro_fk);
-		   mentor.setApply_f_time_id(t_fk);
-		   mentor.setApply_f_doc_fk(doc_fk);
+			mentor.setApply_f_intro_fk(intro_fk);
+			mentor.setApply_f_time_id(t_fk);
+			mentor.setApply_f_doc_fk(doc_fk);
+		}
+		mentorMapper.insert_apply(mentor);
+
+		return "user/mentorapply_submit";
+	}
+
+	/* 멘토링 신청서 수정, 작성자-남하영 */
+	@RequestMapping("mentorapply_edit")
+	public String mentorapply_edit(Model model, @RequestParam(value = "id") int id) {
+		model.addAttribute("mentor", mentorMapper.findOne(id));
+		return "user/mentorapply_edit";
+	}
+
+	@RequestMapping(value = "mentorapply_edit", method = RequestMethod.POST)
+	public String mentorapply_edit(Model model, HttpServletRequest request, @RequestBody MultipartFile file1,
+			@RequestBody MultipartFile file2, @RequestBody MultipartFile file3) {
+		User user = UserService.getCurrentUser();
+		mentor.setMentor_u_id(user.getId());
+		int c = Integer.parseInt(request.getParameter("count"));
+		mentor.setCount(c);
+		mentor.setGrade(request.getParameter("grade"));
+		mentor.setGroup_name(request.getParameter("group_name"));
+		mentor.setStudy_content(request.getParameter("study_content"));
+		mentor.setStudy_method(request.getParameter("study_method"));
+		mentor.setStudy_purpose(request.getParameter("study_purpose"));
+		int y = Integer.parseInt(request.getParameter("year"));
+		mentor.setYear(y);
+		mentor.setSubject(request.getParameter("subject"));
+
+		if (file1 != null && file2 != null && file3 != null) {
+			int intro_fk = fileService.fileUpload(file1);
+			int t_fk = fileService.fileUpload(file2);
+			int doc_fk = fileService.fileUpload(file3);
+
+			mentor.setApply_f_intro_fk(intro_fk);
+			mentor.setApply_f_time_id(t_fk);
+			mentor.setApply_f_doc_fk(doc_fk);
 		}
 		mentorMapper.update(mentor);
 		return "user/mentorapply_submit";
@@ -418,19 +418,60 @@ public class UserController {
 		model.addAttribute("postBoards", userService.findAllArticleBydUser());
 		model.addAttribute("postReports", userService.findAllReportByUser());
 
-		//하영
+		// 하영
 		User user = UserService.getCurrentUser();
 		Mentor mentor = mentorMapper.findByMentor_u_id(user.getId());
-	    if(mentor != null)
-	    	mentor.setType(user.getType());
-	    else if(user.getType() == 4) {
-	    	Team team = teamMapper.findTeamByMember(user.getId());
-	    	mentor = mentorMapper.findOne(team.getGroup_m_apply_id());
-	    	mentor.setType(user.getType());
+		if (mentor != null)
+			mentor.setType(user.getType());
+		else if (user.getType() == 4) {
+			Team team = teamMapper.findTeamByMember(user.getId());
+			mentor = mentorMapper.findOne(team.getGroup_m_apply_id());
+			mentor.setType(user.getType());
 		}
-	    model.addAttribute("mentor", mentor);
+		model.addAttribute("mentor", mentor);
 
 		return "user/mypost";
+	}
+
+	@RequestMapping(value = "modifyMyReport", method = RequestMethod.GET)
+	public String modifyMyReport(Model model, @RequestParam("id") int id) {
+		Report report = userMapper.findOneReport(id);
+		model.addAttribute("report", report);
+		return "user/report_create";
+	}
+
+	@RequestMapping(value="modifyMyReport", method=RequestMethod.POST)
+	public String modifyMyReport(Model model, @RequestParam("id") int id, HttpServletRequest request, @RequestBody MultipartFile file1,
+			@RequestBody MultipartFile file2) {
+
+		report.setSubject(request.getParameter("subject"));
+		report.setPlace(request.getParameter("place"));
+		report.setDay(request.getParameter("day"));
+		report.setStart_time(request.getParameter("start_time"));
+		report.setEnd_time(request.getParameter("end_time"));
+		report.setStudy_content(request.getParameter("study_content"));
+
+		int f_photo_fk;
+		int f_study_fk;
+
+		if (!file1.isEmpty()) {
+			f_photo_fk = fileService.fileUpload(file1);
+			report.setRep_f_photo_id(f_photo_fk);
+		}
+		if(!file2.isEmpty()){
+			f_study_fk = fileService.fileUpload(file2);
+			report.setRep_f_study_id(f_study_fk);
+		}
+
+		mentorMapper.update_report(id, report);
+
+		return "redirect:mypost";
+	}
+
+	@RequestMapping(value = "deleteMyReport")
+	public String deleteMyReport(@RequestParam("id") int id) {
+		mentorMapper.deleteMyReport(id);
+		return "redirect:mypost";
 	}
 
 	@RequestMapping("sendEmail")

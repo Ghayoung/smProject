@@ -133,6 +133,16 @@ function show_office() {
 	}
 }
 
+function show_photoFile() {
+	document.getElementById('photoFileDIV').style.display = "";
+	return false;
+}
+
+function show_studyFile() {
+	document.getElementById('studyFileDIV').style.display = "";
+	return false;
+}
+
 function checkSearch2() {
 	if (document.fmm.mentoringSearch.value == "") {
 		alert("검색어를 입력해주세요");
