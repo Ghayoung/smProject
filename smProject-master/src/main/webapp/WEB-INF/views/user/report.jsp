@@ -25,29 +25,35 @@
 							%
 						</div>
 					</div>
-					<div class="panel panel-default">
-						<table class="table board" id="r_table1">
-							<thead>
-								<tr>
-									<th>번호</th>
-									<th>스터디진도</th>
-									<th>장소</th>
-									<th>작성일</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="teamReports" items="${ teamReports }"
-									varStatus="status">
+					<c:if test="${!empty teamReports}">
+						<div class="panel panel-default">
+							<table class="table board" id="r_table1">
+								<thead>
 									<tr>
-										<th scope="row">${ status.index+1 }</th>
-										<td class="w_45" data-url="report_detail?id=${ teamReports.id }">${ teamReports.subject }</td>
-										<td>${ teamReports.place }</td>
-										<td>${ teamReports.create_date }</td>
+										<th>번호</th>
+										<th>스터디진도</th>
+										<th>장소</th>
+										<th>작성일</th>
 									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
+								</thead>
+								<tbody>
+									<c:forEach var="teamReports" items="${ teamReports }"
+										varStatus="status">
+										<tr>
+											<th scope="row">${ status.index+1 }</th>
+											<td class="w_45"
+												data-url="report_detail?id=${ teamReports.id }">${ teamReports.subject }</td>
+											<td>${ teamReports.place }</td>
+											<td>${ teamReports.create_date }</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</c:if>
+					<c:if test="${empty teamReports}">
+						<p>작성한 보고서가 없습니다.</p>
+					</c:if>
 
 					<%
 						Object userType = null;

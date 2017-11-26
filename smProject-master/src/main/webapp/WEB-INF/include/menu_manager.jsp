@@ -43,7 +43,7 @@
 				<li>
 					<a href="#" class="fh5co-sub-ddown">마이페이지</a>
 					 <ul class="fh5co-sub-menu">
-					 	<li><a href="${R}user/mypost">내가 쓴 글</a></li>
+					 	<li><a href="${R}manager/m_post">내가 쓴 글</a></li>
 					 	<li><a href="${R}user/sendEmail">메일쓰기</a></li>
 					 	<li><a href="${R}user/meminfo">회원정보수정</a></li>
 					</ul>

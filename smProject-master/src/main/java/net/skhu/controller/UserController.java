@@ -397,8 +397,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "report_create", method = RequestMethod.POST)
-	public String mentorapply(Model model, HttpServletRequest request, @RequestBody MultipartFile file1,
-			@RequestBody MultipartFile file2) {
+	public String mentorapply(Model model, HttpServletRequest request, @RequestBody MultipartFile file3,
+			@RequestBody MultipartFile file4) {
 
 		User user = UserService.getCurrentUser();
 		report.setRep_u_id(user.getId());
@@ -410,16 +410,17 @@ public class UserController {
 		report.setEnd_time(request.getParameter("end_time"));
 		report.setStudy_content(request.getParameter("study_content"));
 
-		if (file1 != null && file2 != null) {
-			int f_photo_fk = fileService.fileUpload(file1);
-			int f_study_fk = fileService.fileUpload(file2);
+
+		if (!file3.isEmpty() && !file4.isEmpty()) {
+			int f_photo_fk = fileService.fileUpload(file3);
+			int f_study_fk = fileService.fileUpload(file4);
 
 			report.setRep_f_photo_id(f_photo_fk);
 			report.setRep_f_study_id(f_study_fk);
 		}
 		mentorMapper.insert_report(report);
 
-		return "user/report_create";
+		return "redirect:report";
 	}
 
 	@RequestMapping("mypost")
@@ -439,6 +440,7 @@ public class UserController {
 			mentor.setType(user.getType());
 		}
 		model.addAttribute("mentor", mentor);
+		model.addAttribute("userType", user.getType());
 
 		return "user/mypost";
 	}
@@ -478,8 +480,9 @@ public class UserController {
 		return "redirect:mypost";
 	}
 
-	@RequestMapping(value = "deleteMyReport")
+	@RequestMapping(value = "deleteMyReport", method = RequestMethod.GET)
 	public String deleteMyReport(@RequestParam("id") int id) {
+		System.out.println(id);
 		mentorMapper.deleteMyReport(id);
 		return "redirect:mypost";
 	}
