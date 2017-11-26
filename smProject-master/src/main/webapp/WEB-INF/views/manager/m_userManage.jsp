@@ -74,7 +74,8 @@
 										<td>${ searchUser.d_name }</td>
 										<td>${ searchUser.status_name }</td>
 										<td>${ searchUser.email }</td>
-										<td style="text-align: center"><c:choose>
+										<td style="text-align: center">
+											<c:choose>
 												<c:when test="${searchUser.type eq '1'}">
 													<a href="auth_update?id=${ searchUser.id }"
 														class="btn btn-primary col-sm">권한부여</a>
@@ -202,7 +203,7 @@
 														<td>${ manager.status_name }</td>
 														<td>${ manager.auth_date }</td>
 														<td><a href="auth_update?id=${ manager.id }"
-															class="btn btn-primary col-sm">권한삭제 </a></td>
+															class="btn btn-primary col-sm">권한삭제 ${ manager.type }</a></td>
 													</tr>
 												</c:forEach>
 												<%

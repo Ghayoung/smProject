@@ -26,22 +26,22 @@
 	</delete>
 
 	<select id="findAll" resultType="Team">
-		SELECT t.*, m.group_name, m.count, m.open_date, u.name, count(*)-1 "apply_mentee_count"
-		FROM Team t join mentor_apply m
-		on t.group_m_apply_id = m.id
-		left join user u
-		on m.mentor_u_id = u.id
-		group by t.group_m_apply_id		
-	</select>
-	
-	<select id="findMentoringByName" resultType="Team">
-		SELECT t.*, m.group_name, m.count, m.open_date, u.name, count(*)-1 'apply_mentee_count'
-		FROM Team t join mentor_apply m
-		on t.group_m_apply_id = m.id
-		left join user u
-		on m.mentor_u_id = u.id
-		group by t.group_m_apply_id	
-		HAVING m.group_name LIKE CONCAT('%', #{keyword}, '%');
-	</select>
+      SELECT t.*, m.group_name, m.count, m.open_date, u.name, count(*)-1 "apply_mentee_count"
+      FROM Team t join mentor_apply m
+      on t.group_m_apply_id = m.id
+      left join user u
+      on m.mentor_u_id = u.id
+      group by t.group_m_apply_id      
+   </select>
+   
+   <select id="findMentoringByName" resultType="Team">
+      SELECT t.*, m.group_name, m.count, m.open_date, u.name, count(*)-1 'apply_mentee_count'
+      FROM Team t join mentor_apply m
+      on t.group_m_apply_id = m.id
+      left join user u
+      on m.mentor_u_id = u.id
+      group by t.group_m_apply_id   
+      HAVING m.group_name LIKE CONCAT('%', #{keyword}, '%');
+   </select>
 	
 </mapper>
