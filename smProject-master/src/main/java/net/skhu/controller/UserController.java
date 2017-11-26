@@ -266,7 +266,6 @@ public class UserController {
 	@RequestMapping(value = "mentorapply_edit", method = RequestMethod.POST)
 	public String mentorapply_edit(Model model, HttpServletRequest request, @RequestBody MultipartFile file1,
 	      @RequestBody MultipartFile file2, @RequestBody MultipartFile file3) {
-		System.out.println("edit 진입");
 		User user = UserService.getCurrentUser();
 		mentor.setMentor_u_id(user.getId());
 		int c = Integer.parseInt(request.getParameter("count"));
