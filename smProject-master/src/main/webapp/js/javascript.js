@@ -414,6 +414,10 @@ function delapply(){
 	return confirm("멘토신청을 취소하시겠습니까?");
 }
 
+function deleteReport(){
+	return confirm("해당 보고서를 삭제하시겠습니까?");
+}
+
 /*
 function save() {
 >>>>>>> branch 'master' of https://github.com/choiyk/smProject.git

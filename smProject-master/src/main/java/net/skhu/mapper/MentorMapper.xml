@@ -96,7 +96,7 @@
 	</delete>
 	
 	<update id="deleteMyReport">
-	    update report set condition=1 WHERE id = #{id}
+	    update report set rep_condition=1 WHERE id = #{id}
 	</update>
 
 </mapper>

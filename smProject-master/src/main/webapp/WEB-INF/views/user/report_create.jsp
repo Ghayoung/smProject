@@ -114,10 +114,10 @@
 						<div class="col-md-2">
 							<div class="form-group">
 								<label>인증샷</label> <input type="file" class="btn btn-lg "
-									value="파일첨부" style="margin-top: -5px;" name="file1"> <label
+									value="파일첨부" style="margin-top: -5px;" name="file3"> <label
 									style="margin-top: 20px;">활동 증명 자료</label> <input type="file"
 									class="btn btn-lg " value="파일첨부" style="margin-top: -5px;"
-									name="file2">
+									name="file4">
 							</div>
 						</div>
 					</c:if>

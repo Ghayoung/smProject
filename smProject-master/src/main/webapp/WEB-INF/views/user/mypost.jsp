@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.*"%>
 <c:url var="R" value="/" />
 <div id="fh5co-main">
 	<div class="container">
@@ -17,7 +18,9 @@
 						<li><i class="fh5co-tab-menu-icon ti-layout-media-overlay"></i>
 							컨퍼런스</li>
 						<li><i class="fh5co-tab-menu-icon ti-pencil-alt"></i> 학습자료</li>
-						<li><i class="fh5co-tab-menu-icon ti-clipboard"></i> 보고서</li>
+						<c:if test="${ userType ==  3}">
+							<li><i class="fh5co-tab-menu-icon ti-clipboard"></i> 보고서</li>
+						</c:if>
 						<li><i class="fh5co-tab-menu-icon ti-comments"></i> 댓글</li>
 					</ul>
 					<div class="resp-tabs-container hor_1">
@@ -74,7 +77,7 @@
 								<c:if test="${ mentor == null }">
 									<div class="fh5co-spacer fh5co-spacer-sm"></div>
 									<div class="col-md-12 text-center">
-										<h4>신청내역이 없습니다.</h4>
+										<p>신청내역이 없습니다.</p>
 									</div>
 								</c:if>
 							</div>
@@ -140,67 +143,71 @@
 								보고서
 								///////////////////////////////////
 								-->
-						<div>
-							<div class="row">
-								<div class="col-md-12">
-									<h2 class="h3">보고서</h2>
-								</div>
-								<c:if test="${!empty postReports}">
+						<c:if test="${ userType ==  3}">
+							<div>
+								<div class="row">
+									<div class="col-md-12">
+										<h2 class="h3">보고서</h2>
+									</div>
+									<c:if test="${!empty postReports}">
 
-									<div class="col-md-12" style="padding: 0px;">
-										<div class="col-md-12 animate-box">
-											<div class="panel panel-default ">
-												<table class="table board" style="table-layout: fixed">
-													<thead>
-														<tr>
-															<th class="w_5">번호</th>
-															<th class="w_22">스터디 진도</th>
-															<th class="w_10">작성일</th>
-															<th class="w_6">인증샷</th>
-															<th class="w_5">파일</th>
-															<th class="w_8"></th>
-															<th class="w_8"></th>
-														</tr>
-													</thead>
-													<tbody>
-														<c:forEach var="postReports" items="${ postReports }"
-															varStatus="status">
+										<div class="col-md-12" style="padding: 0px;">
+											<div class="col-md-12 animate-box">
+												<div class="panel panel-default ">
+													<table class="table board" style="table-layout: fixed">
+														<thead>
 															<tr>
-																<td>${ status.index+1 }</td>
-																<td class="ellip"
-																	data-url="report_detail?id=${ postReports.id }">${ postReports.subject }</td>
-																<td>${ postReports.create_date }</td>
-																<td><a
-																	href="${R}user/file/download?id=${ postReports.rep_f_photo_id }"
-																	style="margin-left: 17px;"><img
-																		src="${R}images\camera.gif" border="0"></a></td>
-																<td><a
-																	href="${R}user/file/download?id=${ postReports.rep_f_study_id }"
-																	style="margin-left: 10px;"><img
-																		src="${R}images\file.png" border="0"></a></td>
-																<td><a href="modifyMyReport?id=${ postReports.id }"
-																	class="btn btn-primary btn-sm " style="margin: auto;">수정</a></td>
-
-																<td><a data-target="#deleteReport"
-																	data-toggle="modal" class="btn btn-primary btn-sm "
-																	style="margin: auto;">삭제</a></td>
+																<th class="w_5">번호</th>
+																<th class="w_22">스터디 진도</th>
+																<th class="w_10">작성일</th>
+																<th class="w_6">인증샷</th>
+																<th class="w_5">파일</th>
+																<th class="w_8"></th>
+																<th class="w_8"></th>
 															</tr>
-														</c:forEach>
-													</tbody>
-												</table>
+														</thead>
+														<tbody>
+
+															<c:forEach var="postReports" items="${ postReports }"
+																varStatus="status">
+																<tr>
+																	<td>${ status.index+1 }</td>
+																	<td class="ellip"
+																		data-url="report_detail?id=${ postReports.id }">${ postReports.subject }</td>
+																	<td>${ postReports.create_date }</td>
+																	<td><a
+																		href="${R}user/file/download?id=${ postReports.rep_f_photo_id }"
+																		style="margin-left: 17px;"><img
+																			src="${R}images\camera.gif" border="0"></a></td>
+																	<td><a
+																		href="${R}user/file/download?id=${ postReports.rep_f_study_id }"
+																		style="margin-left: 10px;"><img
+																			src="${R}images\file.png" border="0"></a></td>
+																	<td><a
+																		href="modifyMyReport?id=${ postReports.id }"
+																		class="btn btn-primary btn-sm " style="margin: auto;">수정</a></td>
+
+																	<td><a
+																		href="deleteMyReport?id=${ postReports.id }"
+																		class="btn btn-primary btn-sm " style="margin: auto;"
+																		onclick="return deleteReport();">삭제</a></td>
+																</tr>
+															</c:forEach>
+														</tbody>
+													</table>
+												</div>
 											</div>
 										</div>
-									</div>
-								</c:if>
-								<c:if test="${empty postReports}">
-									<div class="fh5co-spacer fh5co-spacer-sm"></div>
-									<div class="col-md-12 text-center">
-										<h4>작성한 보고서가 없습니다.</h4>
-									</div>
-								</c:if>
+									</c:if>
+									<c:if test="${empty postReports}">
+										<div class="fh5co-spacer fh5co-spacer-sm"></div>
+										<div class="col-md-12 text-center">
+											<p>작성한 보고서가 없습니다.</p>
+										</div>
+									</c:if>
+								</div>
 							</div>
-						</div>
-
+						</c:if>
 						<!-- 
 								///////////////////////////////////
 								댓글
@@ -262,4 +269,26 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="modal fade" id="deleteReport" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- header  -->
+      <div class="modal-header">
+        <!-- 닫기(x) 버튼  -->
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <!-- header title  -->
+        <h4 class="modal-title">완료</h4>
+      </div>
+      <!-- body  -->
+      <div class="modal-body">
+           	<p>보고서가 삭제되었습니다.</p>
+      </div>
+      <!-- Footer  -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
 </div>
