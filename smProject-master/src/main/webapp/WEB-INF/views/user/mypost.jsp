@@ -180,7 +180,7 @@
 																		src="${R}images\file.png" border="0"></a></td>
 																<td><a href="modifyMyReport?id=${ postReports.id }"
 																	class="btn btn-primary btn-sm " style="margin: auto;">수정</a></td>
-																	
+
 																<td><a data-target="#deleteReport"
 																	data-toggle="modal" class="btn btn-primary btn-sm "
 																	style="margin: auto;">삭제</a></td>
@@ -259,29 +259,6 @@
 						<!-- 탭 페이지 끝 -->
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="modal fade" id="deleteReport">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<!-- header -->
-			<div class="modal-header">
-				<!-- 닫기(x) 버튼 -->
-				<button type="button" class="close" data-dismiss="modal">×</button>
-				<!-- header title -->
-				<h4 class="modal-title">경고!</h4>
-			</div>
-			<!-- body -->
-			<div class="modal-body">
-				<p>정말로 삭제하시겠습니까?</p>
-			</div>
-			<!-- Footer -->
-			<div class="modal-footer">
-				<button onclick="location.href='${R}user/deleteMyReport?id=${ postReports.id }'"
-					type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-				<button type="button" class="btn btn-outline" data-dismiss="modal">닫기</button>
 			</div>
 		</div>
 	</div>
