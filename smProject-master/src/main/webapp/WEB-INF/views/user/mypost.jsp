@@ -13,9 +13,10 @@
 				<div id="fh5co-tab-feature-vertical" class="fh5co-tab">
 					<ul class="resp-tabs-list hor_1">
 						<li><i class="fh5co-tab-menu-icon ti-user"></i>멘토/멘티 신청</li>
-						<c:forEach var="postBoard" items="${ postBoards }">
-							<li><i class="fh5co-tab-menu-icon ti-clipboard"></i>${ postBoard.b_name }</li>
-						</c:forEach>
+						<li><i class="fh5co-tab-menu-icon ti-help-alt"></i> 질문게시판</li>
+						<li><i class="fh5co-tab-menu-icon ti-layout-media-overlay"></i>
+							컨퍼런스</li>
+						<li><i class="fh5co-tab-menu-icon ti-pencil-alt"></i> 학습자료</li>
 						<li><i class="fh5co-tab-menu-icon ti-clipboard"></i> 보고서</li>
 						<li><i class="fh5co-tab-menu-icon ti-comments"></i> 댓글</li>
 					</ul>
@@ -31,43 +32,50 @@
 									<h2 class="h3">멘토/멘티 신청내역</h2>
 								</div>
 								<c:if test="${ mentor != null }">
-								<div class="col-md-12">
-									<div class="col-md-6 animate-box text-center fh5co-work-item work-box"
-										style="border: 1px ridge; padding:7px;">
-										<figure>
+									<div class="col-md-12">
+										<div
+											class="col-md-6 animate-box text-center fh5co-work-item work-box"
+											style="border: 1px ridge; padding: 7px;">
+											<figure>
+												<c:if test="${ mentor.type != 4 }">
+													<a href="${R}user/mentorapply_detail?id=${ mentor.id }">
+														<img class="img-responsive"
+														src="${R}user/getImage?id=${ mentor.apply_f_intro_fk }"
+														alt=""
+														style="width: 275px; height: 183px; margin-left: auto; margin-right: auto;">
+													</a>
+												</c:if>
+												<c:if test="${ mentor.type == 4 }">
+													<a href="${R}user/menteeapply_detail?id=${ mentor.id }">
+														<img class="img-responsive"
+														src="${R}user/getImage?id=${ mentor.apply_f_intro_fk }"
+														alt=""
+														style="width: 275px; height: 183px; margin-left: auto; margin-right: auto;">
+													</a>
+												</c:if>
+											</figure>
+											<h3>팀명:&nbsp;${ mentor.group_name }</h3>
+											<p>주제:&nbsp;${ mentor.subject }</p>
+											<p>${ mentor.user_id }&nbsp;${ mentor.name }</p>
 											<c:if test="${ mentor.type != 4 }">
-											<a href="${R}user/mentorapply_detail?id=${ mentor.id }">
-											<img
-											class="img-responsive"
-											src="${R}user/getImage?id=${ mentor.apply_f_intro_fk }" alt=""
-											style="width: 275px; height: 183px; margin-left:auto; margin-right:auto;"></a>
+												<a href="mentorapply_edit.do?id=${ mentor.id }"
+													class="btn btn-primary btn-sm " style="margin: auto;">수정</a>
+												<a href="mentorapply_delete.do?id=${ mentor.id }"
+													id="m_delete" class="btn btn-primary btn-sm "
+													style="margin: auto;" onclick="return delapply();">삭제</a>
 											</c:if>
 											<c:if test="${ mentor.type == 4 }">
-											<a href="${R}user/menteeapply_detail?id=${ mentor.id }">
-											<img
-											class="img-responsive"
-											src="${R}user/getImage?id=${ mentor.apply_f_intro_fk }" alt=""
-											style="width: 275px; height: 183px; margin-left:auto; margin-right:auto;"></a>
+												<a href="mentee_update_mypost.do?id=${ mentor.id }"
+													class="btn btn-cancel btm-md mt_submit">신청취소</a>
 											</c:if>
-										</figure>
-										<h3>팀명:&nbsp;${ mentor.group_name }</h3>
-										<p>주제:&nbsp;${ mentor.subject }</p>
-										<p>${ mentor.user_id }&nbsp;${ mentor.name }</p>
-										<c:if test="${ mentor.type != 4 }">
-										<a href="mentorapply_edit.do?id=${ mentor.id }" class="btn btn-primary btn-sm " style="margin: auto;">수정</a>
-										<a href="mentorapply_delete.do?id=${ mentor.id }" id="m_delete" class="btn btn-primary btn-sm " style="margin: auto;" onclick="return delapply();">삭제</a>
-										</c:if>
-										<c:if test="${ mentor.type == 4 }">
-										<a href="mentee_update_mypost.do?id=${ mentor.id }" class="btn btn-cancel btm-md mt_submit">신청취소</a>
-										</c:if>
+										</div>
 									</div>
-								</div>
 								</c:if>
 								<c:if test="${ mentor == null }">
-								<div class="fh5co-spacer fh5co-spacer-sm"></div>
-								<div class="col-md-12 text-center">
-								<h4>신청내역이 없습니다.</h4>
-								</div>
+									<div class="fh5co-spacer fh5co-spacer-sm"></div>
+									<div class="col-md-12 text-center">
+										<h4>신청내역이 없습니다.</h4>
+									</div>
 								</c:if>
 							</div>
 						</div>
@@ -137,46 +145,62 @@
 								<div class="col-md-12">
 									<h2 class="h3">보고서</h2>
 								</div>
-								<div class="col-md-12" style="padding: 0px;">
-									<div class="col-md-12 animate-box">
-										<div class="panel panel-default ">
-											<table class="table board" style="table-layout: fixed">
-												<thead>
-													<tr>
-														<th class="w_5">번호</th>
-														<th class="w_22">스터디 진도</th>
-														<th class="w_10">작성일</th>
-														<th class="w_6">인증샷</th>
-														<th class="w_5">파일</th>
-														<th class="w_8"></th>
-														<th class="w_8"></th>
-													</tr>
-												</thead>
-												<tbody>
-													<c:forEach var="postReports" items="${ postReports }"
-														varStatus="status">
+								<c:if test="${!empty postReports}">
+
+									<div class="col-md-12" style="padding: 0px;">
+										<div class="col-md-12 animate-box">
+											<div class="panel panel-default ">
+												<table class="table board" style="table-layout: fixed">
+													<thead>
 														<tr>
-															<td>${ status.index+1 }</td>
-															<td class="ellip"
-																data-url="report_detail?id=${ postReports.id }">${ postReports.subject }</td>
-															<td>${ postReports.create_date }</td>
-															<td><a href="${R}user/file/download?id=${ postReports.rep_f_photo_id }" style="margin-left:17px;"><img src="${R}images\camera.gif"
-																	border="0"></a></td>
-															<td><a href="${R}user/file/download?id=${ postReports.rep_f_study_id }" style="margin-left:10px;"><img src="${R}images\file.png"
-																	border="0"></a></td>
-															<td><a href="modifyMyReport?id=${ postReports.id }" class="btn btn-primary btn-sm "
-																style="margin: auto;">수정</a></td>
-															<td><a href="deleteMyReport?id=${ postReports.id }" class="btn btn-primary btn-sm "
-																style="margin: auto;">삭제</a></td>
+															<th class="w_5">번호</th>
+															<th class="w_22">스터디 진도</th>
+															<th class="w_10">작성일</th>
+															<th class="w_6">인증샷</th>
+															<th class="w_5">파일</th>
+															<th class="w_8"></th>
+															<th class="w_8"></th>
 														</tr>
-													</c:forEach>
-												</tbody>
-											</table>
+													</thead>
+													<tbody>
+														<c:forEach var="postReports" items="${ postReports }"
+															varStatus="status">
+															<tr>
+																<td>${ status.index+1 }</td>
+																<td class="ellip"
+																	data-url="report_detail?id=${ postReports.id }">${ postReports.subject }</td>
+																<td>${ postReports.create_date }</td>
+																<td><a
+																	href="${R}user/file/download?id=${ postReports.rep_f_photo_id }"
+																	style="margin-left: 17px;"><img
+																		src="${R}images\camera.gif" border="0"></a></td>
+																<td><a
+																	href="${R}user/file/download?id=${ postReports.rep_f_study_id }"
+																	style="margin-left: 10px;"><img
+																		src="${R}images\file.png" border="0"></a></td>
+																<td><a href="modifyMyReport?id=${ postReports.id }"
+																	class="btn btn-primary btn-sm " style="margin: auto;">수정</a></td>
+																	
+																<td><a data-target="#deleteReport"
+																	data-toggle="modal" class="btn btn-primary btn-sm "
+																	style="margin: auto;">삭제</a></td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
+											</div>
 										</div>
 									</div>
-								</div>
+								</c:if>
+								<c:if test="${empty postReports}">
+									<div class="fh5co-spacer fh5co-spacer-sm"></div>
+									<div class="col-md-12 text-center">
+										<h4>작성한 보고서가 없습니다.</h4>
+									</div>
+								</c:if>
 							</div>
 						</div>
+
 						<!-- 
 								///////////////////////////////////
 								댓글
@@ -235,6 +259,29 @@
 						<!-- 탭 페이지 끝 -->
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="deleteReport">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<!-- header -->
+			<div class="modal-header">
+				<!-- 닫기(x) 버튼 -->
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<!-- header title -->
+				<h4 class="modal-title">경고!</h4>
+			</div>
+			<!-- body -->
+			<div class="modal-body">
+				<p>정말로 삭제하시겠습니까?</p>
+			</div>
+			<!-- Footer -->
+			<div class="modal-footer">
+				<button onclick="location.href='${R}user/deleteMyReport?id=${ postReports.id }'"
+					type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+				<button type="button" class="btn btn-outline" data-dismiss="modal">닫기</button>
 			</div>
 		</div>
 	</div>
