@@ -314,7 +314,7 @@ public class UserController {
 	@RequestMapping("mentorapply_delete")
 	public String mentorapply_delete(@RequestParam(value = "id") int id) {
 		mentorMapper.delete(id);
-		return "user/mypost";
+		return "redirect:mypost";
 	}
 
 	/* 멘티신청, 작성자-남하영 */
@@ -366,20 +366,20 @@ public class UserController {
 			teamMapper.deleteMentee(user.getId());
 		}
 		userMapper.type_update(user);
-		return "user/mypost";
+		return "redirect:mypost";
 	}
 
 	@RequestMapping(value="timetable", method=RequestMethod.POST)
 	public String timetable(@RequestParam(value="valueArrTest[]") List<String> valueArr) {
 		return "user/timetable";
 	}
-	
+
 	@RequestMapping(value="timetable", method=RequestMethod.GET)
 	public String timetableGet() {
-		
+
 		return "user/timetable";
 	}
-	
+
 	@RequestMapping(value = "report", method = RequestMethod.GET)
 	public String report(Model model) {
 		User user = UserService.getCurrentUser();
