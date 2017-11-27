@@ -42,47 +42,55 @@
 									<div class="col-md-12">
 										<h2 class="h3">${ postBoard.b_name }</h2>
 									</div>
-									<div class="col-md-12" style="padding: 0px;">
-										<div class="col-md-12 animate-box">
-											<div class="panel panel-default ">
-												<table class="table board" style="table-layout: fixed">
-													<thead>
-														<tr>
-															<th class="w_7">번호</th>
-															<th class="w_31">제목</th>
-															<th class="w_10">작성자</th>
-															<th class="w_15">작성일</th>
-															<th class="w_7">파일</th>
-															<th class="w_10"></th>
-															<th class="w_10"></th>
-														</tr>
-													</thead>
-													<tbody>
-														<c:forEach var="article" items="${ postBoard.articles }"
-															varStatus="status">
+									<c:if test="${!empty postBoard.articles }">
+										<div class="col-md-12" style="padding: 0px;">
+											<div class="col-md-12 animate-box">
+												<div class="panel panel-default ">
+													<table class="table board" style="table-layout: fixed">
+														<thead>
 															<tr>
-																<td>${ status.count }</td>
-																<td class="ellip">${ article.title }</td>
-																<td>${ article.userName }</td>
-																<td>${ article.post_date }</td>
-																<td><c:if test="${ article.art_f_id != 0 }">
-																		<a
-																			href="${R}user/file/download?id=${ article.art_f_id }"><img
-																			src="${R}images\file.png" border="0"></a>
-																	</c:if></td>
-																<td><a
-																	href="${R}user/board_edit?id=${article.id}&bd=${postBoard.id}"
-																	class="btn btn-primary btn-sm " style="margin: auto;">수정</a></td>
-																<td><a
-																	href="${R}user/board_delete?id=${article.id}&bd=${postBoard.id}"
-																	class="btn btn-primary btn-sm " style="margin: auto;">삭제</a></td>
+																<th class="w_7">번호</th>
+																<th class="w_31">제목</th>
+																<th class="w_10">작성자</th>
+																<th class="w_15">작성일</th>
+																<th class="w_7">파일</th>
+																<th class="w_10"></th>
+																<th class="w_10"></th>
 															</tr>
-														</c:forEach>
-													</tbody>
-												</table>
+														</thead>
+														<tbody>
+															<c:forEach var="article" items="${ postBoard.articles }"
+																varStatus="status">
+																<tr>
+																	<td>${ status.count }</td>
+																	<td class="ellip">${ article.title }</td>
+																	<td>${ article.userName }</td>
+																	<td>${ article.post_date }</td>
+																	<td><c:if test="${ article.art_f_id != 0 }">
+																			<a
+																				href="${R}user/file/download?id=${ article.art_f_id }"><img
+																				src="${R}images\file.png" border="0"></a>
+																		</c:if></td>
+																	<td><a
+																		href="${R}user/board_edit?id=${article.id}&bd=${postBoard.id}"
+																		class="btn btn-primary btn-sm " style="margin: auto;">수정</a></td>
+																	<td><a
+																		href="${R}user/board_delete?id=${article.id}&bd=${postBoard.id}"
+																		class="btn btn-primary btn-sm " style="margin: auto;">삭제</a></td>
+																</tr>
+															</c:forEach>
+														</tbody>
+													</table>
+												</div>
 											</div>
 										</div>
-									</div>
+									</c:if>
+									<c:if test="${empty postBoard.articles }">
+										<div class="fh5co-spacer fh5co-spacer-sm"></div>
+										<div class="col-md-12 text-center">
+											<p>작성한 글이 없습니다.</p>
+										</div>
+									</c:if>
 								</div>
 							</div>
 						</c:forEach>
