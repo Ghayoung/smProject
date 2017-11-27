@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import net.skhu.dto.Comment;
 import net.skhu.dto.Report;
 import net.skhu.dto.Setting;
 import net.skhu.dto.User;
@@ -29,6 +30,7 @@ public interface UserMapper {
     List<Report> findAllCondition();
     List<Report> findAllReportsById(int id);
     List<Report> findAllReportsByWriter(int id);
+    List<Comment> findAllCommentsByWriter(int id);
     Report findAllConditionById(int id);
     int findStudyCount();
     int findType(int id);

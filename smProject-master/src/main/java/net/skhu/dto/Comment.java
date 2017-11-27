@@ -8,6 +8,7 @@ public class Comment {
 	int com_a_id;
 	int condition;
 	String name;
+	int art_b_id;
 
 	public String getName() {
 		return name;
@@ -50,5 +51,11 @@ public class Comment {
 	}
 	public void setCondition(int condition) {
 		this.condition = condition;
+	}
+	public int getArt_b_id() {
+		return art_b_id;
+	}
+	public void setArt_b_id(int art_b_id) {
+		this.art_b_id = art_b_id;
 	}
 }

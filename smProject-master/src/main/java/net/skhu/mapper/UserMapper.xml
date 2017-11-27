@@ -59,6 +59,13 @@
         FROM report
         where rep_u_id=#{id} and rep_condition=0
    </select> 
+
+	<select id="findAllCommentsByWriter" resultType="Comment">     
+       SELECT c.*, a.art_b_id
+        FROM comment c join article a
+        ON c.com_a_id= a.id
+        where c.com_u_id=#{id} and c.com_condition=0
+   </select> 
    
    <select id="findAllReportsById" resultType="Report">     
        SELECT distinct r.*

@@ -218,76 +218,7 @@
 								</div>
 							</div>
 						</c:if>
-						<!-- 
-								///////////////////////////////////
-								보고서
-								///////////////////////////////////
-								-->
-						<c:if test="${ userType ==  3}">
-							<div>
-								<div class="row">
-									<div class="col-md-12">
-										<h2 class="h3">보고서</h2>
-									</div>
-									<c:if test="${!empty postReports}">
-
-										<div class="col-md-12" style="padding: 0px;">
-											<div class="col-md-12 animate-box">
-												<div class="panel panel-default ">
-													<table class="table board" style="table-layout: fixed">
-														<thead>
-															<tr>
-																<th class="w_5">번호</th>
-																<th class="w_22">스터디 진도</th>
-																<th class="w_10">작성일</th>
-																<th class="w_6">인증샷</th>
-																<th class="w_5">파일</th>
-																<th class="w_8"></th>
-																<th class="w_8"></th>
-															</tr>
-														</thead>
-														<tbody>
-
-															<c:forEach var="postReports" items="${ postReports }"
-																varStatus="status">
-																<tr>
-																	<td>${ status.index+1 }</td>
-																	<td class="ellip"
-																		data-url="report_detail?id=${ postReports.id }">${ postReports.subject }</td>
-																	<td>${ postReports.create_date }</td>
-																	<td><a
-																		href="${R}user/file/download?id=${ postReports.rep_f_photo_id }"
-																		style="margin-left: 17px;"><img
-																			src="${R}images\camera.gif" border="0"></a></td>
-																	<td><a
-																		href="${R}user/file/download?id=${ postReports.rep_f_study_id }"
-																		style="margin-left: 10px;"><img
-																			src="${R}images\file.png" border="0"></a></td>
-																	<td><a
-																		href="modifyMyReport?id=${ postReports.id }"
-																		class="btn btn-primary btn-sm " style="margin: auto;">수정</a></td>
-
-																	<td><a
-																		href="deleteMyReport?id=${ postReports.id }"
-																		class="btn btn-primary btn-sm " style="margin: auto;"
-																		onclick="return deleteReport();">삭제</a></td>
-																</tr>
-															</c:forEach>
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
-									</c:if>
-									<c:if test="${empty postReports}">
-										<div class="fh5co-spacer fh5co-spacer-sm"></div>
-										<div class="col-md-12 text-center">
-											<p>작성한 보고서가 없습니다.</p>
-										</div>
-									</c:if>
-								</div>
-							</div>
-						</c:if>
+					
 						<!-- 
 								///////////////////////////////////
 								댓글
@@ -298,49 +229,50 @@
 								<div class="col-md-12">
 									<h2 class="h3">댓글</h2>
 								</div>
-								<div class="col-md-12" style="padding: 0px;">
-									<div class="col-md-12 animate-box">
-										<div class="panel panel-default ">
-											<table class="table board" style="table-layout: fixed">
-												<thead>
-													<tr>
-														<th class="w_7">번호</th>
-														<th class="w_45">내용</th>
-														<th class="w_12">작성일</th>
-														<th class="w_12">원문보기</th>
-														<th class="w_10"></th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>1</td>
-														<td class="ellip">가나나다라마바사가나나다라마바사가나나다라마바사가나나다라마바사</td>
-														<td>17-09-17</td>
-														<td><a href="#">원문보기</a></td>
-														<td><a href="#" class="btn btn-primary btn-sm "
-															style="margin: auto;">삭제</a></td>
-													</tr>
-													<tr>
-														<td>2</td>
-														<td class="ellip">가나나다라마바사</td>
-														<td>17-09-17</td>
-														<td><a href="#">원문보기</a></td>
-														<td><a href="#" class="btn btn-primary btn-sm "
-															style="margin: auto;">삭제</a></td>
-													</tr>
-													<tr>
-														<td>3</td>
-														<td class="ellip">가나나다라마바사</td>
-														<td>17-09-17</td>
-														<td><a href="#">원문보기</a></td>
-														<td><a href="#" class="btn btn-primary btn-sm "
-															style="margin: auto;">삭제</a></td>
-													</tr>
-												</tbody>
-											</table>
+								<c:if test="${!empty postComments}">
+
+										<div class="col-md-12" style="padding: 0px;">
+											<div class="col-md-12 animate-box">
+												<div class="panel panel-default ">
+													<table class="table board" style="table-layout: fixed">
+														<thead>
+															<tr>
+																<th class="w_5">번호</th>
+																<th class="w_22">내용</th>
+																<th class="w_10">작성일</th>
+																<th class="w_6">원문보기</th>
+																<th class="w_5"></th>
+															</tr>
+														</thead>
+														<tbody>
+
+															<c:forEach var="postComments" items="${ postComments}"
+																varStatus="status">
+																<tr>
+																	<td>${ status.index+1 }</td>
+																	<td class="ellip">${ postComments.c_content }</td>
+																	<td>${ postComments.c_post_date }</td>
+																	<td>
+																		<a href="${R}user/board_detail?id=${postComments.id}&bd=${ postComments.art_b_id } #comment_btn">원문보기</td>
+																	<td><a
+																		href="${R}user/comment_delete?id=${ postComments.id }&bd=${ postComments.art_b_id }"
+																		class="btn btn-primary btn-sm " style="margin: auto;"
+																		onclick="return deleteReport();">삭제</a></td>
+																		
+																</tr>
+															</c:forEach>
+														</tbody>
+													</table>
+												</div>
+											</div>
 										</div>
-									</div>
-								</div>
+									</c:if>
+									<c:if test="${empty postComments}">
+										<div class="fh5co-spacer fh5co-spacer-sm"></div>
+										<div class="col-md-12 text-center">
+											<p>작성한 댓글이 없습니다.</p>
+										</div>
+									</c:if>
 							</div>
 						</div>
 						<!-- 탭 페이지 끝 -->
