@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import net.skhu.dto.Article;
 import net.skhu.dto.Comment;
 
 @Mapper
@@ -14,4 +15,5 @@ public interface CommentMapper {
 	void insert(Comment comment);
 	void update(Comment comment);
 	void delete(int id);
+	Article findBoardId(int id);
 }

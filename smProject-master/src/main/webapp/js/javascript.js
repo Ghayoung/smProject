@@ -443,6 +443,10 @@ function deleteReport() {
 	return confirm("해당 보고서를 삭제하시겠습니까?");
 }
 
+function deleteComment() {
+	return confirm("해당 댓글을 삭제하시겠습니까?");
+}
+
 /*
  * function save() { >>>>>>> branch 'master' of
  * https://github.com/choiyk/smProject.git if ($("#form [name=title]").val() ==

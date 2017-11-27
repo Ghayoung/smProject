@@ -140,10 +140,9 @@ public class UserController {
 	}
 
 	@RequestMapping("comment_delete")
-	public String comment_delete(Model model, @RequestParam(value = "id") int cid, @RequestParam(value = "id") int id,
-			Pagination pagination) {
+	public String comment_delete(Model model, @RequestParam(value = "cid") int cid,Pagination pagination) {
 		commentMapper.delete(cid);
-		return "redirect:board_detail?id=" + id + "&" + pagination.getQueryString();
+		return "redirect:mypost#fh5co-tab-feature-vertical6myReport";
 	}
 
 	@RequestMapping("question")

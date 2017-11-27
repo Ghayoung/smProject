@@ -24,4 +24,11 @@
 	    insert into comment(c_content, c_post_date, com_u_id, com_a_id) values(#{c_content}, sysdate(), #{com_u_id}, #{com_a_id})
 	</insert>
 	
+	
+	<select id="findBoardId" resultType="Article">
+		SELECT c.com_a_id id, a.art_b_id
+        FROM comment c join article a
+        ON c.com_a_id= a.id
+        where c.id=#{id} and c.com_condition=0
+    </select>
 </mapper>

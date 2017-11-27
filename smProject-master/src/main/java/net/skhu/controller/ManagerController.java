@@ -32,11 +32,13 @@ import net.skhu.dto.Report;
 import net.skhu.dto.Setting;
 import net.skhu.dto.Team;
 import net.skhu.dto.User;
+import net.skhu.mapper.CommentMapper;
 import net.skhu.mapper.FileMapper;
 import net.skhu.mapper.IntroduceMapper;
 import net.skhu.mapper.MentorMapper;
 import net.skhu.mapper.TeamMapper;
 import net.skhu.mapper.UserMapper;
+import net.skhu.model.Pagination;
 import net.skhu.service.ExcelReadService;
 import net.skhu.service.FileService;
 import net.skhu.service.ManagerService;
@@ -63,6 +65,8 @@ public class ManagerController {
 	ExcelReadService excelReadService;
 	@Autowired
 	UserService userService;
+	@Autowired
+	CommentMapper commentMapper;
 
 	@RequestMapping(value = "m_introduce_modi", method = RequestMethod.GET)
 	public String m_introduce_modi(Model model) {
@@ -95,8 +99,14 @@ public class ManagerController {
 		model.addAttribute("board", "내가 쓴 글");
 		model.addAttribute("postBoards", userService.findAllArticleBydUser());
 		model.addAttribute("postReports", userService.findAllReportByUser());
-
+		model.addAttribute("postComments", userService.findAllCommentByUser());
 		return "manager/m_post";
+	}
+	
+	@RequestMapping("comment_delete")
+	public String comment_delete(Model model, @RequestParam(value = "cid") int cid,Pagination pagination) {
+		commentMapper.delete(cid);
+		return "redirect:m_post#fh5co-tab-feature-vertical3myReport";
 	}
 
 	@RequestMapping(value = "m_register", method = RequestMethod.POST)

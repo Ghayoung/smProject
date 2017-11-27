@@ -7,7 +7,7 @@
 		<div class="row">
 			<div class="col-md-12 animate-box">
 				<h2 class="fh5co-uppercase-heading-sm text-center">내가 쓴 글</h2>
-				<div class="fh5co-spacer fh5co-spacer-sm"></div>
+				<div class="fh5co-spacer fh5co-spacer-sm" id="#fh5co-tab-feature-vertical3myReport"></div>
 			</div>
 			<div class="col-md-12 animate-box">
 				<div id="fh5co-tab-feature-vertical" class="fh5co-tab">
@@ -103,51 +103,52 @@
 						<div>
 							<div class="row">
 								<div class="col-md-12">
-									<h2 class="h3">댓글</h2>
+									<h2 class="h3" id="comment">댓글</h2>
 								</div>
-								<div class="col-md-12" style="padding: 0px;">
-									<div class="col-md-12 animate-box">
-										<div class="panel panel-default ">
-											<table class="table board" style="table-layout: fixed">
-												<thead>
-													<tr>
-														<th class="w_7">번호</th>
-														<th class="w_45">내용</th>
-														<th class="w_12">작성일</th>
-														<th class="w_12">원문보기</th>
-														<th class="w_10"></th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>1</td>
-														<td class="ellip">가나나다라마바사가나나다라마바사가나나다라마바사가나나다라마바사</td>
-														<td>17-09-17</td>
-														<td><a href="#">원문보기</a></td>
-														<td><a href="#" class="btn btn-primary btn-sm "
-															style="margin: auto;">삭제</a></td>
-													</tr>
-													<tr>
-														<td>2</td>
-														<td class="ellip">가나나다라마바사</td>
-														<td>17-09-17</td>
-														<td><a href="#">원문보기</a></td>
-														<td><a href="#" class="btn btn-primary btn-sm "
-															style="margin: auto;">삭제</a></td>
-													</tr>
-													<tr>
-														<td>3</td>
-														<td class="ellip">가나나다라마바사</td>
-														<td>17-09-17</td>
-														<td><a href="#">원문보기</a></td>
-														<td><a href="#" class="btn btn-primary btn-sm "
-															style="margin: auto;">삭제</a></td>
-													</tr>
-												</tbody>
-											</table>
+								<c:if test="${!empty postComments}">
+
+										<div class="col-md-12" style="padding: 0px;">
+											<div class="col-md-12 animate-box">
+												<div class="panel panel-default ">
+													<table class="table board" style="table-layout: fixed">
+														<thead>
+															<tr>
+																<th class="w_5">번호</th>
+																<th class="w_22">내용</th>
+																<th class="w_8">작성일</th>
+																<th class="w_6">원문보기</th>
+																<th class="w_6"></th>
+															</tr>
+														</thead>
+														<tbody>
+
+															<c:forEach var="postComments" items="${ postComments}"
+																varStatus="status">
+																<tr>
+																	<td>${ status.index+1 }</td>
+																	<td class="ellip">${ postComments.c_content }</td>
+																	<td>${ postComments.c_post_date }</td>
+																	<td>
+																		<a href="${R}user/board_detail?id=${postComments.com_a_id}&bd=${ postComments.art_b_id } #comment_btn">원문보기</a></td>
+																	<td><a
+																		href="${R}manager/comment_delete?cid=${postComments.id}"
+																		class="btn btn-primary btn-sm " style="margin: auto;"
+																		onclick="return deleteComment();">삭제</a></td>
+																		
+																</tr>
+															</c:forEach>
+														</tbody>
+													</table>
+												</div>
+											</div>
 										</div>
-									</div>
-								</div>
+									</c:if>
+									<c:if test="${empty postComments}">
+										<div class="fh5co-spacer fh5co-spacer-sm"></div>
+										<div class="col-md-12 text-center">
+											<p>작성한 댓글이 없습니다.</p>
+										</div>
+									</c:if>
 							</div>
 						</div>
 						<!-- 탭 페이지 끝 -->
