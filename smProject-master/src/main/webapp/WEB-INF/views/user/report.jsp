@@ -8,7 +8,7 @@
 		<div class="col-md-12" id="fh5co-features">
 			<div class="row">
 				<div class="col-md-12 animate-box">
-					<h2 class="fh5co-uppercase-heading-sm text-center">보고서</h2>
+					<h2 class="fh5co-uppercase-heading-sm text-center" id="report">보고서</h2>
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
 				</div>
 				<div class="col-md-12 animate-box">
