@@ -119,6 +119,12 @@ public class UserService {
 		List<Report> reports=userMapper.findAllReportsByWriter(user.getId());
 		return reports;
 	}
+	
+	public List<Comment> findAllCommentByUser(){
+		User user = UserService.getCurrentUser();
+		List<Comment> comments=userMapper.findAllCommentsByWriter(user.getId());
+		return comments;
+	}
 
 	public void createArticle(Article article, int type, @RequestBody MultipartFile file, HttpServletRequest request) {
 		article.setArt_u_id(UserService.getCurrentUser().getId());

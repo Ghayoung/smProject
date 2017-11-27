@@ -140,7 +140,7 @@ public class UserController {
 	}
 
 	@RequestMapping("comment_delete")
-	public String comment_delete(Model model, @RequestParam(value = "cid") int cid, @RequestParam(value = "id") int id,
+	public String comment_delete(Model model, @RequestParam(value = "id") int cid, @RequestParam(value = "id") int id,
 			Pagination pagination) {
 		commentMapper.delete(cid);
 		return "redirect:board_detail?id=" + id + "&" + pagination.getQueryString();
@@ -428,6 +428,7 @@ public class UserController {
 		model.addAttribute("board", "내가 쓴 글");
 		model.addAttribute("postBoards", userService.findAllArticleBydUser());
 		model.addAttribute("postReports", userService.findAllReportByUser());
+		model.addAttribute("postComments", userService.findAllCommentByUser());
 
 		// 하영
 		User user = UserService.getCurrentUser();
