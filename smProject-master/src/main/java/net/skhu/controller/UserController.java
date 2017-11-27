@@ -27,6 +27,7 @@ import net.skhu.dto.Mentor;
 import net.skhu.dto.Report;
 import net.skhu.dto.Team;
 import net.skhu.dto.Timetable;
+import net.skhu.dto.TimetableDTO;
 import net.skhu.dto.User;
 import net.skhu.mapper.ArticleMapper;
 import net.skhu.mapper.BoardMapper;
@@ -35,6 +36,7 @@ import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.FileMapper;
 import net.skhu.mapper.MentorMapper;
 import net.skhu.mapper.TeamMapper;
+import net.skhu.mapper.TimetableMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.model.Pagination;
 import net.skhu.service.ArticleService;
@@ -61,6 +63,8 @@ public class UserController {
 	TeamMapper teamMapper;
 	@Autowired
 	CommentMapper commentMapper;
+	@Autowired
+	TimetableMapper timetableMapper;
 	@Autowired
 	UserService userService;
 	@Autowired
@@ -369,53 +373,56 @@ public class UserController {
 		return "user/mypost";
 	}
 
-<<<<<<< HEAD
 	@RequestMapping(value = "timetable", method = RequestMethod.GET)
 	public String timetable(Model model) {
+		User user = UserService.getCurrentUser();
+		Team team=teamMapper.findTeamByMember(user.getId());
+		int time_team = team.getGroup_m_apply_id();
+		List<TimetableDTO> timetable = timetableMapper.findAllTeamItem(time_team);
+		model.addAttribute("timetable", timetable);
 		return "user/timetable";
 	}
 
 	@RequestMapping(value = "timetable", method = RequestMethod.POST)
 	public String timetable(Model model, Timetable timetable, HttpServletRequest request) {
+
+		User user = UserService.getCurrentUser();
+		Team team=teamMapper.findTeamByMember(user.getId());
+		int time_team = team.getGroup_m_apply_id();
+
+		timetableMapper.delete(time_team);
+
 		if (timetable.getMon() != null) {
 			for (int i = 0; i < timetable.getMon().size(); ++i) {
-				System.out.println(1 + " " + timetable.getMon().get(i));
+				timetableMapper.insert(1, Integer.parseInt(timetable.getMon().get(i)), time_team);
 			}
 		}
 		if (timetable.getTue() != null) {
 			for (int i = 0; i < timetable.getTue().size(); ++i) {
-				System.out.println(2 + " " + timetable.getMon().get(i));
+				timetableMapper.insert(2, Integer.parseInt(timetable.getTue().get(i)), time_team);
 			}
 		}
 		if (timetable.getWed() != null) {
 			for (int i = 0; i < timetable.getWed().size(); ++i) {
-				System.out.println(3 + " " + timetable.getMon().get(i));
+				timetableMapper.insert(3, Integer.parseInt(timetable.getWed().get(i)), time_team);
 			}
 		}
 		if (timetable.getThu() != null) {
 			for (int i = 0; i < timetable.getThu().size(); ++i) {
-				System.out.println(4 + " " + timetable.getMon().get(i));
+				timetableMapper.insert(4, Integer.parseInt(timetable.getThu().get(i)), time_team);
 			}
 		}
 		if (timetable.getFri() != null) {
 			for (int i = 0; i < timetable.getFri().size(); ++i) {
-				System.out.println(5 + " " + timetable.getMon().get(i));
+				timetableMapper.insert(5, Integer.parseInt(timetable.getFri().get(i)), time_team);
 			}
 		}
+		List<TimetableDTO> timetable2 = timetableMapper.findAllTeamItem(time_team);
+		model.addAttribute("timetable", timetable2);
 
-=======
-	@RequestMapping(value="timetable", method=RequestMethod.POST)
-	public String timetable(@RequestParam(value="valueArrTest[]") List<String> valueArr) {
->>>>>>> branch 'master' of https://github.com/choiyk/smProject.git
 		return "user/timetable";
 	}
-	
-	@RequestMapping(value="timetable", method=RequestMethod.GET)
-	public String timetableGet() {
-		
-		return "user/timetable";
-	}
-	
+
 	@RequestMapping(value = "report", method = RequestMethod.GET)
 	public String report(Model model) {
 		User user = UserService.getCurrentUser();
