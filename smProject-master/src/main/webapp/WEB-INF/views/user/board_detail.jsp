@@ -69,14 +69,15 @@
 										</ul>
 										<div class="c_content_${ status.count }">${ comment.c_content }</div>
 										<div class="c_content_edit_${ status.count } col-md-12" style="display:none; margin-top:10px">
-											<!--<form method="post" action="${R}user/comment_edit?id=${article.id}&${ pagination.queryString }&cid=${ comment.id }">
+											<form method="post" action="${R}user/comment_edit?id=${article.id}&${ pagination.queryString }&cid=${ comment.id }">
 												<div class="col-md-10 form-group">
-													<textarea name="c_content" class="form-control input-lg" row="3">${ comment.c_content }</textarea>
+													<textarea name="c_content" id="board_comment" class="form-control input-lg" row="3">${ comment.c_content }</textarea>
 												</div>
 												<div class="col-md-2 form-group">
-													<input type="submit" class="btn btn-primary btn-lg" value="수정">
+													<!-- -->
+													<button class="btn btn-primary btn-lg" onclick="editCommentText(${R}user/comment_edit_ajax?id=${article.id}&${ pagination.queryString }&cid=${ comment.id })">등록</button>
 												</div>
-											</form>-->
+											</form>
 											
 										</div>
 									</div>
@@ -87,10 +88,10 @@
 				<div class="fh5co-spacer fh5co-spacer-sm"></div>
 				<div class="row">
 					<div class="col-md-12 animate-box">
-						<form:form method="post" modelAttribute="newComment" action="${R}user/comment_create?id=${article.id}&${ pagination.queryString }">
+						<form:form id="newCommentForm" method="post" modelAttribute="newComment" action="${R}user/comment_create?id=${article.id}&${ pagination.queryString }">
 							<div class="col-md-10">
 								<div class="form-group">
-									<form:textarea path="c_content" placeholder="댓글을 작성해주세요." id="board_comment" class="form-control input-lg" rows="3"></form:textarea>
+									<form:textarea path="c_content" placeholder="댓글을 작성해주세요." class="form-control input-lg" rows="3"></form:textarea>
 								</div>	
 							</div>
 							<div class="col-md-2">
@@ -115,16 +116,17 @@
 		<!-- END fhtco-main -->
 		
 <script>
-function comment_edit(url){
+function editCommentText(url){
 	$.ajax({
 	    type : "POST",
 	    url : url,
-	    dataType : "text",
+	    dataType : "json",
 	    error : function() {
 	        alert('통신실패!!');
 	    },
-	    success : function(data) {
-	        $('#Context').html(data);
+	    success : function(json) {
+	        $('#board_comment').html(json);
+	        alert(json);
 	    }
 
 	});
