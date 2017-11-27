@@ -267,9 +267,11 @@ public class ManagerController {
 	}
 
 	@RequestMapping(value = "report_detail", method = RequestMethod.GET)
-	public String report_detail(Model model, @RequestParam("id") int id) {
+	public String report_detail(Model model, @RequestParam("id") int id, HttpServletRequest request) {
+		String old_url = request.getHeader("referer");
 		Report report = userMapper.findOneReport(id);
 		model.addAttribute("report", report);
+		model.addAttribute("url", old_url);
 		return "manager/m_report_detail";
 	}
 

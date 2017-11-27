@@ -64,7 +64,7 @@
 					</div>
 
 					<div class="col-md-12">
-						<a href="${R}manager/m_reportManage"
+						<a data-url="${url}"
 							class="btn btn-primary btn-lg col-md-offset-8">목록으로</a> 
 							 <a href="#" class="btn btn-primary btn-lg">다운로드</a>
 					</div>
