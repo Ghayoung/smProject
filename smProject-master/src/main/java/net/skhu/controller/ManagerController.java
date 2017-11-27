@@ -102,11 +102,11 @@ public class ManagerController {
 		model.addAttribute("postComments", userService.findAllCommentByUser());
 		return "manager/m_post";
 	}
-	
+
 	@RequestMapping("comment_delete")
 	public String comment_delete(Model model, @RequestParam(value = "cid") int cid,Pagination pagination) {
 		commentMapper.delete(cid);
-		return "redirect:m_post#fh5co-tab-feature-vertical3myReport";
+		return "redirect:m_post#fh5co-tab-feature-vertical4com";
 	}
 
 	@RequestMapping(value = "m_register", method = RequestMethod.POST)

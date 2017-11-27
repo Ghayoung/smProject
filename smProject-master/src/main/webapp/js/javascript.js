@@ -49,6 +49,7 @@ function selectAllCheckBox(allcheck, containerID, checkboxIDMatch) { // (all체�
 	}
 }
 
+
 function register() {
 	if (document.r_form.file.value == "")
 		alert("파일을 등록해주세요");

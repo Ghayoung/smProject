@@ -254,7 +254,7 @@
 																	<td class="ellip">${ postComments.c_content }</td>
 																	<td>${ postComments.c_post_date }</td>
 																	<td>
-																		<a href="${R}user/board_detail?id=${postComments.com_a_id}&bd=${ postComments.art_b_id } #comment_btn">원문보기</a></td>
+																		<a href="${R}user/board_detail?id=${postComments.com_a_id}&bd=${ postComments.art_b_id }#com">원문보기</a></td>
 																	<td><a
 																		href="${R}user/comment_delete?cid=${postComments.id}"
 																		class="btn btn-primary btn-sm " style="margin: auto;"

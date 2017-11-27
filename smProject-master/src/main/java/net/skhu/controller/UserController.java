@@ -26,6 +26,7 @@ import net.skhu.dto.Comment;
 import net.skhu.dto.Mentor;
 import net.skhu.dto.Report;
 import net.skhu.dto.Team;
+import net.skhu.dto.Timetable;
 import net.skhu.dto.User;
 import net.skhu.mapper.ArticleMapper;
 import net.skhu.mapper.BoardMapper;
@@ -134,8 +135,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "comment_edit_ajax", method = RequestMethod.POST)
-	public @ResponseBody Comment comment_edit_ajax(Model model, @RequestParam(value = "cid") int cid, HttpServletRequest request,
-			@RequestParam(value = "id") int id, Pagination pagination) {
+	public @ResponseBody Comment comment_edit_ajax(Model model, @RequestParam(value = "cid") int cid,
+			HttpServletRequest request, @RequestParam(value = "id") int id, Pagination pagination) {
 		userService.editComment(request, cid);
 		Comment comment = commentMapper.findOne(cid);
 		return comment;
@@ -149,7 +150,7 @@ public class UserController {
 	}
 
 	@RequestMapping("comment_delete")
-	public String comment_delete(Model model, @RequestParam(value = "cid") int cid,Pagination pagination) {
+	public String comment_delete(Model model, @RequestParam(value = "cid") int cid, Pagination pagination) {
 		commentMapper.delete(cid);
 		return "redirect:mypost#fh5co-tab-feature-vertical6myReport";
 	}
@@ -287,20 +288,19 @@ public class UserController {
 		int y = Integer.parseInt(request.getParameter("year"));
 		mentor.setYear(y);
 		mentor.setSubject(request.getParameter("subject"));
-		if(e_file1.getSize() == 0) {
+		if (e_file1.getSize() == 0) {
 			mentor.setApply_f_intro_fk(myMentor.getApply_f_intro_fk());
-		}
-		else {
+		} else {
 			int intro_fk = fileService.fileUpload(e_file1);
 			mentor.setApply_f_intro_fk(intro_fk);
 		}
-		if(e_file2.getSize() == 0)
+		if (e_file2.getSize() == 0)
 			mentor.setApply_f_time_id(myMentor.getApply_f_time_id());
 		else {
 			int t_fk = fileService.fileUpload(e_file2);
 			mentor.setApply_f_time_id(t_fk);
 		}
-		if(e_file3.getSize() == 0)
+		if (e_file3.getSize() == 0)
 			mentor.setApply_f_doc_fk(myMentor.getApply_f_doc_fk());
 		else {
 			int doc_fk = fileService.fileUpload(e_file3);
@@ -369,8 +369,39 @@ public class UserController {
 		return "user/mypost";
 	}
 
-	@RequestMapping("timetable")
-	public String timetable() {
+	@RequestMapping(value = "timetable", method = RequestMethod.GET)
+	public String timetable(Model model) {
+		return "user/timetable";
+	}
+
+	@RequestMapping(value = "timetable", method = RequestMethod.POST)
+	public String timetable(Model model, Timetable timetable, HttpServletRequest request) {
+		if (timetable.getMon() != null) {
+			for (int i = 0; i < timetable.getMon().size(); ++i) {
+				System.out.println(1 + " " + timetable.getMon().get(i));
+			}
+		}
+		if (timetable.getTue() != null) {
+			for (int i = 0; i < timetable.getTue().size(); ++i) {
+				System.out.println(2 + " " + timetable.getMon().get(i));
+			}
+		}
+		if (timetable.getWed() != null) {
+			for (int i = 0; i < timetable.getWed().size(); ++i) {
+				System.out.println(3 + " " + timetable.getMon().get(i));
+			}
+		}
+		if (timetable.getThu() != null) {
+			for (int i = 0; i < timetable.getThu().size(); ++i) {
+				System.out.println(4 + " " + timetable.getMon().get(i));
+			}
+		}
+		if (timetable.getFri() != null) {
+			for (int i = 0; i < timetable.getFri().size(); ++i) {
+				System.out.println(5 + " " + timetable.getMon().get(i));
+			}
+		}
+
 		return "user/timetable";
 	}
 
@@ -420,7 +451,6 @@ public class UserController {
 		report.setEnd_time(request.getParameter("end_time"));
 		report.setStudy_content(request.getParameter("study_content"));
 
-
 		if (!file3.isEmpty() && !file4.isEmpty()) {
 			int f_photo_fk = fileService.fileUpload(file3);
 			int f_study_fk = fileService.fileUpload(file4);
@@ -463,9 +493,9 @@ public class UserController {
 		return "user/report_create";
 	}
 
-	@RequestMapping(value="modifyMyReport", method=RequestMethod.POST)
-	public String modifyMyReport(Model model, @RequestParam("id") int id, HttpServletRequest request, @RequestBody MultipartFile file1,
-			@RequestBody MultipartFile file2) {
+	@RequestMapping(value = "modifyMyReport", method = RequestMethod.POST)
+	public String modifyMyReport(Model model, @RequestParam("id") int id, HttpServletRequest request,
+			@RequestBody MultipartFile file1, @RequestBody MultipartFile file2) {
 
 		report.setSubject(request.getParameter("subject"));
 		report.setPlace(request.getParameter("place"));
@@ -481,7 +511,7 @@ public class UserController {
 			f_photo_fk = fileService.fileUpload(file1);
 			report.setRep_f_photo_id(f_photo_fk);
 		}
-		if(!file2.isEmpty()){
+		if (!file2.isEmpty()) {
 			f_study_fk = fileService.fileUpload(file2);
 			report.setRep_f_study_id(f_study_fk);
 		}
