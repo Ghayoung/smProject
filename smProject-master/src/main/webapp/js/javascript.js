@@ -397,8 +397,6 @@ function checkInputMeminfo() {
 }
 
 function comment_edit(i) {
-	console.log("y");
-	console.log(".c_content_edit_" + i);
 	$(".c_content_" + i).toggle();
 	$(".c_content_edit_" + i).toggle();
 }

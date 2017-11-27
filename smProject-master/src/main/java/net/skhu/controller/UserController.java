@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Article;
@@ -130,6 +131,14 @@ public class UserController {
 			@RequestParam(value = "id") int id, Pagination pagination) {
 		userService.editComment(request, cid);
 		return "redirect:board_detail?id=" + id + "&" + pagination.getQueryString();
+	}
+
+	@RequestMapping(value = "comment_edit_ajax", method = RequestMethod.POST)
+	public @ResponseBody Comment comment_edit_ajax(Model model, @RequestParam(value = "cid") int cid, HttpServletRequest request,
+			@RequestParam(value = "id") int id, Pagination pagination) {
+		userService.editComment(request, cid);
+		Comment comment = commentMapper.findOne(cid);
+		return comment;
 	}
 
 	@RequestMapping(value = "comment_create", method = RequestMethod.POST)
