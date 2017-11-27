@@ -18,8 +18,8 @@
 				<div class="fh5co-spacer fh5co-spacer-sm"></div>
 			</div>
 			<div class="col-md-12 animate-box">
-				<form name="form" method="post"
-					enctype="multipart/form-data" onsubmit="return checkMentorApply();">
+				<form name="form" method="post" enctype="multipart/form-data"
+					onsubmit="return checkWriteReport();">
 					<div class="col-md-12">
 						<div class="form-group">
 							<label for="subject">스터디 주제</label> <input placeholder="스터디 주제"
@@ -29,7 +29,7 @@
 					</div>
 					<div class="col-md-12">
 						<div class="form-group">
-							<label for="place">장소</label> <input placeholder="장소"
+							<label for="place">스터디 장소</label> <input placeholder="장소"
 								name="place" id="place" type="text"
 								class="form-control input-lg" value="${ report.place }">
 						</div>
@@ -58,16 +58,35 @@
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
-							<label for="start_time">시작 시간</label> <input id="start_time"
-								type="time" class="form-control input-lg" name="start_time"
-								value="${ report.start_time }">
+							<label for="start_time">시작 시간</label>
+
+							<c:if test="${report.start_time != null}">
+								<input id="datePicker7" type="time"
+									class="form-control input-lg" name="start_time"
+									value="${ report.start_time }">
+							</c:if>
+
+							<c:if test="${report.start_time == null}">
+								<input id="datePicker7" type="time"
+									class="form-control input-lg" name="start_time" value="now">
+							</c:if>
+
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
-							<label for="end_time">종료 시간</label> <input id="end_time"
-								name="end_time" type="time" class="form-control input-lg"
-								value="${ report.end_time }">
+							<label for="end_time">종료 시간</label>
+
+							<c:if test="${report.end_time != null}">
+								<input id="datePicker8" name="end_time" type="time"
+									class="form-control input-lg" value="${ report.end_time }">
+							</c:if>
+
+							<c:if test="${report.end_time == null}">
+								<input id="datePicker8" name="end_time" type="time"
+									class="form-control input-lg" value="now">
+							</c:if>
+
 						</div>
 					</div>
 

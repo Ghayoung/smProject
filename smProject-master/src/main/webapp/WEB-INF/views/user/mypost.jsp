@@ -7,22 +7,24 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 animate-box">
-				<h2 class="fh5co-uppercase-heading-sm text-center">내가 쓴 글</h2>
+				<h2 id=fh5co-tab-feature-vertical5myReport
+					class="fh5co-uppercase-heading-sm text-center">내가 쓴 글</h2>
 				<div class="fh5co-spacer fh5co-spacer-sm"></div>
 			</div>
 			<div class="col-md-12 animate-box">
 				<div id="fh5co-tab-feature-vertical" class="fh5co-tab">
 					<ul class="resp-tabs-list hor_1">
 						<li><i class="fh5co-tab-menu-icon ti-user"></i>멘토/멘티 신청</li>
+						<li><i class="fh5co-tab-menu-icon ti-pencil-alt"></i> 학습자료</li>
 						<li><i class="fh5co-tab-menu-icon ti-help-alt"></i> 질문게시판</li>
 						<li><i class="fh5co-tab-menu-icon ti-layout-media-overlay"></i>
 							컨퍼런스</li>
-						<li><i class="fh5co-tab-menu-icon ti-pencil-alt"></i> 학습자료</li>
 						<c:if test="${ userType ==  3}">
 							<li><i class="fh5co-tab-menu-icon ti-clipboard"></i> 보고서</li>
 						</c:if>
 						<li><i class="fh5co-tab-menu-icon ti-comments"></i> 댓글</li>
 					</ul>
+
 					<div class="resp-tabs-container hor_1">
 						<!-- 
 						///////////////////////////////////
@@ -94,50 +96,128 @@
 									<div class="col-md-12">
 										<h2 class="h3">${ postBoard.b_name }</h2>
 									</div>
-									<div class="col-md-12" style="padding: 0px;">
-										<div class="col-md-12 animate-box">
-											<div class="panel panel-default ">
-												<table class="table board" style="table-layout: fixed">
-													<thead>
-														<tr>
-															<th class="w_7">번호</th>
-															<th class="w_31">제목</th>
-															<th class="w_10">작성자</th>
-															<th class="w_15">작성일</th>
-															<th class="w_7">파일</th>
-															<th class="w_10"></th>
-															<th class="w_10"></th>
-														</tr>
-													</thead>
-													<tbody>
-														<c:forEach var="article" items="${ postBoard.articles }"
-															varStatus="status">
+									<c:if test="${!empty postBoard.articles }">
+										<div class="col-md-12" style="padding: 0px;">
+											<div class="col-md-12 animate-box">
+												<div class="panel panel-default ">
+													<table class="table board" style="table-layout: fixed">
+														<thead>
 															<tr>
-																<td>${ status.count }</td>
-																<td class="ellip">${ article.title }</td>
-																<td>${ article.userName }</td>
-																<td>${ article.post_date }</td>
-																<td><c:if test="${ article.art_f_id != 0 }">
-																		<a
-																			href="${R}user/file/download?id=${ article.art_f_id }"><img
-																			src="${R}images\file.png" border="0"></a>
-																	</c:if></td>
-																<td><a
-																	href="${R}user/board_edit?id=${article.id}&bd=${postBoard.id}"
-																	class="btn btn-primary btn-sm " style="margin: auto;">수정</a></td>
-																<td><a
-																	href="${R}user/board_delete?id=${article.id}&bd=${postBoard.id}"
-																	class="btn btn-primary btn-sm " style="margin: auto;">삭제</a></td>
+																<th class="w_7">번호</th>
+																<th class="w_31">제목</th>
+																<th class="w_10">작성자</th>
+																<th class="w_15">작성일</th>
+																<th class="w_7">파일</th>
+																<th class="w_10"></th>
+																<th class="w_10"></th>
 															</tr>
-														</c:forEach>
-													</tbody>
-												</table>
+														</thead>
+														<tbody>
+															<c:forEach var="article" items="${ postBoard.articles }"
+																varStatus="status">
+																<tr>
+																	<td>${ status.count }</td>
+																	<td class="ellip">${ article.title }</td>
+																	<td>${ article.userName }</td>
+																	<td>${ article.post_date }</td>
+																	<td><c:if test="${ article.art_f_id != 0 }">
+																			<a
+																				href="${R}user/file/download?id=${ article.art_f_id }"><img
+																				src="${R}images\file.png" border="0"></a>
+																		</c:if></td>
+																	<td><a
+																		href="${R}user/board_edit?id=${article.id}&bd=${postBoard.id}"
+																		class="btn btn-primary btn-sm " style="margin: auto;">수정</a></td>
+																	<td><a
+																		href="${R}user/board_delete?id=${article.id}&bd=${postBoard.id}"
+																		class="btn btn-primary btn-sm " style="margin: auto;">삭제</a></td>
+																</tr>
+															</c:forEach>
+														</tbody>
+													</table>
+												</div>
 											</div>
 										</div>
-									</div>
+									</c:if>
+									<c:if test="${empty postBoard.articles }">
+										<div class="fh5co-spacer fh5co-spacer-sm"></div>
+										<div class="col-md-12 text-center">
+											<p>작성한 글이 없습니다.</p>
+										</div>
+									</c:if>
 								</div>
 							</div>
 						</c:forEach>
+						<!-- 
+                        ///////////////////////////////////
+                        보고서
+                        ///////////////////////////////////
+                        -->
+						<c:if test="${ userType ==  3}">
+							<div>
+								<div class="row">
+									<div class="col-md-12">
+										<h2 class="h3">보고서</h2>
+									</div>
+									<c:if test="${!empty postReports}">
+
+										<div class="col-md-12" style="padding: 0px;">
+											<div class="col-md-12 animate-box">
+												<div class="panel panel-default ">
+													<table class="table board" style="table-layout: fixed">
+														<thead>
+															<tr>
+																<th class="w_5">번호</th>
+																<th class="w_22">스터디 진도</th>
+																<th class="w_10">작성일</th>
+																<th class="w_6">인증샷</th>
+																<th class="w_5">파일</th>
+																<th class="w_8"></th>
+																<th class="w_8"></th>
+															</tr>
+														</thead>
+														<tbody>
+
+															<c:forEach var="postReports" items="${ postReports }"
+																varStatus="status">
+																<tr>
+																	<td>${ status.index+1 }</td>
+																	<td class="ellip"
+																		data-url="report_detail?id=${ postReports.id }">${ postReports.subject }</td>
+																	<td>${ postReports.create_date }</td>
+																	<td><a
+																		href="${R}user/file/download?id=${ postReports.rep_f_photo_id }"
+																		style="margin-left: 17px;"><img
+																			src="${R}images\camera.gif" border="0"></a></td>
+																	<td><a
+																		href="${R}user/file/download?id=${ postReports.rep_f_study_id }"
+																		style="margin-left: 10px;"><img
+																			src="${R}images\file.png" border="0"></a></td>
+																	<td><a
+																		href="modifyMyReport?id=${ postReports.id }"
+																		class="btn btn-primary btn-sm " style="margin: auto;">수정</a></td>
+
+																	<td><a
+																		href="deleteMyReport?id=${ postReports.id }"
+																		class="btn btn-primary btn-sm " style="margin: auto;"
+																		onclick="return deleteReport();">삭제</a></td>
+																</tr>
+															</c:forEach>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</c:if>
+									<c:if test="${empty postReports}">
+										<div class="fh5co-spacer fh5co-spacer-sm"></div>
+										<div class="col-md-12 text-center">
+											<p>작성한 보고서가 없습니다.</p>
+										</div>
+									</c:if>
+								</div>
+							</div>
+						</c:if>
 						<!-- 
 								///////////////////////////////////
 								보고서
@@ -271,24 +351,24 @@
 	</div>
 </div>
 
-<div class="modal fade" id="deleteReport" >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <!-- header  -->
-      <div class="modal-header">
-        <!-- 닫기(x) 버튼  -->
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <!-- header title  -->
-        <h4 class="modal-title">완료</h4>
-      </div>
-      <!-- body  -->
-      <div class="modal-body">
-           	<p>보고서가 삭제되었습니다.</p>
-      </div>
-      <!-- Footer  -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline" data-dismiss="modal">닫기</button>
-      </div>
-    </div>
-  </div>
+<div class="modal fade" id="deleteReport">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<!-- header  -->
+			<div class="modal-header">
+				<!-- 닫기(x) 버튼  -->
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<!-- header title  -->
+				<h4 class="modal-title">완료</h4>
+			</div>
+			<!-- body  -->
+			<div class="modal-body">
+				<p>보고서가 삭제되었습니다.</p>
+			</div>
+			<!-- Footer  -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline" data-dismiss="modal">닫기</button>
+			</div>
+		</div>
+	</div>
 </div>

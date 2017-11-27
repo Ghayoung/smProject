@@ -4,6 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <c:url var="R" value="/" />
+
 <div id="fh5co-main">
 
 	<div class="container">
@@ -64,8 +65,18 @@
 					</div>
 
 					<div class="col-md-12">
-						<a href="${R}user/report"
-							class="btn btn-primary btn-lg col-md-offset-10">목록으로</a>
+						<c:if
+							test="${url eq 'http://localhost:8080/mybatisEx/user/mypost'}">
+							<a data-url="${url}#fh5co-tab-feature-vertical5myReport"
+								class="btn btn-primary btn-lg col-md-offset-10">목록으로</a>
+						</c:if>
+
+						<c:if
+							test="${url eq 'http://localhost:8080/mybatisEx/user/report'}">
+							<a data-url="${url}#report"
+								class="btn btn-primary btn-lg col-md-offset-10">목록으로</a>
+						</c:if>
+
 					</div>
 
 

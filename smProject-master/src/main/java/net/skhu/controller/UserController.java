@@ -383,9 +383,11 @@ public class UserController {
 	}
 
 	@RequestMapping("report_detail")
-	public String report_detail(Model model, @RequestParam("id") int id) {
+	public String report_detail(Model model, @RequestParam("id") int id, HttpServletRequest request) {
+		String old_url = request.getHeader("referer");
 		Report report = userMapper.findOneReport(id);
 		model.addAttribute("report", report);
+		model.addAttribute("url", old_url);
 		return "user/report_detail";
 	}
 
@@ -420,7 +422,7 @@ public class UserController {
 		}
 		mentorMapper.insert_report(report);
 
-		return "redirect:report";
+		return "redirect:report#report";
 	}
 
 	@RequestMapping("mypost")

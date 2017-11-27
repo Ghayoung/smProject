@@ -110,6 +110,8 @@ document.getElementById('datePicker3').valueAsDate = new Date();
 document.getElementById('datePicker4').valueAsDate = new Date();
 document.getElementById('datePicker5').valueAsDate = new Date();
 document.getElementById('datePicker6').valueAsDate = new Date();
+document.getElementById('datePicker7').valueAsDate = new DateTime();
+document.getElementById('datePicker8').valueAsDate = new DateTime();
 
 function show_office() {
 	// 라디오 버튼 value 값 조건 비교
@@ -180,11 +182,10 @@ function checkMentorApply() {
 		alert("학년을 입력해주세요");
 		document.form.year.focus();
 		return false;
-	} /* else if (document.form.grade.value == "") {
-		alert("해당 과목 성적을 입력해주세요");
-		document.form.grade.focus();
-		return false;
-	}*/ else if (document.form.count.value == "") {
+	} /*
+		 * else if (document.form.grade.value == "") { alert("해당 과목 성적을
+		 * 입력해주세요"); document.form.grade.focus(); return false; }
+		 */else if (document.form.count.value == "") {
 		alert("희망 멘티 인원을 입력해주세요");
 		document.form.count.focus();
 		return false;
@@ -201,16 +202,46 @@ function checkMentorApply() {
 		document.form.study_method.focus();
 		return false;
 	} else if (document.form.file1.value == "") {
-		alert("시간표 파일을 등록해주세요");
-		document.form.file1.focus();
-		return false;
-	} else if (document.form.file2.value == "") {
 		alert("홍보 이미지를 등록해주세요");
 		document.form.file2.focus();
+		return false;
+	} else if (document.form.file2.value == "") {
+		alert("시간표 파일을 등록해주세요");
+		document.form.file1.focus();
 		return false;
 	} else if (document.form.file3.value == "") {
 		alert("증빙서류를 등록해주세요");
 		document.form.file3.focus();
+		return false;
+	} else {//
+		form.submit();
+	}
+}
+
+function checkWriteReport() {
+	if (document.form.subject.value == "") {// 이름이 입력하지 않았으면
+		alert("스터디 주제를 입력해주세요");
+		document.form.subject.focus();
+		return false;
+	} else if (document.form.place.value == "") {
+		alert("스터디 장소를 입력해주세요");
+		document.form.place.focus();
+		return false;
+	} else if (document.form.day.value == 0) {
+		alert("이번 주 스터디 요일을 입력해주세요");
+		document.form.day.focus();
+		return false;
+	} else if (document.form.study_content.value == "") {
+		alert("스터디 내용을 입력해주세요");
+		document.form.study_content.focus();
+		return false;
+	} else if (document.form.file3.value == "") {
+		alert("인증샷을 등록해주세요");
+		document.form.file3.focus();
+		return false;
+	} else if (document.form.file4.value == "") {
+		alert("활동 증명 자료를 등록해주세요");
+		document.form.file4.focus();
 		return false;
 	} else {//
 		form.submit();
@@ -248,6 +279,60 @@ function checkInput() {
 		alert("아이디를 입력해주세요");
 		$("#form [name=user_id]").focus();
 		return false;
+	} else if (document.all.radio[0].checked == true) {
+		if ($("#form [name=double_id]").val() == 0) {
+			alert("복수전공 학과를 선택해주세요");
+			$("#form [name=double_id]").focus();
+			return false;
+		}
+		if ($("#form [name=double_id]").val() == $("#form [name=major_id]")
+				.val()) {
+			alert("올바르지 않은 복수전공입니다");
+			$("#form [name=double_id]").focus();
+			return false;
+		}
+		if (document.all.radio[1].checked == true) {
+			if ($("#form [name=minor_id]").val() == 0) {
+				alert("부전공 학과를 선택해주세요");
+				$("#form [name=minor_id]").focus();
+				return false;
+			}
+			if ($("#form [name=minor_id]").val() == $("#form [name=major_id]")
+					.val()) {
+				alert("올바르지 않은 부전공입니다");
+				$("#form [name=minor_id]").focus();
+				return false;
+			}
+			form.submit();
+		}
+		form.submit();
+	} else if (document.all.radio[1].checked == true) {
+		if ($("#form [name=minor_id]").val() == 0) {
+			alert("부전공 학과를 선택해주세요");
+			$("#form [name=minor_id]").focus();
+			return false;
+		}
+		if ($("#form [name=minor_id]").val() == $("#form [name=major_id]")
+				.val()) {
+			alert("올바르지 않은 부전공입니다");
+			$("#form [name=minor_id]").focus();
+			return false;
+		}
+		if (document.all.radio[0].checked == true) {
+			if ($("#form [name=double_id]").val() == 0) {
+				alert("복수전공 학과를 선택해주세요");
+				$("#form [name=double_id]").focus();
+				return false;
+			}
+			if ($("#form [name=double_id]").val() == $("#form [name=major_id]")
+					.val()) {
+				alert("올바르지 않은 복수전공입니다");
+				$("#form [name=double_id]").focus();
+				return false;
+			}
+			form.submit();
+		}
+		form.submit();
 	} else if ($("#form [name=pw]").val() == "") {
 		alert("비밀번호를 입력해주세요");
 		$("#form [name=pw]").focus();
@@ -289,93 +374,33 @@ function checkInput() {
 			$("#form [name=newPw]").focus();
 			return false;
 		}
-	} else if (document.all.radio[0].checked == true) {
-		if ($("#form [name=double_id]").val() == 0) {
-			alert("복수전공 학과를 선택해주세요");
-			$("#form [name=double_id]").focus();
-			return false;
-		}
-		if ($("#form [name=double_id]").val() == $("#form [name=major_id]")
-				.val()) {
-			alert("올바르지 않은 복수전공입니다");
-			$("#form [name=double_id]").focus();
-			return false;
-		}
-		if (document.all.radio[1].checked == true) {
-			if ($("#form [name=minor_id]").val() == 0) {
-				alert("부전공 학과를 선택해주세요");
-				$("#form [name=minor_id]").focus();
-				return false;
-			}
-			if ($("#form [name=minor_id]").val() == $("#form [name=major_id]")
-					.val()) {
-				alert("올바르지 않은 부전공입니다");
-				$("#form [name=minor_id]").focus();
-				return false;
-			}
-			form.submit();
-		}
-		return false;
-	} else if (document.all.radio[1].checked == true) {
-		if ($("#form [name=minor_id]").val() == 0) {
-			alert("부전공 학과를 선택해주세요");
-			$("#form [name=minor_id]").focus();
-			return false;
-
-		}
-		return false;
-		if ($("#form [name=minor_id]").val() == $("#form [name=major_id]")
-				.val()) {
-			alert("올바르지 않은 부전공입니다");
-			$("#form [name=minor_id]").focus();
-			return false;
-
-		}
-		return false;
-		if (document.all.radio[0].checked == true) {
-			if ($("#form [name=double_id]").val() == 0) {
-				alert("복수전공 학과를 선택해주세요");
-				$("#form [name=double_id]").focus();
-				return false;
-			}
-			if ($("#form [name=double_id]").val() == $("#form [name=major_id]")
-					.val()) {
-				alert("올바르지 않은 복수전공입니다");
-				$("#form [name=double_id]").focus();
-				return false;
-			}
-			form.submit();
-		}
-		return false;
 	} else {//
 		form.submit();
 	}
 
 }
 
-function checkInputMeminfo(){
-	if($("#form [name=pw]").val() == ""){
+function checkInputMeminfo() {
+	if ($("#form [name=pw]").val() == "") {
 		alert("비밀번호를 입력해주세요");
 		$("#form [name=pw]").focus();
 		return false;
-	}
-	else if (!($("#form [name=newPw]").val() == "")) {
+	} else if (!($("#form [name=newPw]").val() == "")) {
 		if ($("#form [name=newPw]").val() != $("#form [name=newPw2]").val()) {
 			alert("비밀번호가 일치하지 않습니다");
 			$("#form [name=newPw]").focus();
 			return false;
 		}
-	}
-	else {//
+	} else {//
 		form.submit();
 	}
 }
 
-function comment_edit(i){
+function comment_edit(i) {
 	console.log("y");
-	console.log(".c_content_edit_"+i);
-	$(".c_content_"+i).toggle();
-	$(".c_content_edit_"+i).toggle();
+	console.log(".c_content_edit_" + i);
+	$(".c_content_" + i).toggle();
+	$(".c_content_edit_" + i).toggle();
 }
 
 var oEditors = [];
@@ -410,24 +435,18 @@ $("#save").click(function() {
 	$("#frm").submit();
 });
 
-function delapply(){
+function delapply() {
 	return confirm("멘토신청을 취소하시겠습니까?");
 }
 
-function deleteReport(){
+function deleteReport() {
 	return confirm("해당 보고서를 삭제하시겠습니까?");
 }
 
 /*
-function save() {
->>>>>>> branch 'master' of https://github.com/choiyk/smProject.git
-	if ($("#form [name=title]").val() == "") {
-		alert("제목을 입력해주세요");
-		$("#form [name=title]").focus();
-		return false;
-	}
-	var s = $("#summernote").summernote('code');
-	$("input[name=content]").val(s);
-	$("#form").submit();
-}
-*/
+ * function save() { >>>>>>> branch 'master' of
+ * https://github.com/choiyk/smProject.git if ($("#form [name=title]").val() ==
+ * "") { alert("제목을 입력해주세요"); $("#form [name=title]").focus(); return false; }
+ * var s = $("#summernote").summernote('code'); $("input[name=content]").val(s);
+ * $("#form").submit(); }
+ */
