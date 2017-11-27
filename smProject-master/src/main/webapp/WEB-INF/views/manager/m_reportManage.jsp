@@ -158,8 +158,9 @@
 													<td><%=report.getCreate_date()%></td>
 												</tr>
 												<%
-													}
-															j++;
+													j++;
+															}
+
 														}
 
 														n++;
