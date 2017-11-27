@@ -31,9 +31,10 @@ public interface UserMapper {
     List<Report> findAllReportsByWriter(int id);
     Report findAllConditionById(int id);
     int findStudyCount();
+    int findType(int id);
     String findStartSM();
     Report findOneReport(int id);
-    void auth_update(int id);
+    void auth_update(int type, int id);
     List<User> findManagerByTerm(int year);
     List<User> findMentorByTerm(int year);
     List<User> findMenteeByTerm(int year);

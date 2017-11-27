@@ -5,15 +5,15 @@
 <mapper namespace="net.skhu.mapper.CommentMapper">
 
 	<select id="findAllByArticle" resultType="Comment">
-		select c.*, u.name from comment c left join user u on c.com_u_id=u.id where c.com_a_id=#{com_a_id} and c.condition=0
+		select c.*, u.name from comment c left join user u on c.com_u_id=u.id where c.com_a_id=#{com_a_id} and c.com_condition=0
 	</select>
 	
 	<select id="findAllByUser" resultType="Comment">
-		select * from comment c where c.com_u_id=#{com_u_id} and c.condition=0
+		select * from comment c where c.com_u_id=#{com_u_id} and c.com_condition=0
 	</select>
 	
 	<update id="delete">
-	    update comment c set c.condition=1 where id=#{id}
+	    update comment c set c.com_condition=1 where id=#{id}
 	</update>
 	
 	<update id="update">

@@ -102,7 +102,7 @@ public class UserService {
 	public List<Board> findAllArticleBydUser(){
 		User user = UserService.getCurrentUser();
 		List<Board> boards;
-		if(user.getType()==2) boards = boardMapper.findAll();
+		if(user.getType()==2) boards = boardMapper.findAllManager();
 		else boards = boardMapper.findAllNoManager();
 		for(Board board: boards) {
 			Post post = new Post();

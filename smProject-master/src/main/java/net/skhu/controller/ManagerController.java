@@ -198,7 +198,8 @@ public class ManagerController {
 
 	@RequestMapping("auth_update")
 	public String auth_update(@RequestParam("id") int id) {
-		userMapper.auth_update(id);
+		int type=userMapper.findType(id);
+		userMapper.auth_update(type, id);
 		return "redirect:m_userManage";
 	}
 

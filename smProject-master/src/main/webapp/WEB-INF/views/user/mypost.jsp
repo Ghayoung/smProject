@@ -7,8 +7,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 animate-box">
-				<h2 id=fh5co-tab-feature-vertical5myReport
-					class="fh5co-uppercase-heading-sm text-center">내가 쓴 글</h2>
+				<h2 class="fh5co-uppercase-heading-sm text-center">내가 쓴 글</h2>
 				<div class="fh5co-spacer fh5co-spacer-sm"></div>
 			</div>
 			<div class="col-md-12 animate-box">
