@@ -81,6 +81,10 @@
       SELECT * FROM report where id=#{id}
    </select>  
    
+   <select id="findType" resultType="int">
+      SELECT type FROM user where id=#{id}
+   </select> 
+   
    <select id="findAllMentor" resultType="User">
       SELECT u.*, d.d_name, s.status_name
       FROM department d right join user u 
@@ -119,11 +123,11 @@
    <update id="auth_update">
       UPDATE User
       <set>
-         <if test='type=2'>type=1,</if>
-         <if test='type=1'>type=2,</if>
+         <if test="param1==2">type=1,</if>
+         <if test="param1==1">type=2,</if>
          auth_date=now()
       </set>
-      WHERE id = #{id}
+      WHERE id = #{param2}
    </update>
    
    <select id="findManagerByTerm" resultType="User">

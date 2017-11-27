@@ -203,7 +203,7 @@
 														<td>${ manager.status_name }</td>
 														<td>${ manager.auth_date }</td>
 														<td><a href="auth_update?id=${ manager.id }"
-															class="btn btn-primary col-sm">권한삭제 ${ manager.type }</a></td>
+															class="btn btn-primary col-sm">권한삭제 </a></td>
 													</tr>
 												</c:forEach>
 												<%
