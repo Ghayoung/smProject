@@ -179,9 +179,12 @@ public class ManagerController {
 		List<User> managers = userMapper.findAllManager();
 		List<User> mentors = userMapper.findAllMentor();
 		List<User> mentees = userMapper.findAllMentee();
+		List<User> users = userMapper.findAllUser();
+
 		model.addAttribute("managers", managers);
 		model.addAttribute("mentors", mentors);
 		model.addAttribute("mentees", mentees);
+		model.addAttribute("users", users);
 
 		return "manager/m_userManage";
 	}
@@ -199,9 +202,12 @@ public class ManagerController {
 		List<User> managers = userMapper.findAllManager();
 		List<User> mentors = userMapper.findAllMentor();
 		List<User> mentees = userMapper.findAllMentee();
+		List<User> users = userMapper.findAllUser();
 		model.addAttribute("managers", managers);
 		model.addAttribute("mentors", mentors);
 		model.addAttribute("mentees", mentees);
+		model.addAttribute("users", users);
+
 		return "manager/m_userManage";
 
 	}
@@ -222,9 +228,13 @@ public class ManagerController {
 		List<User> TermSearchManagers = userMapper.findManagerByTerm(year);
 		List<User> TermSearchMentors = userMapper.findMentorByTerm(year);
 		List<User> TermSearchMentees = userMapper.findMenteeByTerm(year);
+		List<User> TermSearchUsers = userMapper.findUserByTerm(year);
+
 		model.addAttribute("TermSearchManagers", TermSearchManagers);
 		model.addAttribute("TermSearchMentors", TermSearchMentors);
 		model.addAttribute("TermSearchMentees", TermSearchMentees);
+		model.addAttribute("TermSearchUsers", TermSearchUsers);
+
 
 		//
 		// List<User> managers= userMapper.findAllManager();

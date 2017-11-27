@@ -434,8 +434,8 @@ $("#save").click(function() {
 	$("#frm").submit();
 });
 
-function delapply() {
-	return confirm("멘토신청을 취소하시겠습니까?");
+function deleteApply() {
+	return confirm("신청을 취소하시겠습니까?");
 }
 
 function deleteReport() {

@@ -17,6 +17,7 @@ public interface UserMapper {
 	List<User> findAllManager();
 	List<User> findAllMentor();
 	List<User> findAllMentee();
+	List<User> findAllUser();
 	List<User> findByName(String keyword);
 	void update(User user);
 	void type_update(User user);
@@ -40,5 +41,6 @@ public interface UserMapper {
     List<User> findManagerByTerm(int year);
     List<User> findMentorByTerm(int year);
     List<User> findMenteeByTerm(int year);
+    List<User> findUserByTerm(int year);
     void dropUser(int id);
 }

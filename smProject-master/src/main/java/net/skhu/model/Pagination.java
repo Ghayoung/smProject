@@ -46,5 +46,4 @@ public class Pagination {
     	String url = String.format("bd=%d&pg=%d&sz=%d", bd, pg, sz);
         return url;
     }
-
 }

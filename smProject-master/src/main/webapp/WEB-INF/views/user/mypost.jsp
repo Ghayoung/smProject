@@ -67,12 +67,12 @@
 												<a href="mentorapply_edit.do?id=${ mentor.id }"
 													class="btn btn-primary btn-sm " style="margin: auto;">수정</a>
 												<a href="mentorapply_delete.do?id=${ mentor.id }"
-													id="m_delete" class="btn btn-primary btn-sm "
-													style="margin: auto;" onclick="return delapply();">삭제</a>
+													id="m_delete" class="btn btn-cancel btn-sm "
+													style="margin: auto;" onclick="return deleteApply();">삭제</a>
 											</c:if>
 											<c:if test="${ mentor.type == 4 }">
 												<a href="mentee_update_mypost.do?id=${ mentor.id }"
-													class="btn btn-cancel btm-md mt_submit">신청취소</a>
+													class="btn btn-cancel btm-md mt_submit" onclick="return deleteApply();">신청취소</a>
 											</c:if>
 										</div>
 									</div>
