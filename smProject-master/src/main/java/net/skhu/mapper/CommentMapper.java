@@ -8,6 +8,7 @@ import net.skhu.dto.Comment;
 
 @Mapper
 public interface CommentMapper {
+	Comment findOne(int id);
 	List<Comment> findAllByArticle(int com_a_id);
 	List<Comment> findAllByUser(int com_u_id);
 	int countByArticle(int com_a_id);

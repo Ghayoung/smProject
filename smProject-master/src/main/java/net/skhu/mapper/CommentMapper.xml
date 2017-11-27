@@ -12,6 +12,10 @@
 		select * from comment c where c.com_u_id=#{com_u_id} and c.com_condition=0
 	</select>
 	
+	<select id="findOne" resultType="Comment">
+		select * from comment c where c.id=#{id}
+	</select>
+	
 	<update id="delete">
 	    update comment c set c.com_condition=1 where id=#{id}
 	</update>
