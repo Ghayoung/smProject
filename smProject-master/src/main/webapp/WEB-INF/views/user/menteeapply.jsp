@@ -33,7 +33,7 @@
 						<a href="mentee_update.do?id=${ mentor.id }" class="btn btn-primary btm-md mt_submit">신청</a>
 						</c:when>
 						<c:when test="${ mentor.state == 1 }">
-						<a href="mentee_update.do?id=${ mentor.id }" class="btn btn-cancel btm-md mt_submit">신청취소</a>
+						<a href="mentee_update.do?id=${ mentor.id }" class="btn btn-cancel btm-md mt_submit" onclick="return deleteApply();">신청취소</a>
 						</c:when>
 						<c:when test="${ mentor.state == 2 }">
 						<input type=button class="btn btn-outline btm-md mt_submit" value="신청불가" disabled>

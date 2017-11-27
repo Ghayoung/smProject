@@ -81,7 +81,7 @@
 						<a href="mentee_update_detail.do?id=${ mentor.id }" class="btn btn-primary btn-lg col-md-offset-8">신청</a>
 						</c:when>
 						<c:when test="${ mentor.state == 1 }">
-						<a href="mentee_update_detail.do?id=${ mentor.id }" class="btn btn-cancel btn-lg col-md-offset-8">신청취소</a>
+						<a href="mentee_update_detail.do?id=${ mentor.id }" class="btn btn-cancel btn-lg col-md-offset-8" onclick="return deleteApply();">신청취소</a>
 						</c:when>
 						<c:when test="${ mentor.state == 2 }">
 						<input type=button class="btn btn-outline btn-lg col-md-offset-8" value="신청불가" disabled>
