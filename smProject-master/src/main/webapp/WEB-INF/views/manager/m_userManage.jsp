@@ -154,6 +154,7 @@
 							<li>관리자</li>
 							<li>멘토</li>
 							<li>멘티</li>
+							<li>일반회원</li>
 						</ul>
 
 						<div class="resp-tabs-container hor_1">
@@ -320,6 +321,55 @@
 								</div>
 
 							</div>
+							<!--일반회원-->
+							<div>
+								<div class="row">
+									<div class="panel panel-default ">
+										<table class="table search_user">
+											<thead>
+												<tr>
+													<th>번호</th>
+													<th>이름</th>
+													<th>학과</th>
+													<th>구분</th>
+												</tr>
+											</thead>
+											<tbody>
+												<%
+													if (request.getAttribute("TermSearchUsers") != null ) {
+												%>
+												<c:forEach var="TermSearchUsers"
+													items="${ TermSearchUsers }" varStatus="status">
+													<tr>
+														<td>${ status.index+1 }</td>
+														<td>${ TermSearchUsers.name }</td>
+														<td>${ TermSearchUsers.d_name }</td>
+														<td>${ TermSearchUsers.status_name }</td>
+													</tr>
+
+												</c:forEach>
+												<%
+													} else {
+												%>
+
+												<c:forEach var="user" items="${ users }"
+													varStatus="status">
+													<tr>
+														<td>${ status.index+1 }</td>
+														<td>${ user.name }</td>
+														<td>${ user.d_name }</td>
+														<td>${ user.status_name }</td>
+													</tr>
+												</c:forEach>
+												<%
+													}
+												%>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+
 
 						</div>
 
