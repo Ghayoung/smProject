@@ -8,7 +8,7 @@
 			
 				<div class="row">
 					<div class="col-md-12 animate-box">
-						<h2 class="fh5co-uppercase-heading-sm text-center">${ board }</h2>
+						<h2 class="fh5co-uppercase-heading-sm text-center" >${ board }</h2>
 						<div class="fh5co-spacer fh5co-spacer-sm"></div>
 					</div>
 					<div class="col-md-12 animate-box board">
@@ -18,7 +18,7 @@
 						
 						<div class="col-md-12">
 								<div class="panel panel-default">
-									<div class="row">
+									<div class="row" >
 										<div class="col-md-12">
 										<p>${ article.content }</p>
 										</div>

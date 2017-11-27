@@ -369,11 +369,17 @@ public class UserController {
 		return "user/mypost";
 	}
 
-	@RequestMapping("timetable")
-	public String timetable() {
+	@RequestMapping(value="timetable", method=RequestMethod.POST)
+	public String timetable(@RequestParam(value="valueArrTest[]") List<String> valueArr) {
 		return "user/timetable";
 	}
-
+	
+	@RequestMapping(value="timetable", method=RequestMethod.GET)
+	public String timetableGet() {
+		
+		return "user/timetable";
+	}
+	
 	@RequestMapping(value = "report", method = RequestMethod.GET)
 	public String report(Model model) {
 		User user = UserService.getCurrentUser();
