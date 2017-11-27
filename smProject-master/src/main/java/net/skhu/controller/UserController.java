@@ -369,6 +369,7 @@ public class UserController {
 		return "user/mypost";
 	}
 
+<<<<<<< HEAD
 	@RequestMapping(value = "timetable", method = RequestMethod.GET)
 	public String timetable(Model model) {
 		return "user/timetable";
@@ -402,9 +403,19 @@ public class UserController {
 			}
 		}
 
+=======
+	@RequestMapping(value="timetable", method=RequestMethod.POST)
+	public String timetable(@RequestParam(value="valueArrTest[]") List<String> valueArr) {
+>>>>>>> branch 'master' of https://github.com/choiyk/smProject.git
 		return "user/timetable";
 	}
-
+	
+	@RequestMapping(value="timetable", method=RequestMethod.GET)
+	public String timetableGet() {
+		
+		return "user/timetable";
+	}
+	
 	@RequestMapping(value = "report", method = RequestMethod.GET)
 	public String report(Model model) {
 		User user = UserService.getCurrentUser();
