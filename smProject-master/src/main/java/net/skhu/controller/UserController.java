@@ -480,14 +480,14 @@ public class UserController {
 
 		mentorMapper.update_report(id, report);
 
-		return "redirect:mypost";
+		return "redirect:mypost#fh5co-tab-feature-vertical5myReport";
 	}
 
 	@RequestMapping(value = "deleteMyReport", method = RequestMethod.GET)
 	public String deleteMyReport(@RequestParam("id") int id) {
 		System.out.println(id);
 		mentorMapper.deleteMyReport(id);
-		return "redirect:mypost";
+		return "redirect:mypost#fh5co-tab-feature-vertical5myReport";
 	}
 
 	@RequestMapping("sendEmail")
