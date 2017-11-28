@@ -39,10 +39,21 @@
 						<label for="year">학년</label>
 						<div class="panel panel-default">${ mentor.year }</div>
 					</div>
+					
+					<c:if test="${mentor.grade eq ''}">
+					<div class="col-md-4">
+						<label for="grade">해당 과목 성적</label>
+						<div class="panel panel-default">해당없음</div>
+					</div>
+					</c:if>
+					
+					<c:if test="${mentor.grade ne ''}">
 					<div class="col-md-4">
 						<label for="grade">해당 과목 성적</label>
 						<div class="panel panel-default">${ mentor.grade }</div>
 					</div>
+					</c:if>
+					
 					<div class="col-md-4">
 						<label for="mentee_num">희망 멘티 인원</label>
 						<div class="panel panel-default">${ mentor.count }</div>
