@@ -2,10 +2,10 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div id="fh5co-main">
-	<div class="container">
+	<div class="container" id="login">
 		<div class="row">
 			<div class="col-md-12 animate-box">
-				<h2 id="lo" class="fh5co-uppercase-heading-sm text-center">로그인</h2>
+				<h2 class="fh5co-uppercase-heading-sm text-center">로그인</h2>
 				<div class="fh5co-spacer fh5co-spacer-sm"></div>
 			</div>	
 			<div class="col-md-8 col-md-offset-2 animate-box">

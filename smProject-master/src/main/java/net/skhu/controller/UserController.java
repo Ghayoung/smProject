@@ -336,7 +336,7 @@ public class UserController {
 			teamMapper.deleteMentee(user.getId());
 		}
 		userMapper.type_update(user);
-		return "redirect:menteeapply";
+		return "redirect:menteeapply#select";
 	}
 
 	@RequestMapping("mentee_update_detail")
@@ -420,7 +420,7 @@ public class UserController {
 		List<TimetableDTO> timetable2 = timetableMapper.findAllTeamItem(time_team);
 		model.addAttribute("timetable", timetable2);
 
-		return "user/timetable";
+		return "redirect:timetable#save";
 }
 
 	@RequestMapping(value = "report", method = RequestMethod.GET)

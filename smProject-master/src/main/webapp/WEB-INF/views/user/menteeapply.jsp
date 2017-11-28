@@ -6,7 +6,7 @@
 			<div class="container">
 				
 			    <div class="row" id="fh5co-works">
-			    	<h2 class="fh5co-uppercase-heading-sm text-center">멘토링 신청</h2>
+			    	<h2 class="fh5co-uppercase-heading-sm text-center" id="select">멘토링 신청</h2>
 			        <div class="col-md-8 col-md-offset-2 text-center fh5co-section-heading work-box">
 						<h4 class="fh5co-lead">사진을 클릭하면 상세보기로 이동합니다.</h4>
 						<div class="fh5co-spacer fh5co-spacer-sm"></div>

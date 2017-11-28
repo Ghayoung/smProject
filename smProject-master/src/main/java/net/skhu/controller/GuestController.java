@@ -59,7 +59,7 @@ public class GuestController {
 
 		userService.join(user);
 		model.addAttribute("board", "로그인");
-		return "guest/login";
+		return "redirect:login#login";
 
 	}
 }
