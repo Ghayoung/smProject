@@ -446,6 +446,10 @@ function deleteComment() {
 	return confirm("해당 댓글을 삭제하시겠습니까?");
 }
 
+function deleteAlert() {
+	return alert("삭제되었습니다");
+}
+
 /*
  * function save() { >>>>>>> branch 'master' of
  * https://github.com/choiyk/smProject.git if ($("#form [name=title]").val() ==

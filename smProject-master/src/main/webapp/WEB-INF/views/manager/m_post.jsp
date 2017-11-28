@@ -49,13 +49,12 @@
 													<table class="table board" style="table-layout: fixed">
 														<thead>
 															<tr>
-																<th class="w_7">번호</th>
-																<th class="w_31">제목</th>
-																<th class="w_10">작성자</th>
-																<th class="w_15">작성일</th>
-																<th class="w_7">파일</th>
-																<th class="w_10"></th>
-																<th class="w_10"></th>
+																<th class="w_5">번호</th>
+																<th class="w_30">제목</th>
+																<th class="w_10">작성일</th>
+																<th class="w_5">파일</th>
+																<th class="w_8"></th>
+																<th class="w_8"></th>
 															</tr>
 														</thead>
 														<tbody>
@@ -63,8 +62,7 @@
 																varStatus="status">
 																<tr>
 																	<td>${ status.count }</td>
-																	<td class="ellip">${ article.title }</td>
-																	<td>${ article.userName }</td>
+																	<td class="ellip" data-url="${R}user/board_detail?id=${article.id}&bd=${postBoard.id}">${ article.title }</td>
 																	<td>${ article.post_date }</td>
 																	<td><c:if test="${ article.art_f_id != 0 }">
 																			<a
@@ -131,7 +129,7 @@
 																	<td>
 																		<a href="${R}user/board_detail?id=${postComments.com_a_id}&bd=${ postComments.art_b_id }#com">원문보기</a></td>
 																	<td><a
-																		href="${R}manager/comment_delete?cid=${postComments.id}"
+																		href="${R}manager/comment_delete_mypost?cid=${postComments.id}"
 																		class="btn btn-primary btn-sm " style="margin: auto;"
 																		onclick="return deleteComment();">삭제</a></td>
 																		

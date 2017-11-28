@@ -19,7 +19,7 @@
 						style="width: 275px; height: 183px; margin-left:auto; margin-right:auto;"></a></figure>
 						<h3>팀명:&nbsp;${ mentor.group_name }</h3>
 						<p>주제:&nbsp;${ mentor.subject }</p>
-						<p>${ mentor.user_id }&nbsp;${ mentor.name }</p>
+						<p>멘토:&nbsp;${ mentor.name }</p>
 						
 						<c:if test="${ mentor.mentee_count eq mentor.count }">
 						<p>신청인원:<strong style=color:red>&nbsp;${ mentor.mentee_count }/${ mentor.count }</strong></p>

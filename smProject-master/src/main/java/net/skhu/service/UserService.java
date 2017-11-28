@@ -96,7 +96,13 @@ public class UserService {
 	public List<Article> findAll(Pagination pagination) {
 		int count = articleMapper.count(pagination);
 		pagination.setRecordCount(count);
-		return articleMapper.findAllByBoard(pagination);
+		List<Article> articles = articleMapper.findAllByBoard(pagination);
+		if(pagination.getBd()==3){
+			for(Article a: articles){
+				a.setCom_count(commentMapper.countByArticle(a.getId()));
+			}
+		}
+		return articles;
 	}
 
 	public List<Board> findAllArticleBydUser(){
@@ -119,7 +125,7 @@ public class UserService {
 		List<Report> reports=userMapper.findAllReportsByWriter(user.getId());
 		return reports;
 	}
-	
+
 	public List<Comment> findAllCommentByUser(){
 		User user = UserService.getCurrentUser();
 		List<Comment> comments=userMapper.findAllCommentsByWriter(user.getId());

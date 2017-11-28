@@ -37,9 +37,10 @@
 								<a href="#" class="fh5co-sub-ddown">참여광장</a>
 								<ul class="fh5co-sub-menu">
 									<li><a href="${R}user/board?bd=3">질문게시판</a></li>
-									<li><a href="${R}user/board?bd=5">컨퍼런스홍보</a></li>
+									<li><a href="${R}user/board?bd=4">컨퍼런스홍보</a></li>
 								</ul>
 							</li>
+							<sec:authorize access="hasAnyRole('MENTOR','MENTEE')">
 							<li>
 								<a href="#" class="fh5co-sub-ddown">멘토링방</a>
 								<ul class="fh5co-sub-menu">
@@ -48,6 +49,7 @@
 									<li><a href="${R}user/board?bd=2">학습자료게시판</a></li>
 								</ul>
 							</li>
+							</sec:authorize>
 							<li>
 								<a href="#" class="fh5co-sub-ddown">마이페이지</a>
 								 <ul class="fh5co-sub-menu">
