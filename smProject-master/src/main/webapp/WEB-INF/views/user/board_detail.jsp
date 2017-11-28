@@ -53,11 +53,6 @@
 					<a href="${R}user/board?${ pagination.queryString }"
 						class="btn btn-primary btn-lg">목록으로</a>
 				</div>-->
-				<c:if
-					test="${fn : contains(url, 'http://localhost:8080/mybatisEx/user/mypost')}">
-					<a data-url="${url}#fh5co-tab-feature-vertical${ param.bd }myReport"
-						class="btn btn-primary btn-lg col-md-offset-10">목록으로</a>
-				</c:if>
 
 				<c:if
 					test="${fn : contains(url,'http://localhost:8080/mybatisEx/user/board')}">

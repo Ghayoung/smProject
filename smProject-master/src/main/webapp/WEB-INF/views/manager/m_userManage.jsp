@@ -19,10 +19,10 @@
 				관리</h2>
 			<form action="#userManage" method="post" style="float: right"
 				class="row" name="fm" onsubmit="return checkSearch1();">
-				<div class="col-md-8">
+				<div class="col-md-9">
 					<div class="form-group">
 						<label for="search" class="sr-only ">검색어</label> <input
-							name="search" placeholder="회원 검색" id="search" type="text"
+							name="search" placeholder="이름 검색 및 관리자 추가" id="search" type="text"
 							class="form-control input-lg" value="${keyword}">
 					</div>
 				</div>
@@ -385,7 +385,7 @@
 	</div>
 	<!-- END fhtco-main -->
 
-	<div class="modal fade" id="layerpop">
+	<%-- <div class="modal fade" id="layerpop">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<!-- header -->
@@ -465,5 +465,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 </div>
