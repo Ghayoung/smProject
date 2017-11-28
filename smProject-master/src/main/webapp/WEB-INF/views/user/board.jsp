@@ -44,7 +44,7 @@
 								          <td>${ article.title }</td>
 								          <td>${ article.userName }</td>
 								          <td>${ article.post_date }</td>
-								          <td><c:if test="${ article.art_f_id != 0 }"><a href="${R}user/file/download?id=${ article.art_f_id }"><img src="${R}images\file.png" border="0"></a></c:if></td>
+								          <td><c:if test="${ article.art_f_id != 0 }"><a href="${R}user/file/download?id=${ article.art_f_id }" style="margin-left: 10px;"><img src="${R}images\file.png" border="0" ></a></c:if></td>
 								          <c:if test="${ param.bd == 3 }">
 											<td><a href="#">답변완료</a></td>
 										</c:if>
