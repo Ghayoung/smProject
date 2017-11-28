@@ -62,7 +62,7 @@
 											</figure>
 											<h3>팀명:&nbsp;${ mentor.group_name }</h3>
 											<p>주제:&nbsp;${ mentor.subject }</p>
-											<p>${ mentor.user_id }&nbsp;${ mentor.name }</p>
+											<p>멘토:&nbsp;${ mentor.name }</p>
 											<c:if test="${ mentor.type != 4 }">
 												<a href="mentorapply_edit.do?id=${ mentor.id }"
 													class="btn btn-primary btn-sm " style="margin: auto;">수정</a>
