@@ -194,7 +194,7 @@
 																	<td>
 																		<a href="${R}user/board_detail?id=${postComments.com_a_id}&bd=${ postComments.art_b_id }#com">원문보기</a></td>
 																	<td><a
-																		href="${R}user/comment_delete?cid=${postComments.id}"
+																		href="${R}user/comment_delete_mypost?cid=${postComments.id}"
 																		class="btn btn-primary btn-sm " style="margin: auto;"
 																		onclick="return deleteComment();">삭제</a></td>
 																		
