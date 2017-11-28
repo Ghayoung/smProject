@@ -495,5 +495,4 @@ var slider = function(){
 				});
 	});
 
-
 }());

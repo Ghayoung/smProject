@@ -76,7 +76,7 @@
 										</div>	
 									</div>
 									-->
-									<div class="col-md-8 col-r">
+									<div class="col-md-12 col-r">
 										<div class="form-group">
 											<input type="submit" class="btn btn-primary btn-lg " value="저장">
 										</div>	

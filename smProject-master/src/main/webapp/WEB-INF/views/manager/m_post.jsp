@@ -6,8 +6,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 animate-box">
-				<h2 class="fh5co-uppercase-heading-sm text-center">내가 쓴 글</h2>
-				<div class="fh5co-spacer fh5co-spacer-sm" id="#fh5co-tab-feature-vertical3myReport"></div>
+				<h2 class="fh5co-uppercase-heading-sm text-center" id="fh5co-tab-feature-vertical4com">내가 쓴 글</h2>
+				<div class="fh5co-spacer fh5co-spacer-sm"></div>
 			</div>
 			<div class="col-md-12 animate-box">
 				<div id="fh5co-tab-feature-vertical" class="fh5co-tab">
@@ -129,7 +129,7 @@
 																	<td class="ellip">${ postComments.c_content }</td>
 																	<td>${ postComments.c_post_date }</td>
 																	<td>
-																		<a href="${R}user/board_detail?id=${postComments.com_a_id}&bd=${ postComments.art_b_id } #comment_btn">원문보기</a></td>
+																		<a href="${R}user/board_detail?id=${postComments.com_a_id}&bd=${ postComments.art_b_id }#com">원문보기</a></td>
 																	<td><a
 																		href="${R}manager/comment_delete?cid=${postComments.id}"
 																		class="btn btn-primary btn-sm " style="margin: auto;"

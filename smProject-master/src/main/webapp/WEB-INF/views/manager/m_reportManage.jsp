@@ -3,8 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <%@ page import="net.skhu.dto.Report"%>
 <%@ page import="net.skhu.service.ReportDAO"%>
 <%@ page import="java.util.*"%>
@@ -137,7 +137,7 @@
 											</thead>
 											<tbody>
 												<%
-													int i = 0;
+													int j = 0;
 														for (Report report : list) {
 
 															String rep_date = (report.getCreate_date()).replaceAll("-", "");
@@ -151,16 +151,18 @@
 												%>
 												<tr>
 													<td><input type="checkbox" name="checkbox" id="cb_1"></td>
-													<th scope="row"><%=i + 1%></th>
+													<th scope="row"><%=j + 1%></th>
 													<td><%=report.getGroup_name()%></td>
 													<td data-url="report_detail?id=<%=report.getId()%>"><%=report.getSubject()%></td>
 													<td><%=report.getPlace()%></td>
 													<td><%=report.getCreate_date()%></td>
 												</tr>
 												<%
-													}
-															i++;
+													j++;
+															}
+
 														}
+
 														n++;
 												%>
 											</tbody>
@@ -202,20 +204,21 @@
 											</thead>
 											<tbody>
 												<%
-													int i = 0;
+													int k = 0;
 													for (Report report : list) {
 												%>
 												<tr>
 													<td><input type="checkbox" name="checkbox" id="cb_1"></td>
-													<th scope="row"><%=i + 1%></th>
+													<th scope="row"><%=k + 1%></th>
 													<td><%=report.getGroup_name()%></td>
 													<td data-url="report_detail?id=<%=report.getId()%>"><%=report.getSubject()%></td>
 													<td><%=report.getPlace()%></td>
 													<td><%=report.getCreate_date()%></td>
 												</tr>
 												<%
+													k++;
 													}
-													i++;
+
 													n++;
 												%>
 											</tbody>
