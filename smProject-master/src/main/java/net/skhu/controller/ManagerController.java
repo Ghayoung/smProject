@@ -79,7 +79,7 @@ public class ManagerController {
 	@RequestMapping(value = "m_introduce_modi", method = RequestMethod.POST)
 	public String introduce_edit(Model model, @RequestParam(value = "id") int id, HttpServletRequest request) {
 		managerService.introduce_edit(id, request);
-		return "redirect:m_introduce_modi";
+		return "redirect:m_introduce_modi#introduce";
 	}
 
 	@RequestMapping("introduce_delete")
@@ -146,7 +146,7 @@ public class ManagerController {
 			teamMapper.delete(mentor.getId());
 		}
 		userMapper.type_update(user);
-		return "redirect:m_contact";
+		return "redirect:m_contact#contact";
 	}
 
 	@RequestMapping("m_contact_detail")

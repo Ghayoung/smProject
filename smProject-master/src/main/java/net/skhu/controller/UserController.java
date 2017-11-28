@@ -152,7 +152,7 @@ public class UserController {
 	public String comment_create(Model model, Comment newComment, @RequestParam(value = "id") int id,
 			Pagination pagination) {
 		userService.addComment(newComment, id);
-		return "redirect:board_detail?id=" + id + "&" + pagination.getQueryString();
+		return "redirect:board_detail?id=" + id + "&" + pagination.getQueryString() + "#com";
 	}
 
 	@RequestMapping("comment_delete")
@@ -344,7 +344,7 @@ public class UserController {
 			teamMapper.deleteMentee(user.getId());
 		}
 		userMapper.type_update(user);
-		return "redirect:menteeapply";
+		return "redirect:menteeapply#select";
 	}
 
 	@RequestMapping("mentee_update_detail")
@@ -428,7 +428,7 @@ public class UserController {
 		List<TimetableDTO> timetable2 = timetableMapper.findAllTeamItem(time_team);
 		model.addAttribute("timetable", timetable2);
 
-		return "user/timetable";
+		return "redirect:timetable#save";
 }
 
 	@RequestMapping(value = "report", method = RequestMethod.GET)

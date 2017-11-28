@@ -7,8 +7,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 animate-box">
-				<h2 id="fh5co-tab-feature-vertical5myReport"
+				<h2 id="fh5co-tab-feature-vertical6myReport"
 					class="fh5co-uppercase-heading-sm text-center">내가 쓴 글</h2>
+
 				<div class="fh5co-spacer fh5co-spacer-sm"
 					id=fh5co-tab-feature-vertical2myReport></div>
 					<div class="fh5co-spacer fh5co-spacer-sm"
@@ -16,7 +17,7 @@
 					<div class="fh5co-spacer fh5co-spacer-sm"
 					id=fh5co-tab-feature-vertical4myReport></div>
 				<div class="fh5co-spacer fh5co-spacer-sm"
-					id=fh5co-tab-feature-vertical6myReport></div>
+					id=fh5co-tab-feature-vertical5myReport></div>
 			</div>
 			<div class="col-md-12 animate-box">
 				<div id="fh5co-tab-feature-vertical" class="fh5co-tab">
@@ -26,10 +27,10 @@
 						<li><i class="fh5co-tab-menu-icon ti-help-alt"></i> 질문게시판</li>
 						<li><i class="fh5co-tab-menu-icon ti-layout-media-overlay"></i>
 							컨퍼런스</li>
+						<li><i class="fh5co-tab-menu-icon ti-comments"></i> 댓글</li>
 						<c:if test="${ userType ==  3}">
 							<li><i class="fh5co-tab-menu-icon ti-clipboard"></i> 보고서</li>
 						</c:if>
-						<li><i class="fh5co-tab-menu-icon ti-comments"></i> 댓글</li>
 					</ul>
 
 					<div class="resp-tabs-container hor_1">
@@ -68,7 +69,7 @@
 											</figure>
 											<h3>팀명:&nbsp;${ mentor.group_name }</h3>
 											<p>주제:&nbsp;${ mentor.subject }</p>
-											<p>${ mentor.user_id }&nbsp;${ mentor.name }</p>
+											<p>멘토:&nbsp;${ mentor.name }</p>
 											<c:if test="${ mentor.type != 4 }">
 												<a href="mentorapply_edit.do?id=${ mentor.id }"
 													class="btn btn-primary btn-sm " style="margin: auto;">수정</a>
@@ -155,6 +156,66 @@
 								</div>
 							</div>
 						</c:forEach>
+		
+					
+						<!-- 
+								///////////////////////////////////
+								댓글
+								///////////////////////////////////
+								-->
+						<div>
+							<div class="row">
+								<div class="col-md-12">
+									<h2 class="h3" id="comment">댓글</h2>
+								</div>
+								<c:if test="${!empty postComments}">
+
+										<div class="col-md-12" style="padding: 0px;">
+											<div class="col-md-12 animate-box">
+												<div class="panel panel-default ">
+													<table class="table board" style="table-layout: fixed">
+														<thead>
+															<tr>
+																<th class="w_5">번호</th>
+																<th class="w_22">내용</th>
+																<th class="w_8">작성일</th>
+																<th class="w_6">원문보기</th>
+																<th class="w_6"></th>
+															</tr>
+														</thead>
+														<tbody>
+
+															<c:forEach var="postComments" items="${ postComments}"
+																varStatus="status">
+																<tr>
+																	<td>${ status.index+1 }</td>
+																	<td class="ellip">${ postComments.c_content }</td>
+																	<td>${ postComments.c_post_date }</td>
+																	<td>
+																		<a href="${R}user/board_detail?id=${postComments.com_a_id}&bd=${ postComments.art_b_id }#com">원문보기</a></td>
+																	<td><a
+																		href="${R}user/comment_delete?cid=${postComments.id}"
+																		class="btn btn-primary btn-sm " style="margin: auto;"
+																		onclick="return deleteComment();">삭제</a></td>
+																		
+																</tr>
+															</c:forEach>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</c:if>
+									<c:if test="${empty postComments}">
+										<div class="fh5co-spacer fh5co-spacer-sm"></div>
+										<div class="col-md-12 text-center">
+											<p>작성한 댓글이 없습니다.</p>
+										</div>
+									</c:if>
+							</div>
+						</div>
+						
+						
 						<!-- 
                         ///////////////////////////////////
                         보고서
@@ -226,62 +287,6 @@
 							</div>
 						</c:if>
 
-						<!-- 
-								///////////////////////////////////
-								댓글
-								///////////////////////////////////
-								-->
-						<div>
-							<div class="row">
-								<div class="col-md-12">
-									<h2 class="h3" id="comment">댓글</h2>
-								</div>
-								<c:if test="${!empty postComments}">
-
-									<div class="col-md-12" style="padding: 0px;">
-										<div class="col-md-12 animate-box">
-											<div class="panel panel-default ">
-												<table class="table board" style="table-layout: fixed">
-													<thead>
-														<tr>
-															<th class="w_5">번호</th>
-															<th class="w_22">내용</th>
-															<th class="w_8">작성일</th>
-															<th class="w_6">원문보기</th>
-															<th class="w_6"></th>
-														</tr>
-													</thead>
-													<tbody>
-
-														<c:forEach var="postComments" items="${ postComments}"
-															varStatus="status">
-															<tr>
-																<td>${ status.index+1 }</td>
-																<td class="ellip">${ postComments.c_content }</td>
-																<td>${ postComments.c_post_date }</td>
-																<td><a
-																	href="${R}user/board_detail?id=${postComments.com_a_id}&bd=${ postComments.art_b_id }#com">원문보기</a></td>
-																<td><a
-																	href="${R}user/comment_delete_mypost?cid=${postComments.id}"
-																	class="btn btn-primary btn-sm " style="margin: auto;"
-																	onclick="return deleteComment();">삭제</a></td>
-
-															</tr>
-														</c:forEach>
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</c:if>
-								<c:if test="${empty postComments}">
-									<div class="fh5co-spacer fh5co-spacer-sm"></div>
-									<div class="col-md-12 text-center">
-										<p>작성한 댓글이 없습니다.</p>
-									</div>
-								</c:if>
-							</div>
-						</div>
 						<!-- 탭 페이지 끝 -->
 					</div>
 				</div>
