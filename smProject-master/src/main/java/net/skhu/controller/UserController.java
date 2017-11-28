@@ -150,7 +150,7 @@ public class UserController {
 	public String comment_create(Model model, Comment newComment, @RequestParam(value = "id") int id,
 			Pagination pagination) {
 		userService.addComment(newComment, id);
-		return "redirect:board_detail?id=" + id + "&" + pagination.getQueryString();
+		return "redirect:board_detail?id=" + id + "&" + pagination.getQueryString() + "#com";
 	}
 
 	@RequestMapping("comment_delete")
