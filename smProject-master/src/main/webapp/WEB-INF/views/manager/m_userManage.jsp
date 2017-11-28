@@ -409,7 +409,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="search" class="sr-only">검색어</label> <input
-											placeholder="회원 검색" id="search" type="text"
+											placeholder="이름 검색" id="search" type="text"
 											class="form-control input-lg" value="${keyword}">
 									</div>
 								</div>
