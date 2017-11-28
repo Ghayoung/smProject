@@ -9,8 +9,15 @@
 			<div class="col-md-12 animate-box">
 				<h2 id="fh5co-tab-feature-vertical6myReport"
 					class="fh5co-uppercase-heading-sm text-center">내가 쓴 글</h2>
-					
-				<div class="fh5co-spacer fh5co-spacer-sm" id=fh5co-tab-feature-vertical5myReport></div>
+
+				<div class="fh5co-spacer fh5co-spacer-sm"
+					id=fh5co-tab-feature-vertical2myReport></div>
+					<div class="fh5co-spacer fh5co-spacer-sm"
+					id=fh5co-tab-feature-vertical3myReport></div>
+					<div class="fh5co-spacer fh5co-spacer-sm"
+					id=fh5co-tab-feature-vertical4myReport></div>
+				<div class="fh5co-spacer fh5co-spacer-sm"
+					id=fh5co-tab-feature-vertical5myReport></div>
 			</div>
 			<div class="col-md-12 animate-box">
 				<div id="fh5co-tab-feature-vertical" class="fh5co-tab">
@@ -62,7 +69,7 @@
 											</figure>
 											<h3>팀명:&nbsp;${ mentor.group_name }</h3>
 											<p>주제:&nbsp;${ mentor.subject }</p>
-											<p>${ mentor.user_id }&nbsp;${ mentor.name }</p>
+											<p>멘토:&nbsp;${ mentor.name }</p>
 											<c:if test="${ mentor.type != 4 }">
 												<a href="mentorapply_edit.do?id=${ mentor.id }"
 													class="btn btn-primary btn-sm " style="margin: auto;">수정</a>
@@ -72,7 +79,8 @@
 											</c:if>
 											<c:if test="${ mentor.type == 4 }">
 												<a href="mentee_update_mypost.do?id=${ mentor.id }"
-													class="btn btn-cancel btm-md mt_submit" onclick="return deleteApply();">신청취소</a>
+													class="btn btn-cancel btm-md mt_submit"
+													onclick="return deleteApply();">신청취소</a>
 											</c:if>
 										</div>
 									</div>
@@ -105,8 +113,8 @@
 														<thead>
 															<tr>
 																<th class="w_5">번호</th>
-																<th class="w_31">제목</th>
-																<th class="w_15">작성일</th>
+																<th class="w_30">제목</th>
+																<th class="w_10">작성일</th>
 																<th class="w_5">파일</th>
 																<th class="w_8"></th>
 																<th class="w_8"></th>
@@ -117,11 +125,12 @@
 																varStatus="status">
 																<tr>
 																	<td>${ status.count }</td>
-																	<td class="ellip">${ article.title }</td>
+																	<td class="ellip" data-url="board_detail?id=${article.id}&bd=${postBoard.id}">${ article.title }</td>
 																	<td>${ article.post_date }</td>
 																	<td><c:if test="${ article.art_f_id != 0 }">
 																			<a
-																				href="${R}user/file/download?id=${ article.art_f_id }"><img
+																				href="${R}user/file/download?id=${ article.art_f_id }"
+																				style="margin-left: 10px;"><img
 																				src="${R}images\file.png" border="0"></a>
 																		</c:if></td>
 																	<td><a
@@ -147,7 +156,7 @@
 								</div>
 							</div>
 						</c:forEach>
-						
+		
 					
 						<!-- 
 								///////////////////////////////////
@@ -205,6 +214,7 @@
 									</c:if>
 							</div>
 						</div>
+						
 						
 						<!-- 
                         ///////////////////////////////////
@@ -276,6 +286,7 @@
 								</div>
 							</div>
 						</c:if>
+
 						<!-- 탭 페이지 끝 -->
 					</div>
 				</div>

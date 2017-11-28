@@ -86,7 +86,7 @@
 							<!--회원탈퇴-->
 							<div class="row">
 								<div class="panel panel-default ">
-									<p style="text-align:center;"><br><br>SM사업을 다시 사용할 일이 없어 회원탈퇴를 하고 싶으시면 회원 탈퇴를 눌러주세요.<br>
+									<p style="text-align:center; padding:15px;"><br><br>SM사업을 다시 사용할 일이 없어 회원탈퇴를 하고 싶으시면 회원 탈퇴를 눌러주세요.<br><br>
 									탈퇴된 계정은 다시 복구할 수 없고 계정의 게시물이나 정보는 완전히 삭제됩니다.<br><br>
 									그래도 회원탈퇴를 원하시면 "회원탈퇴"를 클릭하세요.</p>
 									<div class="fh5co-spacer fh5co-spacer-md"></div>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <c:url var="R" value="/" />
 <div id="fh5co-main">
@@ -48,10 +49,21 @@
 							class="btn btn-primary btn-lg">삭제</a>
 					</div>
 				</c:if>
-				<div class="col-md-12 col-r">
+				<!-- <div class="col-md-12 col-r">
 					<a href="${R}user/board?${ pagination.queryString }"
 						class="btn btn-primary btn-lg">목록으로</a>
-				</div>
+				</div>-->
+				<c:if
+					test="${fn : contains(url, 'http://localhost:8080/mybatisEx/user/mypost')}">
+					<a data-url="${url}#fh5co-tab-feature-vertical${ param.bd }myReport"
+						class="btn btn-primary btn-lg col-md-offset-10">목록으로</a>
+				</c:if>
+
+				<c:if
+					test="${fn : contains(url,'http://localhost:8080/mybatisEx/user/board')}">
+					<a data-url="${R}user/board?${ pagination.queryString }#${board}"
+						class="btn btn-primary btn-lg col-md-offset-10">목록으로</a>
+				</c:if>
 			</div>
 
 		</div>

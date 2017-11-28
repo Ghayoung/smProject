@@ -82,14 +82,16 @@ public class UserController {
 	}
 
 	@RequestMapping("board_detail")
-	public String board_detail(Model model, @RequestParam(value = "id") int id, Pagination pagination) {
+	public String board_detail(Model model, @RequestParam(value = "id") int id, Pagination pagination, HttpServletRequest request) {
 		Article article = articleMapper.findOne(id);
 		Comment newComment = new Comment();
+		String old_url = request.getHeader("referer");
 		model.addAttribute("board", boardMapper.findOne(pagination.getBd()).getB_name());
 		model.addAttribute("article", article);
 		model.addAttribute("comments", commentMapper.findAllByArticle(id));
 		model.addAttribute("newComment", newComment);
 		model.addAttribute("user", UserService.getCurrentUser().getId());
+		model.addAttribute("url", old_url);
 		return "user/board_detail";
 	}
 
@@ -154,7 +156,13 @@ public class UserController {
 	}
 
 	@RequestMapping("comment_delete")
-	public String comment_delete(Model model, @RequestParam(value = "cid") int cid, Pagination pagination) {
+	public String comment_delete(Model model, @RequestParam(value = "cid") int cid, Pagination pagination, @RequestParam(value = "id") int id) {
+		commentMapper.delete(cid);
+		return "redirect:board_detail?id=" + id + "&" + pagination.getQueryString();
+	}
+
+	@RequestMapping("comment_delete_mypost")
+	public String comment_delete_mypost(Model model, @RequestParam(value = "cid") int cid, Pagination pagination) {
 		commentMapper.delete(cid);
 		return "redirect:mypost#fh5co-tab-feature-vertical6myReport";
 	}
