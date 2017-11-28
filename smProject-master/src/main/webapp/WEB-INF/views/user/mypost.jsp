@@ -9,8 +9,14 @@
 			<div class="col-md-12 animate-box">
 				<h2 id="fh5co-tab-feature-vertical5myReport"
 					class="fh5co-uppercase-heading-sm text-center">내가 쓴 글</h2>
-					
-				<div class="fh5co-spacer fh5co-spacer-sm" id=fh5co-tab-feature-vertical6myReport></div>
+				<div class="fh5co-spacer fh5co-spacer-sm"
+					id=fh5co-tab-feature-vertical2myReport></div>
+					<div class="fh5co-spacer fh5co-spacer-sm"
+					id=fh5co-tab-feature-vertical3myReport></div>
+					<div class="fh5co-spacer fh5co-spacer-sm"
+					id=fh5co-tab-feature-vertical4myReport></div>
+				<div class="fh5co-spacer fh5co-spacer-sm"
+					id=fh5co-tab-feature-vertical6myReport></div>
 			</div>
 			<div class="col-md-12 animate-box">
 				<div id="fh5co-tab-feature-vertical" class="fh5co-tab">
@@ -72,7 +78,8 @@
 											</c:if>
 											<c:if test="${ mentor.type == 4 }">
 												<a href="mentee_update_mypost.do?id=${ mentor.id }"
-													class="btn btn-cancel btm-md mt_submit" onclick="return deleteApply();">신청취소</a>
+													class="btn btn-cancel btm-md mt_submit"
+													onclick="return deleteApply();">신청취소</a>
 											</c:if>
 										</div>
 									</div>
@@ -105,8 +112,8 @@
 														<thead>
 															<tr>
 																<th class="w_5">번호</th>
-																<th class="w_31">제목</th>
-																<th class="w_15">작성일</th>
+																<th class="w_30">제목</th>
+																<th class="w_10">작성일</th>
 																<th class="w_5">파일</th>
 																<th class="w_8"></th>
 																<th class="w_8"></th>
@@ -117,11 +124,12 @@
 																varStatus="status">
 																<tr>
 																	<td>${ status.count }</td>
-																	<td class="ellip">${ article.title }</td>
+																	<td class="ellip" data-url="board_detail?id=${article.id}&bd=${postBoard.id}">${ article.title }</td>
 																	<td>${ article.post_date }</td>
 																	<td><c:if test="${ article.art_f_id != 0 }">
 																			<a
-																				href="${R}user/file/download?id=${ article.art_f_id }"><img
+																				href="${R}user/file/download?id=${ article.art_f_id }"
+																				style="margin-left: 10px;"><img
 																				src="${R}images\file.png" border="0"></a>
 																		</c:if></td>
 																	<td><a
@@ -217,7 +225,7 @@
 								</div>
 							</div>
 						</c:if>
-					
+
 						<!-- 
 								///////////////////////////////////
 								댓글
@@ -230,48 +238,48 @@
 								</div>
 								<c:if test="${!empty postComments}">
 
-										<div class="col-md-12" style="padding: 0px;">
-											<div class="col-md-12 animate-box">
-												<div class="panel panel-default ">
-													<table class="table board" style="table-layout: fixed">
-														<thead>
-															<tr>
-																<th class="w_5">번호</th>
-																<th class="w_22">내용</th>
-																<th class="w_8">작성일</th>
-																<th class="w_6">원문보기</th>
-																<th class="w_6"></th>
-															</tr>
-														</thead>
-														<tbody>
+									<div class="col-md-12" style="padding: 0px;">
+										<div class="col-md-12 animate-box">
+											<div class="panel panel-default ">
+												<table class="table board" style="table-layout: fixed">
+													<thead>
+														<tr>
+															<th class="w_5">번호</th>
+															<th class="w_22">내용</th>
+															<th class="w_8">작성일</th>
+															<th class="w_6">원문보기</th>
+															<th class="w_6"></th>
+														</tr>
+													</thead>
+													<tbody>
 
-															<c:forEach var="postComments" items="${ postComments}"
-																varStatus="status">
-																<tr>
-																	<td>${ status.index+1 }</td>
-																	<td class="ellip">${ postComments.c_content }</td>
-																	<td>${ postComments.c_post_date }</td>
-																	<td>
-																		<a href="${R}user/board_detail?id=${postComments.com_a_id}&bd=${ postComments.art_b_id }#com">원문보기</a></td>
-																	<td><a
-																		href="${R}user/comment_delete?cid=${postComments.id}"
-																		class="btn btn-primary btn-sm " style="margin: auto;"
-																		onclick="return deleteComment();">삭제</a></td>
-																		
-																</tr>
-															</c:forEach>
-														</tbody>
-													</table>
-												</div>
+														<c:forEach var="postComments" items="${ postComments}"
+															varStatus="status">
+															<tr>
+																<td>${ status.index+1 }</td>
+																<td class="ellip">${ postComments.c_content }</td>
+																<td>${ postComments.c_post_date }</td>
+																<td><a
+																	href="${R}user/board_detail?id=${postComments.com_a_id}&bd=${ postComments.art_b_id }#com">원문보기</a></td>
+																<td><a
+																	href="${R}user/comment_delete_mypost?cid=${postComments.id}"
+																	class="btn btn-primary btn-sm " style="margin: auto;"
+																	onclick="return deleteComment();">삭제</a></td>
+
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
 											</div>
 										</div>
-									</c:if>
-									<c:if test="${empty postComments}">
-										<div class="fh5co-spacer fh5co-spacer-sm"></div>
-										<div class="col-md-12 text-center">
-											<p>작성한 댓글이 없습니다.</p>
-										</div>
-									</c:if>
+									</div>
+								</c:if>
+								<c:if test="${empty postComments}">
+									<div class="fh5co-spacer fh5co-spacer-sm"></div>
+									<div class="col-md-12 text-center">
+										<p>작성한 댓글이 없습니다.</p>
+									</div>
+								</c:if>
 							</div>
 						</div>
 						<!-- 탭 페이지 끝 -->
