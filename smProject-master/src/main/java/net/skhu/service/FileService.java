@@ -77,11 +77,26 @@ public class FileService {
 	      }
 	}
 
+	public String getFilePath(MultipartFile uploadedFile) {
+		String relPath = "img/upload/";
+		File upDirectory = new File(relPath);
+		if (!upDirectory.exists()) {
+			upDirectory.mkdirs();
+		}
+
+		String fileName = System.currentTimeMillis() + "_" + uploadedFile.getOriginalFilename();
+
+		relPath += fileName;
+
+		return relPath;
+	}
+
 	public String getFileName(int id) {
 		FileDTO uploadedfile = fileMapper.findOne(id);
 	    if (uploadedfile == null)
 	    	return null;
-		String fileName=(uploadedfile.getPath()).substring(11);
+
+		String fileName=(uploadedfile.getPath()).substring(25);
 		return fileName;
 	}
 

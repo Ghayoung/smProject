@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Article;
 import net.skhu.dto.Comment;
+import net.skhu.dto.Email;
 import net.skhu.dto.Mentor;
 import net.skhu.dto.Report;
 import net.skhu.dto.Team;
@@ -41,6 +42,7 @@ import net.skhu.mapper.UserMapper;
 import net.skhu.model.Pagination;
 import net.skhu.service.ArticleService;
 import net.skhu.service.FileService;
+import net.skhu.service.MyEmailService;
 import net.skhu.service.UserService;
 
 @Controller
@@ -71,6 +73,8 @@ public class UserController {
 	ArticleService articleService;
 	@Autowired
 	FileService fileService;
+	@Autowired
+	MyEmailService emailService;
 	Report report = new Report();
 	Mentor mentor = new Mentor();
 
@@ -115,7 +119,9 @@ public class UserController {
 
 	@RequestMapping(value = "board_edit", method = RequestMethod.GET)
 	public String board_edit(Model model, @RequestParam(value = "id") int id, Pagination pagination) {
-		model.addAttribute("article", articleMapper.findOne(id));
+		Article article = articleMapper.findOne(id);
+		model.addAttribute("article", article);
+		model.addAttribute("file", fileService.getFileName(article.getArt_f_id()));
 		model.addAttribute("board", boardMapper.findOne(pagination.getBd()).getB_name());
 		return "user/board_create";
 	}
@@ -554,9 +560,27 @@ public class UserController {
 		return "redirect:mypost#fh5co-tab-feature-vertical6myReport";
 	}
 
-	@RequestMapping("sendEmail")
-	public String sendEmail() {
+	@RequestMapping(value="sendEmail", method=RequestMethod.GET)
+	public String sendEmail(Model model) {
+		Email email = new Email();
+		model.addAttribute("email", email);
 		return "user/sendEmail";
+	}
+
+	@RequestMapping(value="sendEmail", method=RequestMethod.POST)
+	public String sendEmail(Model model, Email email, @RequestBody MultipartFile file, HttpServletRequest request) {
+		User user = UserService.getCurrentUser();
+		if(file.isEmpty()){
+			emailService.sendSimpleMessage(user, email.getTo(), email.getSubject(), email.getText());
+		}
+		else{
+			System.out.println("notnull");
+			String path = fileService.getFilePath(file);
+			System.out.println("path: "+path);
+			emailService.sendMessageWithAttachment(user, email.getTo(), email.getSubject(), email.getText(), path);
+		}
+
+		return "redirect:sendEmail?success";
 	}
 
 	@RequestMapping("meminfo")

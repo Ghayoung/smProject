@@ -17,7 +17,7 @@
 	</select>
 	
 	<select id="countByArticle" resultType="int">
-		select count(*) from comment where com_a_id=#{com_a_id} and com_condition=0
+		select count(*) from comment where com_a_id=#{com_a_id} and com_condition=0 and com_u_id!=#{com_u_id}
 	</select>
 	
 	<update id="delete">

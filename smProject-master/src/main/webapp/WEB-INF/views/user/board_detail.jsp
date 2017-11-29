@@ -3,7 +3,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
-
 <c:url var="R" value="/" />
 <div id="fh5co-main">
 
@@ -70,7 +69,8 @@
 			<h2 id="comment_btn" class="fh5co-uppercase-heading-sm">댓글 ${ comments.size() }개
 				∨</h2>
 		</div>
-		<div id="comment" style="display: none;">
+		
+		<div id="comment" style="display:none;">
 			<div class="row">
 				<div class="col-md-12 animate-box">
 					<div class="col-md-12 panel panel-default">
