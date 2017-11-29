@@ -241,7 +241,7 @@
 										<!--미제출-->
 										<h2>${ conditionReports.group_name }</h2>
 										<label for="report_subject">멘토링 진행률 <span
-											class="fh5co-uppercase-heading-sm">&nbsp;&nbsp;${ totalReport-conditionReports.reportCount }회
+											class="fh5co-uppercase-heading-sm">&nbsp;&nbsp;${ totalReport }회 중 ${ totalReport-conditionReports.reportCount }회
 												남았습니다.</span></label>
 										<div class="progress">
 
