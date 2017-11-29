@@ -65,11 +65,6 @@
 					</div>
 
 					<div class="col-md-12">
-						<c:if
-							test="${url eq 'http://localhost:8080/mybatisEx/user/mypost'}">
-							<a data-url="${url}#fh5co-tab-feature-vertical6myReport"
-								class="btn btn-primary btn-lg col-md-offset-10">목록으로</a>
-						</c:if>
 
 						<c:if
 							test="${url eq 'http://localhost:8080/mybatisEx/user/report'}">
