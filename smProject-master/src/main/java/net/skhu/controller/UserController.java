@@ -574,10 +574,7 @@ public class UserController {
 			emailService.sendSimpleMessage(user, email.getTo(), email.getSubject(), email.getText());
 		}
 		else{
-			System.out.println("notnull");
-			String path = fileService.getFilePath(file);
-			System.out.println("path: "+path);
-			emailService.sendMessageWithAttachment(user, email.getTo(), email.getSubject(), email.getText(), path);
+			emailService.sendMessageWithAttachment(user, email.getTo(), email.getSubject(), email.getText(), file);
 		}
 
 		return "redirect:sendEmail?success";

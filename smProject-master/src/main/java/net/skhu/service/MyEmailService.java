@@ -12,12 +12,15 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.User;
 
 @Component
 public class MyEmailService {
 
+	@Autowired
+	FileService fileService;
 	@Autowired
     public JavaMailSender emailSender;
 
@@ -65,11 +68,14 @@ public class MyEmailService {
 
     }
 
-    public void sendMessageWithAttachment(User from, String to, String subject, String text, String pathToAttachment) {
+    public void sendMessageWithAttachment(User from, String to, String subject, String text, MultipartFile multipart) {
         MimeMessage message = emailSender.createMimeMessage();
 
 
         try{
+        	String relPath = fileService.getUploadFilePath(multipart);
+        	String fileName = relPath.substring(11);
+
         	MimeMessageHelper helper = new MimeMessageHelper(message,true);
 
         	helper.setFrom(new InternetAddress(from.getEmail(), from.getName()+" (SKHU SM)"));
@@ -77,8 +83,8 @@ public class MyEmailService {
             helper.setSubject(subject);
             helper.setText(text);
 
-            FileSystemResource file = new FileSystemResource(new File(pathToAttachment));
-            helper.addAttachment("Invoice", file);
+            FileSystemResource file = new FileSystemResource(new File(relPath));
+            helper.addAttachment(fileName, file);
 
             emailSender.send(message);
         }catch (MessagingException messageException) {

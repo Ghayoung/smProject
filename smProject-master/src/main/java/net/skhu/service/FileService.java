@@ -100,4 +100,31 @@ public class FileService {
 		return fileName;
 	}
 
+	public String getUploadFilePath(MultipartFile multipart){
+		String relPath = "img/upload/";
+		try{
+		String fileName = Paths.get(multipart.getOriginalFilename()).getFileName().toString();
+		byte[] data = multipart.getBytes();
+
+		File upDirectory = new File(relPath);
+		if (!upDirectory.exists()) {
+			upDirectory.mkdirs();
+		}
+
+		relPath += fileName;
+
+		final File uploadFile = new File(relPath);
+		if (uploadFile.exists()) {
+			uploadFile.delete();
+		}
+
+		FileOutputStream lFileOutputStream = new FileOutputStream(uploadFile);
+        lFileOutputStream.write(data);
+        lFileOutputStream.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return relPath;
+	}
+
 }
