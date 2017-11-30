@@ -9,8 +9,7 @@
 <title>SKHU &mdash; SM사업 멘토링</title>
 </head>
 <body>
-	<embed src="">
-		안된다..
-	</embed>
+	<iframe src="embeded/comment">안된다..</iframe>
+	
 </body>
 </html>

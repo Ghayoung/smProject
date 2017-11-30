@@ -22,4 +22,9 @@ public class EmbededController {
 		return "embeded/comment";
 	}
 
+	@RequestMapping("embededTest")
+	public String embededTest(){
+		return "embeded/embededTest";
+	}
+
 }
