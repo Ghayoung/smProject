@@ -49,17 +49,21 @@ public class MyEmailService {
           }
     }
 
-    public void sendMessageWithAttachment(String to, String subject, String text, String pathToAttachment) {
+    public void sendMessageWithAttachment(String to, String subject, String text, MultipartFile multipart) {
         MimeMessage message = emailSender.createMimeMessage();
 
-        MimeMessageHelper helper = new MimeMessageHelper(message);
         try{
+        	String relPath = fileService.getUploadFilePath(multipart);
+        	String fileName = relPath.substring(11);
+
+        	MimeMessageHelper helper = new MimeMessageHelper(message,true);
+
         	helper.setTo(to);
             helper.setSubject(subject);
             helper.setText(text);
 
-            FileSystemResource file = new FileSystemResource(new File(pathToAttachment));
-            helper.addAttachment("Invoice", file);
+            FileSystemResource file = new FileSystemResource(new File(relPath));
+            helper.addAttachment(fileName, file);
 
             emailSender.send(message);
         }catch (MessagingException messageException) {
@@ -83,10 +87,14 @@ public class MyEmailService {
             helper.setSubject(subject);
             helper.setText(text);
 
-            FileSystemResource file = new FileSystemResource(new File(relPath));
+            File tempFile = new File(relPath);
+
+            FileSystemResource file = new FileSystemResource(tempFile);
             helper.addAttachment(fileName, file);
 
             emailSender.send(message);
+
+            tempFile.delete();
         }catch (MessagingException messageException) {
             throw new RuntimeException(messageException);
         }catch (Throwable e) {
