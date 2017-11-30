@@ -33,6 +33,7 @@ public interface UserMapper {
     List<Report> findAllReportsByWriter(int id);
     List<Comment> findAllCommentsByWriter(int id);
     Report findAllConditionById(int id);
+    Report selectExcelList(int id);
     int findStudyCount();
     int findType(int id);
     String findStartSM();

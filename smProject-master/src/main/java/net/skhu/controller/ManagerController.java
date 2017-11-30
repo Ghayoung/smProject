@@ -104,7 +104,7 @@ public class ManagerController {
 	}
 
 	@RequestMapping("comment_delete")
-	public String comment_delete(Model model, @RequestParam(value = "cid") int cid,Pagination pagination) {
+	public String comment_delete(Model model, @RequestParam(value = "cid") int cid, Pagination pagination) {
 		commentMapper.delete(cid);
 		return "redirect:m_post#fh5co-tab-feature-vertical4com";
 	}
@@ -214,7 +214,7 @@ public class ManagerController {
 
 	@RequestMapping("auth_update")
 	public String auth_update(@RequestParam("id") int id) {
-		int type=userMapper.findType(id);
+		int type = userMapper.findType(id);
 		userMapper.auth_update(type, id);
 		return "redirect:m_userManage";
 	}
@@ -234,7 +234,6 @@ public class ManagerController {
 		model.addAttribute("TermSearchMentors", TermSearchMentors);
 		model.addAttribute("TermSearchMentees", TermSearchMentees);
 		model.addAttribute("TermSearchUsers", TermSearchUsers);
-
 
 		//
 		// List<User> managers= userMapper.findAllManager();
@@ -349,17 +348,5 @@ public class ManagerController {
 		model.addAttribute("setting", setting);
 		return "manager/m_setting";
 
-	}
-
-	@RequestMapping(value = "excelDownload", method = RequestMethod.GET)
-	public String excelDownload(Model model, @RequestParam("id") int id) {
-		Report report = userMapper.findOneReport(id);
-		model.addAttribute("report", report);
-		return "m_excel2";
-	}
-
-	@RequestMapping(value = "excel", method = RequestMethod.POST)
-	public String excel(Model model) {
-		return "manager/excel3";
 	}
 }

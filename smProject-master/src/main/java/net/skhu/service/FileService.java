@@ -65,6 +65,7 @@ public class FileService {
 	      String filePath = (uploadedfile.getPath()).substring(0, 11);
 
 	      filePath+=fileName;
+	      System.out.println(filePath);
 
 	      Path path = Paths.get(filePath);
 
@@ -72,6 +73,22 @@ public class FileService {
 
 	      response.setContentType("application/octet-stream");
 	      response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName,"UTF-8") + ";");
+	      try (BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream())) {
+	         output.write(uploadedfile.getData());
+	      }
+	}
+
+	public void excelDownload(HttpServletResponse response)throws Exception {
+		FileDTO uploadedfile = new FileDTO();
+
+	      String filePath = "WEB-INF/views/manager/m_excel.jsp";
+
+	      Path path = Paths.get(filePath);
+
+	      uploadedfile.setData(Files.readAllBytes(path));
+
+	      response.setContentType("application/octet-stream");
+	      response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("m_excel.jsp","UTF-8") + ";");
 	      try (BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream())) {
 	         output.write(uploadedfile.getData());
 	      }
