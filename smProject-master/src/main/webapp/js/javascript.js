@@ -391,6 +391,27 @@ function checkInputMeminfo() {
 	}
 }
 
+function checkInputEmail() {
+	if ($("#form [name=to]").val() == "") {
+		alert("보내는 이메일 주소를 입력해주세요");
+		$("#form [name=to]").focus();
+		return false;
+	} 
+	else if ($("#form [name=subject]").val() == "") {
+		alert("제목을 입력해주세요");
+		$("#form [name=subject]").focus();
+		return false;
+	} 
+	else if ($("#form [name=text]").val() == "") {
+		alert("내용을 입력해주세요");
+		$("#form [name=text]").focus();
+		return false;
+	} 
+	else {//
+		form.submit();
+	}
+}
+
 function comment_edit(i) {
 	$(".c_content_" + i).toggle();
 	$(".c_content_edit_" + i).toggle();

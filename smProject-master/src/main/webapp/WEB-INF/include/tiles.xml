@@ -10,6 +10,10 @@
     <put-attribute name="body" value="" />
   </definition>
   
+  <definition name="embeded/*" template="/WEB-INF/include/emptyLayout.jsp">
+    <put-attribute name="body" value="/WEB-INF/views/embeded/{1}.jsp" />
+  </definition>
+  
   <definition name="*/*" extends="layout_user">
     <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
   </definition>
