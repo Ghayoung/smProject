@@ -65,7 +65,6 @@ public class FileService {
 	      String filePath = (uploadedfile.getPath()).substring(0, 11);
 
 	      filePath+=fileName;
-	      System.out.println(filePath);
 
 	      Path path = Paths.get(filePath);
 

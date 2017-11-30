@@ -16,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
 import net.skhu.domain.UserDomain;
+import net.skhu.dto.Checkboxes;
 import net.skhu.dto.FileDTO;
 import net.skhu.dto.Introduce;
 import net.skhu.dto.Mentor;
@@ -39,6 +41,7 @@ import net.skhu.mapper.MentorMapper;
 import net.skhu.mapper.TeamMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.model.Pagination;
+import net.skhu.service.ExcelListDown;
 import net.skhu.service.ExcelReadService;
 import net.skhu.service.FileService;
 import net.skhu.service.ManagerService;
@@ -67,6 +70,8 @@ public class ManagerController {
 	UserService userService;
 	@Autowired
 	CommentMapper commentMapper;
+	@Autowired
+	ExcelListDown excelListDown;
 
 	@RequestMapping(value = "m_introduce_modi", method = RequestMethod.GET)
 	public String m_introduce_modi(Model model) {
@@ -348,5 +353,13 @@ public class ManagerController {
 		model.addAttribute("setting", setting);
 		return "manager/m_setting";
 
+	}
+
+	@PostMapping("excelListDown")
+	public void excelListDown(Checkboxes checkboxes) {
+		System.out.println(checkboxes.getTeamCheckbox());
+		for(int i=0; i<checkboxes.getTeamCheckbox().size(); ++i){
+			excelListDown.Down(checkboxes.getTeamCheckbox().get(i));
+		}
 	}
 }
