@@ -99,7 +99,7 @@ public class UserService {
 		List<Article> articles = articleMapper.findAllByBoard(pagination);
 		if(pagination.getBd()==3){
 			for(Article a: articles){
-				a.setCom_count(commentMapper.countByArticle(a.getId()));
+				a.setCom_count(commentMapper.countByArticle(a.getId(),a.getArt_u_id()));
 			}
 		}
 		return articles;

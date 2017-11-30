@@ -78,28 +78,54 @@ public class FileService {
 	      }
 	}
 
-	public void excelDownload(HttpServletResponse response)throws Exception {
-		FileDTO uploadedfile = new FileDTO();
+	public String getFilePath(MultipartFile uploadedFile) {
+		String relPath = "img/upload/";
+		File upDirectory = new File(relPath);
+		if (!upDirectory.exists()) {
+			upDirectory.mkdirs();
+		}
 
-	      String filePath = "WEB-INF/views/manager/m_excel.jsp";
+		String fileName = System.currentTimeMillis() + "_" + uploadedFile.getOriginalFilename();
 
-	      Path path = Paths.get(filePath);
+		relPath += fileName;
 
-	      uploadedfile.setData(Files.readAllBytes(path));
-
-	      response.setContentType("application/octet-stream");
-	      response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("m_excel.jsp","UTF-8") + ";");
-	      try (BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream())) {
-	         output.write(uploadedfile.getData());
-	      }
+		return relPath;
 	}
 
 	public String getFileName(int id) {
 		FileDTO uploadedfile = fileMapper.findOne(id);
 	    if (uploadedfile == null)
 	    	return null;
-		String fileName=(uploadedfile.getPath()).substring(11);
+
+		String fileName=(uploadedfile.getPath()).substring(25);
 		return fileName;
+	}
+
+	public String getUploadFilePath(MultipartFile multipart){
+		String relPath = "img/upload/";
+		try{
+		String fileName = Paths.get(multipart.getOriginalFilename()).getFileName().toString();
+		byte[] data = multipart.getBytes();
+
+		File upDirectory = new File(relPath);
+		if (!upDirectory.exists()) {
+			upDirectory.mkdirs();
+		}
+
+		relPath += fileName;
+
+		final File uploadFile = new File(relPath);
+		if (uploadFile.exists()) {
+			uploadFile.delete();
+		}
+
+		FileOutputStream lFileOutputStream = new FileOutputStream(uploadFile);
+        lFileOutputStream.write(data);
+        lFileOutputStream.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return relPath;
 	}
 
 }
