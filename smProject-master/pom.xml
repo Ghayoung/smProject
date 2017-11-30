@@ -59,16 +59,16 @@
 			<artifactId>tiles-jsp</artifactId>
 			<version>3.0.7</version>
 		</dependency>
-	    <dependency>
-	    	<groupId>org.springframework.security</groupId>
-	    	<artifactId>spring-security-config</artifactId>
-	    </dependency>
-	    <dependency>
-	      <groupId>org.projectlombok</groupId>
-	      <artifactId>lombok</artifactId>
-	      <scope>provided</scope>
-	      <version>1.16.18</version>
-	    </dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+			<version>1.16.18</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
@@ -88,26 +88,26 @@
 			<version>3.17</version>
 		</dependency>
 		<dependency>
-    		<groupId>org.apache.poi</groupId>
-    		<artifactId>poi-ooxml</artifactId>
-    		<version>3.16</version>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.16</version>
 		</dependency>
 		<dependency>
-    		<groupId>org.apache.poi</groupId>
-    		<artifactId>poi-ooxml-schemas</artifactId>
-    		<version>3.16</version>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>3.16</version>
 		</dependency>
 		<dependency>
-    		<groupId>org.apache.poi</groupId>
-    		<artifactId>poi-contrib</artifactId>
-    	<version>3.7-beta3</version>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-contrib</artifactId>
+			<version>3.7-beta3</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-mail</artifactId>
-		    <version>1.4.3.RELEASE</version>
-		</dependency>
-		<dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-mail</artifactId>
+          <version>1.4.3.RELEASE</version>
+      </dependency>
+      <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>1.4.7</version>

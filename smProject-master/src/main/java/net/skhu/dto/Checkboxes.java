@@ -2,12 +2,13 @@ package net.skhu.dto;
 
 import java.util.List;
 
-public class Timetable {
+public class Checkboxes {
 	List<String> mon;
 	List<String> tue;
 	List<String> wed;
 	List<String> thu;
 	List<String> fri;
+	List<Integer> teamCheckbox;
 
 	public List<String> getMon() {
 		return mon;
@@ -47,6 +48,14 @@ public class Timetable {
 
 	public void setFri(List<String> fri) {
 		this.fri = fri;
+	}
+
+	public List<Integer> getTeamCheckbox() {
+		return teamCheckbox;
+	}
+
+	public void setTeamCheckbox(List<Integer> teamCheckbox) {
+		this.teamCheckbox = teamCheckbox;
 	}
 
 }

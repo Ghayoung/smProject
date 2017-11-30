@@ -65,12 +65,10 @@
 
 					<div class="col-md-12">
 						<a data-url="${url}"
-							class="btn btn-primary btn-lg col-md-offset-8">목록으로</a> 
-							 <a href="#" class="btn btn-primary btn-lg">다운로드</a>
+							class="btn btn-primary btn-lg col-md-offset-8">목록으로</a> <a
+							href="${R}/report/excel-xls?id=${ report.id }"
+							class="btn btn-primary btn-lg">다운로드</a>
 					</div>
-
-
-
 				</div>
 			</form:form>
 		</div>

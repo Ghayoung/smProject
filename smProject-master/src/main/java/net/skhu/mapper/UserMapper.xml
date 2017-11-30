@@ -239,4 +239,10 @@
 		#{min_mentee}, #{report_deadline})
 	</insert>
 
+	<select id="selectExcelList" fetchSize="100" resultType="Report"> 
+		SELECT u.name, r.subject, r.place, r.day, r.start_time, r.end_time, r.study_content, r.create_date, m.group_name
+		FROM report r left join user u on r.rep_u_id=u.id left join mentor_apply m on m.mentor_u_id=u.id
+		WHERE r.id=#{id}
+	</select>
+
 </mapper>

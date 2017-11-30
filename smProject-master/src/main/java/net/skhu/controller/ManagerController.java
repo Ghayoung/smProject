@@ -16,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
 import net.skhu.domain.UserDomain;
+import net.skhu.dto.Checkboxes;
 import net.skhu.dto.FileDTO;
 import net.skhu.dto.Introduce;
 import net.skhu.dto.Mentor;
@@ -39,6 +41,7 @@ import net.skhu.mapper.MentorMapper;
 import net.skhu.mapper.TeamMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.model.Pagination;
+import net.skhu.service.ExcelListDown;
 import net.skhu.service.ExcelReadService;
 import net.skhu.service.FileService;
 import net.skhu.service.ManagerService;
@@ -67,6 +70,8 @@ public class ManagerController {
 	UserService userService;
 	@Autowired
 	CommentMapper commentMapper;
+	@Autowired
+	ExcelListDown excelListDown;
 
 	@RequestMapping(value = "m_introduce_modi", method = RequestMethod.GET)
 	public String m_introduce_modi(Model model) {
@@ -104,7 +109,7 @@ public class ManagerController {
 	}
 
 	@RequestMapping("comment_delete")
-	public String comment_delete(Model model, @RequestParam(value = "cid") int cid,Pagination pagination) {
+	public String comment_delete(Model model, @RequestParam(value = "cid") int cid, Pagination pagination) {
 		commentMapper.delete(cid);
 		return "redirect:m_post#fh5co-tab-feature-vertical4com";
 	}
@@ -214,7 +219,7 @@ public class ManagerController {
 
 	@RequestMapping("auth_update")
 	public String auth_update(@RequestParam("id") int id) {
-		int type=userMapper.findType(id);
+		int type = userMapper.findType(id);
 		userMapper.auth_update(type, id);
 		return "redirect:m_userManage";
 	}
@@ -234,7 +239,6 @@ public class ManagerController {
 		model.addAttribute("TermSearchMentors", TermSearchMentors);
 		model.addAttribute("TermSearchMentees", TermSearchMentees);
 		model.addAttribute("TermSearchUsers", TermSearchUsers);
-
 
 		//
 		// List<User> managers= userMapper.findAllManager();
@@ -351,15 +355,11 @@ public class ManagerController {
 
 	}
 
-	@RequestMapping(value = "excelDownload", method = RequestMethod.GET)
-	public String excelDownload(Model model, @RequestParam("id") int id) {
-		Report report = userMapper.findOneReport(id);
-		model.addAttribute("report", report);
-		return "m_excel2";
-	}
-
-	@RequestMapping(value = "excel", method = RequestMethod.POST)
-	public String excel(Model model) {
-		return "manager/excel3";
+	@PostMapping("excelListDown")
+	public void excelListDown(Checkboxes checkboxes) {
+		System.out.println(checkboxes.getTeamCheckbox());
+		for(int i=0; i<checkboxes.getTeamCheckbox().size(); ++i){
+			excelListDown.Down(checkboxes.getTeamCheckbox().get(i));
+		}
 	}
 }

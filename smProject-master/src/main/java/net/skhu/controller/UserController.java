@@ -22,12 +22,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Article;
+import net.skhu.dto.Checkboxes;
 import net.skhu.dto.Comment;
 import net.skhu.dto.Email;
 import net.skhu.dto.Mentor;
 import net.skhu.dto.Report;
 import net.skhu.dto.Team;
-import net.skhu.dto.Timetable;
 import net.skhu.dto.TimetableDTO;
 import net.skhu.dto.User;
 import net.skhu.mapper.ArticleMapper;
@@ -398,7 +398,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "timetable", method = RequestMethod.POST)
-	public String timetable(Model model, Timetable timetable, HttpServletRequest request) {
+	public String timetable(Model model, Checkboxes checkboxes, HttpServletRequest request) {
 
 		User user = UserService.getCurrentUser();
 		Team team=teamMapper.findTeamByMember(user.getId());
@@ -406,29 +406,29 @@ public class UserController {
 
 		timetableMapper.delete(time_team);
 
-		if (timetable.getMon() != null) {
-			for (int i = 0; i < timetable.getMon().size(); ++i) {
-				timetableMapper.insert(1, Integer.parseInt(timetable.getMon().get(i)), time_team);
+		if (checkboxes.getMon() != null) {
+			for (int i = 0; i < checkboxes.getMon().size(); ++i) {
+				timetableMapper.insert(1, Integer.parseInt(checkboxes.getMon().get(i)), time_team);
 			}
 		}
-		if (timetable.getTue() != null) {
-			for (int i = 0; i < timetable.getTue().size(); ++i) {
-				timetableMapper.insert(2, Integer.parseInt(timetable.getTue().get(i)), time_team);
+		if (checkboxes.getTue() != null) {
+			for (int i = 0; i < checkboxes.getTue().size(); ++i) {
+				timetableMapper.insert(2, Integer.parseInt(checkboxes.getTue().get(i)), time_team);
 			}
 		}
-		if (timetable.getWed() != null) {
-			for (int i = 0; i < timetable.getWed().size(); ++i) {
-				timetableMapper.insert(3, Integer.parseInt(timetable.getWed().get(i)), time_team);
+		if (checkboxes.getWed() != null) {
+			for (int i = 0; i < checkboxes.getWed().size(); ++i) {
+				timetableMapper.insert(3, Integer.parseInt(checkboxes.getWed().get(i)), time_team);
 			}
 		}
-		if (timetable.getThu() != null) {
-			for (int i = 0; i < timetable.getThu().size(); ++i) {
-				timetableMapper.insert(4, Integer.parseInt(timetable.getThu().get(i)), time_team);
+		if (checkboxes.getThu() != null) {
+			for (int i = 0; i < checkboxes.getThu().size(); ++i) {
+				timetableMapper.insert(4, Integer.parseInt(checkboxes.getThu().get(i)), time_team);
 			}
 		}
-		if (timetable.getFri() != null) {
-			for (int i = 0; i < timetable.getFri().size(); ++i) {
-				timetableMapper.insert(5, Integer.parseInt(timetable.getFri().get(i)), time_team);
+		if (checkboxes.getFri() != null) {
+			for (int i = 0; i < checkboxes.getFri().size(); ++i) {
+				timetableMapper.insert(5, Integer.parseInt(checkboxes.getFri().get(i)), time_team);
 			}
 		}
 		List<TimetableDTO> timetable2 = timetableMapper.findAllTeamItem(time_team);

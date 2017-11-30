@@ -54,35 +54,41 @@
 												aria-valuemax="100">25%</div>
 										</div>
 										-->
-										<div class="panel panel-default">
-											<table class="table board" id="r_table<%=n%>">
-												<thead>
-													<tr>
-														<th style="padding-left: 4px;"><input type="checkbox"
-															onclick="selectAllCheckBox(this,'r_table<%=n%>','cb')"></th>
-														<th>번호</th>
-														<th>스터디주제</th>
-														<th>장소</th>
-														<th>작성일</th>
-													</tr>
-												</thead>
-												<tbody>
-													<c:forEach var="reports" items="${ teamReports.reports }"
-														varStatus="status">
+										<form id="form1" name="form1" method="post"
+											action="excelListDown">
+											<div class="panel panel-default">
+												<table class="table board" id="r_table<%=n%>">
+													<thead>
 														<tr>
-															<td><input type="checkbox" name="checkbox" id="cb_1"></td>
-															<th scope="row">${ status.index+1 }</th>
-															<td data-url="report_detail?id=${ reports.id }">${ reports.subject }</td>
-															<td>${ reports.place }</td>
-															<td>${ reports.create_date }</td>
+															<th style="padding-left: 4px;"><input
+																type="checkbox"
+																onclick="selectAllCheckBox(this,'r_table<%=n%>','cb')"></th>
+															<th>번호</th>
+															<th>스터디주제</th>
+															<th>장소</th>
+															<th>작성일</th>
 														</tr>
-													</c:forEach>
-												</tbody>
-											</table>
-										</div>
-										<div class="col-r">
-											<a href="#" class="btn btn-primary btn-lg">다운로드</a>
-										</div>
+													</thead>
+													<tbody>
+														<c:forEach var="reports" items="${ teamReports.reports }"
+															varStatus="status">
+															<tr>
+																<td><input type="checkbox" name="teamCheckbox"
+																	id="cb_1" value="${ reports.id }"></td>
+																<th scope="row">${ status.index+1 }</th>
+																<td data-url="report_detail?id=${ reports.id }">${ reports.subject }</td>
+																<td>${ reports.place }</td>
+																<td>${ reports.create_date }</td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
+											</div>
+											<div class="col-md-12">
+												<input type="submit"
+													class="btn btn-primary btn-lg col-md-offset-11" value="다운로드" />
+											</div>
+										</form>
 										<div class="fh5co-spacer fh5co-spacer-md"></div>
 										<%
 											n++;
@@ -241,8 +247,8 @@
 										<!--미제출-->
 										<h2>${ conditionReports.group_name }</h2>
 										<label for="report_subject">멘토링 진행률 <span
-											class="fh5co-uppercase-heading-sm">&nbsp;&nbsp;${ totalReport }회 중 ${ totalReport-conditionReports.reportCount }회
-												남았습니다.</span></label>
+											class="fh5co-uppercase-heading-sm">&nbsp;&nbsp;${ totalReport }회
+												중 ${ totalReport-conditionReports.reportCount }회 남았습니다.</span></label>
 										<div class="progress">
 
 											<div class="progress-bar" role="progressbar"
