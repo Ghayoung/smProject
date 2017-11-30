@@ -41,10 +41,12 @@ import net.skhu.mapper.MentorMapper;
 import net.skhu.mapper.TeamMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.model.Pagination;
+import net.skhu.model.ReportPagination;
 import net.skhu.service.ExcelListDown;
 import net.skhu.service.ExcelReadService;
 import net.skhu.service.FileService;
 import net.skhu.service.ManagerService;
+import net.skhu.service.ReportService;
 import net.skhu.service.UserService;
 
 @Controller
@@ -68,6 +70,8 @@ public class ManagerController {
 	ExcelReadService excelReadService;
 	@Autowired
 	UserService userService;
+	@Autowired
+	ReportService reportService;
 	@Autowired
 	CommentMapper commentMapper;
 	@Autowired
@@ -276,7 +280,8 @@ public class ManagerController {
 	}
 
 	@RequestMapping(value = "m_reportManage", method = RequestMethod.GET)
-	public String m_reportManage(Model model) {
+	public String m_reportManage(Model model, ReportPagination reportPagination) {
+		System.out.println(1);
 		List<Report> teamReports = userMapper.findAllWithReports();
 		List<Report> conditionReports = userMapper.findAllCondition();
 
@@ -287,7 +292,30 @@ public class ManagerController {
 		model.addAttribute("conditionReports", conditionReports);
 		model.addAttribute("totalReport", totalReport);
 		model.addAttribute("startSM", startSM);
+		model.addAttribute("list", reportService.findAllReports(reportPagination));
+		model.addAttribute("orderBy", reportService.getOrderByOptions());
+		System.out.println(reportPagination.getQueryString());
 		return "manager/m_reportManage";
+	}
+
+	@RequestMapping(value = "m_reportManage", method = RequestMethod.POST)
+	public String m_reportManage2(Model model, ReportPagination reportPagination) {
+		System.out.println(2);
+
+		List<Report> teamReports = userMapper.findAllWithReports();
+		List<Report> conditionReports = userMapper.findAllCondition();
+
+		int totalReport = userMapper.findStudyCount();
+		String startSM = (userMapper.findStartSM()).replaceAll("-", "");
+
+		model.addAttribute("teamReports", teamReports);
+		model.addAttribute("conditionReports", conditionReports);
+		model.addAttribute("totalReport", totalReport);
+		model.addAttribute("startSM", startSM);
+		model.addAttribute("list", reportService.findAllReports(reportPagination));
+		model.addAttribute("orderBy", reportService.getOrderByOptions());
+		System.out.println(reportPagination.getQueryString());
+		return "redirect:m_reportManage?"+reportPagination.getQueryString()+"#fh5co-tab-feature-center3report";
 	}
 
 	@RequestMapping(value = "report_detail", method = RequestMethod.GET)
@@ -358,7 +386,7 @@ public class ManagerController {
 	@PostMapping("excelListDown")
 	public void excelListDown(Checkboxes checkboxes) {
 		System.out.println(checkboxes.getTeamCheckbox());
-		for(int i=0; i<checkboxes.getTeamCheckbox().size(); ++i){
+		for (int i = 0; i < checkboxes.getTeamCheckbox().size(); ++i) {
 			excelListDown.Down(checkboxes.getTeamCheckbox().get(i));
 		}
 	}

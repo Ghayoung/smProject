@@ -19,7 +19,8 @@
 
 			<div class="row">
 				<div class="col-md-12 animate-box">
-					<h2 class="fh5co-uppercase-heading-sm text-center">보고서 관리</h2>
+					<h2 class="fh5co-uppercase-heading-sm text-center"
+						id="fh5co-tab-feature-center3report">보고서 관리</h2>
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
 				</div>
 
@@ -86,7 +87,8 @@
 											</div>
 											<div class="col-md-12">
 												<input type="submit"
-													class="btn btn-primary btn-lg col-md-offset-11" value="다운로드" />
+													class="btn btn-primary btn-lg col-md-offset-11"
+													value="다운로드" />
 											</div>
 										</form>
 										<div class="fh5co-spacer fh5co-spacer-md"></div>
@@ -193,44 +195,71 @@
 								<div class="row">
 
 									<!--전체-->
+
 									<h2>전체보고서</h2>
-									<div class="panel panel-default">
-										<table class="table board" id="r_table<%=n%>">
-											<thead>
-												<tr>
-													<th style="padding-left: 4px;"><input type="checkbox"
-														onclick="selectAllCheckBox(this,'r_table<%=n%>','cb')"></th>
-													<th>번호</th>
-													<th>팀명</th>
-													<th>스터디내용</th>
-													<th>장소</th>
-													<th>작성일</th>
+									<div class="col-md-12 animate-box">
+										<div class="pull-right">
+											<form:form method="post" modelAttribute="reportPagination"
+												class="form-inline mb5">
+												<form:hidden path="pg" value="1" />
 
-												</tr>
-											</thead>
-											<tbody>
-												<%
-													int k = 0;
-													for (Report report : list) {
-												%>
-												<tr>
-													<td><input type="checkbox" name="checkbox" id="cb_1"></td>
-													<th scope="row"><%=k + 1%></th>
-													<td><%=report.getGroup_name()%></td>
-													<td data-url="report_detail?id=<%=report.getId()%>"><%=report.getSubject()%></td>
-													<td><%=report.getPlace()%></td>
-													<td><%=report.getCreate_date()%></td>
-												</tr>
-												<%
-													k++;
-													}
+												<span>정렬:</span>
+												<form:select path="ob" class="form-control autosubmit"
+													itemValue="value" itemLabel="label" items="${ orderBy }" />
 
-													n++;
-												%>
-											</tbody>
-										</table>
+												<span class="ml30">페이지 크기:</span>
+												<form:select path="sz" class="form-control autosubmit">
+													<form:option value="10" />
+													<form:option value="15" />
+													<form:option value="30" />
+												</form:select>
 
+												<button type="submit" class="btn btn-primary">
+													<i class="glyphicon glyphicon-search"></i> 검색
+												</button>
+
+											</form:form>
+											<div class="fh5co-spacer fh5co-spacer-sm"></div>
+										</div>
+
+										<div class="col-md-12" style="padding: 0px;">
+
+											<div class="panel panel-default">
+												<table class="table board" id="r_table<%=n%>">
+													<thead>
+														<tr>
+															<th style="padding-left: 4px;"><input
+																type="checkbox"
+																onclick="selectAllCheckBox(this,'r_table<%=n%>','cb')"></th>
+															<th>번호</th>
+															<th>팀명</th>
+															<th>스터디내용</th>
+															<th>장소</th>
+															<th>작성일</th>
+
+														</tr>
+													</thead>
+													<tbody>
+														<c:forEach var="report" items="${ list }"
+															varStatus="status">
+															<tr>
+																<td><input type="checkbox" name="checkbox"
+																	id="cb_1"></td>
+																<th scope="row">${ status.index+1 }</th>
+																<td>${ report.group_name }</td>
+																<td data-url="report_detail?id=${ report.id }">${ report.study_content }</td>
+																<td>${ report.place }</td>
+																<td>${ report.create_date }</td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
+											</div>
+										</div>
 									</div>
+									<my:reportpagination pageSize="${ reportPagination.sz }"
+										recordCount="${ reportPagination.recordCount }" />
+
 									<div class="fh5co-spacer fh5co-spacer-md"></div>
 
 									<div class="col-r">
