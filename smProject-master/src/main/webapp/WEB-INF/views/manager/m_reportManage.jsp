@@ -199,7 +199,7 @@
 									<h2>전체보고서</h2>
 									<div class="col-md-12 animate-box">
 										<div class="pull-right">
-											<form:form method="post" modelAttribute="reportPagination"
+											<form:form action="m_reportManage" method="post" modelAttribute="reportPagination"
 												class="form-inline mb5">
 												<form:hidden path="pg" value="1" />
 
@@ -213,10 +213,6 @@
 													<form:option value="15" />
 													<form:option value="30" />
 												</form:select>
-
-												<button type="submit" class="btn btn-primary">
-													<i class="glyphicon glyphicon-search"></i> 검색
-												</button>
 
 											</form:form>
 											<div class="fh5co-spacer fh5co-spacer-sm"></div>

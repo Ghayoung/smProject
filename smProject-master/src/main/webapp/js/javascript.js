@@ -49,6 +49,12 @@ function selectAllCheckBox(allcheck, containerID, checkboxIDMatch) { // (all체�
 	}
 }
 
+$(function() {
+
+	$(".autosubmit").change(function() {
+		$(this).parents("form").submit();
+	})
+})
 
 function register() {
 	if (document.r_form.file.value == "")
@@ -396,18 +402,15 @@ function checkInputEmail() {
 		alert("보내는 이메일 주소를 입력해주세요");
 		$("#form [name=to]").focus();
 		return false;
-	} 
-	else if ($("#form [name=subject]").val() == "") {
+	} else if ($("#form [name=subject]").val() == "") {
 		alert("제목을 입력해주세요");
 		$("#form [name=subject]").focus();
 		return false;
-	} 
-	else if ($("#form [name=text]").val() == "") {
+	} else if ($("#form [name=text]").val() == "") {
 		alert("내용을 입력해주세요");
 		$("#form [name=text]").focus();
 		return false;
-	} 
-	else {//
+	} else {//
 		form.submit();
 	}
 }

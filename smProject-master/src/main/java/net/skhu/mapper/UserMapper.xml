@@ -50,9 +50,9 @@
 		FROM report r left join mentor_apply m on r.rep_u_id=m.mentor_u_id
 		ORDER BY
 		<choose>
-			<when test="ob == 1">m.group_name</when>
-			<when test="ob == 2">r.create_date</when>
-			<when test="ob == 3">r.create_date desc</when>
+			<when test="ob == 0">m.group_name</when>
+			<when test="ob == 1">r.create_date</when>
+			<when test="ob == 2">r.create_date desc</when>
 			<otherwise>r.id</otherwise>
 		</choose>
 		LIMIT ${start}, ${sz}

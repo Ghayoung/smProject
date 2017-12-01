@@ -281,7 +281,7 @@ public class ManagerController {
 
 	@RequestMapping(value = "m_reportManage", method = RequestMethod.GET)
 	public String m_reportManage(Model model, ReportPagination reportPagination) {
-		System.out.println(1);
+
 		List<Report> teamReports = userMapper.findAllWithReports();
 		List<Report> conditionReports = userMapper.findAllCondition();
 
@@ -294,13 +294,12 @@ public class ManagerController {
 		model.addAttribute("startSM", startSM);
 		model.addAttribute("list", reportService.findAllReports(reportPagination));
 		model.addAttribute("orderBy", reportService.getOrderByOptions());
-		System.out.println(reportPagination.getQueryString());
+
 		return "manager/m_reportManage";
 	}
 
 	@RequestMapping(value = "m_reportManage", method = RequestMethod.POST)
 	public String m_reportManage2(Model model, ReportPagination reportPagination) {
-		System.out.println(2);
 
 		List<Report> teamReports = userMapper.findAllWithReports();
 		List<Report> conditionReports = userMapper.findAllCondition();
@@ -314,7 +313,7 @@ public class ManagerController {
 		model.addAttribute("startSM", startSM);
 		model.addAttribute("list", reportService.findAllReports(reportPagination));
 		model.addAttribute("orderBy", reportService.getOrderByOptions());
-		System.out.println(reportPagination.getQueryString());
+
 		return "redirect:m_reportManage?"+reportPagination.getQueryString()+"#fh5co-tab-feature-center3report";
 	}
 
