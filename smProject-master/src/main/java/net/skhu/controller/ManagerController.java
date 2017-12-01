@@ -16,7 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +25,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
 import net.skhu.domain.UserDomain;
-import net.skhu.dto.Checkboxes;
 import net.skhu.dto.FileDTO;
 import net.skhu.dto.Introduce;
 import net.skhu.dto.Mentor;
@@ -42,7 +40,6 @@ import net.skhu.mapper.TeamMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.model.Pagination;
 import net.skhu.model.ReportPagination;
-import net.skhu.service.ExcelListDown;
 import net.skhu.service.ExcelReadService;
 import net.skhu.service.FileService;
 import net.skhu.service.ManagerService;
@@ -74,8 +71,6 @@ public class ManagerController {
 	ReportService reportService;
 	@Autowired
 	CommentMapper commentMapper;
-	@Autowired
-	ExcelListDown excelListDown;
 
 	@RequestMapping(value = "m_introduce_modi", method = RequestMethod.GET)
 	public String m_introduce_modi(Model model) {
@@ -314,7 +309,7 @@ public class ManagerController {
 		model.addAttribute("list", reportService.findAllReports(reportPagination));
 		model.addAttribute("orderBy", reportService.getOrderByOptions());
 
-		return "redirect:m_reportManage?"+reportPagination.getQueryString()+"#fh5co-tab-feature-center3report";
+		return "redirect:m_reportManage?" + reportPagination.getQueryString() + "#fh5co-tab-feature-center3report";
 	}
 
 	@RequestMapping(value = "report_detail", method = RequestMethod.GET)
@@ -382,11 +377,4 @@ public class ManagerController {
 
 	}
 
-	@PostMapping("excelListDown")
-	public void excelListDown(Checkboxes checkboxes) {
-		System.out.println(checkboxes.getTeamCheckbox());
-		for (int i = 0; i < checkboxes.getTeamCheckbox().size(); ++i) {
-			excelListDown.Down(checkboxes.getTeamCheckbox().get(i));
-		}
-	}
 }

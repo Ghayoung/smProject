@@ -55,43 +55,40 @@
 												aria-valuemax="100">25%</div>
 										</div>
 										-->
-										<form id="form1" name="form1" method="post"
-											action="excelListDown">
-											<div class="panel panel-default">
-												<table class="table board" id="r_table<%=n%>">
-													<thead>
+
+										<div class="panel panel-default">
+											<table class="table board" id="r_table<%=n%>">
+												<thead>
+													<tr>
+														<th style="padding-left: 4px;"><input type="checkbox"
+															onclick="selectAllCheckBox(this,'r_table<%=n%>','cb')"></th>
+														<th>번호</th>
+														<th>스터디주제</th>
+														<th>장소</th>
+														<th>작성일</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach var="reports" items="${ teamReports.reports }"
+														varStatus="status">
 														<tr>
-															<th style="padding-left: 4px;"><input
-																type="checkbox"
-																onclick="selectAllCheckBox(this,'r_table<%=n%>','cb')"></th>
-															<th>번호</th>
-															<th>스터디주제</th>
-															<th>장소</th>
-															<th>작성일</th>
+															<td><input type="checkbox" name="teamCheckbox"
+																id="cb_1" value="${ reports.id }"></td>
+															<th scope="row">${ status.index+1 }</th>
+															<td data-url="report_detail?id=${ reports.id }">${ reports.subject }</td>
+															<td>${ reports.place }</td>
+															<td>${ reports.create_date }</td>
 														</tr>
-													</thead>
-													<tbody>
-														<c:forEach var="reports" items="${ teamReports.reports }"
-															varStatus="status">
-															<tr>
-																<td><input type="checkbox" name="teamCheckbox"
-																	id="cb_1" value="${ reports.id }"></td>
-																<th scope="row">${ status.index+1 }</th>
-																<td data-url="report_detail?id=${ reports.id }">${ reports.subject }</td>
-																<td>${ reports.place }</td>
-																<td>${ reports.create_date }</td>
-															</tr>
-														</c:forEach>
-													</tbody>
-												</table>
-											</div>
-											<div class="col-md-12">
-												<input type="submit"
-													class="btn btn-primary btn-lg col-md-offset-11"
-													value="다운로드" />
-											</div>
-										</form>
-										<div class="fh5co-spacer fh5co-spacer-md"></div>
+													</c:forEach>
+												</tbody>
+											</table>
+										</div>
+										<div class="col-md-12">
+											<input type="submit"
+												class="btn btn-primary btn-lg col-md-offset-11"
+												onclick="mdown('teamCheckbox')" value="다운로드" />
+										</div>
+										<div class="fh5co-spacer fh5co-spacer-sm"></div>
 										<%
 											n++;
 										%>
@@ -158,7 +155,8 @@
 																	&& ((reportCalendar.equals(deadCalendar) || reportCalendar.before(deadCalendar)))) {
 												%>
 												<tr>
-													<td><input type="checkbox" name="checkbox" id="cb_1"></td>
+													<td><input type="checkbox" name="weekCheckbox"
+														id="cb_1" value="<%=report.getId()%>"></td>
 													<th scope="row"><%=j + 1%></th>
 													<td><%=report.getGroup_name()%></td>
 													<td data-url="report_detail?id=<%=report.getId()%>"><%=report.getSubject()%></td>
@@ -176,11 +174,13 @@
 											</tbody>
 										</table>
 									</div>
-									<div class="fh5co-spacer fh5co-spacer-md"></div>
 
-									<div class="col-r">
-										<div id="check_arr" class="btn btn-primary btn-lg">다운로드</div>
+									<div class="col-md-12">
+										<input type="submit"
+											class="btn btn-primary btn-lg col-md-offset-11"
+											onclick="mdown('weekCheckbox')" value="다운로드" />
 									</div>
+									<div class="fh5co-spacer fh5co-spacer-sm"></div>
 									<%
 										startCalendar.add(Calendar.DATE, 7);
 											deadCalendar.add(Calendar.DATE, 7);
@@ -199,8 +199,8 @@
 									<h2>전체보고서</h2>
 									<div class="col-md-12 animate-box">
 										<div class="pull-right">
-											<form:form action="m_reportManage" method="post" modelAttribute="reportPagination"
-												class="form-inline mb5">
+											<form:form action="m_reportManage" method="post"
+												modelAttribute="reportPagination" class="form-inline mb5">
 												<form:hidden path="pg" value="1" />
 
 												<span>정렬:</span>
@@ -239,8 +239,8 @@
 														<c:forEach var="report" items="${ list }"
 															varStatus="status">
 															<tr>
-																<td><input type="checkbox" name="checkbox"
-																	id="cb_1"></td>
+																<td><input type="checkbox" name="allCheckbox"
+																	value="${ report.id }" id="cb_1"></td>
 																<th scope="row">${ status.index+1 }</th>
 																<td>${ report.group_name }</td>
 																<td data-url="report_detail?id=${ report.id }">${ report.study_content }</td>
@@ -256,11 +256,14 @@
 									<my:reportpagination pageSize="${ reportPagination.sz }"
 										recordCount="${ reportPagination.recordCount }" />
 
-									<div class="fh5co-spacer fh5co-spacer-md"></div>
 
-									<div class="col-r">
-										<div id="check_arr" class="btn btn-primary btn-lg">다운로드</div>
+
+									<div class="col-md-12">
+										<input type="submit"
+											class="btn btn-primary btn-lg col-md-offset-11"
+											onclick="mdown('allCheckbox')" value="다운로드" />
 									</div>
+									<div class="fh5co-spacer fh5co-spacer-sm"></div>
 									<!--전체 끝-->
 
 								</div>
