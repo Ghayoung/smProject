@@ -530,3 +530,12 @@ function deleteAlert() {
  * var s = $("#summernote").summernote('code'); $("input[name=content]").val(s);
  * $("#form").submit(); }
  */
+
+
+
+$(document).on('click', 'td', function(){
+    var target = $(this).find('input[type="checkbox"]');
+
+    // If it's checked then uncheck it and vice versa
+    target.prop('checked', !target.prop('checked'));
+});

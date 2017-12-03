@@ -9,8 +9,8 @@
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
-		INSERT timetable (day, time, time_apply_id)
-		VALUES (#{param1}, #{param2}, #{param3})
+		INSERT timetable (day, time, time_apply_id, time_user_id)
+		VALUES (#{param1}, #{param2}, #{param3}, #{param4})
 	</insert>
 	
 	<delete id="delete">

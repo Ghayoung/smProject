@@ -6,6 +6,7 @@ public class TimetableDTO {
 	int day;
 	int time;
 	int time_apply_id;
+	int time_user_id;
 
 	public int getId() {
 		return id;
@@ -30,6 +31,12 @@ public class TimetableDTO {
 	}
 	public void setTime_apply_id(int time_apply_id) {
 		this.time_apply_id = time_apply_id;
+	}
+	public int getTime_user_id() {
+		return time_user_id;
+	}
+	public void setTime_user_id(int time_user_id) {
+		this.time_user_id = time_user_id;
 	}
 
 }

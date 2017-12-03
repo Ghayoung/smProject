@@ -2594,10 +2594,11 @@ th {
 .table > tbody > tr > td,
 .table > tfoot > tr > th,
 .table > tfoot > tr > td {
-  padding: 8px;
+  padding: 20px;
   line-height: 1.42857;
   vertical-align: middle;
   border-top: 1px solid #ddd;
+  
 }
 .table > thead > tr > th {
   vertical-align: bottom;
@@ -5634,6 +5635,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 .panel > .table-responsive:last-child > .table:last-child {
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
+  border-collapse: collapse;
 }
 .panel > .table:last-child > tbody:last-child > tr:last-child,
 .panel > .table:last-child > tfoot:last-child > tr:last-child,

@@ -404,31 +404,31 @@ public class UserController {
 		Team team=teamMapper.findTeamByMember(user.getId());
 		int time_team = team.getGroup_m_apply_id();
 
-		timetableMapper.delete(time_team);
+		//timetableMapper.delete(time_team);
 
 		if (checkboxes.getMon() != null) {
 			for (int i = 0; i < checkboxes.getMon().size(); ++i) {
-				timetableMapper.insert(1, Integer.parseInt(checkboxes.getMon().get(i)), time_team);
+				timetableMapper.insert(1, Integer.parseInt(checkboxes.getMon().get(i)), time_team,user.getId());
 			}
 		}
 		if (checkboxes.getTue() != null) {
 			for (int i = 0; i < checkboxes.getTue().size(); ++i) {
-				timetableMapper.insert(2, Integer.parseInt(checkboxes.getTue().get(i)), time_team);
+				timetableMapper.insert(2, Integer.parseInt(checkboxes.getTue().get(i)), time_team, user.getId());
 			}
 		}
 		if (checkboxes.getWed() != null) {
 			for (int i = 0; i < checkboxes.getWed().size(); ++i) {
-				timetableMapper.insert(3, Integer.parseInt(checkboxes.getWed().get(i)), time_team);
+				timetableMapper.insert(3, Integer.parseInt(checkboxes.getWed().get(i)), time_team, user.getId());
 			}
 		}
 		if (checkboxes.getThu() != null) {
 			for (int i = 0; i < checkboxes.getThu().size(); ++i) {
-				timetableMapper.insert(4, Integer.parseInt(checkboxes.getThu().get(i)), time_team);
+				timetableMapper.insert(4, Integer.parseInt(checkboxes.getThu().get(i)), time_team, user.getId());
 			}
 		}
 		if (checkboxes.getFri() != null) {
 			for (int i = 0; i < checkboxes.getFri().size(); ++i) {
-				timetableMapper.insert(5, Integer.parseInt(checkboxes.getFri().get(i)), time_team);
+				timetableMapper.insert(5, Integer.parseInt(checkboxes.getFri().get(i)), time_team, user.getId());
 			}
 		}
 		List<TimetableDTO> timetable2 = timetableMapper.findAllTeamItem(time_team);

@@ -56,6 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .invalidateHttpSession(true);
 
         http.authenticationProvider(myAuthenticationProvider);
+
+        http.headers().frameOptions().sameOrigin();
     }
 
 }
