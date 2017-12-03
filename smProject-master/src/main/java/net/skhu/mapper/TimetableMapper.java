@@ -8,7 +8,7 @@ import net.skhu.dto.TimetableDTO;
 
 @Mapper
 public interface TimetableMapper {
-	void insert(int day, int time, int time_team);
+	void insert(int day, int time, int time_team, int user_id);
 	void delete(int time_team);
 	List<TimetableDTO> findAllTeamItem(int time_team);
 }
