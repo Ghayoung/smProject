@@ -174,22 +174,22 @@ function show_studyFile() {
 }
 
 function checkSearch2() {
-	if (document.fmm.mentoringSearch.value == "") {
-		alert("검색어를 입력해주세요");
-		document.fmm.mentoringSearch.focus();
+	if (document.searchForm.semester.value == 0) {
+		alert("검색을 원하는 학기를 선택해주세요");
+		document.searchForm.semester.focus();
 		return false;
 	} else {
-		fmm.submit();
+		searchForm.submit();
 	}
 }
 
 function checkReportSearch() {
 	if (document.reportForm.year.value == "") {
-		alert("검색 년도를 입력해주세요.");
+		alert("검색을 원하는 년도를 입력해주세요.");
 		document.reportForm.year.focus();
 		return false;
 	} else if(document.reportForm.semester.value == 0){
-		alert("검색 학기를 선택해주세요.");
+		alert("검색을 원하는 학기를 선택해주세요.");
 		document.reportForm.semester.focus();
 		return false;
 	}else {

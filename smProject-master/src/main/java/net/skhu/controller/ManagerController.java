@@ -6,6 +6,7 @@ import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -180,37 +181,66 @@ public class ManagerController {
 
 	@RequestMapping(value = "m_userManage", method = RequestMethod.GET)
 	public String m_userManage(Model model) {
-		List<User> managers = userMapper.findAllManager();
-		List<User> mentors = userMapper.findAllMentor();
-		List<User> mentees = userMapper.findAllMentee();
-		List<User> users = userMapper.findAllUser();
+		String startKeyword = null;
+		String endKeyword = null;
+		String semester = null;
+		Calendar current = Calendar.getInstance();
+		if (current.get(Calendar.MONTH) + 1 <= 12 && current.get(Calendar.MONTH) + 1 >= 9) {
+			startKeyword = Integer.toString(current.get(Calendar.YEAR)) + "-09-01";
+			endKeyword = Integer.toString(current.get(Calendar.YEAR)) + "-12-31";
+			semester = "2";
+		}
+		if (current.get(Calendar.MONTH) + 1 <= 7 && current.get(Calendar.MONTH) + 1 >= 3) {
+			startKeyword = Integer.toString(current.get(Calendar.YEAR)) + "-03-01";
+			endKeyword = Integer.toString(current.get(Calendar.YEAR)) + "-6-30";
+			semester = "1";
+		}
+
+		List<User> managers = userMapper.findAllManager(startKeyword, endKeyword);
+		List<User> mentors = userMapper.findAllMentor(startKeyword, endKeyword);
+		List<User> mentees = userMapper.findAllMentee(startKeyword, endKeyword);
+		List<User> users = userMapper.findAllUser(startKeyword, endKeyword);
 
 		model.addAttribute("managers", managers);
 		model.addAttribute("mentors", mentors);
 		model.addAttribute("mentees", mentees);
 		model.addAttribute("users", users);
+		model.addAttribute("semester", semester);
 
 		return "manager/m_userManage";
 	}
 
 	@RequestMapping(value = "m_userManage", method = RequestMethod.POST)
-	// public String m_userManage(Model model,@RequestParam(required=false,
-	// name="keyword") String keyword){
 	public String m_userManage(Model model, HttpServletRequest request) {
+		String startKeyword = null;
+		String endKeyword = null;
+		String semester = null;
 
+		Calendar current = Calendar.getInstance();
+		if (current.get(Calendar.MONTH) + 1 <= 12 && current.get(Calendar.MONTH) + 1 >= 9) {
+			startKeyword = Integer.toString(current.get(Calendar.YEAR)) + "-09-01";
+			endKeyword = Integer.toString(current.get(Calendar.YEAR)) + "-12-31";
+			semester = "2";
+		}
+		if (current.get(Calendar.MONTH) + 1 <= 7 && current.get(Calendar.MONTH) + 1 >= 3) {
+			startKeyword = Integer.toString(current.get(Calendar.YEAR)) + "-03-01";
+			endKeyword = Integer.toString(current.get(Calendar.YEAR)) + "-6-30";
+			semester = "1";
+		}
 		String keyword = request.getParameter("search");
 		List<User> SearchUsers = userMapper.findByName(keyword);
 		model.addAttribute("SearchUsers", SearchUsers);
 		model.addAttribute("keyword", keyword);
 
-		List<User> managers = userMapper.findAllManager();
-		List<User> mentors = userMapper.findAllMentor();
-		List<User> mentees = userMapper.findAllMentee();
-		List<User> users = userMapper.findAllUser();
+		List<User> managers = userMapper.findAllManager(startKeyword, endKeyword);
+		List<User> mentors = userMapper.findAllMentor(startKeyword, endKeyword);
+		List<User> mentees = userMapper.findAllMentee(startKeyword, endKeyword);
+		List<User> users = userMapper.findAllUser(startKeyword, endKeyword);
 		model.addAttribute("managers", managers);
 		model.addAttribute("mentors", mentors);
 		model.addAttribute("mentees", mentees);
 		model.addAttribute("users", users);
+		model.addAttribute("semester", semester);
 
 		return "manager/m_userManage";
 
@@ -223,31 +253,53 @@ public class ManagerController {
 		return "redirect:m_userManage";
 	}
 
-	@RequestMapping(value = "term_search_user", method = RequestMethod.POST)
-	public String term_search_user(Model model, HttpServletRequest request) {
+	@RequestMapping(value = "term_search_user", method = RequestMethod.GET)
+	public String term_search_user(Model model, String year, String semester, String keyword) {
+		Calendar current = Calendar.getInstance();
+		if ("".equals(year))
+			year = Integer.toString(current.get(Calendar.YEAR));
+		String startKeyword = year;
+		String endKeyword = year;
+		if (Integer.parseInt(semester) == 1) {
+			startKeyword += "-03-01";
+			endKeyword += "-06-30";
+		} else if (Integer.parseInt(semester) == 2) {
+			startKeyword += "-09-01";
+			endKeyword += "-12-30";
+		}
 
-		int year = Integer.parseInt(request.getParameter("search_year"));
+		model.addAttribute("keyword", keyword);
 		model.addAttribute("year", year);
+		model.addAttribute("semester", semester);
+		if (!"".equals(keyword)) {
+			List<User> SearchUsers = userMapper.findByName(keyword);
+			model.addAttribute("SearchUsers", SearchUsers);
+		}
 
-		List<User> TermSearchManagers = userMapper.findManagerByTerm(year);
-		List<User> TermSearchMentors = userMapper.findMentorByTerm(year);
-		List<User> TermSearchMentees = userMapper.findMenteeByTerm(year);
-		List<User> TermSearchUsers = userMapper.findUserByTerm(year);
+		List<User> TermSearchManagers = userMapper.findManagerByTerm(startKeyword, endKeyword);
+		List<User> TermSearchMentors = userMapper.findMentorByTerm(startKeyword, endKeyword);
+		List<User> TermSearchMentees = userMapper.findMenteeByTerm(startKeyword, endKeyword);
+		List<User> TermSearchUsers = userMapper.findUserByTerm(startKeyword, endKeyword);
 
 		model.addAttribute("TermSearchManagers", TermSearchManagers);
 		model.addAttribute("TermSearchMentors", TermSearchMentors);
 		model.addAttribute("TermSearchMentees", TermSearchMentees);
 		model.addAttribute("TermSearchUsers", TermSearchUsers);
 
-		//
-		// List<User> managers= userMapper.findAllManager();
-		// List<User> mentors= userMapper.findAllMentor();
-		// List<User> mentees= userMapper.findAllMentee();
-		// model.addAttribute("managers", managers);
-		// model.addAttribute("mentors", mentors);
-		// model.addAttribute("mentees", mentees);
-		//
 		return "manager/m_userManage";
+	}
+
+	@RequestMapping(value = "term_search_user", method = RequestMethod.POST)
+	public String term_search_user2(Model model, String year, String semester, String keyword) {
+		Calendar current = Calendar.getInstance();
+		if ("".equals(year))
+			year = Integer.toString(current.get(Calendar.YEAR));
+
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("year", year);
+		model.addAttribute("semester", semester);
+
+		return "redirect:term_search_user#userManage";
 	}
 
 	@RequestMapping(value = "m_mentoringManage", method = RequestMethod.GET)

@@ -19,13 +19,13 @@ public interface UserMapper {
 
 	List<User> findAll();
 
-	List<User> findAllManager();
+	List<User> findAllManager(String startKeyword, String endKeyword);
 
-	List<User> findAllMentor();
+	List<User> findAllMentor(String startKeyword, String endKeyword);
 
-	List<User> findAllMentee();
+	List<User> findAllMentee(String startKeyword, String endKeyword);
 
-	List<User> findAllUser();
+	List<User> findAllUser(String startKeyword, String endKeyword);
 
 	List<User> findByName(String keyword);
 
@@ -75,13 +75,13 @@ public interface UserMapper {
 
 	void auth_update(int type, int id);
 
-	List<User> findManagerByTerm(int year);
+	List<User> findManagerByTerm(String startKeyword, String endKeyword);
 
-	List<User> findMentorByTerm(int year);
+	List<User> findMentorByTerm(String startKeyword, String endKeyword);
 
-	List<User> findMenteeByTerm(int year);
+	List<User> findMenteeByTerm(String startKeyword, String endKeyword);
 
-	List<User> findUserByTerm(int year);
+	List<User> findUserByTerm(String startKeyword, String endKeyword);
 
 	void dropUser(int id);
 
