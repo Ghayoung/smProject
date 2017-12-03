@@ -57,6 +57,13 @@
 		</choose>
 		LIMIT ${start}, ${sz}
 	</select>
+	
+	<select id="findAllBySearch" resultType="Report">
+		SELECT r.*, m.group_name
+		FROM report r left join mentor_apply m on r.rep_u_id=m.mentor_u_id
+		where r.create_date between #{param1} and #{param2}
+	</select>
+	
 
 	<select id="count" resultType="int">
 		SELECT COUNT(*) FROM report
@@ -106,13 +113,11 @@
 	</select>
 
 	<select id="findAllCondition" resultType="Report">
-		SELECT m.group_name,
-		count(r.rep_u_id) reportCount
-		FROM mentor_apply m JOIN report r ON
-		m.mentor_u_id = r.rep_u_id group by
-		r.rep_u_id
+		SELECT m.group_name, u.name, count(r.rep_u_id) reportCount
+		FROM mentor_apply m JOIN report r ON m.mentor_u_id = r.rep_u_id join user u on m.mentor_u_id=u.id
+		group by r.rep_u_id
 	</select>
-
+	
 	<select id="findAllConditionById" resultType="Report">
 		SELECT
 		m.group_name, count(r.rep_u_id) reportCount
@@ -163,6 +168,7 @@
 		on u.status_id=s.id
 		WHERE type=1;
 	</select>
+	
 	<select id="findByName" resultType="User">
 		SELECT u.*, d.d_name,
 		s.status_name
@@ -311,4 +317,7 @@
 		WHERE r.id=#{id}
 	</select>
 
+	<delete id="deleteReport">
+		delete from report where id=#{id}
+	</delete>
 </mapper>

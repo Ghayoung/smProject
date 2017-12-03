@@ -14,7 +14,7 @@
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
 				</div>
 				<div class="col-md-12 animate-box">
-					<form id="form1" name="form1" method="post" action="timetable"">
+					<form id="form1" name="form1" method="post" action="timetable">
 						<div class="panel panel-default ">
 
 							<table class="table table-striped">

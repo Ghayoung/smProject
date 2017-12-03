@@ -29,6 +29,8 @@ public interface UserMapper {
 
 	List<User> findByName(String keyword);
 
+	void deleteReport(int id);
+
 	void update(User user);
 
 	void type_update(User user);
@@ -52,6 +54,8 @@ public interface UserMapper {
 	List<Report> findAllReports(ReportPagination pagination);
 
 	List<Report> findAllReportsById(int id);
+
+	List<Report> findAllBySearch(String startKeyword, String endKeyword);
 
 	List<Report> findAllReportsByWriter(int id);
 
