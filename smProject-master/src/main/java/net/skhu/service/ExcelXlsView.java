@@ -17,7 +17,7 @@ public class ExcelXlsView extends AbstractXlsxView {
 
 	@Override
 
-	protected void buildExcelDocument(Map<String, Object> model,
+	public void buildExcelDocument(Map<String, Object> model,
 
 			Workbook workbook,
 

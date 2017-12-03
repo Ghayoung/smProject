@@ -16,7 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,10 +40,11 @@ import net.skhu.mapper.MentorMapper;
 import net.skhu.mapper.TeamMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.model.Pagination;
-import net.skhu.service.ExcelListDown;
+import net.skhu.model.ReportPagination;
 import net.skhu.service.ExcelReadService;
 import net.skhu.service.FileService;
 import net.skhu.service.ManagerService;
+import net.skhu.service.ReportService;
 import net.skhu.service.UserService;
 
 @Controller
@@ -69,9 +69,9 @@ public class ManagerController {
 	@Autowired
 	UserService userService;
 	@Autowired
-	CommentMapper commentMapper;
+	ReportService reportService;
 	@Autowired
-	ExcelListDown excelListDown;
+	CommentMapper commentMapper;
 
 	@RequestMapping(value = "m_introduce_modi", method = RequestMethod.GET)
 	public String m_introduce_modi(Model model) {
@@ -120,7 +120,6 @@ public class ManagerController {
 		List<User> users = excelReadService.readExcelToList(file, UserDomain::rowOf);
 		for (int i = 0; i < users.size(); i++) {
 			userMapper.insertWithExcel(users.get(i));
-			System.out.println("유저" + i + " 업로드 완료");
 		}
 		return "manager/m_register";
 	}
@@ -263,7 +262,6 @@ public class ManagerController {
 	public String m_mentoringManage(Model model, HttpServletRequest request) {
 
 		String keyword = request.getParameter("mentoringSearch");
-		System.out.println(keyword);
 		List<Team> searchTeams = teamMapper.findMentoringByName(keyword);
 		model.addAttribute("SearchTeams", searchTeams);
 		model.addAttribute("keyword", keyword);
@@ -276,7 +274,7 @@ public class ManagerController {
 	}
 
 	@RequestMapping(value = "m_reportManage", method = RequestMethod.GET)
-	public String m_reportManage(Model model) {
+	public String m_reportManage(Model model, ReportPagination reportPagination) {
 		List<Report> teamReports = userMapper.findAllWithReports();
 		List<Report> conditionReports = userMapper.findAllCondition();
 
@@ -287,7 +285,66 @@ public class ManagerController {
 		model.addAttribute("conditionReports", conditionReports);
 		model.addAttribute("totalReport", totalReport);
 		model.addAttribute("startSM", startSM);
+		model.addAttribute("list", reportService.findAllReports(reportPagination));
+		model.addAttribute("orderBy", reportService.getOrderByOptions());
+
 		return "manager/m_reportManage";
+	}
+
+	@RequestMapping(value = "m_reportManage", method = RequestMethod.POST)
+	public String m_reportManage2(Model model, ReportPagination reportPagination) {
+
+		return "redirect:m_reportManage?" + reportPagination.getQueryString() + "#fh5co-tab-feature-center3report";
+	}
+
+	@RequestMapping(value = "m_searchReport", method = RequestMethod.GET)
+	public String m_searchReport(Model model, ReportPagination reportPagination, String year, String semester) {
+		List<Report> teamReports = userMapper.findAllWithReports();
+		List<Report> conditionReports = userMapper.findAllCondition();
+		String startKeyword = year;
+		String endKeyword = year;
+		if (Integer.parseInt(semester) == 1) {
+			startKeyword += "-03-01";
+			endKeyword += "-06-30";
+		} else {
+			startKeyword += "-09-01";
+			endKeyword += "-12-30";
+		}
+
+		List<Report> searchReports = userMapper.findAllBySearch(startKeyword, endKeyword);
+
+		int totalReport = userMapper.findStudyCount();
+		String startSM = (userMapper.findStartSM()).replaceAll("-", "");
+
+		model.addAttribute("teamReports", teamReports);
+		model.addAttribute("conditionReports", conditionReports);
+		model.addAttribute("totalReport", totalReport);
+		model.addAttribute("startSM", startSM);
+		model.addAttribute("list", reportService.findAllReports(reportPagination));
+		model.addAttribute("orderBy", reportService.getOrderByOptions());
+		model.addAttribute("searchReports", searchReports);
+		model.addAttribute("year", year);
+		model.addAttribute("semester", semester);
+
+		return "manager/m_reportManage";
+	}
+
+	@RequestMapping(value = "m_searchReport", method = RequestMethod.POST)
+	public String m_searchReport2(Model model, ReportPagination reportPagination, String year, String semester) {
+		model.addAttribute("year", year);
+		model.addAttribute("semester", semester);
+
+		return "redirect:m_searchReport?" + "#fh5co-tab-feature-center5report";
+	}
+
+	@RequestMapping(value = "deleteReport", method = RequestMethod.POST)
+	public String deleteReport(Model model, Checkboxes semesterCheckbox, String year, String semester) {
+		for (int i = 0; i < semesterCheckbox.getSemesterCheckbox().size(); ++i) {
+			userMapper.deleteReport(semesterCheckbox.getSemesterCheckbox().get(i));
+		}
+		model.addAttribute("year", year);
+		model.addAttribute("semester", semester);
+		return "redirect:m_searchReport?" + "#fh5co-tab-feature-center5report";
 	}
 
 	@RequestMapping(value = "report_detail", method = RequestMethod.GET)
@@ -355,11 +412,4 @@ public class ManagerController {
 
 	}
 
-	@PostMapping("excelListDown")
-	public void excelListDown(Checkboxes checkboxes) {
-		System.out.println(checkboxes.getTeamCheckbox());
-		for(int i=0; i<checkboxes.getTeamCheckbox().size(); ++i){
-			excelListDown.Down(checkboxes.getTeamCheckbox().get(i));
-		}
-	}
 }

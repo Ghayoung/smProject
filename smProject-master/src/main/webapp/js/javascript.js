@@ -49,6 +49,12 @@ function selectAllCheckBox(allcheck, containerID, checkboxIDMatch) { // (all체�
 	}
 }
 
+$(function() {
+
+	$(".autosubmit").change(function() {
+		$(this).parents("form").submit();
+	})
+})
 
 function register() {
 	if (document.r_form.file.value == "")
@@ -76,6 +82,33 @@ function double_dep(v, showId, nonShowId) {
 			document.getElementById(showId).style.display = "none"; // 숨김
 		}
 	}
+}
+mdown.fList = [];
+function mdown(N) {
+	var objs = document.getElementsByName(N);
+	var Body = document.getElementsByTagName('BODY')[0];
+	var j;
+
+	for (var i = j = 0; i < objs.length; i++) {
+		if (!objs[i].checked)
+			continue;
+		if (mdown.fList[j] == undefined) {
+			mdown.fList[j] = document.createElement("IFRAME");
+			mdown.fList[j].style.display = 'none';
+
+			Body.appendChild(mdown.fList[j]);
+		}
+		mdown.fList[j].src = mdown.GetURL(objs[i].value);
+		j++;
+	}
+
+}
+
+mdown.GetURL = function(val) {
+	// 이 함수를 각자의 프로그램 사양에 따라 적당히 만들어주세요.
+	// 체크박스에 있던 value 값이 val로 전달됩니다.
+
+	return 'http://localhost:8080/mybatisEx/report/excel-xls?id=' + val;
 }
 
 function minor_dep(v, showId, nonShowId) {
@@ -146,7 +179,21 @@ function checkSearch2() {
 		document.fmm.mentoringSearch.focus();
 		return false;
 	} else {
-		fm.submit();
+		fmm.submit();
+	}
+}
+
+function checkReportSearch() {
+	if (document.reportForm.year.value == "") {
+		alert("검색 년도를 입력해주세요.");
+		document.reportForm.year.focus();
+		return false;
+	} else if(document.reportForm.semester.value == 0){
+		alert("검색 학기를 선택해주세요.");
+		document.reportForm.semester.focus();
+		return false;
+	}else {
+		reportForm.submit();
 	}
 }
 
@@ -396,18 +443,15 @@ function checkInputEmail() {
 		alert("보내는 이메일 주소를 입력해주세요");
 		$("#form [name=to]").focus();
 		return false;
-	} 
-	else if ($("#form [name=subject]").val() == "") {
+	} else if ($("#form [name=subject]").val() == "") {
 		alert("제목을 입력해주세요");
 		$("#form [name=subject]").focus();
 		return false;
-	} 
-	else if ($("#form [name=text]").val() == "") {
+	} else if ($("#form [name=text]").val() == "") {
 		alert("내용을 입력해주세요");
 		$("#form [name=text]").focus();
 		return false;
-	} 
-	else {//
+	} else {//
 		form.submit();
 	}
 }
@@ -455,6 +499,20 @@ function deleteApply() {
 
 function deleteReport() {
 	return confirm("해당 보고서를 삭제하시겠습니까?");
+}
+
+function delete_report() {
+	if ($('input:checkbox[name="semesterCheckbox"]:checked').length > 0) {
+		if (confirm('정말 삭제하시겠습니까?')) {
+			return true;
+		} else {
+			return false;
+		}
+
+	} else {
+		alert('선택된 보고서가 없습니다.');
+		return false;
+	}
 }
 
 function deleteComment() {

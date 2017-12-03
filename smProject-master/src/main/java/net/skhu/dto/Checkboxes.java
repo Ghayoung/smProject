@@ -9,6 +9,7 @@ public class Checkboxes {
 	List<String> thu;
 	List<String> fri;
 	List<Integer> teamCheckbox;
+	List<Integer> semesterCheckbox;
 
 	public List<String> getMon() {
 		return mon;
@@ -56,6 +57,14 @@ public class Checkboxes {
 
 	public void setTeamCheckbox(List<Integer> teamCheckbox) {
 		this.teamCheckbox = teamCheckbox;
+	}
+
+	public List<Integer> getSemesterCheckbox() {
+		return semesterCheckbox;
+	}
+
+	public void setSemesterCheckbox(List<Integer> semesterCheckbox) {
+		this.semesterCheckbox = semesterCheckbox;
 	}
 
 }

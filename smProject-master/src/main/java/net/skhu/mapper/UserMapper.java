@@ -8,40 +8,85 @@ import net.skhu.dto.Comment;
 import net.skhu.dto.Report;
 import net.skhu.dto.Setting;
 import net.skhu.dto.User;
+import net.skhu.model.Option;
+import net.skhu.model.ReportPagination;
 
 @Mapper
 public interface UserMapper {
 	User findOneByUser_id(String user_id);
+
 	User findOneById(int id);
+
 	List<User> findAll();
+
 	List<User> findAllManager();
+
 	List<User> findAllMentor();
+
 	List<User> findAllMentee();
+
 	List<User> findAllUser();
+
 	List<User> findByName(String keyword);
+
+	void deleteReport(int id);
+
 	void update(User user);
+
 	void type_update(User user);
+
 	void delete(int id);
+
 	void insertWithDep(User user);
+
 	void insertWithMinor(User user);
+
 	void insertWithDouble(User user);
+
 	void insertWithExcel(User user);
+
 	void m_setting(Setting setting);
-    List<Report> findAllWithReports();
-    List<Report> findAllCondition();
-    List<Report> findAllReportsById(int id);
-    List<Report> findAllReportsByWriter(int id);
-    List<Comment> findAllCommentsByWriter(int id);
-    Report findAllConditionById(int id);
-    Report selectExcelList(int id);
-    int findStudyCount();
-    int findType(int id);
-    String findStartSM();
-    Report findOneReport(int id);
-    void auth_update(int type, int id);
-    List<User> findManagerByTerm(int year);
-    List<User> findMentorByTerm(int year);
-    List<User> findMenteeByTerm(int year);
-    List<User> findUserByTerm(int year);
-    void dropUser(int id);
+
+	List<Report> findAllWithReports();
+
+	List<Report> findAllCondition();
+
+	List<Report> findAllReports(ReportPagination pagination);
+
+	List<Report> findAllReportsById(int id);
+
+	List<Report> findAllBySearch(String startKeyword, String endKeyword);
+
+	List<Report> findAllReportsByWriter(int id);
+
+	List<Comment> findAllCommentsByWriter(int id);
+
+	Report findAllConditionById(int id);
+
+	Report selectExcelList(int id);
+
+	int findStudyCount();
+
+	int findType(int id);
+
+	String findStartSM();
+
+	Report findOneReport(int id);
+
+	void auth_update(int type, int id);
+
+	List<User> findManagerByTerm(int year);
+
+	List<User> findMentorByTerm(int year);
+
+	List<User> findMenteeByTerm(int year);
+
+	List<User> findUserByTerm(int year);
+
+	void dropUser(int id);
+
+    int count(ReportPagination pagination);
+
+	Option[] orderBy = { new Option(0, "팀명"), new Option(1, "빠른작성일"), new Option(2, "최근작성일") };
+
 }
