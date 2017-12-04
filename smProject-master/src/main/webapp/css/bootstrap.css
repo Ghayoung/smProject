@@ -6847,3 +6847,29 @@ button.close {
 }
 
 /*# sourceMappingURL=bootstrap.css.map */
+
+
+.tooltip1 {
+    position: relative;
+    background: #faf3a182;
+}
+
+.tooltip1 .tooltiptext1 {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    left: 50%; 
+    margin-left: -60px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip1:hover .tooltiptext1 {
+    visibility: visible;
+}

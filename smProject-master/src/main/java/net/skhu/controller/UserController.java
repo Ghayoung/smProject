@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -394,6 +395,7 @@ public class UserController {
 		int time_team = team.getGroup_m_apply_id();
 		List<TimetableDTO> timetable = timetableMapper.findAllTeamItem(time_team);
 		List<TimetableDTO> mytimetable = timetableMapper.findMyTimeTable(user.getId());
+				
 		model.addAttribute("mytimetable", mytimetable);
 		model.addAttribute("timetable", timetable);
 

@@ -5,7 +5,8 @@
 <mapper namespace="net.skhu.mapper.TimetableMapper">
 
 	<select id="findAllTeamItem" resultType="TimetableDTO">
-		SELECT * from timetable where time_apply_id = #{param1}
+		SELECT t.*, u.name from timetable t join user u on t.time_user_id = u.id
+		where time_apply_id = #{param1}
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id">

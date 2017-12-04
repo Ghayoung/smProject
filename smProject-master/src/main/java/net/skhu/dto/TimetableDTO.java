@@ -7,6 +7,7 @@ public class TimetableDTO {
 	int time;
 	int time_apply_id;
 	int time_user_id;
+	String name;
 
 	public int getId() {
 		return id;
@@ -38,5 +39,12 @@ public class TimetableDTO {
 	public void setTime_user_id(int time_user_id) {
 		this.time_user_id = time_user_id;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+
 
 }

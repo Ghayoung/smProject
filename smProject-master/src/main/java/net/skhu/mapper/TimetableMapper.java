@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import net.skhu.dto.TimetableDTO;
 
+
 @Mapper
 public interface TimetableMapper {
 	void insert(int day, int time, int time_team, int user_id);
