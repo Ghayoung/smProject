@@ -307,25 +307,97 @@ public class ManagerController {
 
 	@RequestMapping(value = "m_mentoringManage", method = RequestMethod.GET)
 	public String m_montoringManage(Model model) {
-
-		List<Team> teams = teamMapper.findAll();
+		String startKeyword = null;
+		String endKeyword = null;
+		String semester = null;
+		Calendar current = Calendar.getInstance();
+		if (current.get(Calendar.MONTH) + 1 <= 12 && current.get(Calendar.MONTH) + 1 >= 9) {
+			startKeyword = Integer.toString(current.get(Calendar.YEAR)) + "-09-01";
+			endKeyword = Integer.toString(current.get(Calendar.YEAR)) + "-12-31";
+			semester = "2";
+		}
+		if (current.get(Calendar.MONTH) + 1 <= 7 && current.get(Calendar.MONTH) + 1 >= 3) {
+			startKeyword = Integer.toString(current.get(Calendar.YEAR)) + "-03-01";
+			endKeyword = Integer.toString(current.get(Calendar.YEAR)) + "-6-30";
+			semester = "1";
+		}
+		List<Team> teams = teamMapper.findAll(startKeyword, endKeyword);
 		model.addAttribute("teams", teams);
+		model.addAttribute("semester", semester);
 		return "manager/m_mentoringManage";
 	}
 
 	@RequestMapping(value = "m_mentoringManage", method = RequestMethod.POST)
 	public String m_mentoringManage(Model model, HttpServletRequest request) {
-
+		String startKeyword = null;
+		String endKeyword = null;
+		String semester = null;
+		Calendar current = Calendar.getInstance();
+		if (current.get(Calendar.MONTH) + 1 <= 12 && current.get(Calendar.MONTH) + 1 >= 9) {
+			startKeyword = Integer.toString(current.get(Calendar.YEAR)) + "-09-01";
+			endKeyword = Integer.toString(current.get(Calendar.YEAR)) + "-12-31";
+			semester = "2";
+		}
+		if (current.get(Calendar.MONTH) + 1 <= 7 && current.get(Calendar.MONTH) + 1 >= 3) {
+			startKeyword = Integer.toString(current.get(Calendar.YEAR)) + "-03-01";
+			endKeyword = Integer.toString(current.get(Calendar.YEAR)) + "-6-30";
+			semester = "1";
+		}
 		String keyword = request.getParameter("mentoringSearch");
 		List<Team> searchTeams = teamMapper.findMentoringByName(keyword);
 		model.addAttribute("SearchTeams", searchTeams);
 		model.addAttribute("keyword", keyword);
 
-		List<Team> teams = teamMapper.findAll();
+		List<Team> teams = teamMapper.findAll(startKeyword, endKeyword);
 		model.addAttribute("teams", teams);
+		model.addAttribute("semester", semester);
 
 		return "manager/m_mentoringManage";
 
+	}
+
+	@RequestMapping(value = "term_search_mentoring", method = RequestMethod.GET)
+	public String term_search_mentoring(Model model, String year, String semester, String keyword) {
+		Calendar current = Calendar.getInstance();
+		if ("".equals(year))
+			year = Integer.toString(current.get(Calendar.YEAR));
+		String startKeyword = year;
+		String endKeyword = year;
+		if (Integer.parseInt(semester) == 1) {
+			startKeyword += "-03-01";
+			endKeyword += "-06-30";
+		} else if (Integer.parseInt(semester) == 2) {
+			startKeyword += "-09-01";
+			endKeyword += "-12-30";
+		}
+
+
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("year", year);
+		model.addAttribute("semester", semester);
+		if (!"".equals(keyword)) {
+			List<Team> searchTeams = teamMapper.findMentoringByName(keyword);
+			model.addAttribute("SearchTeams", searchTeams);
+		}
+
+		List<Team> teams = teamMapper.findAll(startKeyword, endKeyword);
+
+		model.addAttribute("teams", teams);
+
+		return "manager/m_mentoringManage";
+	}
+
+	@RequestMapping(value = "term_search_mentoring", method = RequestMethod.POST)
+	public String term_search_mentoring2(Model model, String year, String semester, String keyword) {
+		Calendar current = Calendar.getInstance();
+		if ("".equals(year))
+			year = Integer.toString(current.get(Calendar.YEAR));
+
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("year", year);
+		model.addAttribute("semester", semester);
+
+		return "redirect:term_search_mentoring#mentoringManage";
 	}
 
 	@RequestMapping(value = "m_reportManage", method = RequestMethod.GET)
@@ -409,6 +481,20 @@ public class ManagerController {
 		model.addAttribute("report", report);
 		model.addAttribute("url", old_url);
 		return "manager/m_report_detail";
+	}
+
+	@RequestMapping(value = "m_reportListByMentor", method = RequestMethod.GET)
+	public String m_reportListByMentor(Model model, @RequestParam("id") int id) {
+		List<Report> teamReports = userMapper.findAllReportsById(id);
+		Report conditionReports = userMapper.findAllConditionById(id);
+
+		int totalReport = userMapper.findStudyCount();
+
+		model.addAttribute("teamReports", teamReports);
+		model.addAttribute("conditionReports", conditionReports);
+		model.addAttribute("totalReport", totalReport);
+
+		return "manager/m_reportListByMentor";
 	}
 
 	@RequestMapping("file/download")

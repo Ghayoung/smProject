@@ -9,8 +9,9 @@ public class Team {
 	int apply_mentee_count;//신청멘티수
 	String open_date;
 	String name;//mentor name
-	
-	
+	int mentor_u_id;
+
+
 	public int getId() {
 		return id;
 	}
@@ -59,6 +60,11 @@ public class Team {
 	public void setApply_mentee_count(int apply_mentee_count) {
 		this.apply_mentee_count = apply_mentee_count;
 	}
-	
-	
+	public int getMentor_u_id() {
+		return mentor_u_id;
+	}
+	public void setMentor_u_id(int mentor_u_id) {
+		this.mentor_u_id = mentor_u_id;
+	}
+
 }

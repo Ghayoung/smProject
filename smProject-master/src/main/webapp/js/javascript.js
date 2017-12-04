@@ -208,14 +208,20 @@ function checkReportSearch() {
 	}
 }
 
+function checkSearchMentoring() {
+	if (document.searchMentoringForm.mentoringSearch.value == "") {
+		alert("검색어를 입력해주세요");
+		document.searchMentoringForm.mentoringSearch.focus();
+		return false;
+	} else {
+		searchMentoringForm.submit();
+	}
+}
+
 function checkSearch1() {
 	if (document.fm.search.value == "") {
 		alert("검색어를 입력해주세요");
 		document.fm.search.focus();
-		return false;
-	} else if (document.fm.mentoringSearch.value == "") {
-		alert("검색어를 입력해주세요");
-		document.fm.mentoringSearch.focus();
 		return false;
 	} else {
 		fm.submit();

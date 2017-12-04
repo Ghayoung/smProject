@@ -13,6 +13,8 @@ DESIGNED & DEVELOPED by FREEHTML5.CO
   font-weight: normal;
   font-style: normal;
 }
+
+
 html.fh5co-overflow, body.fh5co-overflow {
   overflow-x: auto;
 }
@@ -165,6 +167,32 @@ textarea {
   }
 }
 
+.tooltip2 {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip2 .tooltiptext2 {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip2:hover .tooltiptext2 {
+    visibility: visible;
+}
+
 .w_4{
   width:4%;
 }
@@ -205,6 +233,9 @@ textarea {
   width:45%;
 }
 
+.timetable>tbody>tr> td{
+	border:1px #E6E6E6 solid;
+}
 
 .board div > div{
   padding:10px;
