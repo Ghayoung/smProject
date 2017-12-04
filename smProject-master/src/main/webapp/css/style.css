@@ -233,6 +233,9 @@ textarea {
   width:45%;
 }
 
+.timetable>tbody>tr> td{
+	border:1px #E6E6E6 solid;
+}
 
 .board div > div{
   padding:10px;
