@@ -20,7 +20,7 @@
 					<form id="form1" name="form1" method="post" action="timetable">
 						<div class="panel panel-default ">
 
-							<table class="table table-striped">
+							<table class="table table-striped autoCheck">
 								<thead>
 									<tr>
 										<th class="col-md-3">시간표</th>
@@ -35,10 +35,10 @@
 								<tbody>
 									<tr>
 										<th scope="row">09:00~10:15</th>
-										<td><input type="checkbox" name="mon" value="1"
+										<td><input type="checkbox" name="mon" value="1" 
 											<c:forEach var="timetable" items="${timetable}">
 											<c:if test="${timetable.day==1 && timetable.time==1}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="tue" value="1"
+										<td><input type="checkbox" name="tue" value="1" 
 											<c:forEach var="timetable" items="${timetable}">
 											<c:if test="${timetable.day==2 && timetable.time==1}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="wed" value="1"
@@ -221,7 +221,7 @@
 					<form id="form1" name="form1" method="post" action="timetable">
 						<div class="panel panel-default ">
 
-							<table class="table table-striped">
+							<table class="table table-striped autoCheck">
 								<thead>
 									<tr>
 										<th class="col-md-3">시간표</th>
@@ -238,13 +238,13 @@
 										<th scope="row">09:00~10:15</th>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==1}">style="background:yellow"</c:if></c:forEach>></td>
-										<td><input type="checkbox" name="tue" value="1"
+											<c:if test="${timetable.day==1 && timetable.time==1}">style="background:#f3f8f9"</c:if></c:forEach>></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==1}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="wed" value="1"
+											<c:if test="${timetable.day==2 && timetable.time==1}">style="background:#f3f8f9"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==1}">checked</c:if></c:forEach> /></td>
+											<c:if test="${timetable.day==3 && timetable.time==1}">style="background:#f3f8f9"</c:if></c:forEach> ></td>
 										<td><input type="checkbox" name="thu" value="1"
 											<c:forEach var="timetable" items="${timetable}">
 											<c:if test="${timetable.day==4 && timetable.time==1}">checked</c:if></c:forEach> /></td>

@@ -494,5 +494,18 @@ var slider = function(){
 					});
 				});
 	});
+	
+	$(".autoCheck").on('click', 'td', function(){
+	    var target = $(this).find('input[type="checkbox"]');
+
+	    // If it's checked then uncheck it and vice versa
+	    target.prop('checked', !target.prop('checked'));
+	});
+	$(".autoCheck").on('click', 'input', function(){
+	    var target = $(this).find('input[type="checkbox"]');
+
+	    // If it's checked then uncheck it and vice versa
+	    target.prop('checked', !target.prop('checked'));
+	});
 
 }());

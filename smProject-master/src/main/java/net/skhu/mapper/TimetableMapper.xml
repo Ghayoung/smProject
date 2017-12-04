@@ -14,7 +14,9 @@
 	</insert>
 	
 	<delete id="delete">
-		delete from timetable where time_apply_id=#{param1}
+		delete from timetable 
+		where time_apply_id=#{param1}
+		and time_user_id = #{param2}
 	</delete>
 	
 </mapper>

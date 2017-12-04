@@ -403,8 +403,8 @@ public class UserController {
 		User user = UserService.getCurrentUser();
 		Team team=teamMapper.findTeamByMember(user.getId());
 		int time_team = team.getGroup_m_apply_id();
-
-		//timetableMapper.delete(time_team);
+		
+		timetableMapper.delete(time_team, user.getId());
 
 		if (checkboxes.getMon() != null) {
 			for (int i = 0; i < checkboxes.getMon().size(); ++i) {
