@@ -393,7 +393,10 @@ public class UserController {
 		Team team=teamMapper.findTeamByMember(user.getId());
 		int time_team = team.getGroup_m_apply_id();
 		List<TimetableDTO> timetable = timetableMapper.findAllTeamItem(time_team);
+		List<TimetableDTO> mytimetable = timetableMapper.findMyTimeTable(user.getId());
+		model.addAttribute("mytimetable", mytimetable);
 		model.addAttribute("timetable", timetable);
+
 		return "user/timetable";
 	}
 
