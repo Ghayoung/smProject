@@ -34,7 +34,13 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="year">학년</label>
-									<input name="year" placeholder="학년" value="${ mentor.year }" id="year" type="text" class="form-control input-lg"/>
+									<select class="form-control input-lg"
+									id="year" name="year">
+									<option value=0>--</option>
+									<option value=2 <c:if test="${ mentor.year eq 2 }">selected</c:if>>2</option>
+									<option value=3 <c:if test="${ mentor.year eq 3 }">selected</c:if>>3</option>
+									<option value=4 <c:if test="${ mentor.year eq 4 }">selected</c:if>>4</option>
+									</select>
 								</div>	
 							</div>
 							<div class="col-md-4">

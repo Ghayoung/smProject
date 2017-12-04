@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Article;
@@ -140,6 +139,8 @@ public class UserController {
 		return "redirect:board?" + pagination.getQueryString();
 	}
 
+
+/*
 	@RequestMapping(value = "comment_edit", method = RequestMethod.POST)
 	public String comment_edit(Model model, @RequestParam(value = "cid") int cid, HttpServletRequest request,
 			@RequestParam(value = "id") int id, Pagination pagination) {
@@ -167,7 +168,7 @@ public class UserController {
 		commentMapper.delete(cid);
 		return "redirect:board_detail?id=" + id + "&" + pagination.getQueryString();
 	}
-
+*/
 	@RequestMapping("comment_delete_mypost")
 	public String comment_delete_mypost(Model model, @RequestParam(value = "cid") int cid, Pagination pagination) {
 		commentMapper.delete(cid);
@@ -281,7 +282,7 @@ public class UserController {
 		}
 		mentorMapper.insert_apply(mentor);
 
-		return "user/mentorapply_submit";
+		return "redirect:mentorapply_submit#submit";
 	}
 
 	/* 멘토링 신청서 수정, 작성자-남하영 */
@@ -326,7 +327,7 @@ public class UserController {
 			mentor.setApply_f_doc_fk(doc_fk);
 		}
 		mentorMapper.update(mentor);
-		return "user/mentorapply_submit";
+		return "redirect:mentorapply_submit#submit";
 	}
 
 	/* 멘토링 신청서 삭제, 작성자-남하영 */
@@ -408,7 +409,7 @@ public class UserController {
 		User user = UserService.getCurrentUser();
 		Team team=teamMapper.findTeamByMember(user.getId());
 		int time_team = team.getGroup_m_apply_id();
-		
+
 		timetableMapper.delete(time_team, user.getId());
 
 		if (checkboxes.getMon() != null) {
@@ -501,9 +502,13 @@ public class UserController {
 	}
 
 	@RequestMapping("mypost")
-	public String mypost(Model model) {
+	public String mypost(Model model, Pagination pagination) {
+
+		if(UserService.getCurrentUser().getType()==2) model.addAttribute("boards", boardMapper.findAllManager());
+		else model.addAttribute("boards", boardMapper.findAllNoManager());
+
 		model.addAttribute("board", "내가 쓴 글");
-		model.addAttribute("postBoards", userService.findAllArticleBydUser());
+		//model.addAttribute("postBoards", userService.findAllArticleBydUser(pagination));
 		model.addAttribute("postReports", userService.findAllReportByUser());
 		model.addAttribute("postComments", userService.findAllCommentByUser());
 
@@ -572,17 +577,39 @@ public class UserController {
 		return "user/sendEmail";
 	}
 
-	@RequestMapping(value="sendEmail", method=RequestMethod.POST)
+	@RequestMapping(value="searchSendEmail", method=RequestMethod.POST)
 	public String sendEmail(Model model, Email email, @RequestBody MultipartFile file, HttpServletRequest request) {
 		User user = UserService.getCurrentUser();
-		if(file.isEmpty()){
-			emailService.sendSimpleMessage(user, email.getTo(), email.getSubject(), email.getText());
+		System.out.println(request.getParameter("sendAll").equals("sendAll"));
+		if(request.getParameter("sendAll").equals("sendAll")){
+			if(file.isEmpty()){
+				emailService.sendSimpleMessageAllUser(user, email.getSubject(), email.getText());
+			}
+			else{
+				emailService.sendMessageWithAttachmentAllUser(user, email.getSubject(), email.getText(), file);
+			}
 		}
 		else{
-			emailService.sendMessageWithAttachment(user, email.getTo(), email.getSubject(), email.getText(), file);
+			String to = request.getParameter("to");
+			if(file.isEmpty()){
+				emailService.sendSimpleMessage(user, to, email.getSubject(), email.getText());
+			}
+			else{
+				emailService.sendMessageWithAttachment(user, to, email.getSubject(), email.getText(), file);
+			}
 		}
 
+
 		return "redirect:sendEmail?success";
+	}
+
+	@RequestMapping(value="searchEmail", method=RequestMethod.POST)
+	public String searchEmail(Model model, HttpServletRequest request) {
+		Email email = new Email();
+		List<User> users = userMapper.findByName(request.getParameter("search"));
+		model.addAttribute("email", email);
+		model.addAttribute("users", users);
+		return "user/sendEmail";
 	}
 
 	@RequestMapping("meminfo")
