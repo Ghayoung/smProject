@@ -13,8 +13,8 @@
 					<h2 class="fh5co-uppercase-heading-sm text-center" id="save">시간표</h2>
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
 				</div>
-				
-				
+
+
 				<!-- 내 시간표 입력 -->
 				<div class="col-md-12 animate-box">
 					<form id="form1" name="form1" method="post" action="timetable">
@@ -35,10 +35,10 @@
 								<tbody>
 									<tr>
 										<th scope="row">09:00~10:15</th>
-										<td><input type="checkbox" name="mon" value="1" 
+										<td><input type="checkbox" name="mon" value="1"
 											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==1 && timetable.time==1}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="tue" value="1" 
+										<td><input type="checkbox" name="tue" value="1"
 											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==2 && timetable.time==1}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="wed" value="1"
@@ -210,12 +210,13 @@
 
 				</div>
 				<!-- 내 시간표 입력 끝 -->
-				
+
 				<div class="col-md-12 animate-box">
-					<h2 class="fh5co-uppercase-heading-sm text-center" id="save">멘토방 시간표</h2>
+					<h2 class="fh5co-uppercase-heading-sm text-center" id="save">멘토방
+						시간표</h2>
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
 				</div>
-				
+
 				<!-- 우리시간표 보기 -->
 				<div class="col-md-12 animate-box">
 					<form id="form1" name="form1" method="post" action="timetable">
@@ -235,166 +236,169 @@
 
 								<tbody>
 									<tr>
-										<th scope="row">09:00~10:15</th>
+										<th scope="row" class="fh5co-sub-ddown">09:00~10:15</th>
+										<td <c:forEach var="timetable" items="${timetable}">
+											<c:if test="${timetable.day==2 && timetable.time==1}">style="background:#faf3a182"</c:if></c:forEach> ><div class="tooltip2">
+												d  <span class="tooltiptext2"><c:forEach var="timetable" items="${timetable}">
+											<c:if test="${timetable.day==2 && timetable.time==1}">${timetable.id}</c:if></c:forEach></span>
+											</div>
+										</td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==1}">style="background:#faf3a182"</c:if></c:forEach>></td>
+											<c:if test="${timetable.day==2 && timetable.time==1}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==1}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==3 && timetable.time==1}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==1}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==4 && timetable.time==1}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==4 && timetable.time==1}">style="background:#faf3a182"</c:if></c:forEach> ></td>
-										<td
-											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==1}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==5 && timetable.time==1}">style="background:#faf3a182"</c:if></c:forEach>></td>
 									</tr>
 									<tr>
 										<th scope="row">10:30~11:45</th>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==2}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==1 && timetable.time==2}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==2}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==2 && timetable.time==2}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==2}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==3 && timetable.time==2}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==4 && timetable.time==2}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==4 && timetable.time==2}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==2}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==5 && timetable.time==2}">style="background:#faf3a182"</c:if></c:forEach>></td>
 									</tr>
 									<tr>
 										<th scope="row">12:00~13:15</th>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==3}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==1 && timetable.time==3}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==3}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==2 && timetable.time==3}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==3}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==3 && timetable.time==3}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==4 && timetable.time==3}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==4 && timetable.time==3}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==3}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==5 && timetable.time==3}">style="background:#faf3a182"</c:if></c:forEach>></td>
 									</tr>
 									<tr>
 										<th scope="row">13:30~14:45</th>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==4}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==1 && timetable.time==4}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==4}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==2 && timetable.time==4}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==4}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==3 && timetable.time==4}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==4 && timetable.time==4}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==4 && timetable.time==4}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==4}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==5 && timetable.time==4}">style="background:#faf3a182"</c:if></c:forEach>></td>
 									</tr>
 									<tr>
 										<th scope="row">15:00~16:15</th>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==5}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==1 && timetable.time==5}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==5}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==2 && timetable.time==5}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==5}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==3 && timetable.time==5}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==4 && timetable.time==5}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==4 && timetable.time==5}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==5}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==5 && timetable.time==5}">style="background:#faf3a182"</c:if></c:forEach>></td>
 									</tr>
 									<tr>
 										<th scope="row">16:30~17:45</th>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==6}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==1 && timetable.time==6}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==6}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==2 && timetable.time==6}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==6}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==3 && timetable.time==6}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
 											<c:if test="${timetable.day==4 && timetable.time==6}">checked</c:if></c:forEach> /></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==6}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==5 && timetable.time==6}">style="background:#faf3a182"</c:if></c:forEach>></td>
 									</tr>
 									<tr>
 										<th scope="row">18:00~19:00</th>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==7}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==1 && timetable.time==7}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==7}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==2 && timetable.time==7}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==7}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==3 && timetable.time==7}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==4 && timetable.time==7}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==4 && timetable.time==7}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==7}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==5 && timetable.time==7}">style="background:#faf3a182"</c:if></c:forEach>></td>
 									</tr>
 									<tr>
 										<th scope="row">19:00~20:00</th>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==8}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==1 && timetable.time==8}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==8}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==2 && timetable.time==8}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==8}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==3 && timetable.time==8}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==4 && timetable.time==8}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==4 && timetable.time==8}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==8}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==5 && timetable.time==8}">style="background:#faf3a182"</c:if></c:forEach>></td>
 									</tr>
 									<tr>
 										<th scope="row">20:00~21:00</th>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==9}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==1 && timetable.time==9}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==9}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==2 && timetable.time==9}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==9}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==3 && timetable.time==9}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==4 && timetable.time==9}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==4 && timetable.time==9}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==9}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==5 && timetable.time==9}">style="background:#faf3a182"</c:if></c:forEach>></td>
 									</tr>
 								</tbody>
 
@@ -406,7 +410,7 @@
 
 				</div>
 				<!-- 우리시간표 보기 끝 -->
-				
+
 			</div>
 		</div>
 	</div>
