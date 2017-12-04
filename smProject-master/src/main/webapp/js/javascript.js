@@ -231,7 +231,7 @@ function checkMentorApply() {
 		alert("주제를 입력해주세요");
 		document.form.subject.focus();
 		return false;
-	} else if (document.form.year.value == "") {
+	} else if (document.form.year.value == 0) {
 		alert("학년을 입력해주세요");
 		document.form.year.focus();
 		return false;

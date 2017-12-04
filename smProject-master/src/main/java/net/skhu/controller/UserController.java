@@ -280,7 +280,7 @@ public class UserController {
 		}
 		mentorMapper.insert_apply(mentor);
 
-		return "user/mentorapply_submit";
+		return "redirect:mentorapply_submit#submit";
 	}
 
 	/* 멘토링 신청서 수정, 작성자-남하영 */
@@ -325,7 +325,7 @@ public class UserController {
 			mentor.setApply_f_doc_fk(doc_fk);
 		}
 		mentorMapper.update(mentor);
-		return "user/mentorapply_submit";
+		return "redirect:mentorapply_submit#submit";
 	}
 
 	/* 멘토링 신청서 삭제, 작성자-남하영 */
@@ -406,7 +406,7 @@ public class UserController {
 		User user = UserService.getCurrentUser();
 		Team team=teamMapper.findTeamByMember(user.getId());
 		int time_team = team.getGroup_m_apply_id();
-		
+
 		timetableMapper.delete(time_team, user.getId());
 
 		if (checkboxes.getMon() != null) {

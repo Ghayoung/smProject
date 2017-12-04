@@ -24,8 +24,8 @@
 						<div class="fh5co-spacer fh5co-spacer-md"></div>
 					</div>
 					<div class="col-md-6">
-						<label for="name">멘토</label>
-						<div class="panel panel-default">${ mentor.user_id }&nbsp;${ mentor.name }</div>
+						<label for="name">멘토(학번)</label>
+						<div class="panel panel-default">${ mentor.name }(${ mentor.user_id })</div>
 					</div>
 					<div class="col-md-6">
 						<label for="group_name">주제</label>
