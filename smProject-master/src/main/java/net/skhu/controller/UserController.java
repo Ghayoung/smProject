@@ -292,9 +292,8 @@ public class UserController {
 	/* 멘토링 신청서 수정, 작성자-남하영 */
 	@RequestMapping("mentorapply_edit")
 	public String mentorapply_edit(Model model, @RequestParam(value = "id") int id) {
-		Setting setting = userMapper.findSetting();
 		model.addAttribute("mentor", mentorMapper.findOne(id));
-		model.addAttribute("setting",setting);
+		model.addAttribute("setting", userMapper.findSetting());
 		return "user/mentorapply_edit";
 	}
 

@@ -1,5 +1,7 @@
 package net.skhu.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.skhu.dto.Introduce;
 import net.skhu.dto.Mentor;
+import net.skhu.dto.Setting;
 import net.skhu.dto.User;
 import net.skhu.mapper.FileMapper;
 import net.skhu.mapper.IntroduceMapper;
@@ -32,6 +35,15 @@ public class GuestController {
 	public String main(Model model) {
 		List<Mentor> mentors = mentorMapper.findMentor();
 		model.addAttribute("mentors", mentors);
+		model.addAttribute("setting", userMapper.findSetting());
+		Setting setting = userMapper.findSetting();
+
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String today = sdf.format(date);
+
+		if(today.compareTo(setting.getMentee_expire_date()) < 0) {
+		}
 		return "guest/main";
 	}
 
