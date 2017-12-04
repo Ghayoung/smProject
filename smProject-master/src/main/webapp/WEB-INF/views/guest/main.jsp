@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:url var="R" value="/" />	
 		<div id="fh5co-main">
-	
+			<c:if test="${ user ne 0 }">
 			<div class="container">
 			    
 			    <div class="row">
@@ -13,47 +13,31 @@
 
 					  <div class='row'>
     <div class='col-md-12'>
-      <div class="carousel slide media-carousel fadeInUp animated" id="media">
-        <div class="carousel-inner">
-          <div class="item active">
-            <div class="row">
+      
+          	<c:forEach var="mentor" items="${ mentors }" varStatus="status">
+          	<c:choose>
+          	<c:when test="${ status.first eq true }">
+          		<div class="carousel slide media-carousel fadeInUp animated" id="media">
+        		<div class="carousel-inner">
+          		<div class="item active">
+          		<div class="row">
+          	</c:when>
+          	<c:when test="${ status.index%3 eq 0 }">
+          		<div class="item"><div class="row">
+          	</c:when>
+          	</c:choose>
               <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_1.jpg"></a>
-              </div>          
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_2.jpg"></a>
+                <a class="thumbnail" href="${R}user/menteeapply_detail?id=${ mentor.id }"><img alt="" src="${R}user/getImage?id=${ mentor.apply_f_intro_fk }"></a>
               </div>
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_3.jpg"></a>
-              </div>        
-            </div>
-          </div>
-          <div class="item">
-            <div class="row">
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_4.jpg"></a>
-              </div>          
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_5.jpg"></a>
-              </div>
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_6.jpg"></a>
-              </div>        
-            </div>
-          </div>
-          <div class="item">
-            <div class="row">
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_5.jpg"></a>
-              </div>          
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_3.jpg"></a>
-              </div>
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_1.jpg"></a>
-              </div>      
-            </div>
-          </div>
+            <c:choose>
+            <c:when test="${ status.index%3 eq 2 }">
+            	</div></div>
+            </c:when>
+            <c:when test="${ status.last eq true }">
+            	</div><div></div></div>
+            </c:when>
+            </c:choose>
+            </c:forEach>
         </div>
         <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
         <a data-slide="next" href="#media" class="right carousel-control">›</a>
@@ -67,6 +51,7 @@
                 
 			<!-- END row -->
             </div>
+            </c:if>
             
             
   <div style="background-color:#90d7ea;">
@@ -97,8 +82,7 @@
 							</li>
 						</ul>
 						<p class="de">
-							<span><b>- <span id="yosa">2017</span>년<span id="seme">2</span>학기 멘토 운영기간 :</b><span id="baseDt">2017.07.24~2018.01.31</span></span>
-							<span><b>- 멘토방 :</b> <span id="roomCnt">906</span>개<span id="mentiCnt">8930</span>명의 멘티가 등록 활동 중에 있습니다.</span>
+							<span><b>2017년&nbsp;&nbsp;2학기&nbsp;&nbsp;멘토&nbsp;&nbsp;운영기간:&nbsp;&nbsp;2017.07.24~2018.01.31</b></span>
 						</p>
 					</div>
 				</div>
