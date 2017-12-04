@@ -92,26 +92,50 @@
 			<div class="row">
 				<div class="col-md-12 animate-box">
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
-					<%-- <form action="#" method="post" class="search_min">
-						<div class="col-md-2">
-							<div class="form-group">
-								<label for="search_term" class="sr-only">학기</label> <select
-									class="form-control" id="search_term">
-									<option>--학기</option>
-									<option>1</option>
-									<option>2</option>
-								</select>
+					<div class="col-md-6" id="searchUser"></div>
+					<form action="term_search_user#mentoringManage" method="post" name="searchForm" onsubmit="return checkSearch2();"
+						class="row">
+						<!-- 정렬조건 -->
+						<div class="col-md-6">
+							<div class="col-md-2" style="margin-left: 80px; padding: 0px;">
+								<div class="form-group">
+									<input type="hidden" name="keyword" value="${keyword}" /> <label
+										for="search_year" class="sr-only">년도</label> <input
+										placeholder="2017" id="year" name="year" type="text"
+										class="form-control" value="${year}">
+								</div>
+							</div>
+							<div class="col-md-1"
+								style="padding: 0px; margin-top: 5px; margin-left: 5px;">
+								<b>년도</b>
+							</div>
+							<div class="col-md-2" style="margin-left: 10px; padding: 0px;">
+								<div class="form-group">
+									<label for="search_term" class="sr-only">학기</label> <select
+										class="form-control" id="semester" name="semester">
+										<option value=0>--</option>
+										<option value=1
+											<c:if test="${semester eq '1'}">selected</c:if>>1</option>
+										<option value=2
+											<c:if test="${semester eq '2'}">selected</c:if>>2</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-1"
+								style="padding: 0px; margin-top: 5px; margin-left: 5px;">
+								<b>학기</b>
+							</div>
+							<div class="col-md-3" style="margin-left: 10px">
+								<div class="form-group">
+									<input type="submit" class="btn btn-primary" value="검색">
+
+								</div>
 							</div>
 						</div>
-						<div class="col-md-2">
-							<div class="form-group">
-								<label for="search_year" class="sr-only">년도</label> <input
-									placeholder="2017학년도" id="search_year" type="text"
-									class="form-control">
-							</div>
-						</div>
-					</form> --%>
+						<!-- 정렬조건 끝 -->
+					</form>
 				</div>
+
 				<div class="col-md-12 animate-box">
 					<div id="fh5co-tab-feature-center" class="fh5co-tab text-center">
 						<ul class="resp-tabs-list hor_1">

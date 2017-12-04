@@ -49,6 +49,17 @@ function selectAllCheckBox(allcheck, containerID, checkboxIDMatch) { // (allì²´í
 	}
 }
 
+$(".autoCheck").on('click', 'td', function(){
+    var target = $(this).find('input[type="checkbox"]');
+
+    // If it's checked then uncheck it and vice versa
+    target.prop('checked', !target.prop('checked'));
+});
+
+$(".autoCheck").on('click', 'input[type="checkbox"]', function(){
+    $(this).prop('checked', !target.prop('checked'));
+});
+
 $(function() {
 
 	$(".autosubmit").change(function() {
