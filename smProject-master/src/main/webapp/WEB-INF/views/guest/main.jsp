@@ -97,8 +97,7 @@
 							</li>
 						</ul>
 						<p class="de">
-							<span><b>- <span id="yosa">2017</span>년<span id="seme">2</span>학기 멘토 운영기간 :</b><span id="baseDt">2017.07.24~2018.01.31</span></span>
-							<span><b>- 멘토방 :</b> <span id="roomCnt">906</span>개<span id="mentiCnt">8930</span>명의 멘티가 등록 활동 중에 있습니다.</span>
+							<span><b>2017년&nbsp;&nbsp;2학기&nbsp;&nbsp;멘토&nbsp;&nbsp;운영기간:&nbsp;&nbsp;2017.07.24~2018.01.31</b></span>
 						</p>
 					</div>
 				</div>
