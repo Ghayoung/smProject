@@ -4,6 +4,7 @@
 <c:url var="R" value="/" />	
 		<div id="fh5co-main">
 			<sec:authorize access="authenticated">
+			<c:if test="${ period eq 3 }">
 			<div class="container">
 			    
 			    <div class="row">
@@ -52,6 +53,7 @@
                 
 			<!-- END row -->
             </div>
+            </c:if>
             </sec:authorize>
             
             
@@ -87,7 +89,7 @@
 							</li>
 						</ul>
 						<p class="de">
-							<span><b>2018년&nbsp;&nbsp;1학기&nbsp;&nbsp;멘토링&nbsp;&nbsp;운영기간:&nbsp;&nbsp;${ setting.sm_start_date }~${ setting.sm_expire_date }</b></span>
+							<span><b>2018년&nbsp;&nbsp;1학기&nbsp;&nbsp;멘토링&nbsp;&nbsp;운영기간:&nbsp;&nbsp;${ setting.mentor_start_date }~${ setting.sm_expire_date }</b></span>
 						</p>
 					</div>
 				</div>

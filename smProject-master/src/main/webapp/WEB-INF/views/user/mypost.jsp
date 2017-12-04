@@ -71,16 +71,20 @@
 											<p>주제:&nbsp;${ mentor.subject }</p>
 											<p>멘토:&nbsp;${ mentor.name }</p>
 											<c:if test="${ mentor.type != 4 }">
+												<c:if test="${ period eq 2 }">
 												<a href="mentorapply_edit.do?id=${ mentor.id }"
 													class="btn btn-primary btn-sm " style="margin: auto;">수정</a>
 												<a href="mentorapply_delete.do?id=${ mentor.id }"
 													id="m_delete" class="btn btn-cancel btn-sm "
 													style="margin: auto;" onclick="return deleteApply();">삭제</a>
+												</c:if>
 											</c:if>
 											<c:if test="${ mentor.type == 4 }">
+												<c:if test="${ period eq 3 }">
 												<a href="mentee_update_mypost.do?id=${ mentor.id }"
 													class="btn btn-cancel btm-md mt_submit"
 													onclick="return deleteApply();">신청취소</a>
+												</c:if>
 											</c:if>
 										</div>
 									</div>
