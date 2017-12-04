@@ -18,8 +18,9 @@
 		<div class="row animate-box">
 			<h2 class="fh5co-uppercase-heading-sm text-center"
 				id="mentoringManage">멘토링 관리</h2>
-			<form action="#mentoringManage" method="post" style="float: right"
-				class="row" name="fmm" onsubmit="return checkSearch2();">
+			<form action="m_mentoringManage#mentoringManage" method="post"
+				style="float: right" class="row" name="searchMentoringForm"
+				onsubmit="return checkSearchMentoring();">
 				<div class="col-md-8">
 					<div class="form-group">
 						<label for="search" class="sr-only ">검색어</label> <input
@@ -55,31 +56,40 @@
 				<%
 					}
 				%>
-				<div class="panel panel-default">
-					<table class="table search_user">
-						<thead>
-							<tr>
-								<th>번호</th>
-								<th>멘토이름</th>
-								<th>멘토링 이름</th>
-								<th style="width:auto;">신청인원/정원</th>
-								<th>개설일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="searchteam" items="${ SearchTeams }"
-								varStatus="status">
+				<c:if test="${!empty SearchTeams}">
+
+					<div class="panel panel-default">
+						<table class="table search_user">
+							<thead>
 								<tr>
-									<td>${ status.index+1 }</td>
-									<td>${ searchteam.name }</td>
-									<td>${ searchteam.group_name }</td>
-									<td>${ searchteam.apply_mentee_count }/${ searchteam.count }</td>
-									<td>${ searchteam.open_date }</td>
+									<th>번호</th>
+									<th>멘토이름</th>
+									<th>멘토링 이름</th>
+									<th style="width: auto;">신청인원/정원</th>
+									<th>개설일</th>
 								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
+							</thead>
+							<tbody>
+								<c:forEach var="searchteam" items="${ SearchTeams }"
+									varStatus="status">
+									<tr>
+										<td>${ status.index+1 }</td>
+										<td>${ searchteam.name }</td>
+										<td>${ searchteam.group_name }</td>
+										<td>${ searchteam.apply_mentee_count }/${ searchteam.count }</td>
+										<td>${ searchteam.open_date }</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</c:if>
+				<c:if test="${empty SearchTeams}">
+					<div class="fh5co-spacer fh5co-spacer-sm"></div>
+					<div class="col-md-12 text-center">
+						<p>검색 결과가 없습니다.</p>
+					</div>
+				</c:if>
 
 				<div class="fh5co-spacer fh5co-spacer-sm"></div>
 
@@ -93,8 +103,8 @@
 				<div class="col-md-12 animate-box">
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
 					<div class="col-md-6" id="searchUser"></div>
-					<form action="term_search_user#mentoringManage" method="post" name="searchForm" onsubmit="return checkSearch2();"
-						class="row">
+					<form action="term_search_mentoring#mentoringManage" method="post"
+						name="searchForm" onsubmit="return checkSearch2();" class="row">
 						<!-- 정렬조건 -->
 						<div class="col-md-6">
 							<div class="col-md-2" style="margin-left: 80px; padding: 0px;">
@@ -148,32 +158,40 @@
 
 								<!--멘토링-->
 								<div class="row">
+									<c:if test="${!empty teams}">
 
-									<div class="panel panel-default ">
-										<table class="table search_user">
-											<thead>
-												<tr>
-													<th>번호</th>
-													<th>멘토이름</th>
-													<th>멘토링 이름</th>
-													<th>신청인원/정원</th>
-													<th>개설일</th>
-
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach var="team" items="${ teams }" varStatus="status">
+										<div class="panel panel-default ">
+											<table class="table search_user">
+												<thead>
 													<tr>
-														<td>${ status.index+1 }</td>
-														<td>${ team.name }</td>
-														<td>${ team.group_name }</td>
-														<td>${ team.apply_mentee_count }/${ team.count }</td>
-														<td>${ team.open_date }</td>
+														<th>번호</th>
+														<th>멘토이름</th>
+														<th>멘토링 이름</th>
+														<th>신청인원/정원</th>
+														<th>개설일</th>
+
 													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-									</div>
+												</thead>
+												<tbody>
+													<c:forEach var="team" items="${ teams }" varStatus="status">
+														<tr>
+															<td>${ status.index+1 }</td>
+															<td>${ team.name }</td>
+															<td>${ team.group_name }</td>
+															<td>${ team.apply_mentee_count }/${ team.count }</td>
+															<td>${ team.open_date }</td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+										</div>
+									</c:if>
+									<c:if test="${empty teams}">
+										<div class="fh5co-spacer fh5co-spacer-sm"></div>
+										<div class="col-md-12 text-center">
+											<p>해당학기 멘토링 활동이 없습니다.</p>
+										</div>
+									</c:if>
 								</div>
 
 							</div>

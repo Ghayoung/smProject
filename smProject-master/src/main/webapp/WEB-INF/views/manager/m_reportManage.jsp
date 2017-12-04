@@ -316,7 +316,7 @@
                                     <div class="col-md-2" style="padding: 0px;">
                                        <div class="form-group">
                                           <label for="year" class="sr-only">년도</label> <input
-                                             placeholder="yyyy" id="year" name="year" type="text"
+                                             placeholder="YYYY" id="year" name="year" type="text"
                                              class="form-control" value="${year}" />
                                        </div>
 
