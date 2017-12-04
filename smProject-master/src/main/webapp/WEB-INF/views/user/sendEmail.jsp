@@ -1,5 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<c:url var="R" value="/" />
 <div id="fh5co-main">
 	
 			<div class="container">
@@ -17,13 +22,60 @@
 						<h2 class="fh5co-uppercase-heading-sm text-center">메일쓰기</h2>
 						<div class="fh5co-spacer fh5co-spacer-sm"></div>
 					</div>
-						<form:form id="form" method="post" modelAttribute="email" enctype="multipart/form-data" onsubmit="return checkInputEmail();">
-										<div class="col-md-12">
-												<div class="form-group">
-											<label for="tab">받는사람</label>
-											<form:input path="to" name="to" placeholder="받는사람" id="tab" type="email" class="form-control input-lg" />
-										</div>
+					<div class="col-md-12">
+						<label for="tab">메일 검색</label>
+						<div class="col-md-12" style="padding:0px;">
+							<form method="post" action="${R}user/searchEmail">
+								<div class="form-group col-sm-10" style="padding:0px;">
+									<input name="search" placeholder="받는 사람을 입력하세요." type="text" class="form-control input-lg">
+								</div>
+								<div class="col-md-2 form-group" style="padding-right:0px;">
+									<input type="submit" class="btn btn-primary btn-lg" value="검색">
+								</div>
+							</form>
+							<c:if test="${!empty users }">
+							<div class="col-md-12" style="padding:0px;">
+								<div class="col-md-12 panel panel-default">
+										<table class="table board" style="table-layout:fixed;">
+											<thead>
+												<tr>
+													<th style="width:20%;">학번</th>
+													<th style="width:20%;">이름</th>
+													<th style="width:20%;">이메일</th>
+													<th style="width:20%;">학과</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="user" items="${ users }">
+											        <tr onclick="$('#form [name=to]').val('${user.email}'); alert('선택되었습니다.')" style="cursor:pointer;">
+											          <td>${user.user_id }</td>
+											          <td>${user.name }</td>
+											          <td>${user.email }</td>
+											          <td>${user.d_name }</td>
+											        </tr>
+											      </c:forEach>
+											</tbody>
+										</table>
+							</div>
+						</div>
+						</c:if>
+						<c:if test="${empty users }">
+						</c:if>
 						
+					</div>
+					</div>
+					<div class="fh5co-spacer fh5co-spacer-sm"></div>
+						<form:form id="form" method="post" action="${R}user/searchSendEmail" modelAttribute="email" enctype="multipart/form-data" onsubmit="return checkInputEmail();">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label for="tab">받는사람</label>
+											<sec:authorize access="hasRole('MANAGER')">
+											<div class="col-md-12" style="padding:0px; margin-bottom:10px;">
+												<input name="sendAll" value="sendAll" type="checkbox" onclick="$('#form [name=to]').val('null'); $('#form [name=to]').toggle();"> 전체 사용자에게 보내기
+											</div>
+											</sec:authorize>
+											<input name="to" placeholder="받는사람" id="tab" type="email" class="form-control input-lg" />
+										</div>
 										<div class="form-group">
 											<label for="tab">제목</label>
 											<form:input path="subject" name="subject" placeholder="제목" id="tab" type="text" class="form-control input-lg" />

@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.skhu.dto.Article;
-import net.skhu.dto.Board;
 import net.skhu.dto.Comment;
-import net.skhu.dto.Post;
 import net.skhu.dto.Report;
 import net.skhu.dto.User;
 import net.skhu.mapper.ArticleMapper;
@@ -105,8 +103,19 @@ public class UserService {
 		return articles;
 	}
 
-	public List<Board> findAllArticleBydUser(){
+	public List<Article> findAllByUser(Pagination pagination) {
 		User user = UserService.getCurrentUser();
+		int count = articleMapper.countByUser(pagination, user.getId());
+		pagination.setRecordCount(count);
+		List<Article> articles = articleMapper.findAllByBoardAndUser(pagination, user.getId());
+
+		return articles;
+	}
+/*
+	public List<Board> findAllArticleBydUser(Pagination pagination){
+		User user = UserService.getCurrentUser();
+		int count = articleMapper.countByUser(user.getId(), pagination);
+		pagination.setRecordCount(count);
 		List<Board> boards;
 		if(user.getType()==2) boards = boardMapper.findAllManager();
 		else boards = boardMapper.findAllNoManager();
@@ -114,10 +123,22 @@ public class UserService {
 			Post post = new Post();
 			post.setB_id(board.getId());
 			post.setU_id(user.getId());
-			List<Article> articles = articleMapper.findAllByBoardAndUser(post);
+			List<Article> articles = articleMapper.findAllByBoardAndUser(user.getId(), pagination);
 			board.setArticles(articles);
 		}
 		return boards;
+	}
+*/
+	public String[] findAllEmail(){
+		List<User> users = userMapper.findAll();
+		int count = users.size();
+		String[] emailList = new String[count];
+		int i=0;
+		for(User user: users){
+			emailList[i] = user.getEmail();
+			i++;
+		}
+		return emailList;
 	}
 
 	public List<Report> findAllReportByUser(){

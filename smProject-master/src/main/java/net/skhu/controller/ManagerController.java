@@ -103,7 +103,7 @@ public class ManagerController {
 	@RequestMapping("m_post")
 	public String m_post(Model model) {
 		model.addAttribute("board", "내가 쓴 글");
-		model.addAttribute("postBoards", userService.findAllArticleBydUser());
+		//model.addAttribute("postBoards", userService.findAllArticleBydUser());
 		model.addAttribute("postReports", userService.findAllReportByUser());
 		model.addAttribute("postComments", userService.findAllCommentByUser());
 		return "manager/m_post";
