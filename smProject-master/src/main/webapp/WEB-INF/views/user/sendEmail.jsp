@@ -47,7 +47,7 @@
 											</thead>
 											<tbody>
 												<c:forEach var="user" items="${ users }">
-											        <tr onclick="$('#form [name=to]').val('${user.email}'); alert('선택되었습니다.')" style="cursor:pointer;">
+											        <tr onclick="$('#form [name=to]').val('${user.email}');" style="cursor:pointer;">
 											          <td>${user.user_id }</td>
 											          <td>${user.name }</td>
 											          <td>${user.email }</td>
@@ -69,11 +69,12 @@
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="tab">받는사람</label>
-											<sec:authorize access="hasRole('MANAGER')">
-											<div class="col-md-12" style="padding:0px; margin-bottom:10px;">
-												<input name="sendAll" value="sendAll" type="checkbox" onclick="$('#form [name=to]').val('null'); $('#form [name=to]').toggle();"> 전체 사용자에게 보내기
-											</div>
-											</sec:authorize>
+											<div>
+												<input name="all" value="no" type="radio" style="display:none;" checked="checked">
+												<sec:authorize access="hasRole('MANAGER')">
+													<input name="all" value="all" type="radio" onclick="$('#form [name=to]').val('aa@mail.com'); $('#form [name=to]').toggle();">전체 메일 
+												</sec:authorize>
+											</div>          
 											<input name="to" placeholder="받는사람" id="tab" type="email" class="form-control input-lg" />
 										</div>
 										<div class="form-group">

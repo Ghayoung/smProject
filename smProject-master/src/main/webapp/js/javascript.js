@@ -228,7 +228,7 @@ function checkSearch1() {
 	}
 }
 
-function checkMentorApply() {
+function checkMentorApply(min,max) {
 	if (document.form.group_name.value == "") {// 이름이 입력하지 않았으면
 		alert("그룹 이름을 입력해주세요");
 		document.form.group_name.focus();
@@ -273,7 +273,11 @@ function checkMentorApply() {
 		alert("증빙서류를 등록해주세요");
 		document.form.file3.focus();
 		return false;
-	} else {//
+	} else if ((document.form.count.value < min) || (document.form.count.value > max)) {
+		alert("희망 멘티 인원은 "+min+"명부터 "+max+"명 사이어야 합니다");
+		document.form.count.focus();
+		return false;
+	} else {
 		form.submit();
 	}
 }
@@ -548,4 +552,3 @@ function deleteAlert() {
  * var s = $("#summernote").summernote('code'); $("input[name=content]").val(s);
  * $("#form").submit(); }
  */
-
