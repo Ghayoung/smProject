@@ -42,7 +42,7 @@
 									<div class="col-md-12">
 										<h2 class="h3">${ board.b_name }</h2>
 									</div>
-									<embed id="iframe" style="width:100%; height:850px;" src="${R}embeded/mypostList?bd=${board.id}" scrolling="no"></embed>
+									<embed class="iframeBox" style="width:100%;" src="${R}embeded/mypostList?bd=${board.id}" scrolling="no"></embed>
 								</div>
 							</div>
 						
@@ -134,3 +134,9 @@
 		</div>
 	</div>
 </div>
+
+<script>
+function setIframeHeight(h){
+	$(".iframeBox").height(h);
+}
+</script>

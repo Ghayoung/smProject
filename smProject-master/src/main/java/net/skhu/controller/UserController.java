@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -77,6 +76,7 @@ public class UserController {
 	MyEmailService emailService;
 	Report report = new Report();
 	Mentor mentor = new Mentor();
+
 
 	@RequestMapping(value = "board", method = RequestMethod.GET)
 	public String board(Model model, Pagination pagination) {
@@ -396,7 +396,7 @@ public class UserController {
 		int time_team = team.getGroup_m_apply_id();
 		List<TimetableDTO> timetable = timetableMapper.findAllTeamItem(time_team);
 		List<TimetableDTO> mytimetable = timetableMapper.findMyTimeTable(user.getId());
-				
+
 		model.addAttribute("mytimetable", mytimetable);
 		model.addAttribute("timetable", timetable);
 
@@ -580,8 +580,10 @@ public class UserController {
 	@RequestMapping(value="searchSendEmail", method=RequestMethod.POST)
 	public String searchSendEmail(Model model, Email email, @RequestBody MultipartFile file, HttpServletRequest request) {
 		User user = UserService.getCurrentUser();
-		System.out.println(request.getParameter("sendAll").equals("sendAll"));
-		if(request.getParameter("sendAll").equals("sendAll")){
+		System.out.println(request.getParameter("all").equals("no"));
+		System.out.println(request.getParameter("all").equals("all"));
+		System.out.println(request.getParameter("all"));
+		if(request.getParameter("all").equals("all")){
 			if(file.isEmpty()){
 				emailService.sendSimpleMessageAllUser(user, email.getSubject(), email.getText());
 			}
@@ -598,7 +600,6 @@ public class UserController {
 				emailService.sendMessageWithAttachment(user, to, email.getSubject(), email.getText(), file);
 			}
 		}
-
 
 		return "redirect:sendEmail?success";
 	}
