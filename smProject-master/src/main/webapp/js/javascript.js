@@ -49,6 +49,17 @@ function selectAllCheckBox(allcheck, containerID, checkboxIDMatch) { // (all체�
 	}
 }
 
+$(".autoCheck").on('click', 'td', function(){
+    var target = $(this).find('input[type="checkbox"]');
+
+    // If it's checked then uncheck it and vice versa
+    target.prop('checked', !target.prop('checked'));
+});
+
+$(".autoCheck").on('click', 'input[type="checkbox"]', function(){
+    $(this).prop('checked', !target.prop('checked'));
+});
+
 $(function() {
 
 	$(".autosubmit").change(function() {
@@ -220,14 +231,15 @@ function checkMentorApply() {
 		alert("주제를 입력해주세요");
 		document.form.subject.focus();
 		return false;
-	} else if (document.form.year.value == "") {
+	} else if (document.form.year.value == 0) {
 		alert("학년을 입력해주세요");
 		document.form.year.focus();
 		return false;
-	} /*
-		 * else if (document.form.grade.value == "") { alert("해당 과목 성적을
-		 * 입력해주세요"); document.form.grade.focus(); return false; }
-		 */else if (document.form.count.value == "") {
+	} else if (document.form.grade.value == "") { 
+		alert("해당 과목 성적을 입력해주세요");
+	    document.form.grade.focus();
+	    return false;
+	} else if (document.form.count.value == "") {
 		alert("희망 멘티 인원을 입력해주세요");
 		document.form.count.focus();
 		return false;
@@ -531,11 +543,3 @@ function deleteAlert() {
  * $("#form").submit(); }
  */
 
-
-
-$(document).on('click', 'td', function(){
-    var target = $(this).find('input[type="checkbox"]');
-
-    // If it's checked then uncheck it and vice versa
-    target.prop('checked', !target.prop('checked'));
-});

@@ -494,5 +494,6 @@ var slider = function(){
 					});
 				});
 	});
+	
 
 }());

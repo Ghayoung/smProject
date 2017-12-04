@@ -281,7 +281,7 @@ public class UserController {
 		}
 		mentorMapper.insert_apply(mentor);
 
-		return "user/mentorapply_submit";
+		return "redirect:mentorapply_submit#submit";
 	}
 
 	/* 멘토링 신청서 수정, 작성자-남하영 */
@@ -326,14 +326,14 @@ public class UserController {
 			mentor.setApply_f_doc_fk(doc_fk);
 		}
 		mentorMapper.update(mentor);
-		return "user/mentorapply_submit";
+		return "redirect:mentorapply_submit#submit";
 	}
 
 	/* 멘토링 신청서 삭제, 작성자-남하영 */
 	@RequestMapping("mentorapply_delete")
 	public String mentorapply_delete(@RequestParam(value = "id") int id) {
 		mentorMapper.delete(id);
-		return "redirect:mypost";
+		return "redirect:mypost#apply";
 	}
 
 	/* 멘티신청, 작성자-남하영 */
@@ -385,7 +385,7 @@ public class UserController {
 			teamMapper.deleteMentee(user.getId());
 		}
 		userMapper.type_update(user);
-		return "redirect:mypost";
+		return "redirect:mypost#apply";
 	}
 
 	@RequestMapping(value = "timetable", method = RequestMethod.GET)
@@ -394,7 +394,10 @@ public class UserController {
 		Team team=teamMapper.findTeamByMember(user.getId());
 		int time_team = team.getGroup_m_apply_id();
 		List<TimetableDTO> timetable = timetableMapper.findAllTeamItem(time_team);
+		List<TimetableDTO> mytimetable = timetableMapper.findMyTimeTable(user.getId());
+		model.addAttribute("mytimetable", mytimetable);
 		model.addAttribute("timetable", timetable);
+
 		return "user/timetable";
 	}
 
@@ -405,7 +408,7 @@ public class UserController {
 		Team team=teamMapper.findTeamByMember(user.getId());
 		int time_team = team.getGroup_m_apply_id();
 
-		//timetableMapper.delete(time_team);
+		timetableMapper.delete(time_team, user.getId());
 
 		if (checkboxes.getMon() != null) {
 			for (int i = 0; i < checkboxes.getMon().size(); ++i) {

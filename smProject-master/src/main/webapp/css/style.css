@@ -1396,7 +1396,7 @@ Components
   color: #ffffff;
 }
 
-/*.btn-primary:active, .btn-primary:focus 삭제했음*/
+/*.btn-primary:active, .btn-primary:focus */
 .btn-default:hover, .btn-default:active, .btn-default:focus,
 .btn-primary:hover,
 .btn-success:hover,
@@ -2048,7 +2048,7 @@ a > img.fh5co-align-center {
 
 
 
-/*현재 진행상황*/
+/*metoring schedule*/
 .mentoring_con { margin-top: 7px; display: inline-block; /*margin-bottom: 5em;*/}
 .mentoring_con .my_step{ float: left; background: #90d7ea90d7ea; padding: 28px 38px 18px 38px; text-align: center; }
 .mentoring_con .my_step ul { display: inline-block; list-style: none; margin-bottom:-20px; }
@@ -2060,3 +2060,16 @@ a > img.fh5co-align-center {
 .mentoring_con .my_step .de{ display: inline-block; margin-top: 16px; color: #fff; font-size: 13px; letter-spacing: -1px; }
 .mentoring_con .my_step .de span:last-child{ margin-left: 10px; }
 .mentoring_con .my_step .de_rest{ display: inline-block; margin: 45px 0 0 80px; color: #fff; font-size: 24px; }
+
+
+
+.autoCheck > tbody > tr > td{
+	padding:20px;
+	text-align:center;
+}
+.autoCheck > tbody > tr > th{
+	text-align:center;
+}
+.autoCheck > thead > tr > th{
+	text-align:center;
+}

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div id="fh5co-main">
 	
 			<div class="container">
@@ -33,13 +34,30 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="year">학년</label>
-									<input name="year" placeholder="학년" value="${ mentor.year }" id="year" type="text" class="form-control input-lg"/>
+									<select class="form-control input-lg"
+									id="year" name="year">
+									<option value=0>--</option>
+									<option value=2 <c:if test="${ mentor.year eq 2 }">selected</c:if>>2</option>
+									<option value=3 <c:if test="${ mentor.year eq 3 }">selected</c:if>>3</option>
+									<option value=4 <c:if test="${ mentor.year eq 4 }">selected</c:if>>4</option>
+									</select>
 								</div>	
 							</div>
 							<div class="col-md-4">
 								<div class="form-group">
-									<label for="grade">해당 과목 성적(전공 관련만)</label>
-									<input name="grade" placeholder="해당 과목 성적" value="${ mentor.grade }" id="grade" type="text" class="form-control input-lg"/>
+									<label for="grade">해당 과목 성적(전공 관련만 선택)</label>
+									<select class="form-control input-lg"
+									id="grade" name="grade">
+									<option value=해당없음 <c:if test="${ mentor.grade eq '해당없음' }">selected</c:if>>해당없음</option>
+									<option value=A+ <c:if test="${ mentor.grade eq 'A+' }">selected</c:if>>A+</option>
+									<option value=A0 <c:if test="${ mentor.grade eq 'A0' }">selected</c:if>>A0</option>
+									<option value=B+ <c:if test="${ mentor.grade eq 'B+' }">selected</c:if>>B+</option>
+									<option value=B0 <c:if test="${ mentor.grade eq 'B0' }">selected</c:if>>B0</option>
+									<option value=C+ <c:if test="${ mentor.grade eq 'C+' }">selected</c:if>>C+</option>
+									<option value=C0 <c:if test="${ mentor.grade eq 'C0' }">selected</c:if>>C0</option>
+									<option value=D+ <c:if test="${ mentor.grade eq 'D+' }">selected</c:if>>D+</option>
+									<option value=D0 <c:if test="${ mentor.grade eq 'D0' }">selected</c:if>>D0</option>
+									</select>
 								</div>	
 							</div>
 							<div class="col-md-4">

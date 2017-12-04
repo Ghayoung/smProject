@@ -25,7 +25,7 @@
 					</div>
 					<div class="col-md-6">
 						<label for="name">멘토</label>
-						<div class="panel panel-default">${ mentor.user_id }&nbsp;${ mentor.name }</div>
+						<div class="panel panel-default">${ mentor.name }</div>
 					</div>
 					<div class="col-md-6">
 						<label for="group_name">주제</label>

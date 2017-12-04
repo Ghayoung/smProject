@@ -33,13 +33,30 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="year">학년</label>
-									<input name="year" placeholder="학년" id="year" type="text" class="form-control input-lg"/>
+									<select class="form-control input-lg"
+									id="year" name="year">
+									<option value=0>--</option>
+									<option value=2>2</option>
+									<option value=3>3</option>
+									<option value=4>4</option>
+									</select>
 								</div>	
 							</div>
 							<div class="col-md-4">
 								<div class="form-group">
-									<label for="grade">해당 과목 성적(전공 관련만)</label>
-									<input name="grade" placeholder="해당 과목 성적" id="grade" type="text" class="form-control input-lg"/>
+									<label for="grade">해당 과목 성적(전공 관련만 선택)</label>
+									<select class="form-control input-lg"
+									id="grade" name="grade">
+									<option value=해당없음>해당없음</option>
+									<option value=A+>A+</option>
+									<option value=A0>A0</option>
+									<option value=B+>B+</option>
+									<option value=B0>B0</option>
+									<option value=C+>C+</option>
+									<option value=C0>C0</option>
+									<option value=D+>D+</option>
+									<option value=D0>D0</option>
+									</select>
 								</div>	
 							</div>
 							<div class="col-md-4">

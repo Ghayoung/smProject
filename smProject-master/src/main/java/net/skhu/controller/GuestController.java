@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.skhu.dto.Introduce;
+import net.skhu.dto.Mentor;
 import net.skhu.dto.User;
+import net.skhu.mapper.FileMapper;
 import net.skhu.mapper.IntroduceMapper;
+import net.skhu.mapper.MentorMapper;
 import net.skhu.mapper.UserMapper;
 import net.skhu.service.UserService;
 
@@ -22,9 +25,18 @@ public class GuestController {
 	@Autowired UserMapper userMapper;
 	@Autowired IntroduceMapper introduceMapper;
 	@Autowired UserService userService;
+	@Autowired MentorMapper mentorMapper;
+	@Autowired FileMapper fileMapper;
 
 	@RequestMapping("main")
-	public String main() {
+	public String main(Model model) {
+		List<Mentor> mentors = mentorMapper.findMentor();
+		model.addAttribute("mentors", mentors);
+		try {
+			UserService.getCurrentUser().getId();
+		} catch(Exception e) {
+			model.addAttribute("user", 0);
+		}
 		return "guest/main";
 	}
 

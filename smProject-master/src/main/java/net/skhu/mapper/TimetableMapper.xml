@@ -14,7 +14,13 @@
 	</insert>
 	
 	<delete id="delete">
-		delete from timetable where time_apply_id=#{param1}
+		delete from timetable 
+		where time_apply_id=#{param1}
+		and time_user_id = #{param2}
 	</delete>
+	
+	<select id="findMyTimeTable" resultType="TimetableDTO">
+		SELECT * from timetable where time_user_id = #{param1}
+	</select>
 	
 </mapper>
