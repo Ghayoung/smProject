@@ -33,7 +33,13 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="year">학년</label>
-									<input name="year" placeholder="학년" id="year" type="text" class="form-control input-lg"/>
+									<select class="form-control input-lg"
+									id="year" name="year">
+									<option value=0>--</option>
+									<option value=2>2</option>
+									<option value=3>3</option>
+									<option value=4>4</option>
+									</select>
 								</div>	
 							</div>
 							<div class="col-md-4">

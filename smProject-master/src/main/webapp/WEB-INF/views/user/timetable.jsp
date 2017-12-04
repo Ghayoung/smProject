@@ -36,163 +36,163 @@
 									<tr>
 										<th scope="row">09:00~10:15</th>
 										<td><input type="checkbox" name="mon" value="1" 
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==1 && timetable.time==1}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="tue" value="1" 
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==2 && timetable.time==1}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="wed" value="1"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==3 && timetable.time==1}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="thu" value="1"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==4 && timetable.time==1}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="fri" value="1"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==5 && timetable.time==1}">checked</c:if></c:forEach> /></td>
 									</tr>
 									<tr>
 										<th scope="row">10:30~11:45</th>
 										<td><input type="checkbox" name="mon" value="2"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==1 && timetable.time==2}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="tue" value="2"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==2 && timetable.time==2}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="wed" value="2"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==3 && timetable.time==2}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="thu" value="2"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==4 && timetable.time==2}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="fri" value="2"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==5 && timetable.time==2}">checked</c:if></c:forEach> /></td>
 									</tr>
 									<tr>
 										<th scope="row">12:00~13:15</th>
 										<td><input type="checkbox" name="mon" value="3"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==1 && timetable.time==3}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="tue" value="3"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==2 && timetable.time==3}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="wed" value="3"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==3 && timetable.time==3}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="thu" value="3"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==4 && timetable.time==3}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="fri" value="3"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==5 && timetable.time==3}">checked</c:if></c:forEach> /></td>
 									</tr>
 									<tr>
 										<th scope="row">13:30~14:45</th>
 										<td><input type="checkbox" name="mon" value="4"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==1 && timetable.time==4}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="tue" value="4"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==2 && timetable.time==4}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="wed" value="4"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==3 && timetable.time==4}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="thu" value="4"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==4 && timetable.time==4}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="fri" value="4"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==5 && timetable.time==4}">checked</c:if></c:forEach> /></td>
 									</tr>
 									<tr>
 										<th scope="row">15:00~16:15</th>
 										<td><input type="checkbox" name="mon" value="5"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==1 && timetable.time==5}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="tue" value="5"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==2 && timetable.time==5}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="wed" value="5"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==3 && timetable.time==5}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="thu" value="5"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==4 && timetable.time==5}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="fri" value="5"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==5 && timetable.time==5}">checked</c:if></c:forEach> /></td>
 									</tr>
 									<tr>
 										<th scope="row">16:30~17:45</th>
 										<td><input type="checkbox" name="mon" value="6"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==1 && timetable.time==6}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="tue" value="6"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==2 && timetable.time==6}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="wed" value="6"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==3 && timetable.time==6}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="thu" value="6"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==4 && timetable.time==6}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="fri" value="6"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==5 && timetable.time==6}">checked</c:if></c:forEach> /></td>
 									</tr>
 									<tr>
 										<th scope="row">18:00~19:00</th>
 										<td><input type="checkbox" name="mon" value="7"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==1 && timetable.time==7}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="tue" value="7"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==2 && timetable.time==7}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="wed" value="7"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==3 && timetable.time==7}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="thu" value="7"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==4 && timetable.time==7}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="fri" value="7"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==5 && timetable.time==7}">checked</c:if></c:forEach> /></td>
 									</tr>
 									<tr>
 										<th scope="row">19:00~20:00</th>
 										<td><input type="checkbox" name="mon" value="8"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==1 && timetable.time==8}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="tue" value="8"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==2 && timetable.time==8}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="wed" value="8"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==3 && timetable.time==8}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="thu" value="8"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==4 && timetable.time==8}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="fri" value="8"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==5 && timetable.time==8}">checked</c:if></c:forEach> /></td>
 									</tr>
 									<tr>
 										<th scope="row">20:00~21:00</th>
 										<td><input type="checkbox" name="mon" value="9"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==1 && timetable.time==9}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="tue" value="9"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==2 && timetable.time==9}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="wed" value="9"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==3 && timetable.time==9}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="thu" value="9"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==4 && timetable.time==9}">checked</c:if></c:forEach> /></td>
 										<td><input type="checkbox" name="fri" value="9"
-											<c:forEach var="timetable" items="${timetable}">
+											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==5 && timetable.time==9}">checked</c:if></c:forEach> /></td>
 									</tr>
 								</tbody>
@@ -238,163 +238,163 @@
 										<th scope="row">09:00~10:15</th>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==1}">style="background:#f3f8f9"</c:if></c:forEach>></td>
+											<c:if test="${timetable.day==1 && timetable.time==1}">style="background:#faf3a182"</c:if></c:forEach>></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==1}">style="background:#f3f8f9"</c:if></c:forEach> ></td>
+											<c:if test="${timetable.day==2 && timetable.time==1}">style="background:#faf3a182"</c:if></c:forEach> ></td>
 										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==1}">style="background:#f3f8f9"</c:if></c:forEach> ></td>
-										<td><input type="checkbox" name="thu" value="1"
+											<c:if test="${timetable.day==3 && timetable.time==1}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==4 && timetable.time==1}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="fri" value="1"
+											<c:if test="${timetable.day==4 && timetable.time==1}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==1}">checked</c:if></c:forEach> /></td>
+											<c:if test="${timetable.day==5 && timetable.time==1}">style="background:#faf3a182"</c:if></c:forEach> ></td>
 									</tr>
 									<tr>
 										<th scope="row">10:30~11:45</th>
-										<td><input type="checkbox" name="mon" value="2"
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==2}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="tue" value="2"
+											<c:if test="${timetable.day==1 && timetable.time==2}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==2}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="wed" value="2"
+											<c:if test="${timetable.day==2 && timetable.time==2}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==2}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="thu" value="2"
+											<c:if test="${timetable.day==3 && timetable.time==2}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==4 && timetable.time==2}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="fri" value="2"
+											<c:if test="${timetable.day==4 && timetable.time==2}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==2}">checked</c:if></c:forEach> /></td>
+											<c:if test="${timetable.day==5 && timetable.time==2}">style="background:#faf3a182"</c:if></c:forEach> ></td>
 									</tr>
 									<tr>
 										<th scope="row">12:00~13:15</th>
-										<td><input type="checkbox" name="mon" value="3"
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==3}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="tue" value="3"
+											<c:if test="${timetable.day==1 && timetable.time==3}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==3}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="wed" value="3"
+											<c:if test="${timetable.day==2 && timetable.time==3}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==3}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="thu" value="3"
+											<c:if test="${timetable.day==3 && timetable.time==3}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==4 && timetable.time==3}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="fri" value="3"
+											<c:if test="${timetable.day==4 && timetable.time==3}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==3}">checked</c:if></c:forEach> /></td>
+											<c:if test="${timetable.day==5 && timetable.time==3}">style="background:#faf3a182"</c:if></c:forEach> ></td>
 									</tr>
 									<tr>
 										<th scope="row">13:30~14:45</th>
-										<td><input type="checkbox" name="mon" value="4"
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==4}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="tue" value="4"
+											<c:if test="${timetable.day==1 && timetable.time==4}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==4}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="wed" value="4"
+											<c:if test="${timetable.day==2 && timetable.time==4}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==4}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="thu" value="4"
+											<c:if test="${timetable.day==3 && timetable.time==4}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==4 && timetable.time==4}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="fri" value="4"
+											<c:if test="${timetable.day==4 && timetable.time==4}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==4}">checked</c:if></c:forEach> /></td>
+											<c:if test="${timetable.day==5 && timetable.time==4}">style="background:#faf3a182"</c:if></c:forEach> ></td>
 									</tr>
 									<tr>
 										<th scope="row">15:00~16:15</th>
-										<td><input type="checkbox" name="mon" value="5"
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==5}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="tue" value="5"
+											<c:if test="${timetable.day==1 && timetable.time==5}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==5}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="wed" value="5"
+											<c:if test="${timetable.day==2 && timetable.time==5}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==5}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="thu" value="5"
+											<c:if test="${timetable.day==3 && timetable.time==5}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==4 && timetable.time==5}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="fri" value="5"
+											<c:if test="${timetable.day==4 && timetable.time==5}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==5}">checked</c:if></c:forEach> /></td>
+											<c:if test="${timetable.day==5 && timetable.time==5}">style="background:#faf3a182"</c:if></c:forEach> ></td>
 									</tr>
 									<tr>
 										<th scope="row">16:30~17:45</th>
-										<td><input type="checkbox" name="mon" value="6"
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==6}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="tue" value="6"
+											<c:if test="${timetable.day==1 && timetable.time==6}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==6}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="wed" value="6"
+											<c:if test="${timetable.day==2 && timetable.time==6}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==6}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="thu" value="6"
+											<c:if test="${timetable.day==3 && timetable.time==6}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
 											<c:if test="${timetable.day==4 && timetable.time==6}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="fri" value="6"
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==6}">checked</c:if></c:forEach> /></td>
+											<c:if test="${timetable.day==5 && timetable.time==6}">style="background:#faf3a182"</c:if></c:forEach> ></td>
 									</tr>
 									<tr>
 										<th scope="row">18:00~19:00</th>
-										<td><input type="checkbox" name="mon" value="7"
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==7}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="tue" value="7"
+											<c:if test="${timetable.day==1 && timetable.time==7}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==7}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="wed" value="7"
+											<c:if test="${timetable.day==2 && timetable.time==7}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==7}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="thu" value="7"
+											<c:if test="${timetable.day==3 && timetable.time==7}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==4 && timetable.time==7}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="fri" value="7"
+											<c:if test="${timetable.day==4 && timetable.time==7}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==7}">checked</c:if></c:forEach> /></td>
+											<c:if test="${timetable.day==5 && timetable.time==7}">style="background:#faf3a182"</c:if></c:forEach> ></td>
 									</tr>
 									<tr>
 										<th scope="row">19:00~20:00</th>
-										<td><input type="checkbox" name="mon" value="8"
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==8}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="tue" value="8"
+											<c:if test="${timetable.day==1 && timetable.time==8}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==8}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="wed" value="8"
+											<c:if test="${timetable.day==2 && timetable.time==8}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==8}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="thu" value="8"
+											<c:if test="${timetable.day==3 && timetable.time==8}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==4 && timetable.time==8}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="fri" value="8"
+											<c:if test="${timetable.day==4 && timetable.time==8}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==8}">checked</c:if></c:forEach> /></td>
+											<c:if test="${timetable.day==5 && timetable.time==8}">style="background:#faf3a182"</c:if></c:forEach> ></td>
 									</tr>
 									<tr>
 										<th scope="row">20:00~21:00</th>
-										<td><input type="checkbox" name="mon" value="9"
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==1 && timetable.time==9}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="tue" value="9"
+											<c:if test="${timetable.day==1 && timetable.time==9}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==2 && timetable.time==9}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="wed" value="9"
+											<c:if test="${timetable.day==2 && timetable.time==9}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==3 && timetable.time==9}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="thu" value="9"
+											<c:if test="${timetable.day==3 && timetable.time==9}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==4 && timetable.time==9}">checked</c:if></c:forEach> /></td>
-										<td><input type="checkbox" name="fri" value="9"
+											<c:if test="${timetable.day==4 && timetable.time==9}">style="background:#faf3a182"</c:if></c:forEach> ></td>
+										<td
 											<c:forEach var="timetable" items="${timetable}">
-											<c:if test="${timetable.day==5 && timetable.time==9}">checked</c:if></c:forEach> /></td>
+											<c:if test="${timetable.day==5 && timetable.time==9}">style="background:#faf3a182"</c:if></c:forEach> ></td>
 									</tr>
 								</tbody>
 

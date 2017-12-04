@@ -11,4 +11,6 @@ public interface TimetableMapper {
 	void insert(int day, int time, int time_team, int user_id);
 	void delete(int time_team, int user_id);
 	List<TimetableDTO> findAllTeamItem(int time_team);
+	List<TimetableDTO> findMyTimeTable(int user_id);
+
 }
