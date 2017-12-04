@@ -36,61 +36,16 @@
 								컨퍼런스
 								///////////////////////////////////
 								-->
-						<c:forEach var="postBoard" items="${ postBoards }">
+						<c:forEach var="board" items="${ boards }">
 							<div>
 								<div class="row">
 									<div class="col-md-12">
-										<h2 class="h3">${ postBoard.b_name }</h2>
+										<h2 class="h3">${ board.b_name }</h2>
 									</div>
-									<c:if test="${!empty postBoard.articles }">
-										<div class="col-md-12" style="padding: 0px;">
-											<div class="col-md-12 animate-box">
-												<div class="panel panel-default ">
-													<table class="table board" style="table-layout: fixed">
-														<thead>
-															<tr>
-																<th class="w_5">번호</th>
-																<th class="w_30">제목</th>
-																<th class="w_10">작성일</th>
-																<th class="w_5">파일</th>
-																<th class="w_8"></th>
-																<th class="w_8"></th>
-															</tr>
-														</thead>
-														<tbody>
-															<c:forEach var="article" items="${ postBoard.articles }"
-																varStatus="status">
-																<tr>
-																	<td>${ status.count }</td>
-																	<td class="ellip" data-url="${R}user/board_detail?id=${article.id}&bd=${postBoard.id}">${ article.title }</td>
-																	<td>${ article.post_date }</td>
-																	<td><c:if test="${ article.art_f_id != 0 }">
-																			<a
-																				href="${R}user/file/download?id=${ article.art_f_id }"><img
-																				src="${R}images\file.png" border="0"></a>
-																		</c:if></td>
-																	<td><a
-																		href="${R}user/board_edit?id=${article.id}&bd=${postBoard.id}"
-																		class="btn btn-primary btn-sm " style="margin: auto;">수정</a></td>
-																	<td><a
-																		href="${R}user/board_delete?id=${article.id}&bd=${postBoard.id}"
-																		class="btn btn-primary btn-sm " style="margin: auto;">삭제</a></td>
-																</tr>
-															</c:forEach>
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
-									</c:if>
-									<c:if test="${empty postBoard.articles }">
-										<div class="fh5co-spacer fh5co-spacer-sm"></div>
-										<div class="col-md-12 text-center">
-											<p>작성한 글이 없습니다.</p>
-										</div>
-									</c:if>
+									<embed id="iframe" style="width:100%; height:850px;" src="${R}embeded/mypostList?bd=${board.id}" scrolling="no"></embed>
 								</div>
 							</div>
+						
 						</c:forEach>
 						
 						<!-- 

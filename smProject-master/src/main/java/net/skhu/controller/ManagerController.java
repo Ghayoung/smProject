@@ -34,6 +34,7 @@ import net.skhu.dto.Report;
 import net.skhu.dto.Setting;
 import net.skhu.dto.Team;
 import net.skhu.dto.User;
+import net.skhu.mapper.BoardMapper;
 import net.skhu.mapper.CommentMapper;
 import net.skhu.mapper.FileMapper;
 import net.skhu.mapper.IntroduceMapper;
@@ -61,6 +62,7 @@ public class ManagerController {
 	IntroduceMapper introduceMapper;
 	@Autowired
 	TeamMapper teamMapper;
+	@Autowired BoardMapper boardMapper;
 	@Autowired
 	ManagerService managerService;
 	@Autowired
@@ -103,6 +105,7 @@ public class ManagerController {
 	@RequestMapping("m_post")
 	public String m_post(Model model) {
 		model.addAttribute("board", "내가 쓴 글");
+		model.addAttribute("boards", boardMapper.findAllManager());
 		//model.addAttribute("postBoards", userService.findAllArticleBydUser());
 		model.addAttribute("postReports", userService.findAllReportByUser());
 		model.addAttribute("postComments", userService.findAllCommentByUser());
