@@ -21,7 +21,8 @@
 					</div>
 					<div class="col-md-12">
 						<div class="form-group">
-							<label for="password">비밀번호</label>
+							<label for="password" style=float:left>비밀번호</label>
+							<div style=color:red id=joinpw></div>
 							<form:input path="pw" name="pw" placeholder="Password" id="text"
 								type="password" class="form-control input-lg" />
 						</div>
@@ -123,8 +124,9 @@
 					<div class="col-md-12">
 						<div class="form-group">
 							<label for="email">이메일</label>
-							<form:input path="email" name="email" id="email" type="text"
+							<form:input path="email" name="email" id="email" type="email"
 								class="form-control input-lg" />
+							<form:errors path="email" class="error"/>
 						</div>
 					</div>
 					<div class="col-md-12">

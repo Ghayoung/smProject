@@ -32,11 +32,6 @@ public class GuestController {
 	public String main(Model model) {
 		List<Mentor> mentors = mentorMapper.findMentor();
 		model.addAttribute("mentors", mentors);
-		try {
-			UserService.getCurrentUser().getId();
-		} catch(Exception e) {
-			model.addAttribute("user", 0);
-		}
 		return "guest/main";
 	}
 

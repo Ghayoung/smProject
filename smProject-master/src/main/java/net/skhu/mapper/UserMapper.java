@@ -47,6 +47,8 @@ public interface UserMapper {
 
 	void m_setting(Setting setting);
 
+	Setting findSetting();
+
 	List<Report> findAllWithReports();
 
 	List<Report> findAllCondition();

@@ -286,6 +286,13 @@
 		#{sm_expire_date}, #{study_count}, #{max_mentor}, #{max_mentee},
 		#{min_mentee}, #{report_deadline})
 	</insert>
+	
+	<select id="findSetting" resultType="Setting">
+		SELECT *
+		FROM setting
+		ORDER BY id desc
+		limit 1;
+	</select>
 
 	<select id="selectExcelList" fetchSize="100" resultType="Report">
 		SELECT
