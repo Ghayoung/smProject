@@ -37,13 +37,16 @@ public class GuestController {
 		model.addAttribute("mentors", mentors);
 		model.addAttribute("setting", userMapper.findSetting());
 		Setting setting = userMapper.findSetting();
+		int period;
 
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String today = sdf.format(date);
 
-		if(today.compareTo(setting.getMentee_expire_date()) < 0) {
-		}
+		//str1.compareTo(str2) str1<str2일 때 -1리턴
+		if(today.compareTo(setting.getMentor_start_date()) < 0) {
+			period=1;
+		} else if(today.compareTo(setting.getMentor_start_date()) >= 0)
 		return "guest/main";
 	}
 

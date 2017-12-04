@@ -63,27 +63,31 @@
 						<ul>
 							<li>
 								<img src="${R}images/icon_my_step01.png" alt="준비" title="준비">
-								<p id="stepA" class="on">준비</p>
+								<p id="stepA" <c:if test="${ period eq 1 }">class="on"<c:if>>준비</p>
 							</li>
 							<li>
 								<img src="${R}images/icon_my_step02.png" alt="멘토신청" title="멘토신청">
-								<p id="stepB">멘토신청</p>
+								<p id="stepB" <c:if test="${ period eq 2 }">class="on"<c:if>>멘토신청</p>
+							</li>
+							<li>
+								<img src="${R}images/icon_my_step02.png" alt="멘티신청" title="멘티신청">
+								<p id="stepC" <c:if test="${ period eq 3 }">class="on"<c:if>>멘티신청</p>
 							</li>
 							<li>
 								<img src="${R}images/icon_my_step03.png" alt="활동중" title="활동중">
-								<p id="stepC">활동중</p>
+								<p id="stepD" <c:if test="${ period eq 4 }">class="on"<c:if>>활동중</p>
 							</li>
 							<li>
 								<img src="${R}images/icon_my_step04.png" alt="설문" title="설문">
-								<p id="stepD">설문</p>
+								<p id="stepE">설문</p>
 							</li>
 							<li>
-								<img src="${R}images/icon_my_step05.png" alt="정리" title="정리">
-								<p id="stepE">정리</p>
+								<img src="${R}images/icon_my_step05.png" alt="종료" title="종료">
+								<p id="stepF" <c:if test="${ period eq 5 }">class="on"<c:if>>종료</p>
 							</li>
 						</ul>
 						<p class="de">
-							<span><b>2017년&nbsp;&nbsp;2학기&nbsp;&nbsp;멘토&nbsp;&nbsp;운영기간:&nbsp;&nbsp;2017.07.24~2018.01.31</b></span>
+							<span><b>2018년&nbsp;&nbsp;1학기&nbsp;&nbsp;멘토링&nbsp;&nbsp;운영기간:&nbsp;&nbsp;${ setting.sm_start_date }~${ setting.sm_expire_date }</b></span>
 						</p>
 					</div>
 				</div>
