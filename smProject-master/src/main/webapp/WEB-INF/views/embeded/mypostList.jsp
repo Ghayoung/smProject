@@ -37,7 +37,7 @@
 											</c:if></td>
 										<td><a onclick="window.parent.location.href='${R}user/board_edit?id=${article.id}&bd=${param.bd}'"
 											class="btn btn-primary btn-sm " style="margin: auto;">수정</a></td>
-										<td><a href="${R}embeded/mypost_board_delete?id=${article.id}&bd=${param.bd}"
+										<td><a onclick="deleteClick('${R}embeded/mypost_board_delete?id=${article.id}&bd=${param.bd}')"
 											class="btn btn-primary btn-sm " style="margin: auto;">삭제</a></td>
 									</tr>
 								</c:forEach>
@@ -58,11 +58,17 @@
 	</div>
 
 <script>
-window.onload=function()  
-{  
-    var height = document.body.scrollHeight;  
-    parent.resizeTopIframe(height);  
-    console.log(height);
-} 
-/*	if(${param.delete != null}) {console.log("sss: "+${param.delete==null}); alert("삭제되었습니다.");};*/
+if(parent){
+	var h = document.getElementById("iframeContent").offsetHeight+50;
+	parent.setIframeHeight(h);
+}
+
+function deleteClick(url){
+	var check = confirm("삭제하시겠습니까?");
+	if(check){
+		location.href=url;
+		alert("삭제되었습니다.");
+	}
+}
+
 </script>

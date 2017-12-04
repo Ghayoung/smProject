@@ -105,7 +105,7 @@
 									<div class="col-md-12">
 										<h2 class="h3">${ board.b_name }</h2>
 									</div>
-									<embed id="iframe" style="width:100%; height:850px;" src="${R}embeded/mypostList?bd=${board.id}" scrolling="no"></embed>
+									<embed class="iframe" style="width:100%;" src="${R}embeded/mypostList?bd=${board.id}" scrolling="no"></embed>
 								</div>
 							</div>
 						
@@ -273,9 +273,8 @@
 
 <script>
 
-function resizeTopIframe(dynheight) {
-    document.getElementById("iframe").height = parseInt(dynheight) + 100;
-	//$("#iframe").height = parseInt(dynheight) + 100;
-} 
+function setIframeHeight(h) {
+	$(".iframe").height(h);
+}
 
 </script>

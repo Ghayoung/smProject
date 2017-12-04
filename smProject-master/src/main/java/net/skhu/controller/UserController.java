@@ -78,6 +78,7 @@ public class UserController {
 	Report report = new Report();
 	Mentor mentor = new Mentor();
 
+
 	@RequestMapping(value = "board", method = RequestMethod.GET)
 	public String board(Model model, Pagination pagination) {
 		model.addAttribute("board", boardMapper.findOne(pagination.getBd()).getB_name());
@@ -509,8 +510,8 @@ public class UserController {
 	@RequestMapping("mypost")
 	public String mypost(Model model, Pagination pagination) {
 
-		if(UserService.getCurrentUser().getType()==2) model.addAttribute("boards", boardMapper.findAllManager());
-		else model.addAttribute("boards", boardMapper.findAllNoManager());
+		//if(UserService.getCurrentUser().getType()==2) model.addAttribute("boards", boardMapper.findAllManager());
+		model.addAttribute("boards", boardMapper.findAllNoManager());
 
 		model.addAttribute("board", "내가 쓴 글");
 		//model.addAttribute("postBoards", userService.findAllArticleBydUser(pagination));
@@ -583,10 +584,12 @@ public class UserController {
 	}
 
 	@RequestMapping(value="searchSendEmail", method=RequestMethod.POST)
-	public String sendEmail(Model model, Email email, @RequestBody MultipartFile file, HttpServletRequest request) {
+	public String searchSendEmail(Model model, Email email, @RequestBody MultipartFile file, HttpServletRequest request) {
 		User user = UserService.getCurrentUser();
-		System.out.println(request.getParameter("sendAll").equals("sendAll"));
-		if(request.getParameter("sendAll").equals("sendAll")){
+		System.out.println(request.getParameter("all").equals("no"));
+		System.out.println(request.getParameter("all").equals("all"));
+		System.out.println(request.getParameter("all"));
+		if(request.getParameter("all").equals("all")){
 			if(file.isEmpty()){
 				emailService.sendSimpleMessageAllUser(user, email.getSubject(), email.getText());
 			}
@@ -603,7 +606,6 @@ public class UserController {
 				emailService.sendMessageWithAttachment(user, to, email.getSubject(), email.getText(), file);
 			}
 		}
-
 
 		return "redirect:sendEmail?success";
 	}
