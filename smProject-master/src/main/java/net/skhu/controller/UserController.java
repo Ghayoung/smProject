@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +26,7 @@ import net.skhu.dto.Comment;
 import net.skhu.dto.Email;
 import net.skhu.dto.Mentor;
 import net.skhu.dto.Report;
+import net.skhu.dto.Setting;
 import net.skhu.dto.Team;
 import net.skhu.dto.TimetableDTO;
 import net.skhu.dto.User;
@@ -248,10 +248,14 @@ public class UserController {
 	public String mentorapply_submit(Model model) {
 		User user = UserService.getCurrentUser();
 		Mentor mentor = mentorMapper.findByMentor_u_id(user.getId());
-		if (mentor == null)
+		Setting setting = userMapper.findSetting();
+		if (mentor == null) {
+			model.addAttribute("setting", userMapper.findSetting());
 			return "user/mentorapply";
-		else
+		}
+		else {
 			return "user/mentorapply_submit";
+		}
 	}
 
 	@RequestMapping(value = "mentorapply", method = RequestMethod.POST)
@@ -288,7 +292,9 @@ public class UserController {
 	/* 멘토링 신청서 수정, 작성자-남하영 */
 	@RequestMapping("mentorapply_edit")
 	public String mentorapply_edit(Model model, @RequestParam(value = "id") int id) {
+		Setting setting = userMapper.findSetting();
 		model.addAttribute("mentor", mentorMapper.findOne(id));
+		model.addAttribute("setting",setting);
 		return "user/mentorapply_edit";
 	}
 
@@ -396,7 +402,7 @@ public class UserController {
 		int time_team = team.getGroup_m_apply_id();
 		List<TimetableDTO> timetable = timetableMapper.findAllTeamItem(time_team);
 		List<TimetableDTO> mytimetable = timetableMapper.findMyTimeTable(user.getId());
-				
+
 		model.addAttribute("mytimetable", mytimetable);
 		model.addAttribute("timetable", timetable);
 

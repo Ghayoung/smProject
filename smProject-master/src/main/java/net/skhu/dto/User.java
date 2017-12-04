@@ -1,7 +1,5 @@
 package net.skhu.dto;
 
-import java.util.Date;
-
 public class User {
 	int id;
 	String user_id;
