@@ -55,7 +55,6 @@
 									<option value=B0 <c:if test="${ mentor.grade eq 'B0' }">selected</c:if>>B0</option>
 									<option value=C+ <c:if test="${ mentor.grade eq 'C+' }">selected</c:if>>C+</option>
 									<option value=C0 <c:if test="${ mentor.grade eq 'C0' }">selected</c:if>>C0</option>
-									<option value=D+ <c:if test="${ mentor.grade eq 'D+' }">selected</c:if>>D+</option>
 									<option value=D0 <c:if test="${ mentor.grade eq 'D0' }">selected</c:if>>D0</option>
 									</select>
 								</div>	
