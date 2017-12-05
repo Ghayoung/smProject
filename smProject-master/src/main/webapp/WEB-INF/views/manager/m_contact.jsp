@@ -27,6 +27,7 @@
 					<h3>팀명:&nbsp;${ mentor.group_name }</h3>
 					<p>주제:&nbsp;${ mentor.subject }</p>
 					<p>멘토:&nbsp;${ mentor.name }</p>
+					<c:if test="${ period ne 2 }">
 					<c:choose>
 						<c:when test="${ mentor.type == 1}">
 							<a href="mentor_update.do?id=${ mentor.id }"
@@ -37,6 +38,7 @@
 								class="btn btn-cancel btm-md m_submitbtn">선정취소</a>
 						</c:when>
 					</c:choose>
+					</c:if>
 				</div>
 				</c:forEach>
 		</div>

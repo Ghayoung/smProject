@@ -261,12 +261,10 @@
 	<insert id="insertWithExcel" useGeneratedKeys="true"
 		keyProperty="id">
 		INSERT user (user_id, pw, name, email, phone, type,
-		major_id, minor_id,
-		double_id, status_id, auth_date)
+		major_id, status_id, auth_date)
 		VALUES (#{user_id},
 		#{pw}, #{name}, #{email}, #{phone}, #{type},
-		#{major_id}, #{minor_id},
-		#{double_id}, #{status_id}, now())
+		#{major_id}, #{status_id}, now())
 	</insert>
 
 	<delete id="delete">

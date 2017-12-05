@@ -18,9 +18,9 @@ public class UserDomain{
     	user.setPhone(row.getCell(4).getStringCellValue());
     	user.setType((int)row.getCell(5).getNumericCellValue());
     	user.setMajor_id((int)row.getCell(6).getNumericCellValue());
-    	user.setMinor_id((int)row.getCell(7).getNumericCellValue());
-    	user.setDouble_id((int)row.getCell(8).getNumericCellValue());
-    	user.setStatus_id((int)row.getCell(9).getNumericCellValue());
+    	//user.setMinor_id((int)row.getCell(7).getNumericCellValue());
+    	//user.setDouble_id((int)row.getCell(8).getNumericCellValue());
+    	user.setStatus_id((int)row.getCell(7).getNumericCellValue());
 
     	return user;
     }

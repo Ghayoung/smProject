@@ -7,7 +7,9 @@ import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -120,20 +122,47 @@ public class ManagerController {
 	}
 
 	@RequestMapping(value = "m_register", method = RequestMethod.POST)
-	public String m_register(@RequestBody MultipartFile file)
-			throws IOException, InvalidFormatException, org.apache.poi.openxml4j.exceptions.InvalidFormatException {
+	public String m_register(@RequestBody MultipartFile file, HttpServletResponse response)
+			throws Exception, IOException, InvalidFormatException, org.apache.poi.openxml4j.exceptions.InvalidFormatException {
 		List<User> users = excelReadService.readExcelToList(file, UserDomain::rowOf);
 		for (int i = 0; i < users.size(); i++) {
 			userMapper.insertWithExcel(users.get(i));
 		}
+
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer=response.getWriter();
+		writer.println("<script>alert('등록되었습니다.');history.back();</script>");
+		writer.close();
 		return "manager/m_register";
 	}
 
 	/* 멘토 신청서 목록 출력 , 작성자-남하영 */
 	@RequestMapping("m_contact")
-	public String m_contact(Model model) {
+	public String m_contact(Model model, HttpServletResponse response) throws Exception{
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer=response.getWriter();
+		Setting setting = userMapper.findSetting();
+		int period=0;
+
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String today = sdf.format(date);
+
+		if(!((today.compareTo(setting.getMentor_start_date()) >= 0) &&
+				(today.compareTo(setting.getMentee_start_date()) < 0 ))) {
+			writer.println("<script>alert('멘토 선정 기간이 아닙니다.');history.back();</script>");
+			writer.close();
+			return null;
+		}
+
+		if((today.compareTo(setting.getMentor_start_date()) >= 0) &&
+				(today.compareTo(setting.getMentor_expire_date()) <= 0 )) {
+			period=2;
+		}
+
 		List<Mentor> mentors = mentorMapper.findAll();
 		model.addAttribute("mentors", mentors);
+		model.addAttribute("period", period);
 		return "manager/m_contact";
 	}
 
@@ -169,7 +198,20 @@ public class ManagerController {
 
 	@RequestMapping("m_contact_detail")
 	public String m_contact_detail(Model model, @RequestParam(value = "id") int id) {
+		Setting setting = userMapper.findSetting();
+		int period=0;
+
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String today = sdf.format(date);
+
+		if((today.compareTo(setting.getMentor_start_date()) >= 0) &&
+				(today.compareTo(setting.getMentor_expire_date()) <= 0 )) {
+			period=2;
+		}
+
 		model.addAttribute("mentor", mentorMapper.findOne(id));
+		model.addAttribute("period", period);
 		return "manager/m_contact_detail";
 	}
 

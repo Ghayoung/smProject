@@ -22,7 +22,6 @@
 					<div class="col-md-12">
 						<div class="form-group">
 							<label for="password" style=float:left>비밀번호</label>
-							<div style=color:red id=joinpw></div>
 							<form:input path="pw" name="pw" placeholder="Password" id="text"
 								type="password" class="form-control input-lg" />
 						</div>

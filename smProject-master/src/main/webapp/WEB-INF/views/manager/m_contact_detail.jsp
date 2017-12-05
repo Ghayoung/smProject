@@ -69,8 +69,9 @@
 							증빙서류 <img src="${R}images\file.png" border="0">
 						</a>
 					</div>
-
+					
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
+					<c:if test="${ period ne 2 }">
 					<div class="col-md-12">
 						<c:choose>
 							<c:when test="${ mentor.type == 1}">
@@ -85,6 +86,7 @@
 						<input type="button" class="btn btn-outline btn-lg"
 							onclick="location.href='m_contact.do'" value="목록">
 					</div>
+					</c:if>
 				</form>
 			</div>
 		</div>
