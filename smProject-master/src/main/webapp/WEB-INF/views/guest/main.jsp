@@ -56,8 +56,9 @@
             </c:if>
             </sec:authorize>
             
-            
-<c:if test="${ period ne 3 }">
+
+<c:choose>            
+<c:when test="${ period ne 3 }">
 
 <div class="container">
 			    
@@ -119,8 +120,9 @@
   </div>
   </div>           
             
-</c:if>
+</c:when>
 
+<c:when test="${ period eq 3 }">
 <sec:authorize access="not authenticated">
 
 <div class="container">
@@ -184,6 +186,8 @@
   </div>
 
 </sec:authorize>
+</c:when>
+</c:choose>
             
             
   <div style="background-color:#90d7ea;">
