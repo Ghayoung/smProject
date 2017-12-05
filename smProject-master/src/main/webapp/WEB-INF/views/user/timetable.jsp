@@ -40,7 +40,7 @@
 										<th scope="row">09:00~10:15</th>
 										<td><input type="checkbox" name="mon" value="1"
 											<c:forEach var="timetable" items="${mytimetable}">
-											<c:if test="${timetable.day==1 && timetable.time==1}">checked</c:if></c:forEach> /></td>
+											<c:if test="${timetable.day==1 && timetable.time==1}">checked</c:if></c:forEach> /><span></span></td>
 										<td><input type="checkbox" name="tue" value="1"
 											<c:forEach var="timetable" items="${mytimetable}">
 											<c:if test="${timetable.day==2 && timetable.time==1}">checked</c:if></c:forEach> /></td>
