@@ -2,6 +2,7 @@ package net.skhu.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -140,10 +141,19 @@ public class ManagerController {
 	/* mentor_apply테이블의 condition을 m_condition으로 변경, team.mentee_id NN 해제 */
 	/* 선정된 유저 타입 3으로 변경, 탈락된 유저 타입 1으로 변경, 그룹 생성 */
 	@RequestMapping("mentor_update")
-	public String mentor_update(Model model, @RequestParam(value = "id") int id) {
+	public String mentor_update(Model model, @RequestParam(value = "id") int id, HttpServletResponse response) throws Exception{
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer=response.getWriter();
+		Setting setting = userMapper.findSetting();
+
 		Mentor mentor = mentorMapper.findOne(id);
 		User user = userMapper.findOneById(mentor.getMentor_u_id());
 		if (mentor.getType() == 1) {
+			if(teamMapper.count()+1 > setting.getMax_mentor()) {
+				writer.println("<script>alert('설정한 최대 멘토 인원수를 넘습니다.');history.back();</script>");
+				writer.close();
+				return null;
+			}
 			user.setType(3);
 			Team team = new Team();
 			team.setGroup_m_apply_id(mentor.getId());
@@ -164,10 +174,19 @@ public class ManagerController {
 	}
 
 	@RequestMapping("mentor_detail_update")
-	public String mentor_detail_update(Model model, @RequestParam(value = "id") int id) {
+	public String mentor_detail_update(Model model, @RequestParam(value = "id") int id, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer=response.getWriter();
+		Setting setting = userMapper.findSetting();
+
 		Mentor mentor = mentorMapper.findOne(id);
 		User user = userMapper.findOneById(mentor.getMentor_u_id());
 		if (mentor.getType() == 1) {
+			if(teamMapper.count()+1 > setting.getMax_mentor()) {
+				writer.println("<script>alert('설정한 최대 멘토 인원수를 넘습니다.');history.back();</script>");
+				writer.close();
+				return null;
+			}
 			user.setType(3);
 			Team team = new Team();
 			team.setGroup_m_apply_id(mentor.getId());

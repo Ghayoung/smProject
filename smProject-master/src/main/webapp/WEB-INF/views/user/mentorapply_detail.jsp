@@ -71,10 +71,17 @@
 					</div>
 
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
+					<c:if test="${ period eq 2 }">
 					<div class="col-md-12">
 					<a href="mentorapply_edit.do?id=${ mentor.id }" class="btn btn-primary btn-lg col-md-offset-8">수정</a>
 					<input type="button" class="btn btn-outline btn-lg" onclick="location.href='mypost.do'" value="목록">
 					</div>
+					</c:if>
+					<c:if test="${ period ne 2 }">
+					<div class="col-md-12 col-r">
+					<input type="button" class="btn btn-outline btn-lg" onclick="location.href='mypost.do'" value="목록">
+					</div>
+					</c:if>
 				</form>
 			</div>
 		</div>

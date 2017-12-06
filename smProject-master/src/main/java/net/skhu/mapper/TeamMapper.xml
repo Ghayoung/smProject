@@ -44,5 +44,10 @@
       group by t.group_m_apply_id   
       HAVING m.group_name LIKE CONCAT('%', #{keyword}, '%');
    </select>
+   
+   <select id="count" resultType="int">
+	  SELECT count(*)
+	  FROM team;
+   </select>
 	
 </mapper>

@@ -274,7 +274,7 @@ function checkMentorApply(min,max) {
 		document.form.file3.focus();
 		return false;
 	} else if ((document.form.count.value < min) || (document.form.count.value > max)) {
-		alert("희망 멘티 인원은 "+min+"명부터 "+max+"명 사이어야 합니다");
+		alert("희망 멘티 인원은 "+min+"명부터 "+max+"명 사이여야 합니다");
 		document.form.count.focus();
 		return false;
 	} else {

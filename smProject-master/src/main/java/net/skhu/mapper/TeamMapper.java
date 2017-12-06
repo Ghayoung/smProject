@@ -15,4 +15,5 @@ public interface TeamMapper {
 	Team findTeamByMember(int id); //멤버id로 검색
 	List<Team> findAll(String startKeyword, String endKeyword);
 	List<Team> findMentoringByName(String keyword);
+	int count();
 }

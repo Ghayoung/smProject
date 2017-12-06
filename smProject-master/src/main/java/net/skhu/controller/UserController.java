@@ -237,7 +237,19 @@ public class UserController {
 
 	@RequestMapping("mentorapply_detail")
 	public String mentorapply_detail(Model model, @RequestParam(value = "id") int id) {
+		Setting setting = userMapper.findSetting();
+		int period=0;
+
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String today = sdf.format(date);
+
+		if( (today.compareTo(setting.getMentor_start_date()) >= 0) &&
+				(today.compareTo(setting.getMentor_expire_date()) <= 0 ) ) {
+			period=2; //멘토 모집 기간
+		}
 		model.addAttribute("mentor", mentorMapper.findOne(id));
+		model.addAttribute("period", period);
 		return "user/mentorapply_detail";
 	}
 
@@ -523,14 +535,6 @@ public class UserController {
 		// 하영
 		User user = UserService.getCurrentUser();
 		Mentor mentor = mentorMapper.findByMentor_u_id(user.getId());
-		if (mentor != null)
-			mentor.setType(user.getType());
-		else if (user.getType() == 4) {
-			Team team = teamMapper.findTeamByMember(user.getId());
-			mentor = mentorMapper.findOne(team.getGroup_m_apply_id());
-			mentor.setType(user.getType());
-		}
-
 		Setting setting = userMapper.findSetting();
 		int period=0;
 
@@ -544,6 +548,18 @@ public class UserController {
 		} else if( (today.compareTo(setting.getMentee_start_date()) >= 0) &&
 				(today.compareTo(setting.getMentee_expire_date()) <= 0 ) ) {
 			period=3; //멘티 모집 기간
+		}
+
+		if((today.compareTo(setting.getMentee_start_date()) >= 0) && (user.getType() == 1 || user.getType() == 4)) {
+			mentor=null;
+		}
+
+		if (mentor != null)
+			mentor.setType(user.getType());
+		else if (user.getType() == 4) {
+			Team team = teamMapper.findTeamByMember(user.getId());
+			mentor = mentorMapper.findOne(team.getGroup_m_apply_id());
+			mentor.setType(user.getType());
 		}
 
 		model.addAttribute("mentor", mentor);
