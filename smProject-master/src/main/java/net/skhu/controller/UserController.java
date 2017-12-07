@@ -1,6 +1,7 @@
 package net.skhu.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -80,10 +81,37 @@ public class UserController {
 	Report report = new Report();
 	Mentor mentor = new Mentor();
 
-
+	/*
 	@RequestMapping(value = "board", method = RequestMethod.GET)
 	public String board(Model model, Pagination pagination) {
 		model.addAttribute("board", boardMapper.findOne(pagination.getBd()).getB_name());
+		model.addAttribute("article", userService.findAll(pagination));
+		return "user/board";
+	}
+	*/
+
+	@RequestMapping(value = "board", method = RequestMethod.GET)
+	public String board(Model model, Pagination pagination, HttpServletResponse response) throws Exception{
+		String board = boardMapper.findOne(pagination.getBd()).getB_name();
+		System.out.println(board);
+		if(board.equals("학습자료게시판")) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer=response.getWriter();
+			Setting setting = userMapper.findSetting();
+
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String today = sdf.format(date);
+
+			if(!((today.compareTo(setting.getSm_start_date()) >= 0) &&
+					(today.compareTo(setting.getSm_expire_date()) <= 0 ))) {
+				writer.println("<script>alert('멘토링 활동 기간이 아닙니다.');history.back();</script>");
+				writer.close();
+				return null;
+			}
+		}
+
+		model.addAttribute("board", board);
 		model.addAttribute("article", userService.findAll(pagination));
 		return "user/board";
 	}
@@ -187,7 +215,22 @@ public class UserController {
 
 	/* 합격 멘토 신청서 목록 출력, 작성자-남하영 */
 	@RequestMapping("menteeapply")
-	public String menteeapply(Model model) {
+	public String menteeapply(Model model, HttpServletResponse response) throws Exception{
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer=response.getWriter();
+		Setting setting = userMapper.findSetting();
+
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String today = sdf.format(date);
+
+		if(!((today.compareTo(setting.getMentee_start_date()) >= 0) &&
+				(today.compareTo(setting.getMentee_expire_date()) <= 0 ))) {
+			writer.println("<script>alert('멘토링 신청 기간이 아닙니다.');history.back();</script>");
+			writer.close();
+			return null;
+		}
+
 		boolean b = false;
 		List<Mentor> mentors = mentorMapper.findMentor();
 		User user = UserService.getCurrentUser();
@@ -260,10 +303,24 @@ public class UserController {
 
 	/* 멘토링 신청서 작성, 작성자-남하영 */
 	@RequestMapping(value = "mentorapply", method = RequestMethod.GET)
-	public String mentorapply_submit(Model model) {
+	public String mentorapply_submit(Model model, HttpServletResponse response) throws Exception{
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer=response.getWriter();
+		Setting setting = userMapper.findSetting();
+
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String today = sdf.format(date);
+
+		if(!((today.compareTo(setting.getMentor_start_date()) >= 0) &&
+				(today.compareTo(setting.getMentor_expire_date()) <= 0 ))) {
+			writer.println("<script>alert('멘토 모집 기간이 아닙니다.');history.back();</script>");
+			writer.close();
+			return null;
+		}
+
 		User user = UserService.getCurrentUser();
 		Mentor mentor = mentorMapper.findByMentor_u_id(user.getId());
-		Setting setting = userMapper.findSetting();
 		if (mentor == null) {
 			model.addAttribute("setting", userMapper.findSetting());
 			return "user/mentorapply";
@@ -410,7 +467,22 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "timetable", method = RequestMethod.GET)
-	public String timetable(Model model) {
+	public String timetable(Model model, HttpServletResponse response) throws Exception{
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer=response.getWriter();
+		Setting setting = userMapper.findSetting();
+
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String today = sdf.format(date);
+
+		if(!((today.compareTo(setting.getSm_start_date()) >= 0) &&
+				(today.compareTo(setting.getSm_expire_date()) <= 0 ))) {
+			writer.println("<script>alert('멘토링 활동 기간이 아닙니다.');history.back();</script>");
+			writer.close();
+			return null;
+		}
+
 		User user = UserService.getCurrentUser();
 		Team team=teamMapper.findTeamByMember(user.getId());
 		int time_team = team.getGroup_m_apply_id();
@@ -464,7 +536,22 @@ public class UserController {
 }
 
 	@RequestMapping(value = "report", method = RequestMethod.GET)
-	public String report(Model model) {
+	public String report(Model model, HttpServletResponse response) throws Exception{
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer=response.getWriter();
+		Setting setting = userMapper.findSetting();
+
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String today = sdf.format(date);
+
+		if(!((today.compareTo(setting.getSm_start_date()) >= 0) &&
+				(today.compareTo(setting.getSm_expire_date()) <= 0 ))) {
+			writer.println("<script>alert('멘토링 활동 기간이 아닙니다.');history.back();</script>");
+			writer.close();
+			return null;
+		}
+
 		User user = UserService.getCurrentUser();
 
 		List<Report> teamReports = userMapper.findAllReportsById(user.getId());
@@ -532,7 +619,7 @@ public class UserController {
 		model.addAttribute("postReports", userService.findAllReportByUser());
 		model.addAttribute("postComments", userService.findAllCommentByUser());
 
-		// 하영
+		//하영
 		User user = UserService.getCurrentUser();
 		Mentor mentor = mentorMapper.findByMentor_u_id(user.getId());
 		Setting setting = userMapper.findSetting();
