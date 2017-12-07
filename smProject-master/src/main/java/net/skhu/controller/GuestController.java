@@ -45,18 +45,18 @@ public class GuestController {
 
 		//str1.compareTo(str2) str1<str2일 때 -1리턴
 		if(today.compareTo(setting.getMentor_start_date()) < 0) {
-			period=1;
+			period=1; //준비
 		} else if( (today.compareTo(setting.getMentor_start_date()) >= 0) &&
 				(today.compareTo(setting.getMentor_expire_date()) <= 0 ) ) {
-			period=2;
+			period=2; //멘토 모집 기간
 		} else if( (today.compareTo(setting.getMentee_start_date()) >= 0) &&
 				(today.compareTo(setting.getMentee_expire_date()) <= 0 ) ) {
-			period=3;
+			period=3; //멘티 모집 기간
 		} else if( (today.compareTo(setting.getSm_start_date()) >= 0) &&
 				(today.compareTo(setting.getSm_expire_date()) <= 0 ) ) {
-			period=4;
+			period=4; //멘토링 활동 기간
 		} else if( (today.compareTo(setting.getSm_expire_date()) > 0) ){
-			period=5;
+			period=5; //종료
 		}
 		model.addAttribute("period", period);
 		return "guest/main";
