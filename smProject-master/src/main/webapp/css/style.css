@@ -2104,3 +2104,33 @@ a > img.fh5co-align-center {
 .autoCheck > thead > tr > th{
 	text-align:center;
 }
+
+/* .autoCheck input[type=checkbox] {
+display:none;
+}
+
+
+.autoCheck input[type=checkbox] + span
+{
+background: white;
+height: 16px;
+width: 16px;
+display:inline-block;
+padding: 0 0 0 0px;
+}
+
+.autoCheck input[type=checkbox]:hover + label
+{
+background: yellow;
+display:inline-block;
+padding: 0 0 0 0px;
+}
+
+.autoCheck input[type=checkbox]:checked + span
+{
+background: #0080FF;
+height: 16px;
+width: 16px;
+display:inline-block;
+padding: 0 0 0 0px;
+} */

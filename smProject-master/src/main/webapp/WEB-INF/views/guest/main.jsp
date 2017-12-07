@@ -56,6 +56,139 @@
             </c:if>
             </sec:authorize>
             
+
+<c:choose>            
+<c:when test="${ period ne 3 }">
+
+<div class="container">
+			    
+			    <div class="row">
+				<!-- Start Slider -->
+	          
+	            <h2 class="fh5co-uppercase-heading-sm text-center animate-box fadeInUp animated">SKHU SM</h2>
+	            <div class="fh5co-spacer fh5co-spacer-xs"></div>
+
+					  <div class='row'>            
+                <div class='col-md-12'>
+      <div class="carousel slide media-carousel fadeInUp animated" id="media">
+        <div class="carousel-inner">
+          <div class="item active">
+            <div class="row">
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_1.jpg"></a>
+              </div>          
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_2.jpg"></a>
+              </div>
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_3.jpg"></a>
+              </div>        
+            </div>
+          </div>
+          <div class="item">
+            <div class="row">
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_4.jpg"></a>
+              </div>          
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_5.jpg"></a>
+              </div>
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_6.jpg"></a>
+              </div>        
+            </div>
+          </div>
+          <div class="item">
+            <div class="row">
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_5.jpg"></a>
+              </div>          
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_3.jpg"></a>
+              </div>
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_1.jpg"></a>
+              </div>      
+            </div>
+          </div>
+        </div>
+        <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
+        <a data-slide="next" href="#media" class="right carousel-control">›</a>
+      </div>                          
+    </div>
+  </div>
+  </div>
+  </div>           
+            
+</c:when>
+
+<c:when test="${ period eq 3 }">
+<sec:authorize access="not authenticated">
+
+<div class="container">
+			    
+			    <div class="row">
+				<!-- Start Slider -->
+	          
+	            <h2 class="fh5co-uppercase-heading-sm text-center animate-box fadeInUp animated">SKHU SM</h2>
+	            <div class="fh5co-spacer fh5co-spacer-xs"></div>
+
+					  <div class='row'>            
+                <div class='col-md-12'>
+      <div class="carousel slide media-carousel fadeInUp animated" id="media">
+        <div class="carousel-inner">
+          <div class="item active">
+            <div class="row">
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_1.jpg"></a>
+              </div>          
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_2.jpg"></a>
+              </div>
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_3.jpg"></a>
+              </div>        
+            </div>
+          </div>
+          <div class="item">
+            <div class="row">
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_4.jpg"></a>
+              </div>          
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_5.jpg"></a>
+              </div>
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_6.jpg"></a>
+              </div>        
+            </div>
+          </div>
+          <div class="item">
+            <div class="row">
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_5.jpg"></a>
+              </div>          
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_3.jpg"></a>
+              </div>
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="${R}images/img_large_1.jpg"></a>
+              </div>      
+            </div>
+          </div>
+        </div>
+        <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
+        <a data-slide="next" href="#media" class="right carousel-control">›</a>
+      </div>                          
+    </div>
+  </div>
+  </div>
+  </div>
+
+</sec:authorize>
+</c:when>
+</c:choose>
+            
             
   <div style="background-color:#90d7ea;">
   	<div class="container">

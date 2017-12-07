@@ -43,6 +43,7 @@ public class GuestController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String today = sdf.format(date);
 
+		try {
 		//str1.compareTo(str2) str1<str2일 때 -1리턴
 		if(today.compareTo(setting.getMentor_start_date()) < 0) {
 			period=1; //준비
@@ -57,6 +58,9 @@ public class GuestController {
 			period=4; //멘토링 활동 기간
 		} else if( (today.compareTo(setting.getSm_expire_date()) > 0) ){
 			period=5; //종료
+		}
+		} catch (Exception e) {
+			period=0;
 		}
 		model.addAttribute("period", period);
 		return "guest/main";
