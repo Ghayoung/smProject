@@ -179,6 +179,50 @@
 		WHERE u.name LIKE CONCAT('%',
 		#{keyword}, '%');
 	</select>
+	
+	<select id="findByUserName" resultType="User">
+		SELECT u.*, d.d_name,
+		s.status_name
+		FROM department d right join user u
+		ON d.id=u.major_id
+		left join status s
+		on u.status_id=s.id
+		WHERE u.name LIKE CONCAT('%',
+		#{keyword}, '%') and u.type=1;
+	</select>
+	
+	<select id="findByManagerName" resultType="User">
+		SELECT u.*, d.d_name,
+		s.status_name
+		FROM department d right join user u
+		ON d.id=u.major_id
+		left join status s
+		on u.status_id=s.id
+		WHERE u.name LIKE CONCAT('%',
+		#{keyword}, '%') and u.type=2;
+	</select>
+	
+	<select id="findByMentorName" resultType="User">
+		SELECT u.*, d.d_name,
+		s.status_name
+		FROM department d right join user u
+		ON d.id=u.major_id
+		left join status s
+		on u.status_id=s.id
+		WHERE u.name LIKE CONCAT('%',
+		#{keyword}, '%') and u.type=3;
+	</select>
+	
+	<select id="findByMenteeName" resultType="User">
+		SELECT u.*, d.d_name,
+		s.status_name
+		FROM department d right join user u
+		ON d.id=u.major_id
+		left join status s
+		on u.status_id=s.id
+		WHERE u.name LIKE CONCAT('%',
+		#{keyword}, '%') and u.type=4;
+	</select>
 
 	<update id="update">
 		UPDATE user SET pw = #{pw}, email = #{email}, phone =

@@ -45,8 +45,7 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-	
-	
+
 </head>
 <body>
 
@@ -84,6 +83,9 @@
 	
 	<!--바디-->
 	<tiles:insertAttribute name="body" />
+
+	
+
 	<!--메인 페이지 하단-->
 		
 		<footer role="contentinfo" id="fh5co-footer">
@@ -119,7 +121,7 @@
 				<div class="fh5co-spacer fh5co-spacer-md"></div>
 			</div>
 		</footer>
-			
+
 			
 		<!-- jQuery -->
 		<script src="${R}js/jquery-1.10.2.min.js"></script>

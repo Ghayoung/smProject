@@ -41,7 +41,7 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>파일 첨부</label>
-									<c:if test="${ file!=null }"><p>첨부된 파일: ${ file }</p></c:if>
+									<c:if test="${ !empty file }"><p>첨부된 파일: ${ file }</p></c:if>
 									<input name="file" type="file" class="btn btn-lg ">
 								</div>	
 							</div>
@@ -73,6 +73,10 @@
 		</div>
 		<!-- END fhtco-main -->
 <script>
+window.onload=function(){
+	document.location.href="#fh5co-main";
+}
+
 $('#summernote').summernote({
     placeholder: '내용을 입력해주세요',
     tabsize: 2,

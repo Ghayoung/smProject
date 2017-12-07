@@ -708,24 +708,48 @@ public class UserController {
 	@RequestMapping(value="searchSendEmail", method=RequestMethod.POST)
 	public String searchSendEmail(Model model, Email email, @RequestBody MultipartFile file, HttpServletRequest request) {
 		User user = UserService.getCurrentUser();
-		System.out.println(request.getParameter("all").equals("no"));
-		System.out.println(request.getParameter("all").equals("all"));
-		System.out.println(request.getParameter("all"));
-		if(request.getParameter("all").equals("all")){
-			if(file.isEmpty()){
-				emailService.sendSimpleMessageAllUser(user, email.getSubject(), email.getText());
-			}
-			else{
-				emailService.sendMessageWithAttachmentAllUser(user, email.getSubject(), email.getText(), file);
-			}
-		}
-		else{
+		String all = request.getParameter("all");
+		if(all.equals("no")){
 			String to = request.getParameter("to");
 			if(file.isEmpty()){
 				emailService.sendSimpleMessage(user, to, email.getSubject(), email.getText());
 			}
 			else{
 				emailService.sendMessageWithAttachment(user, to, email.getSubject(), email.getText(), file);
+			}
+		}
+		else{
+			if(all.equals("all")){
+				if(file.isEmpty()){
+					emailService.sendSimpleMessageAllUser(user, userService.findAllEmail(), email.getSubject(), email.getText());
+				}
+				else{
+					emailService.sendMessageWithAttachmentAllUser(user, userService.findAllEmail(), email.getSubject(), email.getText(), file);
+				}
+			}
+			else if(all.equals("manager")){
+				if(file.isEmpty()){
+					emailService.sendSimpleMessageAllUser(user, userService.findManagerEmail(), email.getSubject(), email.getText());
+				}
+				else{
+					emailService.sendMessageWithAttachmentAllUser(user, userService.findManagerEmail(), email.getSubject(), email.getText(), file);
+				}
+			}
+			else if(all.equals("mentor")){
+				if(file.isEmpty()){
+					emailService.sendSimpleMessageAllUser(user, userService.findMentorEmail(), email.getSubject(), email.getText());
+				}
+				else{
+					emailService.sendMessageWithAttachmentAllUser(user, userService.findMentorEmail(), email.getSubject(), email.getText(), file);
+				}
+			}
+			else if(all.equals("mentee")){
+				if(file.isEmpty()){
+					emailService.sendSimpleMessageAllUser(user, userService.findMenteeEmail(), email.getSubject(), email.getText());
+				}
+				else{
+					emailService.sendMessageWithAttachmentAllUser(user, userService.findMenteeEmail(), email.getSubject(), email.getText(), file);
+				}
 			}
 		}
 
@@ -735,7 +759,13 @@ public class UserController {
 	@RequestMapping(value="searchEmail", method=RequestMethod.POST)
 	public String searchEmail(Model model, HttpServletRequest request) {
 		Email email = new Email();
-		List<User> users = userMapper.findByName(request.getParameter("search"));
+		String type = request.getParameter("type");
+		List<User> users;
+		if(type.equals("1")) users = userMapper.findByUserName(request.getParameter("search"));
+		else if(type.equals("2")) users = userMapper.findByManagerName(request.getParameter("search"));
+		else if(type.equals("3")) users = userMapper.findByMentorName(request.getParameter("search"));
+		else if(type.equals("4")) users = userMapper.findByMenteeName(request.getParameter("search"));
+		else users = userMapper.findByName(request.getParameter("search"));
 		model.addAttribute("email", email);
 		model.addAttribute("users", users);
 		return "user/sendEmail";

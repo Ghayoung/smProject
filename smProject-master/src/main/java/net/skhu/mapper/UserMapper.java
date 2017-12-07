@@ -29,6 +29,14 @@ public interface UserMapper {
 
 	List<User> findByName(String keyword);
 
+	List<User> findByUserName(String keyword);
+
+	List<User> findByManagerName(String keyword);
+
+	List<User> findByMentorName(String keyword);
+
+	List<User> findByMenteeName(String keyword);
+
 	void deleteReport(int id);
 
 	void update(User user);

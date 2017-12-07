@@ -42,7 +42,8 @@
 	
 	
 	<select id="findOne" resultType="Article">
-		SELECT * FROM article WHERE id = #{id}
+		SELECT a.*, u.name "userName" 
+	    FROM article a LEFT JOIN user u ON a.art_u_id=u.id WHERE a.id = #{id}
 	</select>
 	
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id">

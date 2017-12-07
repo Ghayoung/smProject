@@ -45,7 +45,7 @@
 						</table>
 						
 					</div>
-					<my:pagination pageSize="${ pagination.sz }" recordCount="${ pagination.recordCount }" />
+					<div onclick="location.href='#iframeContent';"><my:pagination pageSize="${ pagination.sz }" recordCount="${ pagination.recordCount }" /></div>
 				</div>
 			</div>
 		</c:if>
@@ -70,5 +70,6 @@ function deleteClick(url){
 		alert("삭제되었습니다.");
 	}
 }
+
 
 </script>

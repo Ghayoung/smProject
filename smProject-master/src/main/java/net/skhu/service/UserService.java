@@ -141,6 +141,42 @@ public class UserService {
 		return emailList;
 	}
 
+	public String[] findManagerEmail(){
+		List<User> users = userMapper.findAllManager("1999-1-1", "9999-12-12");
+		int count = users.size();
+		String[] emailList = new String[count];
+		int i=0;
+		for(User user: users){
+			emailList[i] = user.getEmail();
+			i++;
+		}
+		return emailList;
+	}
+
+	public String[] findMentorEmail(){
+		List<User> users = userMapper.findAllMentor("1999-1-1", "9999-12-12");
+		int count = users.size();
+		String[] emailList = new String[count];
+		int i=0;
+		for(User user: users){
+			emailList[i] = user.getEmail();
+			i++;
+		}
+		return emailList;
+	}
+
+	public String[] findMenteeEmail(){
+		List<User> users = userMapper.findAllMentee("1999-1-1", "9999-12-12");
+		int count = users.size();
+		String[] emailList = new String[count];
+		int i=0;
+		for(User user: users){
+			emailList[i] = user.getEmail();
+			i++;
+		}
+		return emailList;
+	}
+
 	public List<Report> findAllReportByUser(){
 		User user = UserService.getCurrentUser();
 		List<Report> reports=userMapper.findAllReportsByWriter(user.getId());

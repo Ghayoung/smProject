@@ -15,9 +15,8 @@
 									<li>${ comment.name }</li>
 									<li id="c_content">${ comment.c_post_date }</li>
 									<c:if test="${ comment.com_u_id == user }">
-										<li><a class="ti-close"
-											href="${R}embeded/comment_delete?id=${param.id}&cid=${comment.id}"></a></li>
-										<li style="margin-right: 5px;"><a class="ti-pencil"
+										<li><a class="ti-close" style="border:none; font-size:16px;" onclick="deleteClick('${R}embeded/comment_delete?id=${param.id}&cid=${comment.id}')"></a></li>
+										<li style="margin-right: 5px;"><a class="ti-pencil" style="border:none; font-size:16px;"
 											onclick="comment_edit(${ status.count });"></a></li>
 									</c:if>
 								</ul>
@@ -53,7 +52,7 @@
 						<div class="col-sm-10">
 							<div class="form-group">
 								<form:textarea path="c_content" placeholder="댓글을 작성해주세요."
-									class="form-control input-lg" rows="3"></form:textarea>
+									class="form-control input-lg" rows="1"></form:textarea>
 							</div>
 						</div>
 						<div class="col-md-2" style="display:inline-block;">
@@ -73,5 +72,13 @@
 		var h = document.getElementById('iframeContent').offsetHeight+200;
 		console.log(h);
 		parent.setIframeHeight(h);
+	}
+	
+	function deleteClick(url){
+		var check = confirm("삭제하시겠습니까?");
+		if(check){
+			location.href=url;
+			alert("삭제되었습니다.");
+		}
 	}
 </script>

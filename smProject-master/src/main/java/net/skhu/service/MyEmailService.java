@@ -50,14 +50,13 @@ public class MyEmailService {
           }
     }
 
-    public void sendSimpleMessageAllUser(User from, String subject, String text) {
+    public void sendSimpleMessageAllUser(User from, String[] to, String subject, String text) {
     	MimeMessage message = emailSender.createMimeMessage();
-        String[] emailList = userService.findAllEmail();
         try {
         	MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, true);
             mimeMessageHelper.setSubject(subject);
             mimeMessageHelper.setText(text);
-            mimeMessageHelper.setTo(emailList);
+            mimeMessageHelper.setTo(to);
 
             mimeMessageHelper.setFrom(new InternetAddress(from.getEmail(), from.getName()+" (SKHU SM)"));
             emailSender.send(message);
@@ -124,9 +123,8 @@ public class MyEmailService {
 
     }
 
-    public void sendMessageWithAttachmentAllUser(User from, String subject, String text, MultipartFile multipart) {
+    public void sendMessageWithAttachmentAllUser(User from, String[] to, String subject, String text, MultipartFile multipart) {
         MimeMessage message = emailSender.createMimeMessage();
-        String[] emailList = userService.findAllEmail();
 
         try{
         	String relPath = fileService.getUploadFilePath(multipart);
@@ -135,7 +133,7 @@ public class MyEmailService {
         	MimeMessageHelper helper = new MimeMessageHelper(message,true);
 
         	helper.setFrom(new InternetAddress(from.getEmail(), from.getName()+" (SKHU SM)"));
-        	helper.setTo(emailList);
+        	helper.setTo(to);
             helper.setSubject(subject);
             helper.setText(text);
 
