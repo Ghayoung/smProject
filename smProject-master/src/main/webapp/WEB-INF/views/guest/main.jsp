@@ -235,7 +235,8 @@
     <div class="fh5co-spacer fh5co-spacer-md"></div>
       
         </div>
-        
+ 
+<sec:authorize access="not authenticated">        
 <c:if test="${ setting.survey != null }">
 <!-- 팝업창시작 -->
 <div class="modal" id="layerpop" style="display:block; background-color:rgba(28, 27, 27, 0.49);">
@@ -258,3 +259,4 @@
 	</div>
 <!-- 팝업창끝 -->	
 </c:if>
+</sec:authorize>
