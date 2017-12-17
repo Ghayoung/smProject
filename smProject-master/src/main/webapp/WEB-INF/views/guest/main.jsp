@@ -236,7 +236,7 @@
       
         </div>
  
-<sec:authorize access="not authenticated">        
+<sec:authorize access="authenticated">        
 <c:if test="${ setting.survey != null }">
 <!-- 팝업창시작 -->
 <div class="modal" id="layerpop" style="display:block; background-color:rgba(28, 27, 27, 0.49);">
