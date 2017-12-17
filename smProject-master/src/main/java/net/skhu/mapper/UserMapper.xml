@@ -329,6 +329,10 @@
 		#{min_mentee}, #{report_deadline})
 	</insert>
 	
+	<update id="m_survey">
+		update setting set survey = #{link} where id= #{id}
+	</update>
+	
 	<select id="findSetting" resultType="Setting">
 		SELECT *
 		FROM setting

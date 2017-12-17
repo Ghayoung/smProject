@@ -75,6 +75,14 @@ function register() {
 	}
 }
 
+function survey() {
+	if (document.r_form.link.value == "")
+		alert("설문조사 링크를 등록해주세요");
+	else {
+		r_form.submit();
+	}
+}
+
 function double_dep(v, showId, nonShowId) {
 	// 라디오 버튼 value 값 조건 비교
 	if (v == "1") {

@@ -136,6 +136,19 @@ public class ManagerController {
 		return "manager/m_register";
 	}
 
+	@RequestMapping("m_survey")
+	public String m_survey() {
+		return "manager/m_survey";
+	}
+
+	@RequestMapping(value = "m_survey", method = RequestMethod.POST)
+	public String m_survey(HttpServletRequest request){
+		String link = request.getParameter("link");
+		int id = userMapper.findSetting().getId();
+		userMapper.m_survey(link, id);
+		return "manager/m_survey";
+	}
+
 	/* 멘토 신청서 목록 출력 , 작성자-남하영 */
 	@RequestMapping("m_contact")
 	public String m_contact(Model model, HttpServletResponse response) throws Exception{

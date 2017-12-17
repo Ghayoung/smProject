@@ -3,6 +3,7 @@ package net.skhu.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import net.skhu.dto.Comment;
 import net.skhu.dto.Report;
@@ -54,6 +55,8 @@ public interface UserMapper {
 	void insertWithExcel(User user);
 
 	void m_setting(Setting setting);
+
+	void m_survey(@Param("link") String link, @Param("id") int id);
 
 	Setting findSetting();
 

@@ -37,6 +37,7 @@
 						<li><a href="${R}manager/m_userManage">회원관리</a></li>
 						<li><a href="${R}manager/m_mentoringManage">멘토링관리</a></li>
 						<li><a href="${R}manager/m_reportManage">보고서 관리</a></li>
+						<li><a href="${R}manager/m_survey">설문조사</a></li>
 						<li><a href="${R}manager/m_setting">설정하기</a></li>
 					</ul>
 				</li>

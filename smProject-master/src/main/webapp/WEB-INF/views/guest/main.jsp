@@ -212,10 +212,12 @@
 								<img src="${R}images/icon_my_step03.png" alt="활동중" title="활동중">
 								<p id="stepD" <c:if test="${ period eq 4 }">class="on"</c:if>>활동중</p>
 							</li>
+							<!-- 
 							<li>
 								<img src="${R}images/icon_my_step04.png" alt="설문" title="설문">
 								<p id="stepE">설문</p>
 							</li>
+							-->
 							<li>
 								<img src="${R}images/icon_my_step05.png" alt="종료" title="종료">
 								<p id="stepF" <c:if test="${ period eq 5 }">class="on"</c:if>>종료</p>
@@ -233,3 +235,26 @@
     <div class="fh5co-spacer fh5co-spacer-md"></div>
       
         </div>
+        
+<c:if test="${ setting.survey != null }">
+<!-- 팝업창시작 -->
+<div class="modal" id="layerpop" style="display:block; background-color:rgba(28, 27, 27, 0.49);">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- header -->
+      <div class="modal-header">
+        <!-- 닫기(x) 버튼 -->
+        <button type="button" class="close" data-dismiss="modal" onclick="$('#layerpop').attr('style','display:none')">×</button>
+        <!-- header title -->
+        <h4 class="modal-title">알림!</h4>
+      </div>
+      <!-- body -->
+      <div class="modal-body" style="text-align:center;">
+            	<p>설문조사가 등록되었습니다.<br>설문조사에 참여해주세요!</p>
+            	<p>바로가기 링크:&nbsp;&nbsp;&nbsp;<a href="${setting.survey }">${ setting.survey }</a></p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+<!-- 팝업창끝 -->	
+</c:if>

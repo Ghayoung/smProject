@@ -2,18 +2,33 @@ package net.skhu.dto;
 
 public class Setting {
 
+	int id;
 	String mentor_start_date;
 	String mentor_expire_date;
 	String mentee_start_date;
 	String mentee_expire_date;
 	String sm_start_date;
 	String sm_expire_date;
+	String survey;
 	int study_count;
 	int max_mentor;
 	int max_mentee;
 	int min_mentee;
 	int report_deadline;
 
+
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getSurvey() {
+		return survey;
+	}
+	public void setSurvey(String survey) {
+		this.survey = survey;
+	}
 	public String getMentor_start_date() {
 		return mentor_start_date;
 	}
